@@ -94,7 +94,8 @@ include(SuperFind)
 
 set(KMLBASE_DEPENDS)
 
-find_package(Boost)
+find_package(Boost CONFIG NO_MODULE)
+
 if(Boost_FOUND)
   message(STATUS "Found Boost: ${Boost_VERSION}")
 else()
