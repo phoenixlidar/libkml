@@ -7,6 +7,8 @@
 */
 
 #ifndef _ZLIBIOAPI_H
+#include <mz_compat.h>
+
 #define _ZLIBIOAPI_H
 
 
@@ -42,20 +44,6 @@ typedef long   (ZCALLBACK *tell_file_func) OF((voidpf opaque, voidpf stream));
 typedef long   (ZCALLBACK *seek_file_func) OF((voidpf opaque, voidpf stream, uLong offset, int origin));
 typedef int    (ZCALLBACK *close_file_func) OF((voidpf opaque, voidpf stream));
 typedef int    (ZCALLBACK *testerror_file_func) OF((voidpf opaque, voidpf stream));
-
-typedef struct zlib_filefunc_def_s
-{
-    open_file_func      zopen_file;
-    read_file_func      zread_file;
-    write_file_func     zwrite_file;
-    tell_file_func      ztell_file;
-    seek_file_func      zseek_file;
-    close_file_func     zclose_file;
-    testerror_file_func zerror_file;
-    voidpf              opaque;
-} zlib_filefunc_def;
-
-
 
 void fill_fopen_filefunc OF((zlib_filefunc_def* pzlib_filefunc_def));
 

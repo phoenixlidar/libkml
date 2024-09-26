@@ -184,7 +184,8 @@ void init_unz_s(unz_s* un)
 }
 
 #ifndef NOUNCRYPT
-#include <minizip/crypt.h>
+#include <stdint.h>
+#include <mz_crypt.h>
 #endif
 
 /* ===========================================================================
