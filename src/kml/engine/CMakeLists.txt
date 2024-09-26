@@ -34,10 +34,17 @@ set(INCS
   style_splitter.h
   update.h)
 
-build_target(
-  NAME kmlengine
-  SRCS ${SRCS}
-  INCS ${INCS}
-  DEPENDS kmlbase;kmldom)
+add_library(kmlengine
+    ${SRCS}
+    ${INCS}
+)
 
+target_link_libraries (kmlengine
+    PRIVATE Boost::smart_ptr
+)
+
+install(TARGETS kmlengine
+    EXPORT LibKMLTargets
+    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+)
 
