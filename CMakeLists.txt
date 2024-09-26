@@ -111,11 +111,9 @@ endif()
 super_find_package(EXPAT)
 include_directories(${EXPAT_INCLUDE_DIRS})
 
+include (cmake/FindMiniZip.cmake)
 super_find_package(ZLIB)
 include_directories(${ZLIB_INCLUDE_DIR})
-
-super_find_package(MiniZip)
-include_directories(${MINIZIP_INCLUDE_DIR})
 
 super_find_package(UriParser)
 include_directories(${URIPARSER_INCLUDE_DIR})
@@ -123,7 +121,6 @@ include_directories(${URIPARSER_INCLUDE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 add_dependencies_if_needed(KMLBASE ZLIB)
-add_dependencies_if_needed(KMLBASE MiniZip)
 add_dependencies_if_needed(KMLBASE UriParser)
 add_dependencies_if_needed(KMLBASE EXPAT)
 
