@@ -48,6 +48,9 @@ add_library (kmlbase
     ${INCS}
 )
 
+target_compile_definitions(kmlbase
+    PRIVATE NOUNCRYPT
+)
 target_include_directories(kmlbase
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
 )
