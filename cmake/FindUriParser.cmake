@@ -11,5 +11,6 @@ if (NOT URIPARSER_FOUND)
     set (URIPARSER_BUILD_TESTS OFF)
     set (URIPARSER_BUILD_DOCS OFF)
     FetchContent_MakeAvailable (uriparser)
+    #Alias can be removed when https://github.com/uriparser/uriparser/pull/197 is merged
     add_library (uriparser::uriparser ALIAS uriparser)
 endif (NOT URIPARSER_FOUND)
