@@ -58,6 +58,7 @@ target_include_directories(kmlbase
 target_link_libraries (kmlbase
     PUBLIC $<BUILD_LOCAL_INTERFACE:MINIZIP::minizip>
     PUBLIC $<BUILD_LOCAL_INTERFACE:uriparser::uriparser>
+    PUBLIC $<BUILD_LOCAL_INTERFACE:ZLIB::ZLIB>
     PRIVATE Boost::smart_ptr
     ${ZLIB_LIBRARY} ${EXPAT_LIBRARY}
 )

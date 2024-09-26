@@ -112,8 +112,12 @@ super_find_package(EXPAT)
 include_directories(${EXPAT_INCLUDE_DIRS})
 
 include (cmake/FindMiniZip.cmake)
-super_find_package(ZLIB)
-include_directories(${ZLIB_INCLUDE_DIR})
+
+find_package(ZLIB)
+
+if(NOT ZLIB_FOUND)
+    include(cmake/Extern_ZLIB.cmake)
+endif(NOT ZLIB_FOUND)
 
 include (cmake/FindUriParser.cmake)
 
