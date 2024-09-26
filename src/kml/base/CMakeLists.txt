@@ -43,10 +43,23 @@ set(INCS
   xmlns.h
   zip_file.h)
 
+add_library (kmlbase
+    ${SRCS}
+    ${INCS}
+)
 
-build_target(
-  NAME kmlbase
-  SRCS ${SRCS}
-  INCS ${INCS}
-  DEPENDS ${KMLBASE_DEPENDS}
-  LINKS ${ZLIB_LIBRARY} ${MINIZIP_LIBRARIES} ${URIPARSER_LIBRARY} ${EXPAT_LIBRARY} )
+target_include_directories(kmlbase
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
+)
+
+target_link_libraries (kmlbase
+    PUBLIC $<BUILD_LOCAL_INTERFACE:MINIZIP::minizip>
+    PUBLIC $<BUILD_LOCAL_INTERFACE:uriparser::uriparser>
+    PRIVATE Boost::smart_ptr
+    ${ZLIB_LIBRARY} ${EXPAT_LIBRARY}
+)
+
+install(TARGETS kmlbase
+    EXPORT LibKMLTargets
+    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+)
