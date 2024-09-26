@@ -100,11 +100,8 @@ if(Boost_FOUND)
   message(STATUS "Found Boost: ${Boost_VERSION}")
 else()
   include(External_boost)
-  list(APPEND KMLBASE_DEPENDS BOOST)
-  message(STATUS "Found Boost includes: ${Boost_INCLUDE_DIRS}")
+  message(STATUS "Found Boost includes")
 endif()
-
-include_directories(${Boost_INCLUDE_DIRS})
 
 if(NOT BUILD_SHARED_LIBS)    
     add_definitions(-DXML_STATIC) #for static expat    
