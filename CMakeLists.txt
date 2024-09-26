@@ -107,9 +107,18 @@ if(NOT BUILD_SHARED_LIBS)
     add_definitions(-DXML_STATIC) #for static expat    
 endif()
 
-#expat is dependency for kmlbase and kmldom
-super_find_package(EXPAT)
-include_directories(${EXPAT_INCLUDE_DIRS})
+#FIRST use config then module mode then download
+find_package(expat CONFIG)
+
+if(NOT EXPAT_FOUND)
+    find_package(EXPAT MODULE)
+
+    if(EXPAT_FOUND)
+        add_library(expat::expat ALIAS EXPAT::EXPAT)
+    else(EXPAT_FOUND)
+        include(cmake/External_expat.cmake)
+    endif(EXPAT_FOUND)
+endif(NOT EXPAT_FOUND)
 
 include (cmake/FindMiniZip.cmake)
 

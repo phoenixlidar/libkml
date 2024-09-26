@@ -59,8 +59,8 @@ target_link_libraries (kmlbase
     PUBLIC $<BUILD_LOCAL_INTERFACE:MINIZIP::minizip>
     PUBLIC $<BUILD_LOCAL_INTERFACE:uriparser::uriparser>
     PUBLIC $<BUILD_LOCAL_INTERFACE:ZLIB::ZLIB>
+    PUBLIC $<BUILD_LOCAL_INTERFACE:expat::expat>
     PRIVATE Boost::smart_ptr
-    ${ZLIB_LIBRARY} ${EXPAT_LIBRARY}
 )
 
 install(TARGETS kmlbase
