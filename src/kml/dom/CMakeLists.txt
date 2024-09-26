@@ -54,9 +54,16 @@ set(INCS
   visitor.h
   visitor_driver.h)
 
-build_target(
-  NAME kmldom
-  SRCS ${SRCS}
-  INCS ${INCS}
-  DEPENDS kmlbase)
+add_library(kmldom
+    ${SRCS}
+    ${INCS}
+)
 
+target_link_libraries (kmldom
+    PRIVATE Boost::smart_ptr
+)
+
+install(TARGETS kmldom
+    EXPORT LibKMLTargets
+    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+)
