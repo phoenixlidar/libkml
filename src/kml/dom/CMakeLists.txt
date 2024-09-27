@@ -66,5 +66,4 @@ target_link_libraries (kmldom
 
 install(TARGETS kmldom
     EXPORT LibKMLTargets
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
 )

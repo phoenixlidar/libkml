@@ -65,5 +65,4 @@ target_link_libraries (kmlbase
 
 install(TARGETS kmlbase
     EXPORT LibKMLTargets
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
 )

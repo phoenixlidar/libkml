@@ -14,6 +14,5 @@ target_link_libraries (kmlregionator
 
 install(TARGETS kmlregionator
     EXPORT LibKMLTargets
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
 )
 

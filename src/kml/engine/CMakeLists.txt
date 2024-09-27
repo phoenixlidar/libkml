@@ -46,6 +46,5 @@ target_link_libraries (kmlengine
 
 install(TARGETS kmlengine
     EXPORT LibKMLTargets
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
 )
 

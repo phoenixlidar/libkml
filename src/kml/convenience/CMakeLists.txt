@@ -13,5 +13,4 @@ target_link_libraries (kmlconvenience
 
 install(TARGETS kmlconvenience
     EXPORT LibKMLTargets
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
 )

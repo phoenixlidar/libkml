@@ -13,6 +13,5 @@ target_link_libraries (kmlxsd
 
 install(TARGETS kmlxsd
     EXPORT LibKMLTargets
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
 )
 
