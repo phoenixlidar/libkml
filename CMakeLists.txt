@@ -75,8 +75,6 @@ include(cmake/LibKMLHelper.cmake)
 
 include(cmake/SuperFind.cmake)
 
-set(KMLBASE_DEPENDS)
-
 find_package(Boost CONFIG NO_MODULE)
 
 if(Boost_FOUND)
@@ -122,10 +120,6 @@ if (NOT URIPARSER_FOUND)
 endif (NOT URIPARSER_FOUND)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
-
-add_dependencies_if_needed(KMLBASE ZLIB)
-add_dependencies_if_needed(KMLBASE UriParser)
-add_dependencies_if_needed(KMLBASE EXPAT)
 
 add_subdirectory(src)
 
