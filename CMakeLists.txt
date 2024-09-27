@@ -130,7 +130,11 @@ if(NOT ZLIB_FOUND)
     include(cmake/External_ZLIB.cmake)
 endif(NOT ZLIB_FOUND)
 
-include (cmake/FindUriParser.cmake)
+find_package(uriparser CONFIG)
+
+if (NOT URIPARSER_FOUND)
+    include (cmake/External_UriParser.cmake)
+endif (NOT URIPARSER_FOUND)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
