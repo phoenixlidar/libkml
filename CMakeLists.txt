@@ -53,9 +53,6 @@ else()
 endif()
 set(CMAKE_INSTALL_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH "Installation directory for CMake files")
 
-set(CMAKE_MODULE_PATH
-    ${CMAKE_SOURCE_DIR}/cmake
-    ${CMAKE_MODULE_PATH})
 
 set(LIBKML_DATA_DIR  ${CMAKE_SOURCE_DIR}/testdata CACHE PATH "Directory containing test data")
 
@@ -74,9 +71,9 @@ endif()
 set(INSTALL_DIR "${CMAKE_INSTALL_PREFIX}" CACHE PATH "install directory ")
 set(LIBKML_TARGETS)
 
-include(LibKMLHelper)
+include(cmake/LibKMLHelper.cmake)
 
-include(SuperFind)
+include(cmake/SuperFind.cmake)
 
 set(KMLBASE_DEPENDS)
 
@@ -85,7 +82,7 @@ find_package(Boost CONFIG NO_MODULE)
 if(Boost_FOUND)
   message(STATUS "Found Boost: ${Boost_VERSION}")
 else()
-  include(External_boost)
+  include(cmake/External_boost.cmake)
   message(STATUS "Found Boost includes")
 endif()
 
