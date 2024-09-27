@@ -9,6 +9,7 @@ add_library(kmlregionator
 target_link_libraries (kmlregionator
     PRIVATE Boost::smart_ptr
     INTERFACE kmlengine
+    INTERFACE kmlconvenience
 )
 
 install(TARGETS kmlregionator
