@@ -4,8 +4,9 @@ regionator_qid
 regionator_util)
 
 foreach(TEST ${TESTS})
-  build_test(
-    GROUP regionator
-    NAME ${TEST}
-    DEPENDS kmlregionator)
+    build_test(
+        GROUP regionator
+        NAME ${TEST}
+        DEPENDS kmlregionator GTest::gtest_main Boost::smart_ptr
+    )
 endforeach()

@@ -52,9 +52,10 @@ visitor
 visitor_driver)
 
 foreach(TEST ${TESTS})
-  build_test(
-    GROUP dom
-    NAME ${TEST}
-    DEPENDS kmldom)
+    build_test(
+        GROUP dom
+        NAME ${TEST}
+        DEPENDS kmldom GTest::gtest_main Boost::smart_ptr
+    )
 endforeach()
 

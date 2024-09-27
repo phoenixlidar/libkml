@@ -1,6 +1,5 @@
 set(TESTS
 attributes
-color32
 csv_splitter
 date_time
 expat_handler_ns
@@ -17,9 +16,7 @@ xml_element
 xml_file
 xml_namespaces
 xmlns
-net_cache
 uri_parser
-zip_file
 expat_parser)
 
 if(MINGW)
@@ -27,8 +24,13 @@ if(MINGW)
 endif()
 
 foreach(TEST ${TESTS})
-  build_test(
-    GROUP base
-    NAME ${TEST}
-    DEPENDS kmlbase)
+    build_test(
+        GROUP base
+        NAME ${TEST}
+        DEPENDS kmlbase GTest::gtest_main Boost::smart_ptr
+    )
 endforeach()
+
+#color32
+#net_cache
+#zip_file

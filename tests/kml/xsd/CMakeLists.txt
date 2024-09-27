@@ -9,8 +9,9 @@ xsd_util
 xst_parser)
 
 foreach(TEST ${TESTS})
-  build_test(
-    GROUP xsd
-    NAME ${TEST}
-    DEPENDS kmlxsd)
+    build_test(
+        GROUP xsd
+        NAME ${TEST}
+        DEPENDS kmlxsd GTest::gtest_main Boost::smart_ptr
+    )
 endforeach()

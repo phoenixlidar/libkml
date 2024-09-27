@@ -64,7 +64,7 @@ function(build_test)
       list(APPEND TEST_LINKS ${LINK_PROP})
     endif()
   endforeach()
-  target_link_libraries(${TEST_GROUP}_${TEST_NAME}_test ${TEST_LINKS} ${TEST_DEPENDS} ${GTEST_LIBRARY})
+  target_link_libraries(${TEST_GROUP}_${TEST_NAME}_test ${TEST_LINKS} ${TEST_DEPENDS})
   add_test(${TEST_GROUP}_${TEST_NAME} ${CMAKE_BINARY_DIR}/bin/${TEST_GROUP}_${TEST_NAME}_test)
 endfunction(build_test)
 

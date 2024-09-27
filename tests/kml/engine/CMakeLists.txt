@@ -32,8 +32,9 @@ update_processor
 update)
 
 foreach(TEST ${TESTS})
-  build_test(
-    GROUP engine
-    NAME ${TEST}
-    DEPENDS kmlengine)  
+    build_test(
+        GROUP engine
+        NAME ${TEST}
+        DEPENDS kmlengine GTest::gtest_main Boost::smart_ptr
+    )
 endforeach()

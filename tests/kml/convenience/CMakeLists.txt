@@ -12,8 +12,9 @@ kml_feature_list_saver
 kmz_check_links)
 
 foreach(TEST ${TESTS})
-  build_test(
-    GROUP convenience
-    NAME ${TEST}
-    DEPENDS kmlconvenience)
+     build_test(
+        GROUP convenience
+        NAME ${TEST}
+        DEPENDS kmlconvenience GTest::gtest_main Boost::smart_ptr
+    )
 endforeach()
