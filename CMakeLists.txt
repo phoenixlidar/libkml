@@ -123,7 +123,7 @@ include (cmake/FindMiniZip.cmake)
 find_package(ZLIB)
 
 if(NOT ZLIB_FOUND)
-    include(cmake/Extern_ZLIB.cmake)
+    include(cmake/External_ZLIB.cmake)
 endif(NOT ZLIB_FOUND)
 
 include (cmake/FindUriParser.cmake)
