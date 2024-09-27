@@ -24,11 +24,9 @@ macro(build_target)
       target_link_libraries(${LIB_NAME} LINK_INTERFACE_LIBRARIES ${INTERFACE_LINKS})
     endif()
   endif()
-  if(VERSION_STRING)
-    set_target_properties(${LIB_NAME} PROPERTIES
-      VERSION   "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
-      SOVERSION "${VERSION_MAJOR}")
-  endif()
+  set_target_properties(${LIB_NAME} PROPERTIES
+      VERSION   "${LibKML_VERSION_MAJOR}.${LibKML_VERSION_MINOR}.${LibKML_VERSION_PATCH}"
+      SOVERSION "${LibKML_VERSION_MAJOR}")
   string(LENGTH ${LIB_NAME} ${LIB_NAME}_LEN)
   MATH(EXPR ${LIB_NAME}_END "${${LIB_NAME}_LEN} - 3")
   string(SUBSTRING ${LIB_NAME} 3 ${${LIB_NAME}_END} ${LIB_NAME}_INCLUDE_DIR)

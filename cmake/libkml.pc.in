@@ -7,7 +7,7 @@ includedir=${prefix}/include
 
 Name: LibKML
 Description: Reference implementation of OGC KML 2.2
-Version: @VERSION_STRING@
+Version: @LibKML_VERSION@
 ##Requires: expat zlib boost
 ##minizip 
 Conflicts:
