@@ -142,6 +142,11 @@ if(BUILD_TESTING)
 endif()
 
 if(BUILD_EXAMPLES)
+    find_package(CURL)
+
+    if(NOT CURL_FOUND)
+        include(cmake/External_Curl.cmake)
+    endif(NOT CURL_FOUND)
   add_subdirectory(examples)
 endif()
 

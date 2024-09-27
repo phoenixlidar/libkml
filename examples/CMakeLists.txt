@@ -4,10 +4,8 @@ add_subdirectory(engine)
 add_subdirectory(gpx)
 add_subdirectory(gx)
 
-find_package(CURL)
-if(NOT CURL_FOUND)
-  message(WARNING "Examples in hellonet directory are not built because curl was not found")
-else()
+
+if(CURL_FOUND)
   add_subdirectory(hellonet)
 endif()
 

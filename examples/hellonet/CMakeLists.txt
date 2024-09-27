@@ -1,5 +1,8 @@
 add_library(curlfetch STATIC curlfetch.cc)
-target_link_libraries(curlfetch ${CURL_LIBRARIES})
+target_link_libraries(curlfetch
+    PRIVATE CURL::libcurl
+    PRIVATE Boost::smart_ptr
+)
 
 build_example(
   NAME csvurl2gmap
