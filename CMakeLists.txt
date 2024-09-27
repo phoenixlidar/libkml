@@ -145,8 +145,14 @@ add_dependencies_if_needed(KMLBASE EXPAT)
 add_subdirectory(src)
 
 if(BUILD_TESTING)
-  enable_testing()
-  add_subdirectory(tests)
+    find_package (GTest)
+
+    if (NOT GTEST_FOUND)
+        include (cmake/External_GTest.cmake)
+    endif (NOT GTEST_FOUND)
+
+    enable_testing()
+    add_subdirectory(tests)
 endif()
 
 if(BUILD_EXAMPLES)
