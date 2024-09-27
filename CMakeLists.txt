@@ -118,7 +118,11 @@ if(NOT EXPAT_FOUND)
     endif(EXPAT_FOUND)
 endif(NOT EXPAT_FOUND)
 
-include (cmake/FindMiniZip.cmake)
+find_package(minizip CONFIG)
+
+if (NOT MINIZIP_FOUND)
+    include (cmake/External_MiniZip.cmake)
+endif (NOT MINIZIP_FOUND)
 
 find_package(ZLIB)
 
