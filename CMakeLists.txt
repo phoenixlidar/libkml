@@ -168,7 +168,7 @@ foreach(p LIB BIN INCLUDE CMAKE)
   endif()
 endforeach()
 
-export(TARGETS ${LIBKML_TARGETS} kmlbase kmlconvenience kmldom kmlengine kmlregionator
+export(TARGETS ${LIBKML_TARGETS} kmlbase kmlconvenience kmldom kmlengine kmlregionator kmlxsd
   FILE "${CMAKE_BINARY_DIR}/LibKMLTargets.cmake")
   
 # Create the LibKMLConfig.cmake and LibKMLConfigVersion files
