@@ -1,11 +1,14 @@
+build_example(
+    NAME gpxfly
+    DEPENDS kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME gpxfly
-  DEPENDS kmlconvenience)
-
-build_example(
-  NAME featuretour
-  DEPENDS kmlconvenience)
+    NAME featuretour
+    DEPENDS kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 
 if(INSTALL_EXAMPLES)

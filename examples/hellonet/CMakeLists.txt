@@ -5,76 +5,112 @@ target_link_libraries(curlfetch
 )
 
 build_example(
-  NAME csvurl2gmap
-  DEPENDS curlfetch kmlconvenience)
+    NAME csvurl2gmap
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr kmlconvenience
+)
 
 build_example(
-  NAME getgmapkml
-  DEPENDS curlfetch kmlconvenience)
+    NAME getgmapkml
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME getgsheetcsv
-  DEPENDS curlfetch kmlconvenience)
+    NAME getgsheetcsv
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME getgsheetkml
-  DEPENDS curlfetch kmlconvenience)
+    NAME getgsheetkml
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME gsheet2gmap
-  DEPENDS curlfetch kmlconvenience)
+    NAME gsheet2gmap
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME kmlwalk
-  DEPENDS curlfetch kmlconvenience)
+    NAME kmlwalk
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME kmzfetch
-  DEPENDS curlfetch kmlconvenience)
+    NAME kmzfetch
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME listfeed
-  DEPENDS curlfetch kmlconvenience)
+    NAME listfeed
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME listgdocs
-  DEPENDS curlfetch kmlconvenience)
+    NAME listgdocs
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME listgmaps
-  DEPENDS curlfetch kmlconvenience)
+    NAME listgmaps
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME listgphotos
-  DEPENDS curlfetch kmlconvenience)
+    NAME listgphotos
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME resolvestyle
-  DEPENDS curlfetch kmlconvenience)
+    NAME resolvestyle
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME searchgmap
-  DEPENDS curlfetch kmlconvenience)
+    NAME searchgmap
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME uploadgmap
-  DEPENDS curlfetch kmlconvenience)
+    NAME uploadgmap
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME uploadgmapcsv
-  DEPENDS curlfetch kmlconvenience)
+    NAME uploadgmapcsv
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME uploadgmapkml
-  DEPENDS curlfetch kmlconvenience)
+    NAME uploadgmapkml
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME uploadgsheet
-  DEPENDS curlfetch kmlconvenience)
+    NAME uploadgsheet
+    DEPENDS curlfetch kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME xsdprint
-  DEPENDS curlfetch kmlconvenience kmlxsd)
+    NAME xsdprint
+    DEPENDS curlfetch kmlconvenience kmlxsd
+    LINKS Boost::smart_ptr
+)
 
 if(INSTALL_EXAMPLES)
 file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")

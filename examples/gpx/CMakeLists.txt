@@ -4,8 +4,10 @@
 # AM_CXXFLAGS = -Wall -Werror -pedantic -Wno-long-long -fno-rtti
 # endif
 build_example(
-  NAME gpxtracktokml
-  DEPENDS kmlconvenience)
+    NAME gpxtracktokml
+    DEPENDS kmlconvenience
+    LINKS Boost::smart_ptr
+)
 
 if(INSTALL_EXAMPLES)
   file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")

@@ -1,41 +1,59 @@
 add_library(helloutil STATIC print.cc)
-target_link_libraries(helloutil ${MINIZIP_LIBRARY})
+target_link_libraries(helloutil Boost::smart_ptr ${MINIZIP_LIBRARY})
 
 build_example(
-  NAME createkml
-  DEPENDS kmldom kmlbase)
+    NAME createkml
+    DEPENDS kmldom kmlbase
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME circlegen
-  DEPENDS kmlconvenience kmlengine kmldom kmlbase)
+    NAME circlegen
+    DEPENDS kmlconvenience kmlengine kmldom kmlbase
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME checklinks
-  DEPENDS kmlengine kmldom kmlbase)
+    NAME checklinks
+    DEPENDS kmlengine kmldom kmlbase
+    LINKS Boost::smart_ptr
+)
 
 build_example(
-  NAME countkml
-  DEPENDS kmlengine kmldom kmlbase)
+    NAME countkml
+    DEPENDS kmlengine kmldom kmlbase
+    LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME helloattrs
-  DEPENDS kmldom kmlbase)
+  DEPENDS kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME helloenum
-  DEPENDS kmldom kmlbase)
+  DEPENDS kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME hellofeatures
-  DEPENDS helloutil kmldom kmlbase)
+  DEPENDS helloutil kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME hellofolder
-  DEPENDS kmldom kmlbase)
+  DEPENDS kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME hellogeometry
-  DEPENDS kmldom kmlbase)
+  DEPENDS kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME hellohref
@@ -43,7 +61,9 @@ build_example(
 
 build_example(
   NAME hellokmz
-  DEPENDS kmldom kmlbase kmlengine)
+  DEPENDS kmldom kmlbase kmlengine
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME helloregion
@@ -51,36 +71,51 @@ build_example(
 
 build_example(
   NAME helloworld
-  DEPENDS kmldom kmlbase)
+  DEPENDS kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME parsekml
-  DEPENDS kmldom kmlbase)
+  DEPENDS kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME parsens
-  DEPENDS kmldom kmlbase)
+  DEPENDS kmldom kmlbase
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME prettykml
-  DEPENDS kmldom kmlbase kmlengine)
+  DEPENDS kmldom kmlbase kmlengine
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME printgeometry
-  DEPENDS kmldom kmlbase kmlengine)
+  DEPENDS kmldom kmlbase kmlengine
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME sharedstyles
-  DEPENDS kmldom kmlbase kmlengine kmlconvenience)
+  DEPENDS kmldom kmlbase kmlengine kmlconvenience
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME simplifylines
-  DEPENDS kmldom kmlbase kmlengine kmlconvenience)
+  DEPENDS kmldom kmlbase kmlengine kmlconvenience
+  LINKS Boost::smart_ptr
+)
 
 build_example(
   NAME sortplacemarks
-  DEPENDS kmldom kmlbase kmlengine kmlconvenience)
-
+  DEPENDS kmldom kmlbase kmlengine kmlconvenience
+  LINKS Boost::smart_ptr
+)
 
 if(INSTALL_EXAMPLES)
 file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
