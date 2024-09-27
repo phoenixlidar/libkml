@@ -5,7 +5,7 @@ FetchContent_Declare (uriparser
     GIT_TAG       uriparser-0.9.8
 )
 
-find_package(uriparser)
+find_package(uriparser CONFIG)
 
 if (NOT URIPARSER_FOUND)
     set (URIPARSER_BUILD_TESTS OFF)
