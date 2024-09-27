@@ -8,6 +8,7 @@ add_library(kmlconvenience
 
 target_link_libraries (kmlconvenience
     PRIVATE Boost::smart_ptr
+    INTERFACE kmlengine
 )
 
 install(TARGETS kmlconvenience

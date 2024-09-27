@@ -41,6 +41,7 @@ add_library(kmlengine
 
 target_link_libraries (kmlengine
     PRIVATE Boost::smart_ptr
+    INTERFACE kmldom
 )
 
 install(TARGETS kmlengine

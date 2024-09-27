@@ -61,6 +61,7 @@ add_library(kmldom
 
 target_link_libraries (kmldom
     PRIVATE Boost::smart_ptr
+    INTERFACE kmlbase
 )
 
 install(TARGETS kmldom
