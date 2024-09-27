@@ -12,8 +12,6 @@ option(WITH_SWIG   "Build all swig bindings"   OFF)
 option(WITH_PYTHON "Build python bindings" OFF)
 option(WITH_JAVA   "Build java bindings"   OFF)
 
-set(CMAKE_INCLUDE_DIRECTORIES_BEFORE ON)
-
 if(POLICY CMP0022)
   cmake_policy(SET CMP0022 NEW)
 endif()
