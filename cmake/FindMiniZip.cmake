@@ -5,7 +5,7 @@ FetchContent_Declare (minizip
     GIT_TAG         4.0.7
 )
 
-find_package(minizip)
+find_package(minizip CONFIG)
 
 if (NOT MINIZIP_FOUND)
     FetchContent_MakeAvailable (minizip)
