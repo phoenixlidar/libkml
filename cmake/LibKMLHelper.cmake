@@ -66,6 +66,9 @@ function(build_test)
         endif()
     endforeach()
 
+    target_compile_options(${TEST_GROUP}_${TEST_NAME}_test
+        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    )
 
     target_link_libraries(${TEST_GROUP}_${TEST_NAME}_test ${TEST_LINKS} ${TEST_DEPENDS})
     add_test(${TEST_GROUP}_${TEST_NAME} ${CMAKE_BINARY_DIR}/bin/${TEST_GROUP}_${TEST_NAME}_test)
@@ -74,6 +77,9 @@ endfunction(build_test)
 function(build_example)
     cmake_parse_arguments(EXAMPLE  "" "NAME" "LINKS;DEPENDS" ${ARGN} )
     add_executable(example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
+    target_compile_options(example_${EXAMPLE_NAME}
+        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    )
     add_dependencies(example_${EXAMPLE_NAME} ${EXAMPLE_DEPENDS})
     target_link_libraries(example_${EXAMPLE_NAME} ${EXAMPLE_LINKS} ${EXAMPLE_DEPENDS})
 endfunction(build_example)

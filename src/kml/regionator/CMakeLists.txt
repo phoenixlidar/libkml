@@ -6,6 +6,10 @@ add_library(kmlregionator
     ${INCS}
 )
 
+target_compile_options(kmlregionator
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+)
+
 target_link_libraries (kmlregionator
     PRIVATE Boost::smart_ptr
     INTERFACE kmlengine

@@ -51,6 +51,11 @@ add_library (kmlbase
 target_compile_definitions(kmlbase
     PRIVATE NOUNCRYPT
 )
+
+target_compile_options(kmlbase
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+)
+
 target_include_directories(kmlbase
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
 )

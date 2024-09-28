@@ -6,6 +6,10 @@ add_library(kmlconvenience
     ${INCS}
 )
 
+target_compile_options(kmlconvenience
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+)
+
 target_link_libraries (kmlconvenience
     PRIVATE Boost::smart_ptr
     INTERFACE kmlengine

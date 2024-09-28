@@ -39,6 +39,10 @@ add_library(kmlengine
     ${INCS}
 )
 
+target_compile_options(kmlengine
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+)
+
 target_link_libraries (kmlengine
     PRIVATE Boost::smart_ptr
     INTERFACE kmldom

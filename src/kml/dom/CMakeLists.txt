@@ -59,6 +59,10 @@ add_library(kmldom
     ${INCS}
 )
 
+target_compile_options(kmldom
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+)
+
 target_link_libraries (kmldom
     PRIVATE Boost::smart_ptr
     INTERFACE kmlbase
