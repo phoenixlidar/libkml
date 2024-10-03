@@ -1,13 +1,11 @@
 build_example(
   NAME csvregionator
-  DEPENDS kmlbase kmldom kmlengine kmlconvenience kmlregionator
-  LINKS Boost::smart_ptr
+  LINKS Boost::smart_ptr kmlregionator
 )
 
 build_example(
   NAME kmlregionator
-  DEPENDS kmlbase kmldom kmlengine kmlconvenience kmlregionator
-  LINKS Boost::smart_ptr
+  LINKS Boost::smart_ptr kmlregionator
 )
 
 if(INSTALL_EXAMPLES)

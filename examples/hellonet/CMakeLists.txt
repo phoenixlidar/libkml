@@ -1,13 +1,14 @@
 add_library(curlfetch STATIC curlfetch.cc)
+
 target_link_libraries(curlfetch
-    PRIVATE CURL::libcurl
+    PUBLIC CURL::libcurl
+    PRIVATE kmlconvenience
     PRIVATE Boost::smart_ptr
 )
 
 build_example(
     NAME csvurl2gmap
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS Boost::smart_ptr kmlconvenience curlfetch
 )
 
 target_compile_options(example_csvurl2gmap
@@ -16,80 +17,67 @@ target_compile_options(example_csvurl2gmap
 
 build_example(
     NAME getgmapkml
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME getgsheetcsv
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME getgsheetkml
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME gsheet2gmap
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME kmlwalk
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME kmzfetch
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME listfeed
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME listgdocs
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME listgmaps
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME listgphotos
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME resolvestyle
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME searchgmap
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME uploadgmap
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 target_compile_options(example_uploadgmap
@@ -98,26 +86,22 @@ target_compile_options(example_uploadgmap
 
 build_example(
     NAME uploadgmapcsv
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME uploadgmapkml
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME uploadgsheet
-    DEPENDS curlfetch kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlconvenience
 )
 
 build_example(
     NAME xsdprint
-    DEPENDS curlfetch kmlconvenience kmlxsd
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr curlfetch kmlxsd
 )
 
 if(INSTALL_EXAMPLES)

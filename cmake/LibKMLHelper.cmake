@@ -80,9 +80,13 @@ function(build_example)
     target_compile_options(example_${EXAMPLE_NAME}
         PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
     )
-    add_dependencies(example_${EXAMPLE_NAME} ${EXAMPLE_DEPENDS})
-    target_link_libraries(example_${EXAMPLE_NAME} ${EXAMPLE_LINKS} ${EXAMPLE_DEPENDS})
 endfunction(build_example)
+
+    if (EXAMPLE_LINKS)
+        target_link_libraries(example_${EXAMPLE_NAME}
+            PRIVATE ${EXAMPLE_LINKS}
+        )
+    endif (EXAMPLE_LINKS)
 
 
 macro(include_project_vars _project _lib)

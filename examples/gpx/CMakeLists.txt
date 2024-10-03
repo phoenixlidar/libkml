@@ -5,8 +5,7 @@
 # endif
 build_example(
     NAME gpxtracktokml
-    DEPENDS kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlconvenience
 )
 
 if(INSTALL_EXAMPLES)

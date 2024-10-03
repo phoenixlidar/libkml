@@ -1,91 +1,76 @@
 build_example(
     NAME balloonwalker
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME clone
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME csv2kml
-    DEPENDS kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlconvenience
 )
 
 build_example(
     NAME csvinfo
-    DEPENDS kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlconvenience
 )
 
 build_example(
     NAME import
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME inlinestyles
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
-   NAME kmlfile
-   DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    NAME kmlfile
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME kml2kmz
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME kmzchecklinks
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME oldschema
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME parsebig
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME printstyle
-    DEPENDS kmlengine
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlengine
 )
 
 build_example(
     NAME change
-    DEPENDS kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlconvenience
 )
 
 build_example(
     NAME splitstyles
-    DEPENDS kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlconvenience
 )
 
 build_example(
     NAME streamkml
-    DEPENDS kmlconvenience
-    LINKS Boost::smart_ptr
+    LINKS Boost::smart_ptr kmlconvenience
 )
 
 if(INSTALL_EXAMPLES)
