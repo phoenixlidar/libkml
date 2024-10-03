@@ -60,7 +60,7 @@ add_library(kmldom
 )
 
 target_compile_options(kmldom
-    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
 target_link_libraries (kmldom

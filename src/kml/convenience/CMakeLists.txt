@@ -7,7 +7,7 @@ add_library(kmlconvenience
 )
 
 target_compile_options(kmlconvenience
-    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
 target_link_libraries (kmlconvenience

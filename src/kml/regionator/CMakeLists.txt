@@ -7,7 +7,7 @@ add_library(kmlregionator
 )
 
 target_compile_options(kmlregionator
-    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
 target_link_libraries (kmlregionator

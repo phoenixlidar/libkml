@@ -10,6 +10,10 @@ build_example(
     LINKS Boost::smart_ptr kmlconvenience
 )
 
+target_compile_options(example_csvurl2gmap
+    PRIVATE -fno-rtti
+)
+
 build_example(
     NAME getgmapkml
     DEPENDS curlfetch kmlconvenience
@@ -86,6 +90,10 @@ build_example(
     NAME uploadgmap
     DEPENDS curlfetch kmlconvenience
     LINKS Boost::smart_ptr
+)
+
+target_compile_options(example_uploadgmap
+    PRIVATE -fno-rtti
 )
 
 build_example(

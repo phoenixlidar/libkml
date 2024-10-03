@@ -53,7 +53,7 @@ target_compile_definitions(kmlbase
 )
 
 target_compile_options(kmlbase
-    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
 target_include_directories(kmlbase

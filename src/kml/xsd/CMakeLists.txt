@@ -7,7 +7,7 @@ add_library(kmlxsd
 )
 
 target_compile_options(kmlxsd
-    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
 target_link_libraries (kmlxsd

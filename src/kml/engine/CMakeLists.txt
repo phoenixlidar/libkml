@@ -40,7 +40,7 @@ add_library(kmlengine
 )
 
 target_compile_options(kmlengine
-    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
 target_link_libraries (kmlengine
