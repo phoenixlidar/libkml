@@ -43,6 +43,10 @@ target_compile_options(kmlengine
     PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
+target_include_directories(kmlengine
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
+)
+
 target_link_libraries (kmlengine
     PRIVATE Boost::smart_ptr
     INTERFACE kmldom

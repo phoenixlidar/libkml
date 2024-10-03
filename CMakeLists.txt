@@ -118,8 +118,6 @@ if (NOT URIPARSER_FOUND)
     include (cmake/External_UriParser.cmake)
 endif (NOT URIPARSER_FOUND)
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
-
 add_subdirectory(src)
 
 if(BUILD_TESTING)

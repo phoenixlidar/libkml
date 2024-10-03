@@ -1,5 +1,5 @@
 add_library(helloutil STATIC print.cc)
-target_link_libraries(helloutil Boost::smart_ptr ${MINIZIP_LIBRARY})
+target_link_libraries(helloutil Boost::smart_ptr kmldom ${MINIZIP_LIBRARY})
 
 build_example(
     NAME createkml

@@ -10,6 +10,10 @@ target_compile_options(kmlregionator
     PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
+target_include_directories(kmlregionator
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
+)
+
 target_link_libraries (kmlregionator
     PRIVATE Boost::smart_ptr
     INTERFACE kmlengine

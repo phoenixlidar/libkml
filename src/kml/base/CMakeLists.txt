@@ -58,6 +58,7 @@ target_compile_options(kmlbase
 
 target_include_directories(kmlbase
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
 )
 
 target_link_libraries (kmlbase
