@@ -112,7 +112,7 @@ add_library(kmldom
     ${DOM_PUBLIC_HEADERS}
 )
 
-set_target_properties (kmlbase PROPERTIES
+set_target_properties (kmldom PROPERTIES
     PRIVATE_HEADER "${DOM_PRIVATER_HEADERS}"
     PUBLIC_HEADER "${DOM_PUBLIC_HEADERS}"
 )

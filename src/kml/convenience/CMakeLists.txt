@@ -38,7 +38,7 @@ add_library(kmlconvenience
     ${CONVENIENCE_PUBLIC_HEADERS}
 )
 
-set_target_properties (kmlbase PROPERTIES
+set_target_properties (kmlconvenience PROPERTIES
     PRIVATE_HEADER "${CONVENIENCE_PRIVATER_HEADERS}"
     PUBLIC_HEADER "${CONVENIENCE_PUBLIC_HEADERS}"
 )
