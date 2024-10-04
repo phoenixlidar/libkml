@@ -15,9 +15,8 @@ target_include_directories(kmlregionator
 )
 
 target_link_libraries (kmlregionator
-    PRIVATE Boost::smart_ptr
-    INTERFACE kmlengine
-    INTERFACE kmlconvenience
+    PUBLIC kmlengine
+    PUBLIC kmlconvenience
 )
 
 install(TARGETS kmlregionator

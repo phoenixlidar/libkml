@@ -56,7 +56,7 @@ foreach (TEST ${TESTS})
     build_test (
         GROUP dom
         NAME ${TEST}
-        LINKS Boost::smart_ptr GTest::gtest_main kmldom
+        LINKS GTest::gtest_main kmldom
     )
 endforeach (TEST ${TESTS})
 

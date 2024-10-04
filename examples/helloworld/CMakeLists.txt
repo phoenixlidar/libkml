@@ -1,104 +1,104 @@
 add_library(helloutil STATIC print.cc)
-target_link_libraries(helloutil Boost::smart_ptr kmldom ${MINIZIP_LIBRARY})
+target_link_libraries(helloutil kmldom ${MINIZIP_LIBRARY})
 
 build_example(
     NAME createkml
-    LINKS Boost::smart_ptr kmldom
+    LINKS kmldom
 )
 
 build_example(
     NAME circlegen
-    LINKS Boost::smart_ptr kmldom kmlconvenience
+    LINKS kmldom kmlconvenience
 )
 
 build_example(
     NAME checklinks
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME countkml
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
   NAME helloattrs
-  LINKS Boost::smart_ptr kmldom
+  LINKS kmldom
 )
 
 build_example(
   NAME helloenum
-  LINKS Boost::smart_ptr kmldom
+  LINKS kmldom
 )
 
 build_example(
   NAME hellofeatures
-  LINKS Boost::smart_ptr helloutil kmldom
+  LINKS helloutil kmldom
 )
 
 build_example(
   NAME hellofolder
-  LINKS Boost::smart_ptr kmldom
+  LINKS kmldom
 )
 
 build_example(
   NAME hellogeometry
-  LINKS Boost::smart_ptr kmldom
+  LINKS kmldom
 )
 
 build_example(
     NAME hellohref
-    LINKS Boost::smart_ptr kmldom
+    LINKS kmldom
 )
 
 build_example(
   NAME hellokmz
-  LINKS Boost::smart_ptr kmlengine
+  LINKS kmlengine
 )
 
 build_example(
     NAME helloregion
-    LINKS Boost::smart_ptr kmldom
+    LINKS kmldom
 )
 
 build_example(
   NAME helloworld
-  LINKS Boost::smart_ptr kmldom
+  LINKS kmldom
 )
 
 build_example(
   NAME parsekml
-  LINKS Boost::smart_ptr kmldom
+  LINKS kmldom
 )
 
 build_example(
   NAME parsens
-  LINKS Boost::smart_ptr kmldom
+  LINKS kmldom
 )
 
 build_example(
   NAME prettykml
-  LINKS Boost::smart_ptr kmlengine
+  LINKS kmlengine
 )
 
 build_example(
   NAME printgeometry
-  LINKS Boost::smart_ptr kmlengine
+  LINKS kmlengine
 )
 
 build_example(
   NAME sharedstyles
-  LINKS Boost::smart_ptr kmlconvenience
+  LINKS kmlconvenience
 )
 
 build_example(
   NAME simplifylines
-  LINKS Boost::smart_ptr kmlconvenience
+  LINKS kmlconvenience
 )
 
 build_example(
   NAME sortplacemarks
-  LINKS Boost::smart_ptr kmlconvenience
+  LINKS kmlconvenience
 )
 
 if(INSTALL_EXAMPLES)

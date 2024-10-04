@@ -14,6 +14,6 @@ foreach (TEST ${TESTS})
     build_test (
         GROUP xsd
         NAME ${TEST}
-        LINKS Boost::smart_ptr GTest::gtest_main kmlxsd
+        LINKS GTest::gtest_main kmlxsd
     )
 endforeach (TEST ${TESTS})

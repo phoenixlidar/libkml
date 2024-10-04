@@ -17,6 +17,6 @@ foreach (TEST ${TESTS})
      build_test (
         GROUP convenience
         NAME ${TEST}
-        LINKS Boost::smart_ptr GTest::gtest_main kmlconvenience
+        LINKS GTest::gtest_main kmlconvenience
     )
 endforeach (TEST ${TESTS})

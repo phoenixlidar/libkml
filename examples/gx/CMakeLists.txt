@@ -1,11 +1,11 @@
 build_example(
     NAME gpxfly
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS kmlconvenience
 )
 
 build_example(
     NAME featuretour
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS kmlconvenience
 )
 
 

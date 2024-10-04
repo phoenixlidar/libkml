@@ -15,8 +15,7 @@ target_include_directories(kmlxsd
 )
 
 target_link_libraries (kmlxsd
-    PRIVATE Boost::smart_ptr
-    INTERFACE kmlbase
+    PUBLIC kmlbase
 )
 
 install(TARGETS kmlxsd

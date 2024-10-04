@@ -48,8 +48,7 @@ target_include_directories(kmlengine
 )
 
 target_link_libraries (kmlengine
-    PRIVATE Boost::smart_ptr
-    INTERFACE kmldom
+    PUBLIC kmldom
 )
 
 install(TARGETS kmlengine

@@ -37,6 +37,6 @@ foreach (TEST ${TESTS})
     build_test (
         GROUP engine
         NAME ${TEST}
-        LINKS Boost::smart_ptr GTest::gtest_main kmlengine
+        LINKS GTest::gtest_main kmlengine
     )
 endforeach (TEST ${TESTS})

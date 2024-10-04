@@ -68,8 +68,7 @@ target_include_directories(kmldom
 )
 
 target_link_libraries (kmldom
-    PRIVATE Boost::smart_ptr
-    INTERFACE kmlbase
+    PUBLIC kmlbase
 )
 
 install(TARGETS kmldom

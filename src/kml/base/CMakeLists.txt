@@ -92,7 +92,7 @@ target_link_libraries (kmlbase
     PUBLIC $<BUILD_LOCAL_INTERFACE:uriparser::uriparser>
     PUBLIC $<BUILD_LOCAL_INTERFACE:ZLIB::ZLIB>
     PUBLIC $<BUILD_LOCAL_INTERFACE:expat::expat>
-    PRIVATE Boost::smart_ptr
+    PUBLIC $<BUILD_LOCAL_INTERFACE:Boost::smart_ptr>
 )
 
 install(TARGETS kmlbase

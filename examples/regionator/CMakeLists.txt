@@ -1,11 +1,11 @@
 build_example(
   NAME csvregionator
-  LINKS Boost::smart_ptr kmlregionator
+  LINKS kmlregionator
 )
 
 build_example(
   NAME kmlregionator
-  LINKS Boost::smart_ptr kmlregionator
+  LINKS kmlregionator
 )
 
 if(INSTALL_EXAMPLES)

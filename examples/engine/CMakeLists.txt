@@ -1,76 +1,76 @@
 build_example(
     NAME balloonwalker
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME clone
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME csv2kml
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS kmlconvenience
 )
 
 build_example(
     NAME csvinfo
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS kmlconvenience
 )
 
 build_example(
     NAME import
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME inlinestyles
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME kmlfile
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME kml2kmz
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME kmzchecklinks
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME oldschema
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME parsebig
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME printstyle
-    LINKS Boost::smart_ptr kmlengine
+    LINKS kmlengine
 )
 
 build_example(
     NAME change
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS kmlconvenience
 )
 
 build_example(
     NAME splitstyles
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS kmlconvenience
 )
 
 build_example(
     NAME streamkml
-    LINKS Boost::smart_ptr kmlconvenience
+    LINKS kmlconvenience
 )
 
 if(INSTALL_EXAMPLES)

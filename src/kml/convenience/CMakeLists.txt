@@ -15,8 +15,7 @@ target_include_directories(kmlconvenience
 )
 
 target_link_libraries (kmlconvenience
-    PRIVATE Boost::smart_ptr
-    INTERFACE kmlengine
+    PUBLIC kmlengine
 )
 
 install(TARGETS kmlconvenience
