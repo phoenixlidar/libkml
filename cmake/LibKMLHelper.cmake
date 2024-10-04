@@ -61,9 +61,16 @@ function(build_test)
         PRIVATE ${TEST_LINKS}
     )
 
+    target_compile_definitions (${TEST_GROUP}_${TEST_NAME}_test
+        PRIVATE DATADIR=\"${LIBKML_DATA_DIR}\"
+    )
+
     target_compile_options(${TEST_GROUP}_${TEST_NAME}_test
         PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
-        #-fno-rtti
+    )
+
+    target_include_directories(${TEST_GROUP}_${TEST_NAME}_test
+        PRIVATE ${CMAKE_SOURCE_DIR}/tests
     )
 
     add_test(${TEST_GROUP}_${TEST_NAME} ${CMAKE_BINARY_DIR}/bin/${TEST_GROUP}_${TEST_NAME}_test)
