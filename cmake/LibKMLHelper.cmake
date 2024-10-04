@@ -54,23 +54,18 @@ macro(install_target _target)
 endmacro(install_target)
 
 function(build_test)
-    cmake_parse_arguments(TEST  "" "GROUP;NAME" "DEPENDS" ${ARGN} )
+    cmake_parse_arguments(TEST  "" "GROUP;NAME" "LINKS" ${ARGN} )
     add_executable(${TEST_GROUP}_${TEST_NAME}_test ${TEST_NAME}_test.cc)
-    add_dependencies(${TEST_GROUP}_${TEST_NAME}_test ${TEST_DEPENDS})
-    set(TEST_LINKS)
 
-    foreach(TEST_D ${TEST_DEPENDS})
-        get_target_property(LINK_PROP ${TEST_D} LINK_INTERFACE_LIBRARIES)
-        if(LINK_PROP)
-            list(APPEND TEST_LINKS ${LINK_PROP})
-        endif()
-    endforeach()
-
-    target_compile_options(${TEST_GROUP}_${TEST_NAME}_test
-        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+    target_link_libraries (${TEST_GROUP}_${TEST_NAME}_test
+        PRIVATE ${TEST_LINKS}
     )
 
-    target_link_libraries(${TEST_GROUP}_${TEST_NAME}_test ${TEST_LINKS} ${TEST_DEPENDS})
+    target_compile_options(${TEST_GROUP}_${TEST_NAME}_test
+        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
+        #-fno-rtti
+    )
+
     add_test(${TEST_GROUP}_${TEST_NAME} ${CMAKE_BINARY_DIR}/bin/${TEST_GROUP}_${TEST_NAME}_test)
 endfunction(build_test)
 

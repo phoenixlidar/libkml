@@ -12,6 +12,6 @@ foreach(TEST ${TESTS})
     build_test(
         GROUP xsd
         NAME ${TEST}
-        DEPENDS kmlxsd GTest::gtest_main Boost::smart_ptr
+        LINKS Boost::smart_ptr GTest::gtest_main kmlxsd
     )
 endforeach()

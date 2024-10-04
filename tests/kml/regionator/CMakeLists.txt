@@ -7,6 +7,6 @@ foreach(TEST ${TESTS})
     build_test(
         GROUP regionator
         NAME ${TEST}
-        DEPENDS kmlregionator GTest::gtest_main Boost::smart_ptr
+        LINKS Boost::smart_ptr GTest::gtest_main kmlregionator
     )
 endforeach()

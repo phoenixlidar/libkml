@@ -27,7 +27,7 @@ foreach(TEST ${TESTS})
     build_test(
         GROUP base
         NAME ${TEST}
-        DEPENDS kmlbase GTest::gtest_main Boost::smart_ptr
+        LINKS Boost::smart_ptr GTest::gtest_main kmlbase
     )
 endforeach()
 
