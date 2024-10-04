@@ -63,10 +63,6 @@ target_compile_options(kmldom
     PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
-target_include_directories(kmldom
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
-)
-
 target_link_libraries (kmldom
     PUBLIC kmlbase
 )

@@ -10,10 +10,6 @@ target_compile_options(kmlxsd
     PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
 )
 
-target_include_directories(kmlxsd
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
-)
-
 target_link_libraries (kmlxsd
     PUBLIC kmlbase
 )
