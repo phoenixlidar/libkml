@@ -84,7 +84,7 @@ function (build_example)
 
     add_executable (LibKML_example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
 
-    target_compile_options (example_${EXAMPLE_NAME}
+    target_compile_options (LibKML_example_${EXAMPLE_NAME}
         PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
     )
 
