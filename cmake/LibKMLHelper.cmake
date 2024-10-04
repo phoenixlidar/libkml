@@ -74,19 +74,21 @@ function(build_test)
     add_test(${TEST_GROUP}_${TEST_NAME} ${CMAKE_BINARY_DIR}/bin/${TEST_GROUP}_${TEST_NAME}_test)
 endfunction(build_test)
 
-function(build_example)
-    cmake_parse_arguments(EXAMPLE  "" "NAME" "LINKS;DEPENDS" ${ARGN} )
-    add_executable(example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
-    target_compile_options(example_${EXAMPLE_NAME}
-        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
+function (build_example)
+    cmake_parse_arguments (EXAMPLE  "" "NAME" "LINKS" ${ARGN} )
+
+    add_executable (example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
+
+    target_compile_options (example_${EXAMPLE_NAME}
+        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
     )
-endfunction(build_example)
 
     if (EXAMPLE_LINKS)
         target_link_libraries(example_${EXAMPLE_NAME}
             PRIVATE ${EXAMPLE_LINKS}
         )
     endif (EXAMPLE_LINKS)
+endfunction (build_example)
 
 
 macro(include_project_vars _project _lib)
