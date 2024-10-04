@@ -1,9 +1,30 @@
-file(GLOB SRCS "*.cc" )
-file(GLOB INCS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
+set(REGIONATOR_SOURCES
+    feature_list_region_handler.cc
+    regionator.cc
+    regionator_util.cc
+)
+
+set (REGIONATOR_PUBLIC_HEADERS
+    region_handler.h
+    regionator.h
+    regionator_qid.h
+)
+
+set (REGIONATOR_PRIVATE_HEADERS
+    feature_list_regionator.h
+    feature_list_region_handler.h
+    regionator_util.h
+)
 
 add_library(kmlregionator
-    ${SRCS}
-    ${INCS}
+    ${REGIONATOR_SOURCES}
+    ${REGIONATOR_PRIVATE_HEADERS}
+    ${REGIONATOR_PUBLIC_HEADERS}
+)
+
+set_target_properties (kmlregionator PROPERTIES
+    PRIVATE_HEADER "${REGIONATOR_PRIVATER_HEADERS}"
+    PUBLIC_HEADER "${REGIONATOR_PUBLIC_HEADERS}"
 )
 
 target_compile_options(kmlregionator
