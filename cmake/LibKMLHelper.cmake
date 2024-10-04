@@ -53,10 +53,10 @@ macro(install_target _target)
     endif()
 endmacro(install_target)
 
-function(build_test)
-    cmake_parse_arguments(TEST  "" "GROUP;NAME" "LINKS" ${ARGN} )
+function (build_test)
+    cmake_parse_arguments (TEST  "" "GROUP;NAME" "LINKS" ${ARGN})
     set (PRETTY_TEST_NAME LibKML_test_${TEST_GROUP}_${TEST_NAME})
-    add_executable(${PRETTY_TEST_NAME} ${TEST_NAME}_test.cc)
+    add_executable (${PRETTY_TEST_NAME} ${TEST_NAME}_test.cc)
 
     target_link_libraries (${PRETTY_TEST_NAME}
         PRIVATE ${TEST_LINKS}
@@ -66,30 +66,30 @@ function(build_test)
         PRIVATE DATADIR=\"${LIBKML_DATA_DIR}\"
     )
 
-    target_compile_options(${PRETTY_TEST_NAME}
+    target_compile_options (${PRETTY_TEST_NAME}
         PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
     )
 
-    target_include_directories(${PRETTY_TEST_NAME}
+    target_include_directories (${PRETTY_TEST_NAME}
         PRIVATE ${CMAKE_SOURCE_DIR}/tests
     )
 
     gtest_discover_tests (${PRETTY_TEST_NAME}
         TEST_PREFIX "LibKML_test_${TEST_GROUP}_"
     )
-endfunction(build_test)
+endfunction (build_test)
 
 function (build_example)
-    cmake_parse_arguments (EXAMPLE  "" "NAME" "LINKS" ${ARGN} )
+    cmake_parse_arguments (EXAMPLE  "" "NAME" "LINKS" ${ARGN})
 
-    add_executable (example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
+    add_executable (LibKML_example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
 
     target_compile_options (example_${EXAMPLE_NAME}
         PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
     )
 
     if (EXAMPLE_LINKS)
-        target_link_libraries(example_${EXAMPLE_NAME}
+        target_link_libraries(LibKML_example_${EXAMPLE_NAME}
             PRIVATE ${EXAMPLE_LINKS}
         )
     endif (EXAMPLE_LINKS)

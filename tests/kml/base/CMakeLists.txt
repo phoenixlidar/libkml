@@ -1,35 +1,36 @@
-set(TESTS
-attributes
-csv_splitter
-date_time
-expat_handler_ns
-file
-math_util
-referent
-string_util
-tempfile
-time_util
-util
-vec3
-version
-xml_element
-xml_file
-xml_namespaces
-xmlns
-uri_parser
-expat_parser)
+set (TESTS
+    attributes
+    csv_splitter
+    date_time
+    expat_handler_ns
+    file
+    math_util
+    referent
+    string_util
+    tempfile
+    time_util
+    util
+    vec3
+    version
+    xml_element
+    xml_file
+    xml_namespaces
+    xmlns
+    uri_parser
+    expat_parser
+)
 
-if(MINGW)
-  add_definitions(-DXML_UNICODE)
-endif()
+if (MINGW)
+  add_definitions (-DXML_UNICODE)
+endif (MINGW)
 
-foreach(TEST ${TESTS})
-    build_test(
+foreach (TEST ${TESTS})
+    build_test (
         GROUP base
         NAME ${TEST}
         LINKS Boost::smart_ptr GTest::gtest_main kmlbase
     )
-endforeach()
+endforeach (TEST ${TESTS})
 
 #color32
 #net_cache
