@@ -17,8 +17,8 @@ set (BASE_SOURCES
     version.cc
     xml_namespaces.cc
     zip_file.cc
-    contrib/minizip/unzip.c
     contrib/minizip/iomem_simple.c
+    contrib/minizip/unzip.c
 )
 
 if(WIN32)
@@ -61,6 +61,8 @@ set (BASE_HEADERS
     xml_namespaces.h
     xmlns.h
     zip_file.h
+    contrib/minizip/iomem_simple.h
+    contrib/minizip/unzip.h
 )
 
 add_library (kmlbase
