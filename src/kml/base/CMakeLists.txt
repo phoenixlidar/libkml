@@ -1,6 +1,25 @@
-file(GLOB SRCS "*.cc"
-  contrib/minizip/unzip.c
-  contrib/minizip/iomem_simple.c)
+set (BASE_SOURCES
+    attributes.cc
+    csv_splitter.cc
+    date_time.cc
+    expat_handler_ns.cc
+    expat_parser.cc
+    file.cc
+    file_posix.cc
+    file_win32.cc
+    localec.cc
+    math_util.cc
+    mimetypes.cc
+    referent.cc
+    string_util.cc
+    time_util.cc
+    uri_parser.cc
+    version.cc
+    xml_namespaces.cc
+    zip_file.cc
+    contrib/minizip/unzip.c
+    contrib/minizip/iomem_simple.c
+)
 
 if(WIN32)
   list(APPEND SRCS contrib/strptime.c)
@@ -45,7 +64,7 @@ set (BASE_HEADERS
 )
 
 add_library (kmlbase
-    ${SRCS}
+    ${BASE_SOURCES}
     ${BASE_HEADERS}
 )
 
