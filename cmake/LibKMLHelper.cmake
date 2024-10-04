@@ -74,7 +74,9 @@ function(build_test)
         PRIVATE ${CMAKE_SOURCE_DIR}/tests
     )
 
-    add_test(${PRETTY_TEST_NAME} ${PRETTY_TEST_NAME})
+    gtest_discover_tests (${PRETTY_TEST_NAME}
+        TEST_PREFIX "LibKML_test_${TEST_GROUP}_"
+    )
 endfunction(build_test)
 
 function (build_example)
