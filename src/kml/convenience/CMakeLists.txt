@@ -38,6 +38,8 @@ add_library(kmlconvenience
     ${CONVENIENCE_PUBLIC_HEADERS}
 )
 
+add_library (LibKML::kmlconvenience ALIAS kmlconvenience)
+
 set_target_properties (kmlconvenience PROPERTIES
     PRIVATE_HEADER "${CONVENIENCE_PRIVATER_HEADERS}"
     PUBLIC_HEADER "${CONVENIENCE_PUBLIC_HEADERS}"
@@ -48,7 +50,7 @@ target_compile_options(kmlconvenience
 )
 
 target_link_libraries (kmlconvenience
-    PUBLIC kmlengine
+    PUBLIC LibKML::kmlengine
 )
 
 install(TARGETS kmlconvenience

@@ -112,6 +112,8 @@ add_library(kmldom
     ${DOM_PUBLIC_HEADERS}
 )
 
+add_library (LibKML::kmldom ALIAS kmldom)
+
 set_target_properties (kmldom PROPERTIES
     PRIVATE_HEADER "${DOM_PRIVATER_HEADERS}"
     PUBLIC_HEADER "${DOM_PUBLIC_HEADERS}"
@@ -122,7 +124,7 @@ target_compile_options(kmldom
 )
 
 target_link_libraries (kmldom
-    PUBLIC kmlbase
+    PUBLIC LibKML::kmlbase
 )
 
 install(TARGETS kmldom

@@ -22,6 +22,8 @@ add_library(kmlregionator
     ${REGIONATOR_PUBLIC_HEADERS}
 )
 
+add_library (LibKML::kmlregionator ALIAS kmlregionator)
+
 set_target_properties (kmlregionator PROPERTIES
     PRIVATE_HEADER "${REGIONATOR_PRIVATER_HEADERS}"
     PUBLIC_HEADER "${REGIONATOR_PUBLIC_HEADERS}"
@@ -32,8 +34,8 @@ target_compile_options(kmlregionator
 )
 
 target_link_libraries (kmlregionator
-    PUBLIC kmlengine
-    PUBLIC kmlconvenience
+    PUBLIC LibKML::kmlengine
+    PUBLIC LibKML::kmlconvenience
 )
 
 install(TARGETS kmlregionator

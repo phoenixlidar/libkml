@@ -70,6 +70,8 @@ add_library (kmlbase
     ${BASE_HEADERS}
 )
 
+add_library (LibKML::kmlbase ALIAS kmlbase)
+
 set_target_properties (kmlbase PROPERTIES
     PUBLIC_HEADER "${BASE_HEADERS}"
 )

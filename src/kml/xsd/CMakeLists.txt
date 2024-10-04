@@ -26,6 +26,8 @@ add_library(kmlxsd
     ${XSD_HEADERS}
 )
 
+add_library (LibKML::kmlxsd ALIAS kmlxsd)
+
 set_target_properties (kmlxsd PROPERTIES
     PUBLIC_HEADER "${XSD_HEADERS}"
 )
@@ -34,7 +36,7 @@ target_compile_options(kmlxsd
 )
 
 target_link_libraries (kmlxsd
-    PUBLIC kmlbase
+    PUBLIC LibKML::kmlbase
 )
 
 install(TARGETS kmlxsd

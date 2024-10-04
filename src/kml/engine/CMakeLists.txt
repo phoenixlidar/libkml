@@ -74,6 +74,8 @@ add_library(kmlengine
     ${ENGINE_HEADERS}
 )
 
+add_library (LibKML::kmlengine ALIAS kmlengine)
+
 set_target_properties (kmlengine PROPERTIES
     PUBLIC_HEADER "${ENGINE_HEADERS}"
 )
@@ -83,7 +85,7 @@ target_compile_options(kmlengine
 )
 
 target_link_libraries (kmlengine
-    PUBLIC kmldom
+    PUBLIC LibKML::kmldom
 )
 
 install(TARGETS kmlengine
