@@ -37,6 +37,6 @@ foreach (TEST ${TESTS})
     build_test (
         GROUP engine
         NAME ${TEST}
-        LINKS GTest::gtest_main kmlengine
+        LINKS GTest::gtest_main LibKML::kmlengine
     )
 endforeach (TEST ${TESTS})
