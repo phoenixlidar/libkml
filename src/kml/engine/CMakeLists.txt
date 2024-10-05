@@ -78,6 +78,8 @@ add_library (LibKML::kmlengine ALIAS kmlengine)
 
 set_target_properties (kmlengine PROPERTIES
     PUBLIC_HEADER "${ENGINE_HEADERS}"
+    SOVERSION "${LibKML_VERSION_MAJOR}"
+    VERSION   "${LibKML_VERSION}"
 )
 
 target_compile_options(kmlengine

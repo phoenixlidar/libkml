@@ -43,6 +43,8 @@ add_library (LibKML::kmlconvenience ALIAS kmlconvenience)
 set_target_properties (kmlconvenience PROPERTIES
     PRIVATE_HEADER "${CONVENIENCE_PRIVATER_HEADERS}"
     PUBLIC_HEADER "${CONVENIENCE_PUBLIC_HEADERS}"
+    SOVERSION "${LibKML_VERSION_MAJOR}"
+    VERSION   "${LibKML_VERSION}"
 )
 
 target_compile_options(kmlconvenience

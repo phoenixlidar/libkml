@@ -74,6 +74,8 @@ add_library (LibKML::kmlbase ALIAS kmlbase)
 
 set_target_properties (kmlbase PROPERTIES
     PUBLIC_HEADER "${BASE_HEADERS}"
+    SOVERSION "${LibKML_VERSION_MAJOR}"
+    VERSION   "${LibKML_VERSION}"
 )
 
 target_compile_definitions(kmlbase

@@ -117,6 +117,8 @@ add_library (LibKML::kmldom ALIAS kmldom)
 set_target_properties (kmldom PROPERTIES
     PRIVATE_HEADER "${DOM_PRIVATER_HEADERS}"
     PUBLIC_HEADER "${DOM_PUBLIC_HEADERS}"
+    SOVERSION "${LibKML_VERSION_MAJOR}"
+    VERSION   "${LibKML_VERSION}"
 )
 
 target_compile_options(kmldom

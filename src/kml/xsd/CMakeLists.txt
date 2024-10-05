@@ -30,6 +30,8 @@ add_library (LibKML::kmlxsd ALIAS kmlxsd)
 
 set_target_properties (kmlxsd PROPERTIES
     PUBLIC_HEADER "${XSD_HEADERS}"
+    SOVERSION "${LibKML_VERSION_MAJOR}"
+    VERSION   "${LibKML_VERSION}"
 )
 target_compile_options(kmlxsd
     PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
