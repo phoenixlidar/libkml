@@ -1,5 +1,29 @@
+set (XSD_EXAMPLES
+    xsdchildren
+    xsdelements
+    xsdenums
+    xsdfind
+    xsdtypes
+)
+
+foreach (EXAMPLE ${XSD_EXAMPLES})
+    build_example(
+        NAME ${EXAMPLE}
+        LINKS LibKML::kmlxsd
+        CATEGORY xsd
+    )
+endforeach (EXAMPLE "csvregionator;kmlregionator")
+
+build_example(
+    NAME xsdcoverage
+    LINKS LibKML::kmlengine LibKML::kmlxsd
+    CATEGORY xsd
+)
+
 if(INSTALL_EXAMPLES)
-  file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
-  install(FILES ${eg_files} DESTINATION ${KML_EXAMPLES_DIR}/xsd)
-  install(FILES kml-aliases.txt DESTINATION ${KML_EXAMPLES_DIR}/xsd)
+    install(
+        FILES kml-aliases.txt
+        DESTINATION ${KML_EXAMPLES_DIR}/xsd
+        COMPONENT Examples
+    )
 endif()

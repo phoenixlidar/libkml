@@ -1,6 +1,18 @@
+set (PYTHON_EXAMPLES
+    helloenum.py
+    hellogeometry.py
+    hellolocation.py
+    helloplacemark.py
+    hellopoint.py
+    hellovector.py
+    hellowalk.py
+    parse_point_placemark.py
+)
+
 if(INSTALL_EXAMPLES)
-  file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.py")
-  install(
-    FILES ${eg_files}
-    DESTINATION ${KML_EXAMPLES_DIR}/python) ##compile python
+    install(
+        FILES ${PYTHON_EXAMPLES}
+        DESTINATION ${KML_EXAMPLES_DIR}/python
+        COMPONENT Examples
+    )
 endif()

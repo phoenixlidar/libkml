@@ -79,8 +79,16 @@ function (build_test)
     )
 endfunction (build_test)
 
+function (install_example FILE DEST)
+    install(
+        FILES ${FILE}
+        DESTINATION ${KML_EXAMPLES_DIR}/${DEST}
+        COMPONENT Examples
+    )
+endfunction (install_example FILE DEST)
+
 function (build_example)
-    cmake_parse_arguments (EXAMPLE  "" "NAME" "LINKS" ${ARGN})
+    cmake_parse_arguments (EXAMPLE  "" "NAME;CATEGORY" "LINKS" ${ARGN})
 
     add_executable (LibKML_example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
 
@@ -93,8 +101,11 @@ function (build_example)
             PRIVATE ${EXAMPLE_LINKS}
         )
     endif (EXAMPLE_LINKS)
-endfunction (build_example)
 
+    if(INSTALL_EXAMPLES)
+        install_example (${EXAMPLE_NAME}.cc ${EXAMPLE_CATEGORY})
+    endif(INSTALL_EXAMPLES)
+endfunction (build_example)
 
 macro(include_project_vars _project _lib)
   set(${_project}_INCLUDE_DIR "${INSTALL_DIR}/include")

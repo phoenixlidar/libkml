@@ -1,110 +1,78 @@
 add_library(helloutil STATIC print.cc)
-target_link_libraries(helloutil kmldom ${MINIZIP_LIBRARY})
+target_link_libraries(helloutil LibKML::kmldom ${MINIZIP_LIBRARY})
 
-build_example(
-    NAME createkml
-    LINKS kmldom
+set (DOM_EXAMPLES
+    createkml
+    helloattrs
+    helloenum
+    hellofolder
+    hellogeometry
+    hellohref
+    helloregion
+    helloworld
+    parsekml
+    parsens
 )
+
+set (ENGINE_EXAMPLES
+    checklinks
+    countkml
+    hellokmz
+    prettykml
+    printgeometry
+)
+
+foreach (EXAMPLE ${DOM_EXAMPLES})
+    build_example(
+        NAME ${EXAMPLE}
+        LINKS LibKML::kmldom
+        CATEGORY helloworld
+    )
+endforeach (EXAMPLE ${DOM_EXAMPLES})
+
+foreach (EXAMPLE ${ENGINE_EXAMPLES})
+    build_example(
+        NAME ${EXAMPLE}
+        LINKS LibKML::kmlengine
+        CATEGORY helloworld
+    )
+endforeach (EXAMPLE ${ENGINE_EXAMPLES})
 
 build_example(
     NAME circlegen
     LINKS kmldom kmlconvenience
+    CATEGORY helloworld
 )
 
 build_example(
-    NAME checklinks
-    LINKS kmlengine
+    NAME hellofeatures
+    LINKS helloutil LibKML::kmldom
+    CATEGORY helloworld
 )
 
 build_example(
-    NAME countkml
-    LINKS kmlengine
+    NAME sharedstyles
+    LINKS LibKML::kmlconvenience
+    CATEGORY helloworld
 )
 
 build_example(
-  NAME helloattrs
-  LINKS kmldom
+    NAME simplifylines
+    LINKS LibKML::kmlconvenience
+    CATEGORY helloworld
 )
 
 build_example(
-  NAME helloenum
-  LINKS kmldom
+    NAME sortplacemarks
+    LINKS LibKML::kmlconvenience
+    CATEGORY helloworld
 )
 
-build_example(
-  NAME hellofeatures
-  LINKS helloutil kmldom
-)
-
-build_example(
-  NAME hellofolder
-  LINKS kmldom
-)
-
-build_example(
-  NAME hellogeometry
-  LINKS kmldom
-)
-
-build_example(
-    NAME hellohref
-    LINKS kmldom
-)
-
-build_example(
-  NAME hellokmz
-  LINKS kmlengine
-)
-
-build_example(
-    NAME helloregion
-    LINKS kmldom
-)
-
-build_example(
-  NAME helloworld
-  LINKS kmldom
-)
-
-build_example(
-  NAME parsekml
-  LINKS kmldom
-)
-
-build_example(
-  NAME parsens
-  LINKS kmldom
-)
-
-build_example(
-  NAME prettykml
-  LINKS kmlengine
-)
-
-build_example(
-  NAME printgeometry
-  LINKS kmlengine
-)
-
-build_example(
-  NAME sharedstyles
-  LINKS kmlconvenience
-)
-
-build_example(
-  NAME simplifylines
-  LINKS kmlconvenience
-)
-
-build_example(
-  NAME sortplacemarks
-  LINKS kmlconvenience
-)
 
 if(INSTALL_EXAMPLES)
-file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
-install(FILES ${eg_files}  DESTINATION ${KML_EXAMPLES_DIR} COMPONENT Development)
-install(FILES print.h
-  DESTINATION ${KML_EXAMPLES_DIR}
-  COMPONENT Development)
+    install(
+        FILES print.cc print.h
+        DESTINATION ${KML_EXAMPLES_DIR}/hellonet
+        COMPONENT Examples
+    )
 endif()

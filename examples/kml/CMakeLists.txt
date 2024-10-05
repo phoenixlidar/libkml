@@ -1,6 +1,30 @@
+set (KML_EXAMPLES
+    abstractview.kml
+    allstyles.kml
+    altitudemode.kml
+    attrs.kml
+    extendeddata.kml
+    folder.kml
+    inline-stylemap.kml
+    kmlsamples.kml
+    lines.kml
+    model.kml
+    networklinkcontrol.kml
+    networklink.kml
+    photooverlay.kml
+    polygons2d.kml
+    region.kml
+    sky.kml
+    snippets.kml
+    styles.kml
+    time.kml
+    unknown-elements.kml
+)
+
 if(INSTALL_EXAMPLES)
-  file(GLOB kml_files "${CMAKE_CURRENT_SOURCE_DIR}/*.kml")
-  install(
-    FILES ${kml_files}
-    DESTINATION ${KML_EXAMPLES_DIR}/kml)
+    install(
+        FILES ${KML_EXMPLES}
+        DESTINATION ${KML_EXAMPLES_DIR}/kml
+        COMPONENT Examples
+    )
 endif()
