@@ -92,7 +92,7 @@ target_include_directories(kmlbase
 )
 
 target_link_libraries (kmlbase
-    PUBLIC $<BUILD_LOCAL_INTERFACE:MINIZIP::minizip>
+    PUBLIC MINIZIP::minizip
     PUBLIC $<BUILD_LOCAL_INTERFACE:uriparser::uriparser>
     PUBLIC $<BUILD_LOCAL_INTERFACE:ZLIB::ZLIB>
     PUBLIC $<BUILD_LOCAL_INTERFACE:expat::expat>
