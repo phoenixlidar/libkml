@@ -42,6 +42,9 @@ target_link_libraries (kmlxsd
 )
 
 install(TARGETS kmlxsd
-    EXPORT LibKMLTargets
+    EXPORT LibKML
+    LIBRARY
+        COMPONENT Runtime
+    INCLUDES
+        COMPONENT Development
 )
-

@@ -41,6 +41,9 @@ target_link_libraries (kmlregionator
 )
 
 install(TARGETS kmlregionator
-    EXPORT LibKMLTargets
+    EXPORT LibKML
+    LIBRARY
+        COMPONENT Runtime
+    INCLUDES
+        COMPONENT Development
 )
-

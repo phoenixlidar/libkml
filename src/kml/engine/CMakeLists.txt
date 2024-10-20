@@ -91,6 +91,9 @@ target_link_libraries (kmlengine
 )
 
 install(TARGETS kmlengine
-    EXPORT LibKMLTargets
+    EXPORT LibKML
+    LIBRARY
+        COMPONENT Runtime
+    INCLUDES
+        COMPONENT Development
 )
-

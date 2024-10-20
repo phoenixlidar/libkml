@@ -56,5 +56,9 @@ target_link_libraries (kmlconvenience
 )
 
 install(TARGETS kmlconvenience
-    EXPORT LibKMLTargets
+    EXPORT LibKML
+    LIBRARY
+        COMPONENT Runtime
+    INCLUDES
+        COMPONENT Development
 )

@@ -52,9 +52,8 @@ if(WIN32 AND NOT CYGWIN AND NOT MINGW)
 else()
   set(DEF_INSTALL_CMAKE_DIR lib/cmake/libkml)
 endif()
+
 set(CMAKE_INSTALL_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH "Installation directory for CMake files")
-
-
 set(LIBKML_DATA_DIR  ${CMAKE_SOURCE_DIR}/testdata CACHE PATH "Directory containing test data")
 
 #AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
@@ -162,32 +161,25 @@ foreach(p LIB BIN INCLUDE CMAKE)
   endif()
 endforeach()
 
-export(TARGETS ${LIBKML_TARGETS} kmlbase kmlconvenience kmldom kmlengine kmlregionator kmlxsd
-  FILE "${CMAKE_BINARY_DIR}/LibKMLTargets.cmake")
-  
-# Create the LibKMLConfig.cmake and LibKMLConfigVersion files
-file(RELATIVE_PATH REL_INCLUDE_DIR "${CMAKE_INSTALL_DIR}"
-  "${INCLUDE_INSTALL_DIR}")
+include (CMakePackageConfigHelpers)
+configure_package_config_file (
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKMLConfig.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
+)
 
-# ... for the build tree
-set(CONF_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/src")
-configure_file(cmake/LibKMLConfig.cmake.in
-  "${PROJECT_BINARY_DIR}/LibKMLConfig.cmake" @ONLY)
+write_basic_package_version_file (
+    cmake/LibKMLConfigVersion.cmake.in
+    COMPATIBILITY SameMajorVersion
+)
 
-# ... for the install tree
-set(CONF_INCLUDE_DIRS "\${LIBKML_CMAKE_DIR}/${REL_INCLUDE_DIR}")
-configure_file(cmake/LibKMLConfig.cmake.in
-  "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LibKMLConfig.cmake" @ONLY)
+install (FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
+)
 
-# ... for both
-configure_file(cmake/LibKMLConfigVersion.cmake.in
-  "${CMAKE_BINARY_DIR}/LibKMLConfigVersion.cmake" @ONLY)
- 
-# Install the LibKMLConfig.cmake and LibKMLConfigVersion.cmake
-install(FILES
-  "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LibKMLConfig.cmake"
-  "${CMAKE_BINARY_DIR}/LibKMLConfigVersion.cmake"
-  DESTINATION ${DEF_INSTALL_CMAKE_DIR} )
-
-# Install the export set for use with the install-tree
-install(EXPORT LibKMLTargets DESTINATION ${DEF_INSTALL_CMAKE_DIR})
+install (EXPORT LibKML
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/LibKML/cmake
+    NAMESPACE LibKML
+)
