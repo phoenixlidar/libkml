@@ -25,6 +25,16 @@ function (build_test)
         TEST_PREFIX "LibKML_test_${TEST_GROUP}_"
 		TEST_LIST   ${PRETTY_TEST_NAME}_TESTS
     )
+
+    if (WIN32)
+		LKML_findTestEnv (${PRETTY_TEST_NAME} TEST_ENV)
+
+		foreach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
+			set_tests_properties (${test} PROPERTIES
+				ENVIRONMENT "${TEST_ENV}"
+			)
+		endforeach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
+	endif (WIN32)
 endfunction (build_test)
 
 function (install_example FILE DEST)
@@ -70,3 +80,72 @@ macro(include_project_vars _project _lib)
   set(${_project}_LIBRARY "${INSTALL_DIR}/lib/${_lib}${_suffix}")
   include_directories(${${_project}_INCLUDE_DIR})
 endmacro()
+
+function (LKML_findTestEnv testName resultVar)
+	LKML_findTestLibs (${testName} ${resultVar})
+	set (tempEnv "PATH=")
+
+	if (MSVC OR MINGW)
+		set (separator "\\\;")
+	else()
+		set (separator ":")
+	endif()
+
+	foreach (entry IN ITEMS ${${resultVar}})
+		string (APPEND tempEnv "${entry}${separator}")
+	endforeach()
+
+	string (APPEND tempEnv "$ENV{PATH}")
+	set (${resultVar} ${tempEnv} PARENT_SCOPE)
+endfunction()
+
+function (LKML_findTestLibs testName resultVar)
+	unset (linkLibs)
+
+	if (NOT TARGET ${testName})
+		set (interface TRUE)
+	else()
+		get_property (interface
+			TARGET ${testName}
+			PROPERTY IMPORTED
+		)
+	endif()
+
+	if (NOT ${interface})
+		get_property (linkLibs
+			TARGET ${testName}
+			PROPERTY LINK_LIBRARIES
+		)
+
+		foreach (lib IN ITEMS ${linkLibs})
+			LKML_findTestLibs (${lib} ${resultVar})
+
+			if (NOT TARGET ${lib})
+				set (interface2 TRUE)
+			else()
+				get_property (type
+					TARGET ${lib}
+					PROPERTY TYPE
+				)
+
+				if (${type} STREQUAL "INTERFACE_LIBRARY")
+					set (interface2 TRUE)
+				else()
+					get_property (interface2
+						TARGET ${lib}
+						PROPERTY IMPORTED
+					)
+				endif()
+			endif()
+
+			if (NOT ${interface2})
+				list (FIND ${resultVar} "$<TARGET_FILE_DIR:${lib}>" index)
+				if (${index} STREQUAL "-1")
+					list (APPEND ${resultVar} "$<TARGET_FILE_DIR:${lib}>")
+				endif()
+			endif()
+		endforeach()
+	endif()
+
+	set (${resultVar} ${${resultVar}} PARENT_SCOPE)
+endfunction()
