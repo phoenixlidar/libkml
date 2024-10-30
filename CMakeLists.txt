@@ -73,7 +73,6 @@ set(LIBKML_TARGETS)
 include(cmake/LibKMLHelper.cmake)
 
 include(cmake/SuperFind.cmake)
-
 find_package(Boost CONFIG NO_MODULE)
 
 if(Boost_FOUND)
@@ -173,7 +172,7 @@ configure_package_config_file (
 )
 
 write_basic_package_version_file (
-    cmake/LibKMLConfigVersion.cmake.in
+    LibKMLConfigVersion.cmake
     COMPATIBILITY SameMajorVersion
 )
 
