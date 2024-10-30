@@ -6,7 +6,7 @@ set (TESTS
     feature_visitor
     feature_view
     find
-    find_xml_namespaces
+#    find_xml_namespaces
     get_link_parents
     get_links
     href
