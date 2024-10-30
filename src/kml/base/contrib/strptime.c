@@ -98,6 +98,10 @@ static const u_char *find_string(const u_char *, int *, const char * const *,
 # define strncasecmp(s1, s2, n) _strnicmp (s1, s2, n)
 #endif
 
+#if defined(_WIN32)
+# define tzname _tzname
+#endif
+
 char *
 strptime(const char *buf, const char *fmt, struct tm *tm)
 {
