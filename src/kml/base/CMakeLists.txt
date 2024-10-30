@@ -5,8 +5,7 @@ set (BASE_SOURCES
     expat_handler_ns.cc
     expat_parser.cc
     file.cc
-    file_posix.cc
-    file_win32.cc
+    $<IF:${WIN32},file_win32.cc,file_posix.cc>
     localec.cc
     math_util.cc
     mimetypes.cc
@@ -17,13 +16,12 @@ set (BASE_SOURCES
     version.cc
     xml_namespaces.cc
     zip_file.cc
+    $<${WIN32}:contrib/strptime.c>
     contrib/minizip/iomem_simple.c
     contrib/minizip/unzip.c
 )
 
 if(WIN32)
-  list(APPEND SRCS contrib/strptime.c)
-  list(REMOVE_ITEM SRCS "${CMAKE_CURRENT_SOURCE_DIR}/file_posix.cc")
   if(MINGW)
       #use unicode functions from the windows api
       add_definitions(-DUNICODE -D_UNICODE)
@@ -31,7 +29,6 @@ if(WIN32)
       set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/time_util.cc COMPILE_FLAGS "-Wno-long-long")
   endif()
 else()
-  list(REMOVE_ITEM SRCS "${CMAKE_CURRENT_SOURCE_DIR}/file_win32.cc")
   #supress long-long warning for linux
   set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/zip_file.cc COMPILE_FLAGS "-Wno-long-long")
 endif()
