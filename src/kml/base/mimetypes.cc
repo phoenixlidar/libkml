@@ -25,7 +25,7 @@
 
 // This defines some common KML-related mimetype strings.
 
-#include "kml/base/mimetypes.h"
+//#include "kml/base/mimetypes.h"
 
 namespace kmlbase {
 

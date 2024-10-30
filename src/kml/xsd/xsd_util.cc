@@ -34,22 +34,6 @@ using kmlbase::Attributes;
 
 namespace kmlxsd {
 
-const char kAbstract[] = "abstract";
-const char kBase[] = "base";
-const char kComplexType[] = "complexType";
-const char kDefault[] = "default";
-const char kElement[] = "element";
-const char kExtension[] = "extension";
-const char kEnumeration[] = "enumeration";
-const char kName[] = "name";
-const char kSchema[] = "schema";
-const char kSimpleType[] = "simpleType";
-const char kSubstitutionGroup[] = "substitutionGroup";
-const char kTargetNamespace[] = "targetNamespace";
-const char kRestriction[] = "restriction";
-const char kType[] = "type";
-const char kValue[] = "value";
-
 // Test utility to create a <xs:complexType name="type_name">.
 XsdComplexType* CreateXsdComplexType(const string& type_name) {
   Attributes attributes;

@@ -30,10 +30,10 @@
 
 namespace kmlbase {
 
-extern const char* kAtomMimeType;
-extern const char* kCsvMimeType;
-extern const char* kKmlMimeType;
-extern const char* kKmzMimeType;
+	const char* kAtomMimeType = "application/atom+xml";
+	const char* kCsvMimeType = "text/csv";
+	const char* kKmlMimeType = "application/vnd.google-earth.kml+xml";
+	const char* kKmzMimeType = "application/vnd.google-earth.kmz";
 
 }  // end namespace kmlbase
 
