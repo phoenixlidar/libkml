@@ -123,7 +123,7 @@ set_target_properties (kmldom PROPERTIES
 
 target_compile_options(kmldom
     PRIVATE -Wall
-    PRIVATE $<$<NOT:${MSVC}>:-Wextra -Wno-unused-parameter -pedantic>
+    PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
 )
 
 target_link_libraries (kmldom

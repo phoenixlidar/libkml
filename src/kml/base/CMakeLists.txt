@@ -5,7 +5,7 @@ set (BASE_SOURCES
     expat_handler_ns.cc
     expat_parser.cc
     file.cc
-    $<IF:${WIN32},file_win32.cc,file_posix.cc>
+    $<IF:$<PLATFORM_ID:Windows>,file_win32.cc,file_posix.cc>
     localec.cc
     math_util.cc
     mimetypes.cc
@@ -16,7 +16,7 @@ set (BASE_SOURCES
     version.cc
     xml_namespaces.cc
     zip_file.cc
-    $<${WIN32}:contrib/strptime.c>
+    $<IF:$<PLATFORM_ID:Windows>,contrib/strptime.c,>
     contrib/minizip/iomem_simple.c
     contrib/minizip/unzip.c
 )
@@ -81,7 +81,7 @@ target_compile_definitions(kmlbase
 
 target_compile_options(kmlbase
     PRIVATE -Wall
-    PRIVATE $<$<NOT:${MSVC}>:-Wextra -Wno-unused-parameter -pedantic>
+    PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
 )
 
 target_include_directories(kmlbase

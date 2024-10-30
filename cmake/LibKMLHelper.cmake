@@ -13,7 +13,7 @@ function (build_test)
 
     target_compile_options (${PRETTY_TEST_NAME}
         PRIVATE -Wall
-        PRIVATE $<$<NOT:${MSVC}>:-Wextra -Wno-unused-parameter -pedantic>
+        PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
     )
 
     target_include_directories (${PRETTY_TEST_NAME}
@@ -52,7 +52,7 @@ function (build_example)
 
     target_compile_options(LibKML_example_${EXAMPLE_NAME}
         PRIVATE -Wall
-        PRIVATE $<$<NOT:${MSVC}>:-Wextra -Wno-unused-parameter -pedantic>
+        PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
     )
 
     if (EXAMPLE_LINKS)
