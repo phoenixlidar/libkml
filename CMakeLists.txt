@@ -118,6 +118,10 @@ if (NOT URIPARSER_FOUND)
     include (cmake/External_UriParser.cmake)
 endif (NOT URIPARSER_FOUND)
 
+if (WIN32)
+    set (CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif (WIN32)
+
 add_subdirectory(src)
 
 if(BUILD_TESTING)
