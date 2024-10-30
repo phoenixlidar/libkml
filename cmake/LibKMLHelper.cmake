@@ -12,7 +12,8 @@ function (build_test)
     )
 
     target_compile_options (${PRETTY_TEST_NAME}
-        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
+        PRIVATE -Wall
+        PRIVATE $<$<NOT:${MSVC}>:-Wextra -Wno-unused-parameter -pedantic>
     )
 
     target_include_directories (${PRETTY_TEST_NAME}
@@ -37,8 +38,9 @@ function (build_example)
 
     add_executable (LibKML_example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
 
-    target_compile_options (LibKML_example_${EXAMPLE_NAME}
-        PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
+    target_compile_options(LibKML_example_${EXAMPLE_NAME}
+        PRIVATE -Wall
+        PRIVATE $<$<NOT:${MSVC}>:-Wextra -Wno-unused-parameter -pedantic>
     )
 
     if (EXAMPLE_LINKS)

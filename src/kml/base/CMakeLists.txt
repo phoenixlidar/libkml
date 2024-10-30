@@ -80,7 +80,8 @@ target_compile_definitions(kmlbase
 )
 
 target_compile_options(kmlbase
-    PRIVATE -Wall -Wextra -Wno-unused-parameter -pedantic
+    PRIVATE -Wall
+    PRIVATE $<$<NOT:${MSVC}>:-Wextra -Wno-unused-parameter -pedantic>
 )
 
 target_include_directories(kmlbase
