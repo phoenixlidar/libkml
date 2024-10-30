@@ -62,7 +62,7 @@ set (BASE_HEADERS
     contrib/minizip/unzip.h
 )
 
-add_library (kmlbase
+add_library (kmlbase SHARED
     ${BASE_SOURCES}
     ${BASE_HEADERS}
 )

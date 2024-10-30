@@ -69,7 +69,7 @@ set (ENGINE_HEADERS
     update_processor.h
 )
 
-add_library(kmlengine
+add_library(kmlengine SHARED
     ${ENGINE_SOURCES}
     ${ENGINE_HEADERS}
 )

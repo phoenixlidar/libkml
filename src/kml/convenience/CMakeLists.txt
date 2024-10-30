@@ -32,7 +32,7 @@ set (CONVENIENCE_PUBLIC_HEADERS
     convenience.h
 )
 
-add_library(kmlconvenience
+add_library(kmlconvenience SHARED
     ${CONVENIENCE_SOURCES}
     ${CONVENIENCE_PRIVATE_HEADERS}
     ${CONVENIENCE_PUBLIC_HEADERS}

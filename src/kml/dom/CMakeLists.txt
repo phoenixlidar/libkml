@@ -106,7 +106,7 @@ set(DOM_PRIVATE_HEADERS
     xsd.h
 )
 
-add_library(kmldom
+add_library(kmldom SHARED
     ${DOM_SOURCES}
     ${DOM_PRIVATE_HEADERS}
     ${DOM_PUBLIC_HEADERS}
