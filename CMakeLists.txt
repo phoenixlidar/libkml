@@ -4,12 +4,62 @@ project(LibKML
     LANGUAGES C CXX
 )
 
-option(BUILD_TESTING  "Build testing." OFF)
-option(BUILD_EXAMPLES  "Build examples." OFF)
-option(INSTALL_EXAMPLES   "Install examples sources and executables" OFF)
-option(BUILD_SHARED_LIBS  "Build shared libs." ON)
-option(WITH_PYTHON "Build python bindings" OFF)
-option(WITH_JAVA   "Build java bindings"   OFF)
+function (LKML_deprecated_option old_name new_name description default)
+  if (DEFINED ${old_name})
+          message (DEPRECATION "${old_name} is a deprecated option and will be ignored in the future. Use ${new_name} instead")
+          set (default ${${old_name}})
+  endif()
+
+  option (${new_name} ${description} ${default})
+endfunction()
+
+if (NOT DEFINED WITH_JAVA)
+  set (WITH_JAVA    OFF)
+endif (NOT DEFINED WITH_JAVA)
+
+if (NOT DEFINED WITH_PYTHON)
+  set (WITH_PYTHON  OFF)
+endif (NOT DEFINED WITH_PYTHON)
+
+LKML_deprecated_option (BUILD_TESTING
+  LibKML_BUILD_TESTING
+  "Build testing."
+  OFF
+)
+
+LKML_deprecated_option (BUILD_EXAMPLES
+  LibKML_BUILD_EXAMPLES
+  "Build examples."
+  OFF
+)
+
+option (BUILD_SHARED_LIBS "Build shared libs." ON)
+
+LKML_deprecated_option (WITH_SWIG
+  LibKML_WITH_SWIG
+  "Build java bindings"
+  OFF
+)
+
+include (CMakeDependentOption)
+
+LKML_deprecated_option (INSTALL_EXAMPLES
+  LibKML_INSTALL_EXAMPLES
+  "Install examples sources and executables"
+  OFF
+)
+
+cmake_dependent_option (LibKML_WITH_PYTHON
+  "Build python bindings"
+  ${LibKML_WITH_PYTHON} ON
+  LibKML_WITH_SWIG ON
+)
+
+cmake_dependent_option (LibKML_WITH_JAVA
+  "Build java bindings"
+  ${LibKML_WITH_JAVA} ON
+  LibKML_WITH_SWIG ON
+)
 
 if(NOT CMAKE_BUILD_TYPE)
   message(STATUS "CMAKE_BUILD_TYPE is not set. setting it to 'Release'")
@@ -117,6 +167,12 @@ find_package(uriparser CONFIG)
 if (NOT URIPARSER_FOUND)
     include (cmake/External_UriParser.cmake)
 endif (NOT URIPARSER_FOUND)
+
+if (LibKML_WITH_SWIG)
+  if (SWIG_EXECUTABLE)
+    include(${SWIG_USE_FILE})
+  endif (SWIG_EXECUTABLE)
+endif (LibKML_WITH_SWIG)
 
 if (WIN32)
     set (CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
