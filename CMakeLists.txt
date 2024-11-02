@@ -139,8 +139,8 @@ endif()
 
 #FIRST use config then module mode then download
 find_package(expat CONFIG)
-
 if(NOT EXPAT_FOUND)
+
     find_package(EXPAT MODULE)
 
     if(EXPAT_FOUND)
@@ -169,6 +169,8 @@ if (NOT URIPARSER_FOUND)
 endif (NOT URIPARSER_FOUND)
 
 if (LibKML_WITH_SWIG)
+  find_package(SWIG REQUIRED)
+
   if (SWIG_EXECUTABLE)
     include(${SWIG_USE_FILE})
   endif (SWIG_EXECUTABLE)

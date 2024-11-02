@@ -1,26 +1,5 @@
-option(WITH_SWIG   "Build all swig bindings"   OFF)
-option(WITH_PYTHON "Build python bindings" OFF)
-option(WITH_JAVA   "Build java bindings"   OFF)
-
-if(WITH_SWIG)
-  find_package(SWIG)
-  if(SWIG_EXECUTABLE)
-    include(${SWIG_USE_FILE})
-  else()
-    set(WITH_SWIG OFF)
-    set(WITH_PYTHON OFF)
-    set(WITH_JAVA OFF)
-    message(WARNING "Swig not found. Hence bindings will not be built")
-  endif()
-endif()
-
-if(WITH_PYTHON)
-  find_package(PythonLibs REQUIRED)
-  if(NOT PYTHONLIBS_FOUND)
-    message(FATAL_ERROR "Python Libraries not found.")
-  endif()
-  
-  find_package(PythonInterp REQUIRED)
+if (LibKML_WITH_PYTHON)
+  find_package(Python3 COMPONENTS Development Interpreter REQUIRED)
 
   include_directories(${PYTHON_INCLUDE_PATH})
 
@@ -28,46 +7,47 @@ if(WITH_PYTHON)
     add_definitions("-DMS_WIN64")
   endif()
 
-  if(NOT DEFINED PYTHON_INSTALL_DIR)
-    execute_process(COMMAND
-      ${PYTHON_EXECUTABLE} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True))"
-      OUTPUT_VARIABLE PYTHON_INSTALL_DIR
-      OUTPUT_STRIP_TRAILING_WHITESPACE )
-  endif(NOT DEFINED PYTHON_INSTALL_DIR)
+  set (IFILES
+    kmlbase.i
+    kmldom.i
+    kmlengine.i
+  )
 
-  file(GLOB IFILES "kml*.i")
   foreach(INTERFACE_FILE ${IFILES})
     get_filename_component(MODULE_NAME ${INTERFACE_FILE} NAME_WE)
-    set_source_files_properties(${INTERFACE_FILE} PROPERTIES CPLUSPLUS ON )
-    set_source_files_properties(${INTERFACE_FILE} PROPERTIES CMAKE_SWIG_FLAGS "-includeall -DSWIGPYTHON")
-    set_source_files_properties( ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}PYTHON_wrap.cxx COMPILE_FLAGS "-Wno-long-long" )
-    swig_add_module(${MODULE_NAME} python ${INTERFACE_FILE})
-    swig_link_libraries(${MODULE_NAME} kmlbase kmlengine kmldom ${PYTHON_LIBRARIES})
-    if(PYTHON_VERSION_MAJOR EQUAL 3)
-      set_target_properties(_${MODULE_NAME} PROPERTIES COMPILE_OPTIONS -Wno-missing-field-initializers)
-    endif()
-    add_custom_command(
-      TARGET _${MODULE_NAME}
-      POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E echo "Byte-compiling ${MODULE_NAME}.py"
-      COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/cmake/pycompile.py ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}.py
-      DEPENDS kmlbase kmlengine kmldom)
 
-    install(TARGETS
-      _${MODULE_NAME}
-      LIBRARY DESTINATION ${PYTHON_INSTALL_DIR}
-      DESTINATION ${PYTHON_INSTALL_DIR})
+    set_source_files_properties(${INTERFACE_FILE} PROPERTIES
+      CPLUSPLUS ON
+      SWIG_MODULE_NAME ${MODULE_NAME}
+    )
 
-    install(FILES
-      ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}.py
-      ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}.pyc
-      DESTINATION ${PYTHON_INSTALL_DIR})
+    swig_add_library(${MODULE_NAME}_swig
+      TYPE MODULE
+      LANGUAGE python
+      SOURCES ${INTERFACE_FILE}
+    )
 
-  endforeach()
+    target_include_directories(${MODULE_NAME}_swig
+      PRIVATE
+        ${Python3_INCLUDE_DIRS}
+      )
 
-endif(WITH_PYTHON)
+    set_target_property(${MODULE_NAME}_swig
+      PROPERTY
+        SWIG_USE_TARGET_INCLUDE_DIRECTORIES ON
+    )
 
-if(WITH_JAVA)
+    target_link_libraries(${MODULE_NAME}_swig
+      PRIVATE
+        LibKML::kmlbase
+        LibKML::kmlengine
+        LibKML::kmldom
+    )
+  endforeach(INTERFACE_FILE ${IFILES})
+
+endif(LibKML_WITH_PYTHON)
+
+if(LibKML_WITH_JAVA)
   find_package(Java REQUIRED)
   find_package(JNI REQUIRED)
   mark_as_advanced(JAVA_HOME)
