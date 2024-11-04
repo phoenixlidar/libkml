@@ -2,7 +2,7 @@
 
 include("${CMAKE_CURRENT_LIST_DIR}/LibKMLTargets.cmake")
 include(CMakeFindDependencyMacro)
-find_dependency (Boost)
+find_dependency (Boost COMPONENT headers)
 find_dependency (expat)
 find_dependency (minizip)
 find_dependency (ZLIB)

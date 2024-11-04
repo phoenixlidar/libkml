@@ -143,9 +143,9 @@ if (WIN32)
     set (CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
 endif (WIN32)
 
-add_subdirectory(src)
+add_subdirectory (src)
 
-if(LibKML_BUILD_TESTING)
+if (LibKML_BUILD_TESTING)
     find_package (GTest REQUIRED)
     enable_testing()
     add_subdirectory (tests)

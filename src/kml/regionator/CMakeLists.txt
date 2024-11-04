@@ -45,6 +45,7 @@ install(TARGETS kmlregionator
     EXPORT LibKML
     LIBRARY
         COMPONENT Runtime
-    INCLUDES
+    PUBLIC_HEADER
         COMPONENT Development
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/regionator/"
 )

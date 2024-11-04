@@ -87,6 +87,7 @@ target_compile_options(kmlbase
 target_include_directories(kmlbase
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
     PUBLIC $<BUILD_INTERFACE:${LibKML_SOURCE_DIR}/src>
+    PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 target_link_libraries (kmlbase
@@ -101,6 +102,7 @@ install(TARGETS kmlbase
     EXPORT LibKML
     LIBRARY
         COMPONENT Runtime
-    INCLUDES
+    PUBLIC_HEADER
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/base/"
         COMPONENT Development
 )
