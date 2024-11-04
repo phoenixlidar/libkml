@@ -125,13 +125,12 @@ find_package(Boost
 
 #FIRST use config then module mode then download
 find_package(expat CONFIG REQUIRED)
+find_package(ZLIB)
 find_package(minizip CONFIG)
 
 if (NOT MINIZIP_FOUND)
     include (cmake/External_MiniZip.cmake)
 endif (NOT MINIZIP_FOUND)
-
-find_package(ZLIB)
 
 if(NOT ZLIB_FOUND)
     include(cmake/External_ZLIB.cmake)
