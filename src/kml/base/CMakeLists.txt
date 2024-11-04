@@ -86,7 +86,7 @@ target_compile_options(kmlbase
 
 target_include_directories(kmlbase
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/src>
+    PUBLIC $<BUILD_INTERFACE:${LibKML_SOURCE_DIR}/src>
 )
 
 target_link_libraries (kmlbase
@@ -94,7 +94,7 @@ target_link_libraries (kmlbase
     PUBLIC uriparser::uriparser
     PUBLIC ZLIB::ZLIB
     PUBLIC expat::expat
-    PUBLIC Boost::smart_ptr
+    PUBLIC Boost::headers
 )
 
 install(TARGETS kmlbase

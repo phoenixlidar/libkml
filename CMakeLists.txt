@@ -118,20 +118,12 @@ else()
 endif()
 
 set(INSTALL_DIR "${CMAKE_INSTALL_PREFIX}" CACHE PATH "install directory ")
-set(LIBKML_TARGETS)
-
 include(cmake/LibKMLHelper.cmake)
-
-include(cmake/SuperFind.cmake)
-
-find_package(Boost CONFIG NO_MODULE COMPONENTS headers)
-
-if(Boost_FOUND)
-  message(STATUS "Found Boost: ${Boost_VERSION}")
-else()
-  include(cmake/External_boost.cmake)
-  message(STATUS "Found Boost includes")
-endif()
+find_package(Boost
+  CONFIG
+  NO_MODULE
+  COMPONENTS headers
+)
 
 if(NOT BUILD_SHARED_LIBS)    
     add_definitions(-DXML_STATIC) #for static expat    
@@ -139,6 +131,7 @@ endif()
 
 #FIRST use config then module mode then download
 find_package(expat CONFIG)
+
 if(NOT EXPAT_FOUND)
 
     find_package(EXPAT MODULE)
