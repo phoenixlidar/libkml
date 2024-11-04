@@ -6,9 +6,10 @@ FetchContent_Declare (minizip
 )
 
 if (WIN32)
-    set (MZ_LZMA FALSE)
-    set (MZ_ZLIB FALSE)
-    set (MZ_ZSTD FALSE)
+    set (MZ_LZMA        FALSE)
+    set (MZ_ZLIB        FALSE)
+    set (MZ_ZSTD        FALSE)
+    set (ZLIB_COMPAT   TRUE)
 endif (WIN32)
 
 FetchContent_MakeAvailable (minizip)
