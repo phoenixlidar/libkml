@@ -123,24 +123,8 @@ find_package(Boost
   COMPONENTS headers
 )
 
-if(NOT BUILD_SHARED_LIBS)    
-    add_definitions(-DXML_STATIC) #for static expat    
-endif()
-
 #FIRST use config then module mode then download
-find_package(expat CONFIG)
-
-if(NOT EXPAT_FOUND)
-
-    find_package(EXPAT MODULE)
-
-    if(EXPAT_FOUND)
-        add_library(expat::expat ALIAS EXPAT::EXPAT)
-    else(EXPAT_FOUND)
-        include(cmake/External_expat.cmake)
-    endif(EXPAT_FOUND)
-endif(NOT EXPAT_FOUND)
-
+find_package(expat CONFIG REQUIRED)
 find_package(minizip CONFIG)
 
 if (NOT MINIZIP_FOUND)
