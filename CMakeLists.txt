@@ -124,7 +124,7 @@ include(cmake/LibKMLHelper.cmake)
 
 include(cmake/SuperFind.cmake)
 
-find_package(Boost CONFIG NO_MODULE COMPONENTS smart_ptr)
+find_package(Boost CONFIG NO_MODULE COMPONENTS headers)
 
 if(Boost_FOUND)
   message(STATUS "Found Boost: ${Boost_VERSION}")
