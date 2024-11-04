@@ -118,7 +118,12 @@ find_package(Boost
 
 #FIRST use config then module mode then download
 find_package(expat CONFIG REQUIRED)
-find_package(minizip CONFIG REQUIRED)
+
+find_package(minizip
+  CONFIG
+  REQUIRED
+  NAMES minizip;minizip-ng
+)
 
 if (NOT TARGET ZLIB::ZLIB)
   find_package(ZLIB REQUIRED)
