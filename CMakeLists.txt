@@ -26,7 +26,7 @@ if (NOT DEFINED BUILD_TESTING)
 endif (NOT DEFINED BUILD_TESTING)
 
 option (LibKML_BUILD_TESTING
-  LibKML_BUILD_TESTING  "Build testing."
+  "Build testing."
   ${BUILD_TESTING}
 )
 
