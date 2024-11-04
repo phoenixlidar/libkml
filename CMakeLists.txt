@@ -91,7 +91,7 @@ if(NOT DEFINED LOCALE_INSTALL_DIR)
   set(LOCALE_INSTALL_DIR "${DATA_INSTALL_DIR}/locale/")
 endif(NOT DEFINED LOCALE_INSTALL_DIR)
 if(NOT DEFINED PKGCONFIG_INSTALL_DIR)
-  set(PKGCONFIG_INSTALL_DIR "${LIB_INSTALL_DIR}/pkgconfig")
+  set(PKGCONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
 endif(NOT DEFINED PKGCONFIG_INSTALL_DIR)
 
 if(WIN32 AND NOT CYGWIN AND NOT MINGW)
@@ -121,29 +121,18 @@ find_package(Boost
   CONFIG
   NO_MODULE
   COMPONENTS headers
+  REQUIRED
 )
 
 #FIRST use config then module mode then download
 find_package(expat CONFIG REQUIRED)
-find_package(minizip CONFIG)
-
-if (NOT MINIZIP_FOUND)
-    include (cmake/External_MiniZip.cmake)
-endif (NOT MINIZIP_FOUND)
+find_package(minizip CONFIG REQUIRED)
 
 if (NOT TARGET ZLIB::ZLIB)
-  find_package(ZLIB)
-
-  if(NOT ZLIB_FOUND)
-    include(cmake/External_ZLIB.cmake)
-  endif(NOT ZLIB_FOUND)
+  find_package(ZLIB REQUIRED)
 endif (NOT TARGET ZLIB::ZLIB)
 
-find_package(uriparser CONFIG)
-
-if (NOT URIPARSER_FOUND)
-    include (cmake/External_UriParser.cmake)
-endif (NOT URIPARSER_FOUND)
+find_package(uriparser CONFIG REQUIRED)
 
 if (LibKML_WITH_SWIG)
   find_package(SWIG REQUIRED)
