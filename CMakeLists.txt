@@ -13,14 +13,6 @@ function (LKML_deprecated_option old_name new_name description default)
   option (${new_name} ${description} ${default})
 endfunction()
 
-if (NOT DEFINED WITH_JAVA)
-  set (WITH_JAVA    OFF)
-endif (NOT DEFINED WITH_JAVA)
-
-if (NOT DEFINED WITH_PYTHON)
-  set (WITH_PYTHON  OFF)
-endif (NOT DEFINED WITH_PYTHON)
-
 if (NOT DEFINED BUILD_TESTING)
   set (BUILD_TESTING OFF)
 endif (NOT DEFINED BUILD_TESTING)
@@ -148,15 +140,10 @@ endif (WIN32)
 
 add_subdirectory(src)
 
-if(BUILD_TESTING)
-    find_package (GTest)
-
-    if (NOT GTEST_FOUND)
-        include (cmake/External_GTest.cmake)
-    endif (NOT GTEST_FOUND)
-
+if(LibKML_BUILD_TESTING)
+    find_package (GTest REQUIRED)
     enable_testing()
-    add_subdirectory(tests)
+    add_subdirectory (tests)
 endif()
 
 if(BUILD_EXAMPLES)
