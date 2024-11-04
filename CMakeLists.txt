@@ -209,9 +209,9 @@ else()
 endif()
 
 if(NOT WIN32 OR MINGW)
-  configure_file("${CMAKE_SOURCE_DIR}/cmake/libkml.pc.in"
-    "${CMAKE_BINARY_DIR}/libkml.pc" @ONLY)
-  install(FILES ${CMAKE_BINARY_DIR}/libkml.pc
+  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/libkml.pc.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/libkml.pc" @ONLY)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libkml.pc
     DESTINATION ${PKGCONFIG_INSTALL_DIR})
 endif()
  
