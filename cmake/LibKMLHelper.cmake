@@ -26,7 +26,7 @@ function (build_test)
 		TEST_LIST   ${PRETTY_TEST_NAME}_TESTS
     )
 
-    if (WIN32 OR CYGWIN)
+    if (WIN32 OR CYGWIN OR MINGW)
 		LKML_findTestEnv (${PRETTY_TEST_NAME} TEST_ENV)
 
 		foreach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
@@ -34,7 +34,7 @@ function (build_test)
 				ENVIRONMENT "${TEST_ENV}"
 			)
 		endforeach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
-	endif (WIN32 OR CYGWIN)
+	endif (WIN32 OR CYGWIN OR MINGW)
 endfunction (build_test)
 
 function (install_example FILE DEST)
@@ -93,9 +93,9 @@ function (LKML_findTestEnv testName resultVar)
 	string (JOIN ${separator} tempEnv ${${resultVar}})
 	string (PREPEND tempEnv "PATH=")
 
-	if (CYGWIN)
+	if (CYGWIN OR MINGW)
 		string (APPEND tempEnv ${separator}$ENV{PATH})
-	endif (CYGWIN)
+	endif (CYGWIN OR MINGW)
 
 	set (${resultVar} ${tempEnv} PARENT_SCOPE)
 endfunction()
@@ -123,7 +123,7 @@ function (LKML_findTestLibs testName resultVar)
 			list (FIND ${resultVar} "${libPath}" index)
 
 			if (${index} STREQUAL "-1")
-				list (APPEND resultVar "${libPath}")
+				list (APPEND ${resultVar} "${libPath}")
 			endif()
 		endif (location)
 	else()
