@@ -9,7 +9,9 @@ if (LibKML_WITH_PYTHON)
 
   if (NOT DEFINED PYTHON_INSTALL_DIR)
     execute_process (COMMAND
-      ${Python3_EXECUTABLE} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True))"
+      ${Python3_EXECUTABLE} -c "if True:
+        from distutils import sysconfig as sc
+        print(sc.get_python_lib(prefix='', plat_specific=True))"
       OUTPUT_VARIABLE PYTHON_INSTALL_DIR
       OUTPUT_STRIP_TRAILING_WHITESPACE
     )
