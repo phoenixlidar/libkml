@@ -4,6 +4,11 @@ project(LibKML
     LANGUAGES C CXX
 )
 
+include (CMakeDependentOption)
+include (CMakePackageConfigHelpers)
+include (GNUInstallDirs)
+include (cmake/LibKMLHelper.cmake)
+
 function (LKML_deprecated_option old_name new_name description default)
   if (DEFINED ${old_name})
           message (DEPRECATION "${old_name} is a deprecated option and will be ignored in the future. Use ${new_name} instead")
@@ -36,8 +41,6 @@ LKML_deprecated_option (WITH_SWIG
   OFF
 )
 
-include (CMakeDependentOption)
-
 LKML_deprecated_option (INSTALL_EXAMPLES
   LibKML_INSTALL_EXAMPLES
   "Install examples sources and executables"
@@ -61,7 +64,6 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
-include (GNUInstallDirs)
 set (KML_EXAMPLES_DIR "${CMAKE_INSTALL_DATAROOTDIR}/kml/examples")
 
 if(NOT DEFINED BIN_INSTALL_DIR)
@@ -107,7 +109,6 @@ else()
 endif()
 
 set(INSTALL_DIR "${CMAKE_INSTALL_PREFIX}" CACHE PATH "install directory ")
-include(cmake/LibKMLHelper.cmake)
 
 find_package(Boost
   CONFIG
@@ -181,7 +182,6 @@ foreach(p LIB BIN INCLUDE CMAKE)
   endif()
 endforeach()
 
-include (CMakePackageConfigHelpers)
 configure_package_config_file (
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKMLConfig.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
