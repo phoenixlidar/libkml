@@ -26,7 +26,7 @@ function (build_test)
 		TEST_LIST   ${PRETTY_TEST_NAME}_TESTS
     )
 
-    if (WIN32)
+    if (WIN32 OR CYGWIN)
 		LKML_findTestEnv (${PRETTY_TEST_NAME} TEST_ENV)
 
 		foreach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
@@ -34,13 +34,13 @@ function (build_test)
 				ENVIRONMENT "${TEST_ENV}"
 			)
 		endforeach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
-	endif (WIN32)
+	endif (WIN32 OR CYGWIN)
 endfunction (build_test)
 
 function (install_example FILE DEST)
     install(
         FILES ${FILE}
-        DESTINATION ${KML_EXAMPLES_DIR}/${DEST}
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/${DEST}
         COMPONENT Examples
     )
 endfunction (install_example FILE DEST)
@@ -83,19 +83,20 @@ endmacro()
 
 function (LKML_findTestEnv testName resultVar)
 	LKML_findTestLibs (${testName} ${resultVar})
-	set (tempEnv "PATH=")
 
-	if (MSVC OR MINGW)
-		set (separator "\\\;")
-	else()
+	if (CYGWIN)
 		set (separator ":")
+	else()
+		set (separator "\\\\\;")
 	endif()
 
-	foreach (entry IN ITEMS ${${resultVar}})
-		string (APPEND tempEnv "${entry}${separator}")
-	endforeach()
+	string (JOIN ${separator} tempEnv ${${resultVar}})
+	string (PREPEND tempEnv "PATH=")
 
-	string (APPEND tempEnv "$ENV{PATH}")
+	if (CYGWIN)
+		string (APPEND tempEnv ${separator}$ENV{PATH})
+	endif (CYGWIN)
+
 	set (${resultVar} ${tempEnv} PARENT_SCOPE)
 endfunction()
 
@@ -111,7 +112,21 @@ function (LKML_findTestLibs testName resultVar)
 		)
 	endif()
 
-	if (NOT ${interface})
+	if (${interface})
+		get_property (location
+			TARGET ${testName}
+			PROPERTY LOCATION
+		)
+
+		if (location)
+			string (REGEX MATCH "^.*/" libPath ${location})
+			list (FIND ${resultVar} "${libPath}" index)
+
+			if (${index} STREQUAL "-1")
+				list (APPEND resultVar "${libPath}")
+			endif()
+		endif (location)
+	else()
 		get_property (linkLibs
 			TARGET ${testName}
 			PROPERTY LINK_LIBRARIES
