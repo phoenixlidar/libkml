@@ -138,3 +138,8 @@ install(TARGETS kmldom
         COMPONENT Development
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/dom/"
 )
+
+install (FILES ../dom.h
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/"
+    COMPONENT Development
+)

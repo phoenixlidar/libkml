@@ -99,3 +99,8 @@ install(TARGETS kmlengine
         COMPONENT Development
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/engine/"
 )
+
+install (FILES ../engine.h
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/"
+    COMPONENT Development
+)
