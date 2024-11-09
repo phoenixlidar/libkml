@@ -23,7 +23,7 @@ build_example(
 if(INSTALL_EXAMPLES)
     install(
         FILES kml-aliases.txt
-        DESTINATION ${KML_EXAMPLES_DIR}/xsd
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/xsd
         COMPONENT Examples
     )
 endif()

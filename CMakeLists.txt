@@ -65,37 +65,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 set (KML_EXAMPLES_DIR "${CMAKE_INSTALL_DATAROOTDIR}/kml/examples")
-
-if(NOT DEFINED BIN_INSTALL_DIR)
-  set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
-endif(NOT DEFINED BIN_INSTALL_DIR)
-if(NOT DEFINED DATA_INSTALL_DIR)
-  set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share")
-endif(NOT DEFINED DATA_INSTALL_DIR)
-if(NOT DEFINED INCLUDE_INSTALL_DIR)
-  set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include/kml")
-endif(NOT DEFINED INCLUDE_INSTALL_DIR)
-if(NOT DEFINED MAN_INSTALL_DIR)
-  set(MAN_INSTALL_DIR "${DATA_INSTALL_DIR}/man")
-endif(NOT DEFINED MAN_INSTALL_DIR)
-if(NOT DEFINED RESOURCE_INSTALL_DIR)
-  set(RESOURCE_INSTALL_DIR "${DATA_INSTALL_DIR}/libkml${LibKML_VERSION_MAJOR}/resource/")
-endif(NOT DEFINED RESOURCE_INSTALL_DIR)
-if(NOT DEFINED LOCALE_INSTALL_DIR)
-  set(LOCALE_INSTALL_DIR "${DATA_INSTALL_DIR}/locale/")
-endif(NOT DEFINED LOCALE_INSTALL_DIR)
-if(NOT DEFINED PKGCONFIG_INSTALL_DIR)
-  set(PKGCONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
-endif(NOT DEFINED PKGCONFIG_INSTALL_DIR)
-
-if(WIN32 AND NOT CYGWIN AND NOT MINGW)
-  set(DEF_INSTALL_CMAKE_DIR cmake)
-else()
-  set(DEF_INSTALL_CMAKE_DIR lib/cmake/libkml)
-endif()
-
-set(CMAKE_INSTALL_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH "Installation directory for CMake files")
-set(LIBKML_DATA_DIR  ${CMAKE_SOURCE_DIR}/testdata CACHE PATH "Directory containing test data")
+set(LIBKML_DATA_DIR  ${LibKML_SOURCE_DIR}/testdata CACHE PATH "Directory containing test data")
 
 #AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
 #AM_TEST_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -fno-rtti -DGTEST_HAS_RTTI=0
@@ -108,7 +78,6 @@ else()
   endif()
 endif()
 
-set(INSTALL_DIR "${CMAKE_INSTALL_PREFIX}" CACHE PATH "install directory ")
 
 find_package(Boost
   CONFIG
@@ -173,14 +142,6 @@ if(NOT WIN32 OR MINGW)
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libkml.pc
     DESTINATION ${PKGCONFIG_INSTALL_DIR})
 endif()
- 
-# Make relative paths absolute (needed later on)
-foreach(p LIB BIN INCLUDE CMAKE)
-  set(var ${p}_INSTALL_DIR)
-  if(NOT IS_ABSOLUTE "${${var}}")
-    set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
-  endif()
-endforeach()
 
 configure_package_config_file (
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKMLConfig.cmake.in

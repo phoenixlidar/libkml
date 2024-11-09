@@ -42,7 +42,7 @@ build_example(
 if(INSTALL_EXAMPLES)
     install(
         FILES README curlfetch.cc curlfetch.h prompt.h
-        DESTINATION ${KML_EXAMPLES_DIR}/hellonet
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/hellonet
         COMPONENT Examples
     )
 endif()

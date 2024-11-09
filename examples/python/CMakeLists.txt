@@ -12,7 +12,7 @@ set (PYTHON_EXAMPLES
 if(INSTALL_EXAMPLES)
     install(
         FILES ${PYTHON_EXAMPLES}
-        DESTINATION ${KML_EXAMPLES_DIR}/python
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/python
         COMPONENT Examples
     )
 endif()

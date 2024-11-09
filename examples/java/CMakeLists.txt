@@ -8,7 +8,7 @@ set (JAVA_EXAMPLES
 if(INSTALL_EXAMPLES)
     install(
         FILES ${JAVA_EXAMPLES}
-        DESTINATION ${KML_EXAMPLES_DIR}/java
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/java
         COMPONENT Examples
     )
 endif()

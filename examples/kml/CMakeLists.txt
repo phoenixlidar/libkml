@@ -24,7 +24,7 @@ set (KML_EXAMPLES
 if(INSTALL_EXAMPLES)
     install(
         FILES ${KML_EXMPLES}
-        DESTINATION ${KML_EXAMPLES_DIR}/kml
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/kml
         COMPONENT Examples
     )
 endif()
