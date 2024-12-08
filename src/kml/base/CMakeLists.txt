@@ -21,18 +21,6 @@ set (BASE_SOURCES
     contrib/minizip/unzip.c
 )
 
-if(WIN32)
-  if(MINGW)
-      #use unicode functions from the windows api
-      add_definitions(-DUNICODE -D_UNICODE)
-      #supress long-long warning for mingw
-      set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/time_util.cc COMPILE_FLAGS "-Wno-long-long")
-  endif()
-else()
-  #supress long-long warning for linux
-  set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/zip_file.cc COMPILE_FLAGS "-Wno-long-long")
-endif()
-
 set (BASE_HEADERS
     attributes.h
     csv_splitter.h
