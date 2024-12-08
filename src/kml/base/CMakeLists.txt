@@ -63,16 +63,19 @@ set_target_properties (kmlbase PROPERTIES
     VERSION   "${LibKML_VERSION}"
 )
 
-target_compile_definitions(kmlbase
+target_compile_definitions (kmlbase
     PRIVATE NOUNCRYPT
+    PRIVATE $<$<BOOL:${CYGWIN}>:_GNU_SOURCE=1>
+    PRIVATE $<$<BOOL:${MSVC}>:UNICODE _UNICODE>
+    PRIVATE $<$<BOOL:${MINGW}>:UNICODE _UNICODE>
 )
 
-target_compile_options(kmlbase
+target_compile_options (kmlbase
     PRIVATE -Wall
     PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
 )
 
-target_include_directories(kmlbase
+target_include_directories (kmlbase
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
     PUBLIC $<BUILD_INTERFACE:${LibKML_SOURCE_DIR}/src>
     PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
@@ -86,7 +89,7 @@ target_link_libraries (kmlbase
     PUBLIC Boost::headers
 )
 
-install(TARGETS kmlbase
+install (TARGETS kmlbase
     EXPORT LibKML
     LIBRARY
         COMPONENT Runtime

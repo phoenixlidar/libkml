@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.14)
-project(LibKML
+project (LibKML
     VERSION 1.3.1
     LANGUAGES C CXX
 )
@@ -11,12 +11,15 @@ include (cmake/LibKMLHelper.cmake)
 
 function (LKML_deprecated_option old_name new_name description default)
   if (DEFINED ${old_name})
-          message (DEPRECATION "${old_name} is a deprecated option and will be ignored in the future. Use ${new_name} instead")
+          message (DEPRECATION
+            "${old_name} is a deprecated option and will be ignored in the future.
+            Use ${new_name} instead"
+          )
           set (default ${${old_name}})
   endif()
 
   option (${new_name} ${description} ${default})
-endfunction()
+endfunction (LKML_deprecated_option old_name new_name description default)
 
 if (NOT DEFINED BUILD_TESTING)
   set (BUILD_TESTING OFF)
@@ -47,6 +50,7 @@ LKML_deprecated_option (INSTALL_EXAMPLES
   OFF
 )
 
+
 cmake_dependent_option (LibKML_WITH_PYTHON
   "Build python bindings"
   ${LibKML_WITH_PYTHON} ON
@@ -60,39 +64,39 @@ cmake_dependent_option (LibKML_WITH_JAVA
 )
 
 if(NOT CMAKE_BUILD_TYPE)
-  message(STATUS "CMAKE_BUILD_TYPE is not set. setting it to 'Release'")
-  set(CMAKE_BUILD_TYPE Release)
-endif()
+  message (STATUS "CMAKE_BUILD_TYPE is not set. setting it to 'Release'")
+  set (CMAKE_BUILD_TYPE Release CACHE STRING "What type of lib we're building")
+endif (NOT CMAKE_BUILD_TYPE)
 
 set (KML_EXAMPLES_DIR "${CMAKE_INSTALL_DATAROOTDIR}/kml/examples")
 set(LIBKML_DATA_DIR  ${LibKML_SOURCE_DIR}/testdata CACHE PATH "Directory containing test data")
 
-find_package(Boost
+find_package (Boost
   CONFIG
   NO_MODULE
   COMPONENTS headers
   REQUIRED
 )
 
-find_package(expat CONFIG REQUIRED)
+find_package (expat CONFIG REQUIRED)
 
-find_package(minizip
+find_package (minizip
   CONFIG
   REQUIRED
   NAMES minizip;minizip-ng
 )
 
 if (NOT TARGET ZLIB::ZLIB)
-  find_package(ZLIB REQUIRED)
+  find_package (ZLIB REQUIRED)
 endif (NOT TARGET ZLIB::ZLIB)
 
-find_package(uriparser CONFIG REQUIRED)
+find_package (uriparser CONFIG REQUIRED)
 
 if (LibKML_WITH_SWIG)
   find_package(SWIG REQUIRED)
 
   if (SWIG_EXECUTABLE)
-    include(${SWIG_USE_FILE})
+    include (${SWIG_USE_FILE})
   endif (SWIG_EXECUTABLE)
 endif (LibKML_WITH_SWIG)
 
@@ -106,29 +110,27 @@ if (LibKML_BUILD_TESTING)
     find_package (GTest REQUIRED)
     enable_testing()
     add_subdirectory (tests)
-endif()
+endif (LibKML_BUILD_TESTING)
 
-if(BUILD_EXAMPLES)
-    find_package(CURL)
+if (LibKML_BUILD_EXAMPLES)
+    find_package (CURL)
 
-    if(NOT CURL_FOUND)
+    if (NOT CURL_FOUND)
         include(cmake/External_Curl.cmake)
-    endif(NOT CURL_FOUND)
-  add_subdirectory(examples)
-endif()
+    endif (NOT CURL_FOUND)
 
-if(CMAKE_BUILD_TYPE STREQUAL "")
-set(CONFIG_TYPE "NOCONFIG")
-else()
-  string(TOUPPER ${CMAKE_BUILD_TYPE} CONFIG_TYPE)
-endif()
+  add_subdirectory (examples)
+endif (LibKML_BUILD_EXAMPLES)
 
-if(NOT WIN32 OR MINGW)
-  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/libkml.pc.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/libkml.pc" @ONLY)
-  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libkml.pc
-    DESTINATION ${PKGCONFIG_INSTALL_DIR})
-endif()
+if (NOT WIN32 OR MINGW)
+  configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/cmake/libkml.pc.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/libkml.pc" @ONLY
+  )
+
+  install (FILES ${CMAKE_CURRENT_BINARY_DIR}/libkml.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+  )
+endif (NOT WIN32 OR MINGW)
 
 configure_package_config_file (
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKMLConfig.cmake.in
