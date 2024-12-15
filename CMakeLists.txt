@@ -139,7 +139,7 @@ endif (NOT WIN32 OR MINGW)
 configure_package_config_file (
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKMLConfig.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/LibKML/cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
     NO_CHECK_REQUIRED_COMPONENTS_MACRO
 )
 
@@ -151,11 +151,11 @@ write_basic_package_version_file (
 install (FILES
     "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/LibKML/cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
 )
 
 install (EXPORT LibKML
     FILE LibKML.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/LibKML/cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
     NAMESPACE LibKML::
 )
