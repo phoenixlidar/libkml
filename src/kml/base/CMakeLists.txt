@@ -68,6 +68,7 @@ target_compile_definitions (kmlbase
     PRIVATE $<$<BOOL:${CYGWIN}>:_GNU_SOURCE=1>
     PRIVATE $<$<BOOL:${MSVC}>:UNICODE _UNICODE>
     PRIVATE $<$<BOOL:${MINGW}>:UNICODE _UNICODE>
+    PRIVATE $<$<BOOL:${ORIG_MINIZIP}>:ORIG_MINIZIP=1>
 )
 
 target_compile_options (kmlbase

@@ -40,6 +40,7 @@ set (ENGINE_HEADERS
     feature_visitor.h
     find.h
     find_xml_namespaces.h
+    get_link_parents.h
     get_links.h
     href.h
     id_mapper.h

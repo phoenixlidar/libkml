@@ -86,6 +86,10 @@ find_package (minizip
   NAMES minizip;minizip-ng
 )
 
+if (minizip_VERSION VERSION_LESS "4")
+       set(ORIG_MINIZIP TRUE)
+endif (minizip_VERSION VERSION_LESS "4")
+
 if (NOT TARGET ZLIB::ZLIB)
   find_package (ZLIB REQUIRED)
 endif (NOT TARGET ZLIB::ZLIB)

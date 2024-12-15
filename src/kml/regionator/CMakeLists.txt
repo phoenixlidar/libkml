@@ -4,29 +4,24 @@ set(REGIONATOR_SOURCES
     regionator_util.cc
 )
 
-set (REGIONATOR_PUBLIC_HEADERS
+set (REGIONATOR_HEADERS
+    feature_list_regionator.h
+    feature_list_region_handler.h
     region_handler.h
     regionator.h
     regionator_qid.h
-)
-
-set (REGIONATOR_PRIVATE_HEADERS
-    feature_list_regionator.h
-    feature_list_region_handler.h
     regionator_util.h
 )
 
 add_library(kmlregionator
     ${REGIONATOR_SOURCES}
-    ${REGIONATOR_PRIVATE_HEADERS}
-    ${REGIONATOR_PUBLIC_HEADERS}
+    ${REGIONATOR_HEADERS}
 )
 
 add_library (LibKML::kmlregionator ALIAS kmlregionator)
 
 set_target_properties (kmlregionator PROPERTIES
-    PRIVATE_HEADER "${REGIONATOR_PRIVATER_HEADERS}"
-    PUBLIC_HEADER "${REGIONATOR_PUBLIC_HEADERS}"
+    PUBLIC_HEADER "${REGIONATOR_HEADERS}"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )

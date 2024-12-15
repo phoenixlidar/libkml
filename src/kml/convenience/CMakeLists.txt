@@ -12,8 +12,9 @@ set (CONVENIENCE_SOURCES
     kmz_check_links.cc
 )
 
-set (CONVENIENCE_PRIVATE_HEADERS
+set (CONVENIENCE_HEADERS
     atom_util.h
+    convenience.h
     csv_file.h
     csv_parser.h
     element_counter.h
@@ -28,21 +29,15 @@ set (CONVENIENCE_PRIVATE_HEADERS
     kmz_check_links.h
 )
 
-set (CONVENIENCE_PUBLIC_HEADERS
-    convenience.h
-)
-
 add_library(kmlconvenience SHARED
     ${CONVENIENCE_SOURCES}
-    ${CONVENIENCE_PRIVATE_HEADERS}
-    ${CONVENIENCE_PUBLIC_HEADERS}
+    ${CONVENIENCE_HEADERS}
 )
 
 add_library (LibKML::kmlconvenience ALIAS kmlconvenience)
 
 set_target_properties (kmlconvenience PROPERTIES
-    PRIVATE_HEADER "${CONVENIENCE_PRIVATER_HEADERS}"
-    PUBLIC_HEADER "${CONVENIENCE_PUBLIC_HEADERS}"
+    PUBLIC_HEADER "${CONVENIENCE_HEADERS}"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )

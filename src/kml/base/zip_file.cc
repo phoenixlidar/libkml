@@ -32,8 +32,13 @@
 #include "kml/base/contrib/minizip/unzip.h"
 #include "kml/base/contrib/minizip/iomem_simple.h"
 
+#ifdef ORIG_MINIZIP
+#include <mztools.h>
+#include <zip.h>
+#else
 #include <mz_compat.h>
 #include <mz_zip.h>
+#endif
 
 namespace kmlbase {
 

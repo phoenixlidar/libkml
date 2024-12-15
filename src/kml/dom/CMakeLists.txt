@@ -50,7 +50,7 @@ set (DOM_SOURCES
     xsd.cc
 )
 
-set (DOM_PUBLIC_HEADERS
+set (DOM_HEADERS
     abstractlatlonbox.h
     abstractview.h
     atom.h
@@ -68,6 +68,9 @@ set (DOM_PUBLIC_HEADERS
     hotspot.h
     iconstyle.h
     kml.h
+    kml_cast.h
+    kml_factory.h
+    kml_funcs.h
     kml_ptr.h
     kml22.h
     kmldom.h
@@ -80,6 +83,8 @@ set (DOM_PUBLIC_HEADERS
     networklinkcontrol.h
     object.h
     overlay.h
+    parser.h
+    parser_observer.h
     placemark.h
     polystyle.h
     region.h
@@ -94,29 +99,19 @@ set (DOM_PUBLIC_HEADERS
     visitor.h
     visitor_driver.h
     xal.h
-)
-
-set(DOM_PRIVATE_HEADERS
-    kml_cast.h
-    kml_factory.h
-    kml_funcs.h
-    parser.h
-    parser_observer.h
     xml_serializer.h
     xsd.h
 )
 
 add_library(kmldom SHARED
     ${DOM_SOURCES}
-    ${DOM_PRIVATE_HEADERS}
-    ${DOM_PUBLIC_HEADERS}
+    ${DOM_HEADERS}
 )
 
 add_library (LibKML::kmldom ALIAS kmldom)
 
 set_target_properties (kmldom PROPERTIES
-    PRIVATE_HEADER "${DOM_PRIVATER_HEADERS}"
-    PUBLIC_HEADER "${DOM_PUBLIC_HEADERS}"
+    PUBLIC_HEADER "${DOM_HEADERS}"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )

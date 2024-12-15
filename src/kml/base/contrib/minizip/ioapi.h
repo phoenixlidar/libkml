@@ -7,7 +7,12 @@
 */
 
 #ifndef _ZLIBIOAPI_H
+#ifdef ORIG_MINIZIP
+#include <mztools.h>
+#else
 #include <mz_compat.h>
+#endif
+
 
 #define _ZLIBIOAPI_H
 
