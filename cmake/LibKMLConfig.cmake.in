@@ -4,7 +4,7 @@ set(LibKML_VERSION @LibKML_VERSION@)
 
 include(CMakeFindDependencyMacro)
 find_dependency (Boost COMPONENTS headers)
-find_dependency (expat)
+find_dependency (expat CONFIG)
 find_dependency (minizip)
 find_dependency (ZLIB)
 find_dependency (uriparser)
