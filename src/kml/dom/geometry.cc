@@ -136,12 +136,9 @@ bool Coordinates::ParseVec3(const char* cstr, char** nextp, Vec3* vec) {
     char alt[1024];
     first = cstr;
     k = 0;
-    while (*cstr && *cstr!=',') {
-      if( *cstr==' ') {
-	b = 1;  
-	break;
-      }
-      ++cstr;  ++k;
+    while (*cstr && *cstr != ',' && *cstr != ' ' && *cstr != '\t' && *cstr != '\n') {
+      ++cstr;
+      ++k;
     }
     memcpy(alt, first, k); 
     alt[k] = '\0';
