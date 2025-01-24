@@ -1,6 +1,6 @@
 function (build_test)
     cmake_parse_arguments (TEST  "" "GROUP;NAME" "LINKS" ${ARGN})
-    set (PRETTY_TEST_NAME LibKML_test_${TEST_GROUP}_${TEST_NAME})
+    set (PRETTY_TEST_NAME LibKML_${TEST_GROUP}_${TEST_NAME})
     add_executable (${PRETTY_TEST_NAME} ${TEST_NAME}_test.cc)
 
     target_link_libraries (${PRETTY_TEST_NAME}
@@ -22,7 +22,7 @@ function (build_test)
 
     gtest_add_tests (
 		TARGET ${PRETTY_TEST_NAME}
-        TEST_PREFIX "LibKML_test_${TEST_GROUP}_"
+        TEST_PREFIX "LibKML_${TEST_GROUP}_"
 		TEST_LIST   ${PRETTY_TEST_NAME}_TESTS
     )
 

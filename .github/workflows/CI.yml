@@ -1,0 +1,358 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  Windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: true
+    name: Windows
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Install deps
+      run: |
+        git clone https://github.com/cmake-remake/zlib.git
+        cmake -S zlib -B zlib-build -DZLIB_BUILD_MINIZIP=ON -DMINIZIP_ENABLE_BZIP2=OFF -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install
+        cmake --build zlib-build -v --config Release
+        cmake --install zlib-build --config Release
+        git clone https://github.com/boostorg/boost.git
+        cd boost
+        git submodule init libs/assert libs/config libs/core libs/move
+        git submodule init libs/smart_ptr libs/static_assert
+        git submodule init libs/throw_exception libs/type_traits tools/cmake
+        git submodule init libs/headers libs/smart_ptr
+        git submodule update libs/assert libs/config libs/core libs/move
+        git submodule update libs/smart_ptr libs/static_assert
+        git submodule update libs/throw_exception libs/type_traits
+        git submodule update tools/cmake libs/headers libs/smart_ptr
+        cd ..
+        cmake -S boost -B boost-build -DBOOST_INCLUDE_LIBRARIES=smart_ptr -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install
+        cmake --build boost-build --config Release
+        cmake --install boost-build --config Release
+        git clone https://github.com/libexpat/libexpat.git
+        cd libexpat
+        git checkout R_2_6_3
+        cd ..
+        cmake -S libexpat/expat -B expat-build -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install
+        cmake --build expat-build --config Release
+        cmake --install expat-build --config Release
+        git clone https://github.com/google/googletest.git
+        cmake -S googletest -B gtest-build -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install -Dgtest_force_shared_crt=ON
+        cmake --build gtest-build --config Release
+        cmake --install gtest-build --config Release
+        git clone https://github.com/uriparser/uriparser.git
+        cd uriparser
+        git checkout uriparser-0.9.8
+        cd ..
+        cmake -S uriparser -B uriparser-build -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install -DURIPARSER_BUILD_DOCS=OFF -DURIPARSER_BUILD_TESTS=OFF
+        cmake --build uriparser-build --config Release
+        cmake --install uriparser-build --config Release
+        git clone https://github.com/curl/curl.git
+        cd curl
+        git checkout curl-8_10_1
+        cd ..
+        cmake -S curl -B curl-build -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install
+        cmake --build curl-build --config Release
+        cmake --install curl-build --config Release
+    - name: Configure
+      run: |
+        cmake -S . -B build -DLibKML_BUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install -DLibKML_BUILD_TESTING=ON
+    - name: Build
+      run: cmake --build build --config Release
+    - name: Run tests
+      run: ctest --output-on-failure --test-dir build -C Release
+
+  Linux:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    name: Linux
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Install Deps
+      run: |
+        sudo apt install libboost-dev libbz2-dev liburiparser-dev googletest
+        git clone https://github.com/cmake-remake/zlib.git
+        cmake -S zlib -B zlib-build -DCMAKE_BUILD_TYPE=Release -DZLIB_BUILD_MINIZIP=ON
+        cmake --build zlib-build
+        sudo cmake --install zlib-build
+        git clone https://github.com/google/googletest.git
+        cmake -S googletest -B gtest-build -DCMAKE_BUILD_TYPE=Release
+        cmake --build gtest-build
+        sudo cmake --install gtest-build
+    - name: Configure
+      run: >
+        cmake -S . \
+          -B build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DLibKML_BUILD_TESTING=ON
+    - name: Build
+      run: cmake --build build --config Release
+    - name: Run tests
+      run: ctest --output-on-failure --test-dir build -C Release
+
+  Mac:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: true
+    name: Mac
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Install deps
+      run: |
+        git clone https://github.com/boostorg/boost.git
+        cd boost
+        git checkout boost-1.87.0
+        git submodule init libs/assert \
+          libs/config \
+          libs/core \
+          libs/move \
+          libs/smart_ptr \
+          libs/static_assert \
+          libs/throw_exception \
+          libs/type_traits \
+          tools/cmake \
+          libs/headers \
+          libs/smart_ptr
+        git submodule update libs/assert \
+          libs/config \
+          libs/core \
+          libs/move \
+          libs/smart_ptr \
+          libs/static_assert \
+          libs/throw_exception \
+          libs/type_traits \
+          tools/cmake \
+          libs/headers \
+          libs/smart_ptr
+        cd ..
+        cmake -S boost \
+          -B boost-build \
+          -DBOOST_INCLUDE_LIBRARIES=smart_ptr \
+          -DCMAKE_INSTALL_PREFIX=/Users/runner/Install
+        cmake --build boost-build
+        cmake --install boost-build
+        git clone https://github.com/cmake-remake/zlib.git
+        cmake -S zlib \
+          -B zlib-build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DZLIB_BUILD_MINIZIP=ON \
+          -DMINIZIP_ENABLE_BZIP2=OFF \
+          -DCMAKE_INSTALL_PREFIX=/Users/runner/Install
+        cmake --build zlib-build
+        cmake --install zlib-build
+        git clone https://github.com/libexpat/libexpat.git
+        cd libexpat
+        git checkout R_2_6_3
+        cd ..
+        cmake -S libexpat/expat \
+          -B expat-build \
+          -DCMAKE_INSTALL_PREFIX=/Users/runner/Install
+        cmake --build expat-build
+        cmake --install expat-build
+        git clone https://github.com/google/googletest.git
+        cmake -S googletest \
+          -B gtest-build \
+          -DCMAKE_INSTALL_PREFIX=/Users/runner/Install
+        cmake --build gtest-build
+        cmake --install gtest-build
+        git clone https://github.com/uriparser/uriparser.git
+        cd uriparser
+        git checkout uriparser-0.9.8
+        cd ..
+        cmake -S uriparser \
+          -B uriparser-build \
+          -DCMAKE_INSTALL_PREFIX=/Users/runner/Install \
+          -DURIPARSER_BUILD_DOCS=OFF
+        cmake --build uriparser-build
+        cmake --install uriparser-build
+    - name: Configure
+      run: >
+        cmake -S . \
+          -B build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=/Users/runner/Install \
+          -DLibKML_BUILD_TESTING=ON
+    - name: Build
+      run: cmake --build build --config Release
+    - name: Run tests
+      run: ctest --output-on-failure --test-dir build -C Release
+
+  MSys:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        sys: [mingw32, mingw64, ucrt64, clang64]
+    name: MSys - ${{ matrix.sys }}
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: ${{ matrix.sys }}
+        update: true
+        install: >-
+          make
+          git
+        pacboy: >-
+          toolchain:p
+          cmake:p
+          boost:p
+    - name: Install deps
+      run: |
+        git clone https://github.com/cmake-remake/zlib.git
+        cmake -S zlib \
+          -B zlib-build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DZLIB_BUILD_MINIZIP=ON \
+          -DMINIZIP_ENABLE_BZIP2=OFF \
+          -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install
+        cmake --build zlib-build
+        cmake --install zlib-build
+        git clone https://github.com/google/googletest.git
+        cmake -S googletest \
+          -B gtest-build \
+          -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install
+        cmake --build gtest-build
+        cmake --install gtest-build
+        git clone https://github.com/uriparser/uriparser.git
+        cd uriparser
+        git checkout uriparser-0.9.8
+        cd ..
+        cmake -S uriparser \
+          -B uriparser-build \
+          -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install \
+          -DURIPARSER_BUILD_DOCS=OFF
+        cmake --build uriparser-build
+        cmake --install uriparser-build
+    - name: Configure
+      run: >
+        cmake -G"Unix Makefiles" \
+          -S . \
+          -B build \
+          -DCMAKE_VERBOSE_MAKEFILE=ON \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install \
+          -DLibKML_BUILD_TESTING=ON
+    - name: Build
+      run: cmake --build build --config Release
+    - name: Run tests
+      run: ctest --output-on-failure --test-dir build -C Release
+
+  cygwin:
+    strategy:
+      fail-fast: true
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: C:\cygwin\bin\bash.exe --login -o igncr '{0}'
+    name: Cygwin
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup cygwin
+      uses: cygwin/cygwin-install-action@master
+      with:
+        packages: >-
+          cmake
+          cygwin-devel
+          gcc-core
+          gcc-g++
+          ninja
+          boost
+    - name: Install deps
+      run: |
+        git clone https://github.com/cmake-remake/zlib.git
+        cmake -S zlib \
+          -GNinja \
+          -B zlib-build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DZLIB_BUILD_MINIZIP=ON \
+          -DMINIZIP_ENABLE_BZIP2=OFF
+        cmake --build zlib-build -v -j1
+        cmake --install zlib-build
+        git clone https://github.com/boostorg/boost.git
+        cd boost
+        git submodule init libs/assert \
+          libs/config \
+          libs/core \
+          libs/move \
+          libs/smart_ptr \
+          libs/static_assert \
+          libs/throw_exception \
+          libs/type_traits \
+          tools/cmake \
+          libs/headers \
+          libs/smart_ptr
+        git submodule update libs/assert \
+          libs/config \
+          libs/core \
+          libs/move \
+          libs/smart_ptr \
+          libs/static_assert \
+          libs/throw_exception \
+          libs/type_traits \
+          tools/cmake \
+          libs/headers \
+          libs/smart_ptr
+        cd ..
+        cmake -S boost \
+          -B boost-build \
+          -DBOOST_INCLUDE_LIBRARIES=smart_ptr
+        cmake --build boost-build
+        cmake --install boost-build
+        git clone https://github.com/libexpat/libexpat.git
+        cd libexpat
+        git checkout R_2_6_3
+        cd ..
+        cmake -S libexpat/expat \
+          -B expat-build \
+          -G Ninja
+        cmake --build expat-build
+        cmake --install expat-build
+        git clone https://github.com/google/googletest.git
+        cmake -S googletest \
+          -B gtest-build \
+          -G Ninja
+        cmake --build gtest-build
+        cmake --install gtest-build
+        git clone https://github.com/uriparser/uriparser.git
+        cd uriparser
+        git checkout uriparser-0.9.8
+        cd ..
+        cmake -S uriparser \
+          -B uriparser-build \
+          -DURIPARSER_BUILD_DOCS=OFF \
+          -G Ninja
+        cmake --build uriparser-build
+        cmake --install uriparser-build
+    - name: Configure
+      run: >
+        cmake -S /cygdrive/d/a/libkml/libkml \
+          -B build \
+          -DCMAKE_BUILD_TYPE=Release \
+          -G Ninja \
+          -DLibKML_BUILD_TESTING=ON
+    - name: Build
+      run: cmake --build build --config Release -v -j1
+    - name: Run tests
+      run: ctest --output-on-failure --test-dir build -C Release
