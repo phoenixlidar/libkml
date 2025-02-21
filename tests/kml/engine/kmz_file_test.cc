@@ -347,10 +347,10 @@ TEST_F(KmzTest, TestAddFileList) {
   created->List(&list);
   ASSERT_EQ(static_cast<size_t>(2), list.size());
   ASSERT_EQ(string("dummy.png"), list[0]);
-#ifndef __MINGW32__
-  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[1]);
-#else
+#if defined(_WIN32) && !defined(__MINGW32__)
   ASSERT_EQ(string("kmzfiles\\dummy.kml"), list[1]);
+#else
+  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[1]);
 #endif
 }
 
@@ -374,10 +374,10 @@ TEST_F(KmzTest, TestCreateFromElement) {
   ASSERT_EQ(static_cast<size_t>(3), list.size());
   ASSERT_EQ(string("doc.kml"), list[0]);
   ASSERT_EQ(string("dummy.png"), list[1]);
-#ifndef _WIN32
-  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[2]);
-#else
+#if defined(_WIN32) && !defined(__MINGW32__)
   ASSERT_EQ(string("kmzfiles\\dummy.kml"), list[2]);
+#else
+  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[2]);
 #endif
 }
 
@@ -396,10 +396,10 @@ TEST_F(KmzTest, TestCreateFromKmlFilePath) {
   ASSERT_EQ(static_cast<size_t>(3), list.size());
   ASSERT_EQ(string("doc.kml"), list[0]);
   ASSERT_EQ(string("dummy.png"), list[1]);
-#ifndef _WIN32
-  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[2]);
-#else
+#if defined(_WIN32) && !defined(__MINGW32__)
   ASSERT_EQ(string("kmzfiles\\dummy.kml"), list[2]);
+#else
+  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[2]);
 #endif
 }
 
@@ -422,10 +422,10 @@ TEST_F(KmzTest, TestCreateFromKmlFile) {
   ASSERT_EQ(static_cast<size_t>(3), list.size());
   ASSERT_EQ(string("doc.kml"), list[0]);
   ASSERT_EQ(string("dummy.png"), list[1]);
-#ifndef _WIN32
-  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[2]);
-#else
+#if defined(_WIN32) && !defined(__MINGW32__)
   ASSERT_EQ(string("kmzfiles\\dummy.kml"), list[2]);
+#else
+  ASSERT_EQ(string("kmzfiles/dummy.kml"), list[2]);
 #endif
 }
 
@@ -447,16 +447,16 @@ TEST_F(KmzTest, TestCreateFromGoogleEarthFile) {
   created->List(&list);
   ASSERT_EQ(static_cast<size_t>(5), list.size());
   ASSERT_EQ(string("doc.kml"), list[0]);
-#ifndef _WIN32
-  ASSERT_EQ(string("files/camelbrown200.png"), list[1]);
-  ASSERT_EQ(string("files/camelblack200.png"), list[2]);
-  ASSERT_EQ(string("files/camera_mode.png"), list[3]);
-  ASSERT_EQ(string("files/camelcolor200.png"), list[4]);
-#else
+#if defined(_WIN32) && !defined(__MINGW32__)
   ASSERT_EQ(string("files\\camelbrown200.png"), list[1]);
   ASSERT_EQ(string("files\\camelblack200.png"), list[2]);
   ASSERT_EQ(string("files\\camera_mode.png"), list[3]);
   ASSERT_EQ(string("files\\camelcolor200.png"), list[4]);
+#else
+  ASSERT_EQ(string("files/camelbrown200.png"), list[1]);
+  ASSERT_EQ(string("files/camelblack200.png"), list[2]);
+  ASSERT_EQ(string("files/camera_mode.png"), list[3]);
+  ASSERT_EQ(string("files/camelcolor200.png"), list[4]);
 #endif
 }
 
