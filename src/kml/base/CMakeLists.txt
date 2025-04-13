@@ -83,7 +83,7 @@ target_include_directories (kmlbase
 )
 
 target_link_libraries (kmlbase
-    PUBLIC MINIZIP::minizip
+    PUBLIC minizip::minizip
     PUBLIC uriparser::uriparser
     PUBLIC ZLIB::ZLIB
     PUBLIC expat::expat
