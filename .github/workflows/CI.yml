@@ -363,6 +363,6 @@ jobs:
           -G Ninja \
           -DLibKML_BUILD_TESTING=ON
     - name: Build
-      run: cmake --build build --config Release -v -j1
+      run: cmake --build build --config Release -v
     - name: Run tests
       run: ctest --output-on-failure --test-dir build -C Release
