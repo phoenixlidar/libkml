@@ -79,11 +79,6 @@ static int fseek_calc(ZPOS_T offset, int origin, ZPOS_T* position, ZPOS_T size)
    return bOK ? 0 : -1;
 }
 
-static voidpf ZCALLBACK mem_open OF((
-   voidpf opaque,
-   const char* filename,
-   int mode));
-
 static uLong ZCALLBACK mem_read OF((
    voidpf opaque,
    voidpf stream,
@@ -121,11 +116,7 @@ typedef struct _MEMFILE
   ZPOS_T position; /* Current offset in the area */
 } MEMFILE;
 
-static uLong ZCALLBACK mem_read (opaque, stream, buf, size)
-   voidpf opaque;
-   voidpf stream;
-   void* buf;
-   uLong size;
+static uLong ZCALLBACK mem_read (voidpf opaque, voidpf stream, void* buf, uLong size)
 {
    MEMFILE* handle = (MEMFILE*) stream;
 
@@ -154,11 +145,7 @@ static uLong ZCALLBACK mem_read (opaque, stream, buf, size)
    return size;
 }
 
-static uLong ZCALLBACK mem_write (opaque, stream, buf, size)
-   voidpf opaque;
-   voidpf stream;
-   const void* buf;
-   uLong size;
+static uLong ZCALLBACK mem_write (voidpf opaque, voidpf stream, const void* buf, uLong size)
 {
    MEMFILE* handle = (MEMFILE*) stream;
 
@@ -174,27 +161,19 @@ static uLong ZCALLBACK mem_write (opaque, stream, buf, size)
    return size;
 }
 
-static ZPOS_T ZCALLBACK mem_tell (opaque, stream)
-   voidpf opaque;
-   voidpf stream;
+static ZPOS_T ZCALLBACK mem_tell (voidpf opaque, voidpf stream)
 {
    MEMFILE *handle = (MEMFILE *)stream;
    return handle->position;
 }
 
-static long ZCALLBACK mem_seek (opaque, stream, offset, origin)
-   voidpf opaque;
-   voidpf stream;
-   ZOFF_T offset;
-   int origin;
+static long ZCALLBACK mem_seek (voidpf opaque, voidpf stream, ZOFF_T offset, int origin)
 {
    MEMFILE* handle = (MEMFILE*)stream;
    return fseek_calc(offset, origin, &handle->position, handle->length);
 }
 
-int ZCALLBACK mem_close (opaque, stream)
-   voidpf opaque;
-   voidpf stream;
+int ZCALLBACK mem_close (voidpf opaque, voidpf stream)
 {
     MEMFILE *handle = (MEMFILE *)stream;
 
@@ -210,9 +189,7 @@ int ZCALLBACK mem_close (opaque, stream)
     return 0;
 }
 
-int ZCALLBACK mem_error (opaque, stream)
-   voidpf opaque;
-   voidpf stream;
+int ZCALLBACK mem_error (voidpf opaque, voidpf stream)
 {
     MEMFILE *handle = (MEMFILE *)stream;
     /* We never return errors */
