@@ -127,12 +127,7 @@ endif (LibKML_BUILD_TESTING)
 
 if (LibKML_BUILD_EXAMPLES)
     find_package (CURL)
-
-    if (NOT CURL_FOUND)
-        include(cmake/External_Curl.cmake)
-    endif (NOT CURL_FOUND)
-
-  add_subdirectory (examples)
+    add_subdirectory (examples)
 endif (LibKML_BUILD_EXAMPLES)
 
 if (NOT WIN32 OR MINGW)
