@@ -25,9 +25,7 @@
 
 // This file implements the internal Xsd class specifically for KML 2.2.
 
-#include "kml/dom/xsd.h"
-#include "kml/dom/kml22.h"
-#include "kml/dom/kml22.cc"
+#include "kml/dom/kml22_enums.h"
 
 namespace kmldom {
 

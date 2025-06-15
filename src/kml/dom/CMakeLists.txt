@@ -15,7 +15,6 @@ set (DOM_SOURCES
     gx_tour.cc
     hotspot.cc
     iconstyle.cc
-    kml22.cc
     kml_cast.cc
     kml.cc
     kml_factory.cc
@@ -73,6 +72,7 @@ set (DOM_HEADERS
     kml_funcs.h
     kml_ptr.h
     kml22.h
+    kml22_enums.h
     kmldom.h
     labelstyle.h
     linestyle.h
