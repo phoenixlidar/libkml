@@ -217,6 +217,11 @@ jobs:
           boost:p
     - name: Install deps
       run: |
+        if [ ${MSYSTEM} == CLANG64 ]
+        then
+          export CC=clang
+          export CXX=clang++
+        fi
         git clone https://github.com/cmake-remake/zlib.git
         cmake -S zlib \
           -B zlib-build \
@@ -243,7 +248,12 @@ jobs:
         cmake --build uriparser-build
         cmake --install uriparser-build
     - name: Configure
-      run: >
+      run: |
+        if [ ${MSYSTEM} == CLANG64 ]
+        then
+          export CC=clang
+          export CXX=clang++
+        fi
         cmake -G"Unix Makefiles" \
           -S . \
           -B build \
