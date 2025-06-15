@@ -191,7 +191,6 @@ int ZCALLBACK mem_close (voidpf opaque, voidpf stream)
 
 int ZCALLBACK mem_error (voidpf opaque, voidpf stream)
 {
-    MEMFILE *handle = (MEMFILE *)stream;
     /* We never return errors */
     return 0;
 }
