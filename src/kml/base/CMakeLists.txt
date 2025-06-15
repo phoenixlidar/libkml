@@ -5,7 +5,7 @@ set (BASE_SOURCES
     expat_handler_ns.cc
     expat_parser.cc
     file.cc
-    $<IF:$<PLATFORM_ID:Windows>,file_win32.cc,file_posix.cc>
+    $<IF:$<BOOL:${IS_WIN}>,file_win32.cc,file_posix.cc>
     localec.cc
     math_util.cc
     mimetypes.cc
@@ -16,7 +16,7 @@ set (BASE_SOURCES
     version.cc
     xml_namespaces.cc
     zip_file.cc
-    $<IF:$<PLATFORM_ID:Windows>,contrib/strptime.c,>
+    $<$<BOOL:${IS_WIN}>:contrib/strptime.c>
     contrib/minizip/iomem_simple.c
     contrib/minizip/unzip.c
 )
@@ -67,7 +67,7 @@ target_compile_definitions (kmlbase
     PRIVATE NOUNCRYPT
     PRIVATE $<$<BOOL:${CYGWIN}>:_GNU_SOURCE=1>
     PRIVATE $<$<BOOL:${MSVC}>:UNICODE _UNICODE>
-    PRIVATE $<$<BOOL:${MINGW}>:UNICODE _UNICODE>
+    PRIVATE $<$<BOOL:${IS_MINGW}>:UNICODE _UNICODE>
     PRIVATE $<$<BOOL:${ORIG_MINIZIP}>:ORIG_MINIZIP=1>
 )
 

@@ -6,6 +6,7 @@ project (LibKML
 
 set (CMAKE_CXX_STANDARD 11)
 
+include (CheckSymbolExists)
 include (CMakeDependentOption)
 include (CMakePackageConfigHelpers)
 include (GNUInstallDirs)
@@ -79,6 +80,11 @@ endif (NOT CMAKE_BUILD_TYPE)
 
 set (KML_EXAMPLES_DIR "${CMAKE_INSTALL_DATAROOTDIR}/kml/examples")
 set(LIBKML_DATA_DIR  ${LibKML_SOURCE_DIR}/testdata CACHE PATH "Directory containing test data")
+
+#This are needed because clang on Mingw set's it
+check_symbol_exists(_WIN32 stdlib.h IS_WIN)
+#This is needed because clang env of MinGW isn't recognized as MINGW
+check_symbol_exists(__MINGW32__ stdlib.h IS_MINGW)
 
 find_package (Boost
     CONFIG
