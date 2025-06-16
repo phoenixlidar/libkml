@@ -29,13 +29,8 @@
 
 #include "kml/convenience/feature_list.h"
 #include <stdlib.h>
-#include <algorithm>
-#include <fstream>
 #include <list>
-#include <sstream>
-#include "kml/dom.h"
 #include "kml/convenience/convenience.h"
-#include "kml/engine.h"
 
 using kmldom::ContainerPtr;
 using kmldom::DataPtr;
