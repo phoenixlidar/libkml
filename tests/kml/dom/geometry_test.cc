@@ -373,10 +373,10 @@ TEST_F(CoordinatesTest, TestSerializeMany) {
   ASSERT_EQ(kNumTuples, vec3_vector.size());
   ASSERT_EQ(static_cast<int>(kNumTuples), mock.get_element_count());
   for (size_t i = 0; i < kNumTuples; ++i) {
-    ASSERT_EQ(i + kLatFrac, vec3_vector[i].get_latitude());
-    ASSERT_EQ(i + kLngFrac, vec3_vector[i].get_longitude());
+    ASSERT_DOUBLE_EQ(i + kLatFrac, vec3_vector[i].get_latitude());
+    ASSERT_DOUBLE_EQ(i + kLngFrac, vec3_vector[i].get_longitude());
     ASSERT_TRUE(vec3_vector[i].has_altitude());
-    ASSERT_EQ(i + kAltFrac, vec3_vector[i].get_altitude());
+    ASSERT_DOUBLE_EQ(i + kAltFrac, vec3_vector[i].get_altitude());
   }
 }
 

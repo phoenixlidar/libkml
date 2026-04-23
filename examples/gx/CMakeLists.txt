@@ -1,16 +1,7 @@
-
-build_example(
-  NAME gpxfly
-  DEPENDS kmlconvenience)
-
-build_example(
-  NAME featuretour
-  DEPENDS kmlconvenience)
-
-
-if(INSTALL_EXAMPLES)
-file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
-install(
-  FILES ${eg_files}
-  DESTINATION ${KML_EXAMPLES_DIR}/gx)
-endif()
+foreach (EXAMPLE "gpxfly" "featuretour")
+    build_example(
+        NAME ${EXAMPLE}
+        LINKS LibKML::kmlconvenience
+        CATEGORY gx
+    )
+endforeach (EXAMPLE "gpxfly" "featuretour")

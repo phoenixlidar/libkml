@@ -1,192 +1,171 @@
-cmake_minimum_required(VERSION 2.8)
-project(LibKML)
+cmake_minimum_required (VERSION 3.14)
+project (LibKML
+    VERSION 1.3.1
+    LANGUAGES C CXX
+)
 
-set(VERSION_MAJOR "1")
-set(VERSION_MINOR "3")
-set(VERSION_PATCH "1")
-set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+set (CMAKE_CXX_STANDARD 11)
 
-option(BUILD_TESTING  "Build testing." OFF)
-option(BUILD_EXAMPLES  "Build examples." OFF)
-option(INSTALL_EXAMPLES   "Install examples sources and executables" OFF)
-option(BUILD_SHARED_LIBS  "Build shared libs." ON)
-option(WITH_SWIG   "Build all swig bindings"   OFF)
-option(WITH_PYTHON "Build python bindings" OFF)
-option(WITH_JAVA   "Build java bindings"   OFF)
+include (CheckSymbolExists)
+include (CMakeDependentOption)
+include (CMakePackageConfigHelpers)
+include (GNUInstallDirs)
+include (cmake/LibKMLHelper.cmake)
 
-set(CMAKE_INCLUDE_DIRECTORIES_BEFORE ON)
+function (LKML_deprecated_option old_name new_name description default)
+  if (DEFINED ${old_name})
+    message (DEPRECATION
+        "${old_name} is a deprecated option and will be ignored in the future.
+        Use ${new_name} instead"
+    )
 
-if(POLICY CMP0022)
-  cmake_policy(SET CMP0022 NEW)
-endif()
+    set (default ${${old_name}})
+  endif()
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+  option (${new_name} ${description} ${default})
+endfunction (LKML_deprecated_option old_name new_name description default)
+
+if (NOT DEFINED LibKML_BUILD_TESTING)
+    if (NOT DEFINED BUILD_TESTING)
+        set (BUILD_TESTING OFF)
+        set (BUILD_TESTING_DEFAULT OFF)
+    else (NOT DEFINED BUILD_TESTING)
+        set (BUILD_TESTING_DEFAULT ${BUILD_TESTING})
+    endif (NOT DEFINED BUILD_TESTING)
+else (NOT DEFINED LibKML_BUILD_TESTING)
+    set (BUILD_TESTING_DEFAULT ${LibKML_BUILD_TESTING})
+endif (NOT DEFINED LibKML_BUILD_TESTING)
+
+option (LibKML_BUILD_TESTING
+    "Build testing."
+    ${BUILD_TESTING_DEFAULT}
+)
+
+LKML_deprecated_option (BUILD_EXAMPLES
+    LibKML_BUILD_EXAMPLES
+    "Build examples."
+    OFF
+)
+
+option (BUILD_SHARED_LIBS "Build shared libs." ON)
+
+LKML_deprecated_option (WITH_SWIG
+    LibKML_WITH_SWIG
+    "Build java bindings"
+    OFF
+)
+
+LKML_deprecated_option (INSTALL_EXAMPLES
+    LibKML_INSTALL_EXAMPLES
+    "Install examples sources and executables"
+    OFF
+)
+
+cmake_dependent_option (LibKML_WITH_PYTHON
+    "Build python bindings"
+    ${LibKML_WITH_PYTHON} ON
+    LibKML_WITH_SWIG ON
+)
+
+cmake_dependent_option (LibKML_WITH_JAVA
+    "Build java bindings"
+    ${LibKML_WITH_JAVA} ON
+    LibKML_WITH_SWIG ON
+)
 
 if(NOT CMAKE_BUILD_TYPE)
-  message(STATUS "CMAKE_BUILD_TYPE is not set. setting it to 'Release'")
-  set(CMAKE_BUILD_TYPE Release)
-endif()
+    message (STATUS "CMAKE_BUILD_TYPE is not set. setting it to 'Release'")
+    set (CMAKE_BUILD_TYPE Release CACHE STRING "What type of lib we're building")
+endif (NOT CMAKE_BUILD_TYPE)
 
-if(NOT DEFINED BIN_INSTALL_DIR)
-  set(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin")
-endif(NOT DEFINED BIN_INSTALL_DIR)
-if(NOT DEFINED LIB_INSTALL_DIR)
-  set(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
-endif(NOT DEFINED LIB_INSTALL_DIR)
-if(NOT DEFINED DATA_INSTALL_DIR)
-  set(DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share")
-endif(NOT DEFINED DATA_INSTALL_DIR)
-if(NOT DEFINED INCLUDE_INSTALL_DIR)
-  set(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include/kml")
-endif(NOT DEFINED INCLUDE_INSTALL_DIR)
-if(NOT DEFINED MAN_INSTALL_DIR)
-  set(MAN_INSTALL_DIR "${DATA_INSTALL_DIR}/man")
-endif(NOT DEFINED MAN_INSTALL_DIR)
-if(NOT DEFINED RESOURCE_INSTALL_DIR)
-  set(RESOURCE_INSTALL_DIR "${DATA_INSTALL_DIR}/libkml${VERSION_MAJOR}/resource/")
-endif(NOT DEFINED RESOURCE_INSTALL_DIR)
-if(NOT DEFINED LOCALE_INSTALL_DIR)
-  set(LOCALE_INSTALL_DIR "${DATA_INSTALL_DIR}/locale/")
-endif(NOT DEFINED LOCALE_INSTALL_DIR)
-if(NOT DEFINED JAVA_INSTALL_DIR)
-  set(JAVA_INSTALL_DIR "${DATA_INSTALL_DIR}/java")
-endif(NOT DEFINED JAVA_INSTALL_DIR)
-if(NOT DEFINED JNI_INSTALL_DIR)
-  set(JNI_INSTALL_DIR "${LIB_INSTALL_DIR}/jni")
-endif(NOT DEFINED JNI_INSTALL_DIR)
-if(NOT DEFINED PKGCONFIG_INSTALL_DIR)
-  set(PKGCONFIG_INSTALL_DIR "${LIB_INSTALL_DIR}/pkgconfig")
-endif(NOT DEFINED PKGCONFIG_INSTALL_DIR)
+set (KML_EXAMPLES_DIR "${CMAKE_INSTALL_DATAROOTDIR}/kml/examples")
+set(LIBKML_DATA_DIR  ${LibKML_SOURCE_DIR}/testdata CACHE PATH "Directory containing test data")
 
-if(WIN32 AND NOT CYGWIN AND NOT MINGW)
-  set(DEF_INSTALL_CMAKE_DIR cmake)
-else()
-  set(DEF_INSTALL_CMAKE_DIR lib/cmake/libkml)
-endif()
-set(CMAKE_INSTALL_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH "Installation directory for CMake files")
+#This are needed because clang on Mingw set's it
+check_symbol_exists(_WIN32 stdlib.h IS_WIN)
+#This is needed because clang env of MinGW isn't recognized as MINGW
+check_symbol_exists(__MINGW32__ stdlib.h IS_MINGW)
 
-set(CMAKE_MODULE_PATH
-    ${CMAKE_SOURCE_DIR}/cmake
-    ${CMAKE_MODULE_PATH})
+find_package (Boost
+    CONFIG
+    NO_MODULE
+    COMPONENTS headers
+    REQUIRED
+)
 
-set(LIBKML_DATA_DIR  ${CMAKE_SOURCE_DIR}/testdata CACHE "Directory containing test data" PATH)
+find_package (expat CONFIG REQUIRED)
 
-#AM_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti
-#AM_TEST_CXXFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror -fno-rtti -DGTEST_HAS_RTTI=0
-if(CMAKE_COMPILER_IS_GNUCXX)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-unused-parameter -pedantic -fno-rtti")
-  set(TEST_FLAGS "-Wall -Wextra -Wno-unused-parameter -fno-rtti -DGTEST_HAS_RTTI=0")
-else()
-  if(MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /DUNICODE /D_UNICODE")
-#    set(BUILD_SHARED_LIBS OFF)
-  endif()
-endif()
+find_package (minizip
+  CONFIG
+  REQUIRED
+  NAMES minizip;minizip-ng
+)
 
-set(INSTALL_DIR "${CMAKE_INSTALL_PREFIX}" CACHE "install directory " PATH)
-set(LIBKML_TARGETS)
+if (minizip_VERSION VERSION_LESS "4")
+       set(ORIG_MINIZIP TRUE)
+endif (minizip_VERSION VERSION_LESS "4")
 
-include(LibKMLHelper)
+if (NOT TARGET ZLIB::ZLIB)
+  find_package (ZLIB REQUIRED)
+endif (NOT TARGET ZLIB::ZLIB)
 
-include(SuperFind)
+find_package (uriparser CONFIG REQUIRED)
 
-set(KMLBASE_DEPENDS)
+if (LibKML_WITH_SWIG)
+  find_package(SWIG REQUIRED)
 
-find_package(Boost)
-if(Boost_FOUND)
-  message(STATUS "Found Boost: ${Boost_VERSION}")
-else()
-  include(External_boost)
-  list(APPEND KMLBASE_DEPENDS BOOST)
-  message(STATUS "Found Boost includes: ${Boost_INCLUDE_DIRS}")
-endif()
+  if (SWIG_EXECUTABLE)
+    include (${SWIG_USE_FILE})
+  endif (SWIG_EXECUTABLE)
+endif (LibKML_WITH_SWIG)
 
-include_directories(${Boost_INCLUDE_DIRS})
+if (WIN32)
+    set (CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif (WIN32)
 
-if(NOT BUILD_SHARED_LIBS)    
-    add_definitions(-DXML_STATIC) #for static expat    
-endif()
+add_subdirectory (src)
 
-#expat is dependency for kmlbase and kmldom
-super_find_package(EXPAT)
-include_directories(${EXPAT_INCLUDE_DIRS})
+if (LibKML_BUILD_TESTING)
+    find_package (GTest REQUIRED)
+    enable_testing()
+    add_subdirectory (tests)
+endif (LibKML_BUILD_TESTING)
 
-super_find_package(ZLIB)
-include_directories(${ZLIB_INCLUDE_DIR})
+if (LibKML_BUILD_EXAMPLES)
+    find_package (CURL)
+    add_subdirectory (examples)
+endif (LibKML_BUILD_EXAMPLES)
 
-super_find_package(MiniZip)
-include_directories(${MINIZIP_INCLUDE_DIR})
+if (NOT WIN32 OR MINGW)
+  configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/cmake/libkml.pc.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/libkml.pc" @ONLY
+  )
 
-super_find_package(UriParser)
-include_directories(${URIPARSER_INCLUDE_DIR})
+  install (FILES ${CMAKE_CURRENT_BINARY_DIR}/libkml.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+  )
+endif (NOT WIN32 OR MINGW)
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
+configure_package_config_file (
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKMLConfig.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
+    NO_CHECK_REQUIRED_COMPONENTS_MACRO
+)
 
-add_dependencies_if_needed(KMLBASE ZLIB)
-add_dependencies_if_needed(KMLBASE MiniZip)
-add_dependencies_if_needed(KMLBASE UriParser)
-add_dependencies_if_needed(KMLBASE EXPAT)
+write_basic_package_version_file (
+    LibKMLConfigVersion.cmake
+    COMPATIBILITY SameMajorVersion
+)
 
-add_subdirectory(src)
+install (FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
+)
 
-if(BUILD_TESTING)
-  enable_testing()
-  add_subdirectory(tests)
-endif()
-
-if(BUILD_EXAMPLES)
-  add_subdirectory(examples)
-endif()
-
-if(CMAKE_BUILD_TYPE STREQUAL "")
-set(CONFIG_TYPE "NOCONFIG")
-else()
-  string(TOUPPER ${CMAKE_BUILD_TYPE} CONFIG_TYPE)
-endif()
-
-if(NOT WIN32 OR MINGW)
-  configure_file("${CMAKE_SOURCE_DIR}/cmake/libkml.pc.in"
-    "${CMAKE_BINARY_DIR}/libkml.pc" @ONLY)
-  install(FILES ${CMAKE_BINARY_DIR}/libkml.pc
-    DESTINATION ${PKGCONFIG_INSTALL_DIR})
-endif()
- 
-# Make relative paths absolute (needed later on)
-foreach(p LIB BIN INCLUDE CMAKE)
-  set(var ${p}_INSTALL_DIR)
-  if(NOT IS_ABSOLUTE "${${var}}")
-    set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
-  endif()
-endforeach()
-
-export(TARGETS ${LIBKML_TARGETS}
-  FILE "${CMAKE_BINARY_DIR}/LibKMLTargets.cmake")
-  
-# Create the LibKMLConfig.cmake and LibKMLConfigVersion files
-file(RELATIVE_PATH REL_INCLUDE_DIR "${CMAKE_INSTALL_DIR}"
-  "${INCLUDE_INSTALL_DIR}")
-
-# ... for the build tree
-set(CONF_INCLUDE_DIRS "${CMAKE_SOURCE_DIR}/src")
-configure_file(cmake/LibKMLConfig.cmake.in
-  "${PROJECT_BINARY_DIR}/LibKMLConfig.cmake" @ONLY)
-
-# ... for the install tree
-set(CONF_INCLUDE_DIRS "\${LIBKML_CMAKE_DIR}/${REL_INCLUDE_DIR}")
-configure_file(cmake/LibKMLConfig.cmake.in
-  "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LibKMLConfig.cmake" @ONLY)
-
-# ... for both
-configure_file(cmake/LibKMLConfigVersion.cmake.in
-  "${CMAKE_BINARY_DIR}/LibKMLConfigVersion.cmake" @ONLY)
- 
-# Install the LibKMLConfig.cmake and LibKMLConfigVersion.cmake
-install(FILES
-  "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LibKMLConfig.cmake"
-  "${CMAKE_BINARY_DIR}/LibKMLConfigVersion.cmake"
-  DESTINATION ${DEF_INSTALL_CMAKE_DIR} )
-
-# Install the export set for use with the install-tree
-install(EXPORT LibKMLTargets DESTINATION ${DEF_INSTALL_CMAKE_DIR})
+install (EXPORT LibKML
+    FILE LibKML.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
+    NAMESPACE LibKML::
+)

@@ -1,6 +1,5 @@
-add_subdirectory(kml)
-if(WITH_SWIG)
-add_subdirectory(swig)
-endif()
+add_subdirectory (kml)
 
-set(LIBKML_TARGETS "${LIBKML_TARGETS}" PARENT_SCOPE)
+if (LibKML_WITH_SWIG)
+	add_subdirectory (swig)
+endif (LibKML_WITH_SWIG)

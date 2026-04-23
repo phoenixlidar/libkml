@@ -29,13 +29,8 @@
 
 #include "kml/convenience/feature_list.h"
 #include <stdlib.h>
-#include <algorithm>
-#include <fstream>
 #include <list>
-#include <sstream>
-#include "kml/dom.h"
 #include "kml/convenience/convenience.h"
-#include "kml/engine.h"
 
 using kmldom::ContainerPtr;
 using kmldom::DataPtr;
@@ -122,9 +117,7 @@ size_t FeatureList::RegionSplit(const RegionPtr& region, size_t max,
 // This function object is used by STL sort() to order Features
 // by score.  Results in sort of highest score first.
 struct CompareFeatures
-  : public std::binary_function<const kmldom::FeaturePtr&,
-                                const kmldom::FeaturePtr&,
-                                bool> {
+{
   bool operator()(const kmldom::FeaturePtr& a,
                   const kmldom::FeaturePtr& b) {
     return GetFeatureScore(a) > GetFeatureScore(b);

@@ -1,91 +1,78 @@
 add_library(helloutil STATIC print.cc)
-target_link_libraries(helloutil ${MINIZIP_LIBRARY})
+target_link_libraries(helloutil LibKML::kmldom ${MINIZIP_LIBRARY})
+
+set (DOM_EXAMPLES
+    createkml
+    helloattrs
+    helloenum
+    hellofolder
+    hellogeometry
+    hellohref
+    helloregion
+    helloworld
+    parsekml
+    parsens
+)
+
+set (ENGINE_EXAMPLES
+    checklinks
+    countkml
+    hellokmz
+    prettykml
+    printgeometry
+)
+
+foreach (EXAMPLE ${DOM_EXAMPLES})
+    build_example(
+        NAME ${EXAMPLE}
+        LINKS LibKML::kmldom
+        CATEGORY helloworld
+    )
+endforeach (EXAMPLE ${DOM_EXAMPLES})
+
+foreach (EXAMPLE ${ENGINE_EXAMPLES})
+    build_example(
+        NAME ${EXAMPLE}
+        LINKS LibKML::kmlengine
+        CATEGORY helloworld
+    )
+endforeach (EXAMPLE ${ENGINE_EXAMPLES})
 
 build_example(
-  NAME createkml
-  DEPENDS kmldom kmlbase)
+    NAME circlegen
+    LINKS kmldom kmlconvenience
+    CATEGORY helloworld
+)
 
 build_example(
-  NAME circlegen
-  DEPENDS kmlconvenience kmlengine kmldom kmlbase)
+    NAME hellofeatures
+    LINKS helloutil LibKML::kmldom
+    CATEGORY helloworld
+)
 
 build_example(
-  NAME checklinks
-  DEPENDS kmlengine kmldom kmlbase)
+    NAME sharedstyles
+    LINKS LibKML::kmlconvenience
+    CATEGORY helloworld
+)
 
 build_example(
-  NAME countkml
-  DEPENDS kmlengine kmldom kmlbase)
+    NAME simplifylines
+    LINKS LibKML::kmlconvenience
+    CATEGORY helloworld
+)
 
 build_example(
-  NAME helloattrs
-  DEPENDS kmldom kmlbase)
-
-build_example(
-  NAME helloenum
-  DEPENDS kmldom kmlbase)
-
-build_example(
-  NAME hellofeatures
-  DEPENDS helloutil kmldom kmlbase)
-
-build_example(
-  NAME hellofolder
-  DEPENDS kmldom kmlbase)
-
-build_example(
-  NAME hellogeometry
-  DEPENDS kmldom kmlbase)
-
-build_example(
-  NAME hellohref
-  DEPENDS helloutil kmldom kmlbase)
-
-build_example(
-  NAME hellokmz
-  DEPENDS kmldom kmlbase kmlengine)
-
-build_example(
-  NAME helloregion
-  DEPENDS helloutil kmldom kmlbase)
-
-build_example(
-  NAME helloworld
-  DEPENDS kmldom kmlbase)
-
-build_example(
-  NAME parsekml
-  DEPENDS kmldom kmlbase)
-
-build_example(
-  NAME parsens
-  DEPENDS kmldom kmlbase)
-
-build_example(
-  NAME prettykml
-  DEPENDS kmldom kmlbase kmlengine)
-
-build_example(
-  NAME printgeometry
-  DEPENDS kmldom kmlbase kmlengine)
-
-build_example(
-  NAME sharedstyles
-  DEPENDS kmldom kmlbase kmlengine kmlconvenience)
-
-build_example(
-  NAME simplifylines
-  DEPENDS kmldom kmlbase kmlengine kmlconvenience)
-
-build_example(
-  NAME sortplacemarks
-  DEPENDS kmldom kmlbase kmlengine kmlconvenience)
+    NAME sortplacemarks
+    LINKS LibKML::kmlconvenience
+    CATEGORY helloworld
+)
 
 
 if(INSTALL_EXAMPLES)
-file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
-install(FILES ${eg_files}  DESTINATION ${KML_EXAMPLES_DIR} COMPONENT Development)
-install(FILES print.h
-  DESTINATION ${KML_EXAMPLES_DIR}
-  COMPONENT Development)
+    install(
+        FILES print.cc print.h
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/hellonet
+        COMPONENT Examples
+    )
 endif()

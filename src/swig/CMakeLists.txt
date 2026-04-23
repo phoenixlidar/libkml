@@ -1,120 +1,115 @@
-option(WITH_SWIG   "Build all swig bindings"   OFF)
-option(WITH_PYTHON "Build python bindings" OFF)
-option(WITH_JAVA   "Build java bindings"   OFF)
+set (IFILES
+  kmlbase.i
+  kmldom.i
+  kmlengine.i
+)
 
-if(WITH_SWIG)
-  find_package(SWIG)
-  if(SWIG_EXECUTABLE)
-    include(${SWIG_USE_FILE})
-  else()
-    set(WITH_SWIG OFF)
-    set(WITH_PYTHON OFF)
-    set(WITH_JAVA OFF)
-    message(WARNING "Swig not found. Hence bindings will not be built")
-  endif()
-endif()
+if (LibKML_WITH_PYTHON)
+  find_package(Python3 COMPONENTS Development Interpreter REQUIRED)
 
-if(WITH_PYTHON)
-  find_package(PythonLibs REQUIRED)
-  if(NOT PYTHONLIBS_FOUND)
-    message(FATAL_ERROR "Python Libraries not found.")
-  endif()
-  
-  find_package(PythonInterp REQUIRED)
-
-  include_directories(${PYTHON_INCLUDE_PATH})
+  if (NOT DEFINED PYTHON_INSTALL_DIR)
+    execute_process (COMMAND
+      ${Python3_EXECUTABLE} -c "if True:
+        from distutils import sysconfig as sc
+        print(sc.get_python_lib(prefix='', plat_specific=True))"
+      OUTPUT_VARIABLE PYTHON_INSTALL_DIR
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+  endif (NOT DEFINED PYTHON_INSTALL_DIR)
 
   if(WIN32 AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     add_definitions("-DMS_WIN64")
   endif()
 
-  if(NOT DEFINED PYTHON_INSTALL_DIR)
-    execute_process(COMMAND
-      ${PYTHON_EXECUTABLE} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True))"
-      OUTPUT_VARIABLE PYTHON_INSTALL_DIR
-      OUTPUT_STRIP_TRAILING_WHITESPACE )
-  endif(NOT DEFINED PYTHON_INSTALL_DIR)
-
-  file(GLOB IFILES "kml*.i")
   foreach(INTERFACE_FILE ${IFILES})
     get_filename_component(MODULE_NAME ${INTERFACE_FILE} NAME_WE)
-    set_source_files_properties(${INTERFACE_FILE} PROPERTIES CPLUSPLUS ON )
-    set_source_files_properties(${INTERFACE_FILE} PROPERTIES CMAKE_SWIG_FLAGS "-includeall -DSWIGPYTHON")
-    set_source_files_properties( ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}PYTHON_wrap.cxx COMPILE_FLAGS "-Wno-long-long" )
-    swig_add_module(${MODULE_NAME} python ${INTERFACE_FILE})
-    swig_link_libraries(${MODULE_NAME} kmlbase kmlengine kmldom ${PYTHON_LIBRARIES})
-    if(PYTHON_VERSION_MAJOR EQUAL 3)
-      set_target_properties(_${MODULE_NAME} PROPERTIES COMPILE_OPTIONS -Wno-missing-field-initializers)
-    endif()
-    add_custom_command(
-      TARGET _${MODULE_NAME}
-      POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E echo "Byte-compiling ${MODULE_NAME}.py"
-      COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/cmake/pycompile.py ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}.py
-      DEPENDS kmlbase kmlengine kmldom)
 
-    install(TARGETS
-      _${MODULE_NAME}
-      LIBRARY DESTINATION ${PYTHON_INSTALL_DIR}
-      DESTINATION ${PYTHON_INSTALL_DIR})
+    set_source_files_properties(${INTERFACE_FILE} PROPERTIES
+      CPLUSPLUS ON
+      SWIG_MODULE_NAME ${MODULE_NAME}
+    )
 
-    install(FILES
+    swig_add_library(${MODULE_NAME}_swig_python
+      TYPE MODULE
+      LANGUAGE python
+      SOURCES ${INTERFACE_FILE}
+    )
+
+    target_include_directories(${MODULE_NAME}_swig_python
+      PRIVATE
+        ${Python3_INCLUDE_DIRS}
+      )
+
+    set_target_properties (${MODULE_NAME}_swig_python
+      PROPERTIES
+        SWIG_USE_TARGET_INCLUDE_DIRECTORIES ON
+    )
+
+    target_link_libraries(${MODULE_NAME}_swig_python
+      PRIVATE
+        LibKML::${MODULE_NAME}
+    )
+
+    install(TARGETS ${MODULE_NAME}_swig_python
+      LIBRARY
+        DESTINATION ${PYTHON_INSTALL_DIR}
+    )
+
+    install (FILES
       ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}.py
-      ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}.pyc
-      DESTINATION ${PYTHON_INSTALL_DIR})
+      DESTINATION ${PYTHON_INSTALL_DIR}
+    )
+  endforeach(INTERFACE_FILE ${IFILES})
 
-  endforeach()
+endif(LibKML_WITH_PYTHON)
 
-endif(WITH_PYTHON)
-
-if(WITH_JAVA)
+if(LibKML_WITH_JAVA)
   find_package(Java REQUIRED)
   find_package(JNI REQUIRED)
-  mark_as_advanced(JAVA_HOME)
-
-  include_directories(${JAVA_INCLUDE_PATH}
-    ${JNI_INCLUDE_DIRS})
-  include_directories ( ${JAVA_INCLUDE_PATH} ${JNI_INCLUDE_DIRS} )
-
-  # Make sure the nested directory structure exists
-  set(JAVA_SOURCE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/com/googlecode/libkml)
-  set(JAVA_BINARY_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/build)
-  if(NOT EXISTS "${JAVA_SOURCE_DIRECTORY}")
-    file(MAKE_DIRECTORY ${JAVA_SOURCE_DIRECTORY})
-  endif()
-  if(NOT EXISTS "${JAVA_BINARY_DIRECTORY}")
-    file(MAKE_DIRECTORY ${JAVA_BINARY_DIRECTORY})
-  endif()
-  #  java_package_dir = com/googlecode/libkml
-  file(GLOB IFILES "kml*.i")
-  set(LIBKML_JAVA_PACKAGE "com.googlecode.libkml")
-  set(CMAKE_SWIG_OUTDIR ${JAVA_SOURCE_DIRECTORY})
-  set(CMAKE_SWIG_FLAGS -package "${LIBKML_JAVA_PACKAGE}" ${CMAKE_SWIG_GLOBAL_FLAGS})
+  include (UseJava)
 
   foreach(INTERFACE_FILE ${IFILES})
     get_filename_component(MODULE_NAME ${INTERFACE_FILE} NAME_WE)
-    set_source_files_properties(${INTERFACE_FILE} PROPERTIES CPLUSPLUS ON)
-    set_source_files_properties(${INTERFACE_FILE} PROPERTIES CMAKE_SWIG_FLAGS "-includeall  -DSWIGJAVA")
-    set_source_files_properties( ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}JAVA_wrap.cxx COMPILE_FLAGS "-w")
-    swig_add_module(${MODULE_NAME}_swig_java java ${INTERFACE_FILE})
-    swig_link_libraries(${MODULE_NAME}_swig_java ${MODULE_NAME})
-    install(TARGETS ${MODULE_NAME}_swig_java DESTINATION ${JNI_INSTALL_DIR})
 
+    set_source_files_properties(${INTERFACE_FILE} PROPERTIES
+      CPLUSPLUS ON
+      SWIG_MODULE_NAME ${MODULE_NAME}
+    )
+
+    swig_add_library(${MODULE_NAME}_swig_java
+      TYPE MODULE
+      LANGUAGE java
+      SOURCES ${INTERFACE_FILE}
+    )
+
+    set_target_properties(${MODULE_NAME}_swig_java
+      PROPERTIES
+        SWIG_USE_TARGET_INCLUDE_DIRECTORIES ON
+        POSITION_INDEPENDENT_CODE ON
+    )
+
+    target_include_directories(${MODULE_NAME}_swig_java
+      PRIVATE ${JNI_INCLUDE_DIRS}
+    )
+
+    target_link_libraries(${MODULE_NAME}_swig_java
+      PRIVATE LibKML::${MODULE_NAME}
+    )
+
+    get_target_property (${MODULE_NAME}_files
+      ${MODULE_NAME}_swig_java
+      SWIG_SUPPORT_FILES
+    )
+
+    list (APPEND java_sources ${${MODULE_NAME}_files})
   endforeach()
 
-  add_custom_target(LibKML_jar ALL DEPENDS LibKML.jar)
+  add_jar (LibKML
+    SOURCES ${java_sources}
+  )
 
-  add_custom_command(
-    OUTPUT LibKML.jar
-    COMMENT "Creating jar file..."
-    COMMAND ${Java_JAVAC_EXECUTABLE} -d ${JAVA_BINARY_DIRECTORY} ${JAVA_SOURCE_DIRECTORY}/*.java
-    COMMAND ${Java_JAR_EXECUTABLE} cf ${CMAKE_CURRENT_BINARY_DIR}/LibKML.jar -C ${JAVA_BINARY_DIRECTORY} com
-    DEPENDS LibKML_jar kmlbase_swig_java kmldom_swig_java kmlengine_swig_java)
-
-   # Get the location of the extension directory
-   string(REGEX REPLACE "include"  "jre/lib/ext" JAVA_EXTENSION_DIR ${JAVA_INCLUDE_PATH})
-
-   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/LibKML.jar
-     DESTINATION ${JAVA_INSTALL_DIR})
-
-endif(WITH_JAVA)
+  install_jar(LibKML
+    DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/java"
+    COMPONENT Development
+  )
+endif(LibKML_WITH_JAVA)

@@ -33,21 +33,21 @@ class XsdComplexType;
 class XsdElement;
 class XsdSchema;
 
-extern const char kAbstract[];
-extern const char kBase[];
-extern const char kComplexType[];
-extern const char kDefault[];
-extern const char kElement[];
-extern const char kEnumeration[];
-extern const char kExtension[];
-extern const char kName[];
-extern const char kSchema[];
-extern const char kSimpleType[];
-extern const char kSubstitutionGroup[];
-extern const char kRestriction[];
-extern const char kTargetNamespace[];
-extern const char kType[];
-extern const char kValue[];
+const char kAbstract[] = "abstract";
+const char kBase[] = "base";
+const char kComplexType[] = "complexType";
+const char kDefault[] = "default";
+const char kElement[] = "element";
+const char kExtension[] = "extension";
+const char kEnumeration[] = "enumeration";
+const char kName[] = "name";
+const char kSchema[] = "schema";
+const char kSimpleType[] = "simpleType";
+const char kSubstitutionGroup[] = "substitutionGroup";
+const char kTargetNamespace[] = "targetNamespace";
+const char kRestriction[] = "restriction";
+const char kType[] = "type";
+const char kValue[] = "value";
 
 // Convenience utility to create a <xs:complexType name="TYPE_NAME"/>.
 XsdComplexType* CreateXsdComplexType(const string& type_name);

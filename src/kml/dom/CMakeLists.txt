@@ -1,62 +1,140 @@
-file(GLOB SRCS "*.cc" )
+set (DOM_SOURCES
+    abstractlatlonbox.cc
+    abstractview.cc
+    atom.cc
+    balloonstyle.cc
+    colorstyle.cc
+    container.cc
+    document.cc
+    element.cc
+    extendeddata.cc
+    feature.cc
+    folder.cc
+    geometry.cc
+    gx_timeprimitive.cc
+    gx_tour.cc
+    hotspot.cc
+    iconstyle.cc
+    kml_cast.cc
+    kml.cc
+    kml_factory.cc
+    kml_handler.cc
+    kml_handler_ns.cc
+    labelstyle.cc
+    linestyle.cc
+    link.cc
+    liststyle.cc
+    model.cc
+    networklink.cc
+    networklinkcontrol.cc
+    object.cc
+    overlay.cc
+    parser.cc
+    placemark.cc
+    polystyle.cc
+    region.cc
+    schema.cc
+    serializer.cc
+    snippet.cc
+    style.cc
+    stylemap.cc
+    styleselector.cc
+    substyle.cc
+    timeprimitive.cc
+    vec2.cc
+    visitor.cc
+    visitor_driver.cc
+    xal.cc
+    xml_serializer.cc
+    xsd.cc
+)
 
-list(REMOVE_ITEM SRCS "${CMAKE_CURRENT_SOURCE_DIR}/kml22.cc")
+set (DOM_HEADERS
+    abstractlatlonbox.h
+    abstractview.h
+    atom.h
+    balloonstyle.h
+    colorstyle.h
+    container.h
+    document.h
+    element.h
+    extendeddata.h
+    feature.h
+    folder.h
+    geometry.h
+    gx_timeprimitive.h
+    gx_tour.h
+    hotspot.h
+    iconstyle.h
+    kml.h
+    kml_cast.h
+    kml_factory.h
+    kml_funcs.h
+    kml_ptr.h
+    kml22.h
+    kml22_enums.h
+    kmldom.h
+    labelstyle.h
+    linestyle.h
+    link.h
+    liststyle.h
+    model.h
+    networklink.h
+    networklinkcontrol.h
+    object.h
+    overlay.h
+    parser.h
+    parser_observer.h
+    placemark.h
+    polystyle.h
+    region.h
+    schema.h
+    snippet.h
+    style.h
+    stylemap.h
+    styleselector.h
+    substyle.h
+    timeprimitive.h
+    vec2.h
+    visitor.h
+    visitor_driver.h
+    xal.h
+    xml_serializer.h
+    xsd.h
+)
 
-set(INCS
-  abstractlatlonbox.h
-  abstractview.h
-  atom.h
-  balloonstyle.h
-  colorstyle.h
-  container.h
-  document.h
-  element.h
-  extendeddata.h
-  feature.h
-  folder.h
-  geometry.h
-  hotspot.h
-  iconstyle.h
-  kml.h
-  kml22.h
-  kml22.cc
-  kml_cast.h
-  kml_factory.h
-  kml_funcs.h
-  kml_ptr.h
-  kmldom.h
-  labelstyle.h
-  linestyle.h
-  link.h
-  liststyle.h
-  model.h
-  networklink.h
-  networklinkcontrol.h
-  object.h
-  overlay.h
-  parser.h
-  parser_observer.h
-  placemark.h
-  polystyle.h
-  region.h
-  schema.h
-  snippet.h
-  style.h
-  stylemap.h
-  styleselector.h
-  substyle.h
-  timeprimitive.h
-  gx_timeprimitive.h
-  gx_tour.h
-  vec2.h
-  xal.h
-  xsd.h
-  visitor.h
-  visitor_driver.h)
+add_library(kmldom SHARED
+    ${DOM_SOURCES}
+    ${DOM_HEADERS}
+)
 
-build_target(
-  NAME kmldom
-  SRCS ${SRCS}
-  INCS ${INCS}
-  DEPENDS kmlbase)
+add_library (LibKML::kmldom ALIAS kmldom)
 
+set_target_properties (kmldom PROPERTIES
+    PUBLIC_HEADER "${DOM_HEADERS}"
+    SOVERSION "${LibKML_VERSION_MAJOR}"
+    VERSION   "${LibKML_VERSION}"
+)
+
+target_compile_options(kmldom
+    PRIVATE -Wall
+    PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
+)
+
+target_link_libraries (kmldom
+    PUBLIC LibKML::kmlbase
+)
+
+install(TARGETS kmldom
+    EXPORT LibKML
+    LIBRARY
+        COMPONENT Runtime
+    PUBLIC_HEADER
+        COMPONENT Development
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/dom/"
+)
+
+install (FILES ../dom.h
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/"
+    COMPONENT Development
+)

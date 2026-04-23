@@ -1,3 +1,7 @@
 if(INSTALL_EXAMPLES)
-  install( FILES domviewer.py DESTINATION ${KML_EXAMPLES_DIR} COMPONENT Development)
+    install (
+        FILES domviewer.py
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/domviewer
+        COMPONENT Examples
+    )
 endif()

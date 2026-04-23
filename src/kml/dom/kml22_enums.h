@@ -25,6 +25,10 @@
 
 // This file contains the KML 2.2 element names as found in the KML 2.2 XSD.
 
+
+#ifndef KML_DOM_KML22_ENUMS_H
+#define KML_DOM_KML22_ENUMS_H
+
 #include "kml/dom/kml22.h"
 #include "kml/dom/xsd.h"
 
@@ -323,3 +327,5 @@ static XsdSimpleTypeEnum kKml22Enums[] = {
 };
 
 }  // namespace kmldom
+
+#endif  // KML_DOM_KML22_ENUMS_H

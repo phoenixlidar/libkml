@@ -1,82 +1,70 @@
-macro(build_target)
-  cmake_parse_arguments(LIB  "" "NAME" "SRCS;INCS;LINKS;DEPENDS" ${ARGN} )
-  add_library(${LIB_NAME} ${LIB_SRCS})
+function (build_test)
+    cmake_parse_arguments (TEST  "" "GROUP;NAME" "LINKS" ${ARGN})
+    set (PRETTY_TEST_NAME LibKML_${TEST_GROUP}_${TEST_NAME})
+    add_executable (${PRETTY_TEST_NAME} ${TEST_NAME}_test.cc)
 
-  set(INTERFACE_LINKS)
-  set(PUBLIC_LINKS)
-  foreach(LIB_DEPEND ${LIB_DEPENDS})
-    if(${LIB_DEPEND} MATCHES "^kml")
-      list(APPEND INTERFACE_LINKS ${LIB_DEPEND})
-    endif()
-    add_dependencies(${LIB_NAME} ${LIB_DEPEND})
-  endforeach()
-  
-  foreach(LIB_LINK ${LIB_LINKS})
-    if(NOT ${LIB_LINK} MATCHES "^kml")
-      list(APPEND PUBLIC_LINKS ${LIB_LINK})
-    endif()
-  endforeach()
-  target_link_libraries(${LIB_NAME} ${PUBLIC_LINKS})
-  if(INTERFACE_LINKS)
-    if(MINGW OR APPLE)
-      target_link_libraries(${LIB_NAME} ${INTERFACE_LINKS})
-    else()
-      target_link_libraries(${LIB_NAME} LINK_INTERFACE_LIBRARIES ${INTERFACE_LINKS})
-    endif()
-  endif()
-  if(VERSION_STRING)
-    set_target_properties(${LIB_NAME} PROPERTIES
-      VERSION   "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}"
-      SOVERSION "${VERSION_MAJOR}")
-  endif()
-  string(LENGTH ${LIB_NAME} ${LIB_NAME}_LEN)
-  MATH(EXPR ${LIB_NAME}_END "${${LIB_NAME}_LEN} - 3")
-  string(SUBSTRING ${LIB_NAME} 3 ${${LIB_NAME}_END} ${LIB_NAME}_INCLUDE_DIR)
-  install(
-    FILES ${LIB_INCS}
-    DESTINATION ${INCLUDE_INSTALL_DIR}/${${LIB_NAME}_INCLUDE_DIR})
+    target_link_libraries (${PRETTY_TEST_NAME}
+        PRIVATE ${TEST_LINKS}
+    )
 
-  install_target(${LIB_NAME})
+    target_compile_definitions (${PRETTY_TEST_NAME}
+        PRIVATE DATADIR=\"${LIBKML_DATA_DIR}\"
+    )
 
-endmacro(build_target)
+    target_compile_options (${PRETTY_TEST_NAME}
+        PRIVATE -Wall
+        PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
+    )
 
-macro(install_target _target)
-  install(TARGETS ${_target}
-    EXPORT LibKMLTargets
-    RUNTIME DESTINATION ${BIN_INSTALL_DIR}
-    LIBRARY DESTINATION ${LIB_INSTALL_DIR}
-    ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
-  
-  list(LENGTH LIBKML_TARGETS LIBKML_TARGETS_LENGTH)
-  if(LIBKML_TARGETS_LENGTH LESS 1)
-    set(LIBKML_TARGETS "${_target}" PARENT_SCOPE)
-  else()
-    set(LIBKML_TARGETS "${LIBKML_TARGETS};${_target}" PARENT_SCOPE)
-    endif()
-endmacro(install_target)
+    target_include_directories (${PRETTY_TEST_NAME}
+        PRIVATE ${CMAKE_SOURCE_DIR}/tests
+    )
 
-function(build_test)
-  cmake_parse_arguments(TEST  "" "GROUP;NAME" "DEPENDS" ${ARGN} )
-  add_executable(${TEST_GROUP}_${TEST_NAME}_test ${TEST_NAME}_test.cc)
-  add_dependencies(${TEST_GROUP}_${TEST_NAME}_test ${TEST_DEPENDS})
-  set(TEST_LINKS)
-  foreach(TEST_D ${TEST_DEPENDS})
-    get_target_property(LINK_PROP ${TEST_D} LINK_INTERFACE_LIBRARIES)
-    if(LINK_PROP)
-      list(APPEND TEST_LINKS ${LINK_PROP})
-    endif()
-  endforeach()
-  target_link_libraries(${TEST_GROUP}_${TEST_NAME}_test ${TEST_LINKS} ${TEST_DEPENDS} ${GTEST_LIBRARY})
-  add_test(${TEST_GROUP}_${TEST_NAME} ${CMAKE_BINARY_DIR}/bin/${TEST_GROUP}_${TEST_NAME}_test)
-endfunction(build_test)
+    gtest_add_tests (
+		TARGET ${PRETTY_TEST_NAME}
+        TEST_PREFIX "LibKML_${TEST_GROUP}_"
+		TEST_LIST   ${PRETTY_TEST_NAME}_TESTS
+    )
 
-function(build_example)
-  cmake_parse_arguments(EXAMPLE  "" "NAME" "LINKS;DEPENDS" ${ARGN} )
-  add_executable(example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
-  add_dependencies(example_${EXAMPLE_NAME} ${EXAMPLE_DEPENDS})
-  target_link_libraries(example_${EXAMPLE_NAME} ${EXAMPLE_LINKS} ${EXAMPLE_DEPENDS})
-endfunction(build_example)
+    if (WIN32 OR CYGWIN OR MINGW)
+		LKML_findTestEnv (${PRETTY_TEST_NAME} TEST_ENV)
 
+		foreach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
+			set_tests_properties (${test} PROPERTIES
+				ENVIRONMENT "${TEST_ENV}"
+			)
+		endforeach (test IN LISTS ${PRETTY_TEST_NAME}_TESTS)
+	endif (WIN32 OR CYGWIN OR MINGW)
+endfunction (build_test)
+
+function (install_example FILE DEST)
+    install(
+        FILES ${FILE}
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/${DEST}
+        COMPONENT Examples
+    )
+endfunction (install_example FILE DEST)
+
+function (build_example)
+    cmake_parse_arguments (EXAMPLE  "" "NAME;CATEGORY" "LINKS" ${ARGN})
+
+    add_executable (LibKML_example_${EXAMPLE_NAME} ${EXAMPLE_NAME}.cc)
+
+    target_compile_options(LibKML_example_${EXAMPLE_NAME}
+        PRIVATE -Wall
+        PRIVATE $<$<NOT:$<BOOL:${MSVC}>>:-Wextra -Wno-unused-parameter -pedantic>
+    )
+
+    if (EXAMPLE_LINKS)
+        target_link_libraries(LibKML_example_${EXAMPLE_NAME}
+            PRIVATE ${EXAMPLE_LINKS}
+        )
+    endif (EXAMPLE_LINKS)
+
+    if(INSTALL_EXAMPLES)
+        install_example (${EXAMPLE_NAME}.cc ${EXAMPLE_CATEGORY})
+    endif(INSTALL_EXAMPLES)
+endfunction (build_example)
 
 macro(include_project_vars _project _lib)
   set(${_project}_INCLUDE_DIR "${INSTALL_DIR}/include")
@@ -92,3 +80,87 @@ macro(include_project_vars _project _lib)
   set(${_project}_LIBRARY "${INSTALL_DIR}/lib/${_lib}${_suffix}")
   include_directories(${${_project}_INCLUDE_DIR})
 endmacro()
+
+function (LKML_findTestEnv testName resultVar)
+	LKML_findTestLibs (${testName} ${resultVar})
+
+	if (CYGWIN)
+		set (separator ":")
+	else()
+		set (separator "\\\\\;")
+	endif()
+
+	string (JOIN ${separator} tempEnv ${${resultVar}})
+	string (PREPEND tempEnv "PATH=")
+
+	if (CYGWIN OR MINGW)
+		string (APPEND tempEnv ${separator}$ENV{PATH})
+	endif (CYGWIN OR MINGW)
+
+	set (${resultVar} ${tempEnv} PARENT_SCOPE)
+endfunction()
+
+function (LKML_findTestLibs testName resultVar)
+	unset (linkLibs)
+
+	if (NOT TARGET ${testName})
+		set (interface TRUE)
+	else()
+		get_property (interface
+			TARGET ${testName}
+			PROPERTY IMPORTED
+		)
+	endif()
+
+	if (${interface})
+		get_property (location
+			TARGET ${testName}
+			PROPERTY LOCATION
+		)
+
+		if (location)
+			string (REGEX MATCH "^.*/" libPath ${location})
+			list (FIND ${resultVar} "${libPath}" index)
+
+			if (${index} STREQUAL "-1")
+				list (APPEND ${resultVar} "${libPath}")
+			endif()
+		endif (location)
+	else()
+		get_property (linkLibs
+			TARGET ${testName}
+			PROPERTY LINK_LIBRARIES
+		)
+
+		foreach (lib IN ITEMS ${linkLibs})
+			LKML_findTestLibs (${lib} ${resultVar})
+
+			if (NOT TARGET ${lib})
+				set (interface2 TRUE)
+			else()
+				get_property (type
+					TARGET ${lib}
+					PROPERTY TYPE
+				)
+
+				if (${type} STREQUAL "INTERFACE_LIBRARY")
+					set (interface2 TRUE)
+				else()
+					get_property (interface2
+						TARGET ${lib}
+						PROPERTY IMPORTED
+					)
+				endif()
+			endif()
+
+			if (NOT ${interface2})
+				list (FIND ${resultVar} "$<TARGET_FILE_DIR:${lib}>" index)
+				if (${index} STREQUAL "-1")
+					list (APPEND ${resultVar} "$<TARGET_FILE_DIR:${lib}>")
+				endif()
+			endif()
+		endforeach()
+	endif()
+
+	set (${resultVar} ${${resultVar}} PARENT_SCOPE)
+endfunction()

@@ -1,9 +1,14 @@
+set (JAVA_EXAMPLES
+    CreateFolder.java
+    CreatePlacemark.java
+    run.sh
+    WalkFeatures.java
+)
+
 if(INSTALL_EXAMPLES)
-  file(GLOB eg_files "${CMAKE_CURRENT_SOURCE_DIR}/*.java")
-  install(
-    FILES ${eg_files}
-    DESTINATION ${KML_EXAMPLES_DIR}/java) ##compile java
-  install(
-    FILES run.sh
-    DESTINATION ${KML_EXAMPLES_DIR}/java) ##
+    install(
+        FILES ${JAVA_EXAMPLES}
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/kml/examples/java
+        COMPONENT Examples
+    )
 endif()

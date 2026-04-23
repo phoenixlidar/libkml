@@ -1,0 +1,2 @@
+- kKml22Enums has moved from the lib where nothing of it was used to dom/kml22_enums.h
+  if you need some of the defined structs you need to include that file.

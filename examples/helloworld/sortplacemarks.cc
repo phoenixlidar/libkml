@@ -110,8 +110,7 @@ static FeaturePtr GetKmlFileRootFeature(const char* kmlfile) {
 // This function object is used by STL sort() to alphabetize Placemarks
 // by <name>.
 struct ComparePlacemarks
-  : public
-      std::binary_function<const PlacemarkPtr&, const PlacemarkPtr&, bool> {
+{
   bool operator()(const PlacemarkPtr& a, const PlacemarkPtr& b) {
     return a->get_name() < b->get_name();
   }
