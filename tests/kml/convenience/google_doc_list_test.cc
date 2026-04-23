@@ -27,7 +27,7 @@
 
 #include "kml/convenience/google_doc_list.h"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/file.h"
 #include "kml/convenience/http_client.h"
@@ -48,13 +48,13 @@ class GoogleDocListTest : public testing::Test {
  protected:
   void SetUp() {
   }
-  boost::scoped_ptr<GoogleDocList> google_doc_list_;
+  std::unique_ptr<GoogleDocList> google_doc_list_;
 };
 
-// This tests NULL use of the Create method.
+// This tests nullptr use of the Create method.
 TEST_F(GoogleDocListTest, TestNullCreate) {
-  // NULL/empty args?  Null return (no crash, no hang, no exception, etc).
-  ASSERT_FALSE(GoogleDocList::Create(NULL));
+  // nullptr/empty args?  Null return (no crash, no hang, no exception, etc).
+  ASSERT_FALSE(GoogleDocList::Create(nullptr));
 }
 
 TEST_F(GoogleDocListTest, TestGetMetafeedUri) {

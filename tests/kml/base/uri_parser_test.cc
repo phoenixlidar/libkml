@@ -32,7 +32,7 @@
 // TODO ;flyTo ,etc
 
 #include "kml/base/uri_parser.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmlbase {
@@ -40,7 +40,7 @@ namespace kmlbase {
 // This test fixture is for the unit test cases of the UriParser class.
 class UriParserTest : public testing::Test {
  protected:
-  boost::scoped_ptr<UriParser> uri_parser_;
+  std::unique_ptr<UriParser> uri_parser_;
   void VerifyUriResolution(const char* base, const char* relative,
                            const char* want_result);
 };
@@ -102,9 +102,9 @@ TEST_F(UriParserTest, TestBasicResolve) {
   const string kBase("http://foo.com/hello/");
   const string kRelative("../hi");
   const string kResult("http://foo.com/hi");
-  boost::scoped_ptr<UriParser> base_uri(
+  std::unique_ptr<UriParser> base_uri(
       UriParser::CreateFromParse(kBase.c_str()));
-  boost::scoped_ptr<UriParser> relative_uri(
+  std::unique_ptr<UriParser> relative_uri(
       UriParser::CreateFromParse(kRelative.c_str()));
   uri_parser_.reset(new UriParser);
   ASSERT_TRUE(uri_parser_->Resolve(*base_uri.get(), *relative_uri.get()));
@@ -116,7 +116,7 @@ TEST_F(UriParserTest, TestBasicResolve) {
 // Verify basic usage of the ToString() method.
 TEST_F(UriParserTest, TestBasicToString) {
   uri_parser_.reset(new UriParser);
-  ASSERT_FALSE(uri_parser_->ToString(NULL));
+  ASSERT_FALSE(uri_parser_->ToString(nullptr));
   const string kUrl("a/b/c/d");
   ASSERT_TRUE(uri_parser_->Parse(kUrl.c_str()));
   string url;
@@ -128,14 +128,14 @@ TEST_F(UriParserTest, TestBasicToString) {
 // GetQuery(), and GetFragment() methods.
 TEST_F(UriParserTest, TestBasicGetComponents) {
   uri_parser_.reset(new UriParser);
-  // Verify NULL uri returns false for all components.
-  ASSERT_FALSE(uri_parser_->GetScheme(NULL));
-  ASSERT_FALSE(uri_parser_->GetHost(NULL));
-  ASSERT_FALSE(uri_parser_->GetPort(NULL));
-  ASSERT_FALSE(uri_parser_->GetPath(NULL));
-  ASSERT_FALSE(uri_parser_->GetQuery(NULL));
-  ASSERT_FALSE(uri_parser_->GetFragment(NULL));
-  // Verify initial state returns false with non-NULL string output arg.
+  // Verify nullptr uri returns false for all components.
+  ASSERT_FALSE(uri_parser_->GetScheme(nullptr));
+  ASSERT_FALSE(uri_parser_->GetHost(nullptr));
+  ASSERT_FALSE(uri_parser_->GetPort(nullptr));
+  ASSERT_FALSE(uri_parser_->GetPath(nullptr));
+  ASSERT_FALSE(uri_parser_->GetQuery(nullptr));
+  ASSERT_FALSE(uri_parser_->GetFragment(nullptr));
+  // Verify initial state returns false with non-nullptr string output arg.
   string output;
   ASSERT_FALSE(uri_parser_->GetScheme(&output));
   ASSERT_TRUE(output.empty());
@@ -157,13 +157,13 @@ TEST_F(UriParserTest, TestBasicGetComponents) {
   const string kUrlNoFragment(kScheme + "://" + kHost + "/" + kPath);
   const string kFragment("id");
   uri_parser_.reset(UriParser::CreateFromParse(kUrlNoFragment.c_str()));
-  // Verify NULL output string returns proper status of component's existence.
-  ASSERT_TRUE(uri_parser_->GetScheme(NULL));
-  ASSERT_TRUE(uri_parser_->GetHost(NULL));
-  ASSERT_FALSE(uri_parser_->GetPort(NULL));
-  ASSERT_TRUE(uri_parser_->GetPath(NULL));
-  ASSERT_FALSE(uri_parser_->GetQuery(NULL));
-  ASSERT_FALSE(uri_parser_->GetFragment(NULL));
+  // Verify nullptr output string returns proper status of component's existence.
+  ASSERT_TRUE(uri_parser_->GetScheme(nullptr));
+  ASSERT_TRUE(uri_parser_->GetHost(nullptr));
+  ASSERT_FALSE(uri_parser_->GetPort(nullptr));
+  ASSERT_TRUE(uri_parser_->GetPath(nullptr));
+  ASSERT_FALSE(uri_parser_->GetQuery(nullptr));
+  ASSERT_FALSE(uri_parser_->GetFragment(nullptr));
   // Verify output string gets proper result.
   ASSERT_TRUE(uri_parser_->GetScheme(&output));
   ASSERT_EQ(kScheme, output);
@@ -178,13 +178,13 @@ TEST_F(UriParserTest, TestBasicGetComponents) {
   // Verify a URI with fragment.
   const string kUrlWithFragment(kUrlNoFragment + "#" + kFragment);
   uri_parser_.reset(UriParser::CreateFromParse(kUrlWithFragment.c_str()));
-  // Verify NULL output string returns proper status of component's existence.
-  ASSERT_TRUE(uri_parser_->GetScheme(NULL));
-  ASSERT_TRUE(uri_parser_->GetHost(NULL));
-  ASSERT_FALSE(uri_parser_->GetPort(NULL));
-  ASSERT_TRUE(uri_parser_->GetPath(NULL));
-  ASSERT_FALSE(uri_parser_->GetQuery(NULL));
-  ASSERT_TRUE(uri_parser_->GetFragment(NULL));
+  // Verify nullptr output string returns proper status of component's existence.
+  ASSERT_TRUE(uri_parser_->GetScheme(nullptr));
+  ASSERT_TRUE(uri_parser_->GetHost(nullptr));
+  ASSERT_FALSE(uri_parser_->GetPort(nullptr));
+  ASSERT_TRUE(uri_parser_->GetPath(nullptr));
+  ASSERT_FALSE(uri_parser_->GetQuery(nullptr));
+  ASSERT_TRUE(uri_parser_->GetFragment(nullptr));
   // Verify output string gets proper result.
   ASSERT_TRUE(uri_parser_->GetScheme(&output));
   ASSERT_EQ(kScheme, output);
@@ -212,7 +212,7 @@ static const struct {
   const char* relative;
   const char* result;
 } kUriTestCases[] = {
-  // TODO these first NULL result test cases indicate a need for KML-specific
+  // TODO these first nullptr result test cases indicate a need for KML-specific
   //      handling likely elsewhere in libkml.  The intention is to keep
   //      UriParser true to the uriparser library.  That is, while it is not
   //      directly RFC 3986 valid to resolve against a non-absolute path this
@@ -220,12 +220,12 @@ static const struct {
   {
   "x/a.kml",
   "b.kml",
-  NULL  // NOT: "x/b.kml"
+  nullptr  // NOT: "x/b.kml"
   },
   {
   "a.kml",
   "b.kml",
-  NULL  // NOT: "b.kml"
+  nullptr  // NOT: "b.kml"
   },
   {  // Note that uriparser requires the base to be absolute (has a scheme).
   "file://x",
@@ -333,14 +333,14 @@ static const struct {
 void UriParserTest::VerifyUriResolution(const char* base, const char* relative,
                                         const char* want_result) {
   string got_result;
-  if (want_result == NULL) {  // We're expecting resolution to fail.
-    ASSERT_EQ(NULL, UriParser::CreateResolvedUri(base, relative));
+  if (want_result == nullptr) {  // We're expecting resolution to fail.
+    ASSERT_EQ(nullptr, UriParser::CreateResolvedUri(base, relative));
     return;
   }
   UriParser *parser = UriParser::CreateResolvedUri(base, relative);
   parser->ToString(&got_result);
  delete parser;
- parser = NULL;
+ parser = nullptr;
 
   ASSERT_EQ(string(want_result), got_result);
 }

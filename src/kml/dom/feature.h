@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the abstract Feature element.
 
-#ifndef KML_DOM_FEATURE_H__
-#define KML_DOM_FEATURE_H__
+#pragma once
 
 #include "kml/dom/abstractview.h"
 #include "kml/dom/atom.h"
@@ -93,22 +92,22 @@ class Feature : public Object {
 
   // <atom:author>
   const AtomAuthorPtr& get_atomauthor() const { return atomauthor_; }
-  bool has_atomauthor() const { return atomauthor_ != NULL; }
+  bool has_atomauthor() const { return atomauthor_ != nullptr; }
   void set_atomauthor(const AtomAuthorPtr& atomauthor) {
     SetComplexChild(atomauthor, &atomauthor_);
   }
   void clear_atomauthor() {
-    set_atomauthor(NULL);
+    set_atomauthor(nullptr);
   }
 
   // <atom:link>
   const AtomLinkPtr& get_atomlink() const { return atomlink_; }
-  bool has_atomlink() const { return atomlink_ != NULL; }
+  bool has_atomlink() const { return atomlink_ != nullptr; }
   void set_atomlink(const AtomLinkPtr& atomlink) {
     SetComplexChild(atomlink, &atomlink_);
   }
   void clear_atomlink() {
-    set_atomlink(NULL);
+    set_atomlink(nullptr);
   }
 
   // <address>
@@ -127,12 +126,12 @@ class Feature : public Object {
   const XalAddressDetailsPtr& get_xaladdressdetails() const {
     return xaladdressdetails_;
   }
-  bool has_xaladdressdetails() const { return xaladdressdetails_ != NULL; }
+  bool has_xaladdressdetails() const { return xaladdressdetails_ != nullptr; }
   void set_xaladdressdetails(const XalAddressDetailsPtr& xaladdressdetails) {
     SetComplexChild(xaladdressdetails, &xaladdressdetails_);
   }
   void clear_xaladdressdetails() {
-    set_xaladdressdetails(NULL);
+    set_xaladdressdetails(nullptr);
   }
 
   // <phoneNumber>
@@ -150,12 +149,12 @@ class Feature : public Object {
   // TODO: "little" <snippet> (presently preserved as a misplaced child)
   // <Snippet>
   const SnippetPtr& get_snippet() const { return snippet_; }
-  bool has_snippet() const { return snippet_ != NULL; }
+  bool has_snippet() const { return snippet_ != nullptr; }
   void set_snippet(const SnippetPtr& snippet) {
     SetComplexChild(snippet, &snippet_);
   }
   void clear_snippet() {
-    set_snippet(NULL);
+    set_snippet(nullptr);
   }
 
   // <description>
@@ -172,22 +171,22 @@ class Feature : public Object {
 
   // AbstractView
   const AbstractViewPtr& get_abstractview() const { return abstractview_; }
-  bool has_abstractview() const { return abstractview_ != NULL; }
+  bool has_abstractview() const { return abstractview_ != nullptr; }
   void set_abstractview(const AbstractViewPtr& abstractview) {
     SetComplexChild(abstractview, &abstractview_);
   }
   void clear_abstractview() {
-    set_abstractview(NULL);
+    set_abstractview(nullptr);
   }
 
   // TimePrimitive
   const TimePrimitivePtr& get_timeprimitive() const { return timeprimitive_; }
-  bool has_timeprimitive() const { return timeprimitive_ != NULL; }
+  bool has_timeprimitive() const { return timeprimitive_ != nullptr; }
   void set_timeprimitive(const TimePrimitivePtr& timeprimitive) {
     SetComplexChild(timeprimitive, &timeprimitive_);
   }
   void clear_timeprimitive() {
-    set_timeprimitive(NULL);
+    set_timeprimitive(nullptr);
   }
 
   // <styleUrl>
@@ -205,33 +204,33 @@ class Feature : public Object {
 
   // StyleSelector
   const StyleSelectorPtr& get_styleselector() const { return styleselector_; }
-  bool has_styleselector() const { return styleselector_ != NULL; }
+  bool has_styleselector() const { return styleselector_ != nullptr; }
   void set_styleselector(const StyleSelectorPtr& styleselector) {
     SetComplexChild(styleselector, &styleselector_);
   }
   void clear_styleselector() {
-    set_styleselector(NULL);
+    set_styleselector(nullptr);
   }
 
   // <Region>
   const RegionPtr& get_region() const { return region_; }
-  bool has_region() const { return region_ != NULL; }
+  bool has_region() const { return region_ != nullptr; }
   void set_region(const RegionPtr& region) {
     SetComplexChild(region, &region_);
   }
   void clear_region() {
-    set_region(NULL);
+    set_region(nullptr);
   }
 
   // TODO: <Metadata> (presently preserved as a misplaced child)
   // <ExtendedData>
   const ExtendedDataPtr& get_extendeddata() const { return extendeddata_; }
-  bool has_extendeddata() const { return extendeddata_ != NULL; }
+  bool has_extendeddata() const { return extendeddata_ != nullptr; }
   void set_extendeddata(const ExtendedDataPtr& extendeddata) {
     SetComplexChild(extendeddata, &extendeddata_);
   }
   void clear_extendeddata() {
-    set_extendeddata(NULL);
+    set_extendeddata(nullptr);
   }
 
   // From kml:AbstractFeatureSimpleExtensionGroup.
@@ -290,4 +289,3 @@ class Feature : public Object {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_FEATURE_H__

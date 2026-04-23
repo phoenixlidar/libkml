@@ -26,14 +26,14 @@
 // This file contains the unit tests for the DateTime class.
 
 #include "kml/base/date_time.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmlbase {
 
 class DateTimeTest : public testing::Test {
  protected:
-  boost::scoped_ptr<DateTime> date_time_;
+  std::unique_ptr<DateTime> date_time_;
 };
 
 TEST_F(DateTimeTest, TestCreate) {

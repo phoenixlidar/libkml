@@ -53,9 +53,9 @@ bool StyleSplitter::NewElement(const kmldom::ElementPtr& element) {
 kmldom::FeaturePtr StyleSplitter::AsNonDocumentFeature(
     const kmldom::ElementPtr& element) {
   if (kmldom::FeaturePtr feature = kmldom::AsFeature(element)) {
-    return feature->IsA(kmldom::Type_Document) ? NULL : feature;
+    return feature->IsA(kmldom::Type_Document) ? nullptr : feature;
   }
-  return NULL;
+  return nullptr;
 }
 
 // static
@@ -66,7 +66,7 @@ kmldom::StyleSelectorPtr StyleSplitter::CreateStyleSelector(
   } else if (type_id == kmldom::Type_StyleMap) {
     return kmldom::KmlFactory::GetFactory()->CreateStyleMap();
   } else {
-    return NULL;
+    return nullptr;
   }
 }
 

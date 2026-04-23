@@ -28,8 +28,7 @@
 // and their child elements LatLonBox, OverlayXY, ScreenXY, RotationXY,
 // Size, ViewVolume, and ImagePyramid.
 
-#ifndef KML_DOM_OVERLAY_H__
-#define KML_DOM_OVERLAY_H__
+#pragma once
 
 #include "kml/base/color32.h"
 #include "kml/dom/abstractlatlonbox.h"
@@ -91,12 +90,12 @@ class Overlay : public Feature {
 
   // <Icon>
   const IconPtr& get_icon() const { return icon_; }
-  bool has_icon() const { return icon_ != NULL; }
+  bool has_icon() const { return icon_ != nullptr; }
   void set_icon(const IconPtr& icon) {
     SetComplexChild(icon, &icon_);
   }
   void clear_icon() {
-    set_icon(NULL);
+    set_icon(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -172,12 +171,12 @@ class GxLatLonQuad : public Object {
 
   // <coordinates>
   const CoordinatesPtr& get_coordinates() const { return coordinates_; }
-  bool has_coordinates() const { return coordinates_ != NULL; }
+  bool has_coordinates() const { return coordinates_ != nullptr; }
   void set_coordinates(const CoordinatesPtr& coordinates) {
     SetComplexChild(coordinates, &coordinates_);
   }
   void clear_coordinates() {
-    set_coordinates(NULL);
+    set_coordinates(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -254,22 +253,22 @@ class GroundOverlay : public Overlay {
 
   // <LatLonBox>
   const LatLonBoxPtr& get_latlonbox() const { return latlonbox_; }
-  bool has_latlonbox() const { return latlonbox_ != NULL; }
+  bool has_latlonbox() const { return latlonbox_ != nullptr; }
   void set_latlonbox(const LatLonBoxPtr& latlonbox) {
     SetComplexChild(latlonbox, &latlonbox_);
   }
   void clear_latlonbox() {
-    set_latlonbox(NULL);
+    set_latlonbox(nullptr);
   }
 
   // <gx:LatLonQuad>
   const GxLatLonQuadPtr& get_gx_latlonquad() const { return gx_latlonquad_; }
-  bool has_gx_latlonquad() const { return gx_latlonquad_ != NULL; }
+  bool has_gx_latlonquad() const { return gx_latlonquad_ != nullptr; }
   void set_gx_latlonquad(const GxLatLonQuadPtr& gx_latlonquad) {
     SetComplexChild(gx_latlonquad, &gx_latlonquad_);
   }
   void clear_gx_latlonquad() {
-    set_gx_latlonquad(NULL);
+    set_gx_latlonquad(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -379,42 +378,42 @@ class ScreenOverlay : public Overlay {
 
   // <overlayXY>
   const OverlayXYPtr& get_overlayxy() const { return overlayxy_; }
-  bool has_overlayxy() const { return overlayxy_ != NULL; }
+  bool has_overlayxy() const { return overlayxy_ != nullptr; }
   void set_overlayxy(const OverlayXYPtr& overlayxy) {
     SetComplexChild(overlayxy, &overlayxy_);
   }
   void clear_overlayxy() {
-    set_overlayxy(NULL);
+    set_overlayxy(nullptr);
   }
 
   // <screenXY>
   const ScreenXYPtr& get_screenxy() const { return screenxy_; }
-  bool has_screenxy() const { return screenxy_ != NULL; }
+  bool has_screenxy() const { return screenxy_ != nullptr; }
   void set_screenxy(const ScreenXYPtr& screenxy) {
     SetComplexChild(screenxy, &screenxy_);
   }
   void clear_screenxy() {
-    set_screenxy(NULL);
+    set_screenxy(nullptr);
   }
 
   // <rotationXY>
   const RotationXYPtr& get_rotationxy() const { return rotationxy_; }
-  bool has_rotationxy() const { return rotationxy_ != NULL; }
+  bool has_rotationxy() const { return rotationxy_ != nullptr; }
   void set_rotationxy(const RotationXYPtr& rotationxy) {
     SetComplexChild(rotationxy, &rotationxy_);
   }
   void clear_rotationxy() {
-    set_rotationxy(NULL);
+    set_rotationxy(nullptr);
   }
 
   // <size>
   const SizePtr& get_size() const { return size_; }
-  bool has_size() const { return size_ != NULL; }
+  bool has_size() const { return size_ != nullptr; }
   void set_size(const SizePtr& size) {
     SetComplexChild(size, &size_);
   }
   void clear_size() {
-    set_size(NULL);
+    set_size(nullptr);
   }
 
   // <rotation>
@@ -686,32 +685,32 @@ class PhotoOverlay : public Overlay {
 
   // <ViewVolume>
   const ViewVolumePtr& get_viewvolume() const { return viewvolume_; }
-  bool has_viewvolume() const { return viewvolume_ != NULL; }
+  bool has_viewvolume() const { return viewvolume_ != nullptr; }
   void set_viewvolume(const ViewVolumePtr& viewvolume) {
     SetComplexChild(viewvolume, &viewvolume_);
   }
   void clear_viewvolume() {
-    set_viewvolume(NULL);
+    set_viewvolume(nullptr);
   }
 
   // <ImagePyramid>
   const ImagePyramidPtr& get_imagepyramid() const { return imagepyramid_; }
-  bool has_imagepyramid() const { return imagepyramid_ != NULL; }
+  bool has_imagepyramid() const { return imagepyramid_ != nullptr; }
   void set_imagepyramid(const ImagePyramidPtr& imagepyramid) {
     SetComplexChild(imagepyramid, &imagepyramid_);
   }
   void clear_imagepyramid() {
-    set_imagepyramid(NULL);
+    set_imagepyramid(nullptr);
   }
 
   // <Point>
   const PointPtr& get_point() const { return point_; }
-  bool has_point() const { return point_ != NULL; }
+  bool has_point() const { return point_ != nullptr; }
   void set_point(const PointPtr& point) {
     SetComplexChild(point, &point_);
   }
   void clear_point() {
-    set_point(NULL);
+    set_point(nullptr);
   }
 
   // <shape>
@@ -753,4 +752,3 @@ class PhotoOverlay : public Overlay {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_OVERLAY_H__

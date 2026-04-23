@@ -119,7 +119,7 @@ class LinkUtilTest : public testing::Test {
   PhotoOverlayPtr photooverlay_;
   ScreenOverlayPtr screenoverlay_;
   kmlbase::TestDataNetFetcher testdata_net_fetcher_;
-  boost::scoped_ptr<KmlCache> kml_cache_;
+  std::unique_ptr<KmlCache> kml_cache_;
 };
 
 template<typename HP>

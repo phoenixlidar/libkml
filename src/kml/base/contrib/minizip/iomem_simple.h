@@ -6,8 +6,7 @@
    Copyright (C) 1998-2005 Gilles Vollant
 */
 
-#ifndef _IOMEM_SIMPLE_H
-#define _IOMEM_SIMPLE_H
+#pragma once
 
 
 #define ZLIB_FILEFUNC_SEEK_CUR (1)
@@ -76,4 +75,3 @@ extern void* ZEXPORT mem_simple_create_file(zlib_filefunc_def* pzlib_filefunc_de
 }
 #endif
 
-#endif

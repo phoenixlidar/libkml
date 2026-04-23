@@ -28,8 +28,7 @@
 // TODO: the bulk of these are general purpose and should find their way to
 // some more central place.
 
-#ifndef KML_REGIONATOR_REGIONATOR_UTIL_H__
-#define KML_REGIONATOR_REGIONATOR_UTIL_H__
+#pragma once
 
 #include "kml/base/util.h"
 #include "kml/dom.h"
@@ -74,4 +73,3 @@ kmldom::DocumentPtr CreateRegionDocument(const kmldom::RegionPtr& region);
 
 }  // end namespace kmlregionator
 
-#endif  // KML_REGIONATOR_REGIONATOR_UTIL_H__

@@ -32,11 +32,10 @@
 // and unknown attributes.  During parse a simple element is held for
 // a short time in the Field specialization of Element.
 
-#ifndef KML_DOM_ELEMENT_H__
-#define KML_DOM_ELEMENT_H__
+#pragma once
 
 #include <vector>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml22.h"
 #include "kml/dom/kml_ptr.h"
 #include "kml/dom/visitor_driver.h"
@@ -134,7 +133,7 @@ class Element : public kmlbase::XmlElement {
   void AddUnknownAttributes(kmlbase::Attributes* attributes);
 
   // This returns a pointer to the Attributes class holding all unknown
-  // attributes for this element found during parse.  This returns NULL if
+  // attributes for this element found during parse.  This returns nullptr if
   // there are no unparsed attributes.  Ownership of the object is retained
   // by the Element class.
   const kmlbase::Attributes* GetUnknownAttributes() const {
@@ -185,9 +184,9 @@ class Element : public kmlbase::XmlElement {
   // methods in a concrete element.
   template <class T>
   bool SetComplexChild(const T& child, T* field) {
-    if (child == NULL) {
+    if (child == nullptr) {
       // TODO: remove child and children from ID maps...
-      *field = NULL;  // Assign removes reference and possibly deletes Element.
+      *field = nullptr;  // Assign removes reference and possibly deletes Element.
       return true;
     } else if (child->SetParent(this)) {
       *field = child;  // This first releases the reference to previous field.
@@ -199,7 +198,7 @@ class Element : public kmlbase::XmlElement {
   // This adds the given complex child to an array in this element.
   template <class T>
   bool AddComplexChild(const T& child, std::vector<T>* vec) {
-    // NULL child ignored.
+    // nullptr child ignored.
     if (child && child->SetParent(this)) {
       vec->push_back(child);
       return true;
@@ -220,7 +219,7 @@ class Element : public kmlbase::XmlElement {
   template <class T>
   static T DeleteFromArrayAt(std::vector<T>* array, size_t i) {
     if (!array || i >= array->size()) {
-      return NULL;
+      return nullptr;
     }
     T e = (*array)[i];
     array->erase(array->begin() + i);
@@ -242,9 +241,9 @@ class Element : public kmlbase::XmlElement {
   // Unknown attributes found during parse are copied out and a pointer is
   // stored. The object is dynamically allocated so every element is not
   // burdened with an unnecessary Attributes object.
-  boost::scoped_ptr<kmlbase::Attributes> unknown_attributes_;
+  std::unique_ptr<kmlbase::Attributes> unknown_attributes_;
   // Any Element may have 0 or more xmlns attributes.
-  boost::scoped_ptr<kmlbase::Attributes> xmlns_;
+  std::unique_ptr<kmlbase::Attributes> xmlns_;
   LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Element);
 };
 
@@ -322,4 +321,3 @@ class Field : public Element {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_ELEMENT_H__

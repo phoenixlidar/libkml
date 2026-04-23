@@ -29,10 +29,9 @@
 // TODO: this interface and implemenation are experimental, expect additions
 // and changes.
 
-#ifndef KML_CONVENIENCE_GOOGLE_SPREADSHEETS_H_
-#define KML_CONVENIENCE_GOOGLE_SPREADSHEETS_H_
+#pragma once
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 
 namespace kmlconvenience {
@@ -91,10 +90,9 @@ class GoogleSpreadsheets {
  private:
   // Use static Create().
   GoogleSpreadsheets();
-  boost::scoped_ptr<HttpClient> http_client_;
+  std::unique_ptr<HttpClient> http_client_;
   const string scope_;
 };
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_GOOGLE_SPREADSHEETS_H_

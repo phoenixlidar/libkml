@@ -25,8 +25,7 @@
 
 // This file containts constants of the implementation of the KML Engine.
 
-#ifndef KML_ENGINE_ENGINE_CONSTANTS_H__
-#define KML_ENGINE_ENGINE_CONSTANTS_H__
+#pragma once
 
 namespace kmlengine {
 
@@ -37,4 +36,3 @@ const unsigned int kDefaultMaxNestedStyleUrls = 5;
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_ENGINE_CONSTANTS_H__

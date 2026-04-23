@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_STYLE_H__
-#define KML_DOM_STYLE_H__
+#pragma once
 
 #include "kml/dom/balloonstyle.h"
 #include "kml/dom/iconstyle.h"
@@ -52,62 +51,62 @@ class Style : public StyleSelector {
 
   // <IconStyle>
   const IconStylePtr& get_iconstyle() const { return iconstyle_; }
-  bool has_iconstyle() const { return iconstyle_ != NULL; }
+  bool has_iconstyle() const { return iconstyle_ != nullptr; }
   void set_iconstyle(const IconStylePtr& iconstyle) {
     SetComplexChild(iconstyle, &iconstyle_);
   }
   void clear_iconstyle() {
-    set_iconstyle(NULL);
+    set_iconstyle(nullptr);
   }
 
   // <LabelStyle>
   const LabelStylePtr& get_labelstyle() const { return labelstyle_; }
-  bool has_labelstyle() const { return labelstyle_ != NULL; }
+  bool has_labelstyle() const { return labelstyle_ != nullptr; }
   void set_labelstyle(const LabelStylePtr& labelstyle) {
     SetComplexChild(labelstyle, &labelstyle_);
   }
   void clear_labelstyle() {
-    set_labelstyle(NULL);
+    set_labelstyle(nullptr);
   }
 
   // <LineStyle>
   const LineStylePtr& get_linestyle() const { return linestyle_; }
-  bool has_linestyle() const { return linestyle_ != NULL; }
+  bool has_linestyle() const { return linestyle_ != nullptr; }
   void set_linestyle(const LineStylePtr& linestyle) {
     SetComplexChild(linestyle, &linestyle_);
   }
   void clear_linestyle() {
-    set_linestyle(NULL);
+    set_linestyle(nullptr);
   }
 
   // <PolyStyle>
   const PolyStylePtr& get_polystyle() const { return polystyle_; }
-  bool has_polystyle() const { return polystyle_ != NULL; }
+  bool has_polystyle() const { return polystyle_ != nullptr; }
   void set_polystyle(const PolyStylePtr& polystyle) {
     SetComplexChild(polystyle, &polystyle_);
   }
   void clear_polystyle() {
-    set_polystyle(NULL);
+    set_polystyle(nullptr);
   }
 
   // <BalloonStyle>
   const BalloonStylePtr& get_balloonstyle() const { return balloonstyle_; }
-  bool has_balloonstyle() const { return balloonstyle_ != NULL; }
+  bool has_balloonstyle() const { return balloonstyle_ != nullptr; }
   void set_balloonstyle(const BalloonStylePtr& balloonstyle) {
     SetComplexChild(balloonstyle, &balloonstyle_);
   }
   void clear_balloonstyle() {
-    set_balloonstyle(NULL);
+    set_balloonstyle(nullptr);
   }
 
   // <ListStyle>
   const ListStylePtr& get_liststyle() const { return liststyle_; }
-  bool has_liststyle() const { return liststyle_ != NULL; }
+  bool has_liststyle() const { return liststyle_ != nullptr; }
   void set_liststyle(const ListStylePtr& liststyle) {
     SetComplexChild(liststyle, &liststyle_);
   }
   void clear_liststyle() {
-    set_liststyle(NULL);
+    set_liststyle(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -132,4 +131,3 @@ class Style : public StyleSelector {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_STYLE_H__

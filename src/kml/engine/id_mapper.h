@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the public id mapping functions.
 
-#ifndef KML_ENGINE_ID_MAPPER_H__
-#define KML_ENGINE_ID_MAPPER_H__
+#pragma once
 
 #include "kml/base/string_util.h"
 #include "kml/dom.h"
@@ -56,4 +55,3 @@ int RemapIds(const ObjectIdMap& input_object_id_map,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_ID_MAPPER_H__

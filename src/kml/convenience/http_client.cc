@@ -37,7 +37,7 @@ class HttpMethod {
     if (method_enum >= HTTP_OPTIONS && method_enum <= HTTP_CONNECT) {
       return kHttpMethodString[method_enum];
     }
-    return NULL;
+    return nullptr;
   }
 
  private:
@@ -47,7 +47,7 @@ class HttpMethod {
 
 // private static
 const char* HttpMethod::kHttpMethodString[] = {
-    NULL,  // HTTP_NONE = 0,
+    nullptr,  // HTTP_NONE = 0,
     "OPTIONS",
     "GET",
     "HEAD",
@@ -86,7 +86,7 @@ bool HttpClient::Login(const string& service_name,
                                        "&source=" + application_name_ +
                                        "&service=" + service_name;
   string response;
-  if (!SendRequest(HTTP_POST, kGoogleClientLoginUrl, NULL, &data, &response)) {
+  if (!SendRequest(HTTP_POST, kGoogleClientLoginUrl, nullptr, &data, &response)) {
     return false;
   }
 
@@ -131,7 +131,7 @@ bool HttpClient::SendRequest(const HttpMethodEnum method,
 }
 
 bool HttpClient::FetchUrl(const string& url, string* data) const {
-  return SendRequest(HTTP_GET, url, NULL, NULL, data);
+  return SendRequest(HTTP_GET, url, nullptr, nullptr, data);
 }
 
 // static

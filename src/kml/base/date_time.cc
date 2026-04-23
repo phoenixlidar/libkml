@@ -26,7 +26,7 @@
 // This file contains the implementation of the DateTime class.
 
 #include "kml/base/date_time.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include <stdlib.h>
 
 #ifdef _WIN32
@@ -42,12 +42,12 @@ DateTime* DateTime::Create(const string& str) {
     return date_time;
   }
   delete date_time;
-  return NULL;
+  return nullptr;
 }
 
 // static
 time_t DateTime::ToTimeT(const string& str) {
-  boost::scoped_ptr<DateTime> date_time(DateTime::Create(str));
+  std::unique_ptr<DateTime> date_time(DateTime::Create(str));
   return date_time.get() ? date_time->GetTimeT() : 0;
 }
 
@@ -113,7 +113,7 @@ DateTime::DateTime() {
 // private
 bool DateTime::ParseXsdDateTime(const string& xsd_date_time) {
   // TODO: strptime on win32?
-  return strptime(xsd_date_time.c_str(), "%Y-%m-%dT%H:%M:%SZ", &tm_) != NULL;
+  return strptime(xsd_date_time.c_str(), "%Y-%m-%dT%H:%M:%SZ", &tm_) != nullptr;
 }
 
 }  // end namespace kmlbase

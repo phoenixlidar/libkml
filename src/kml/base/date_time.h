@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the DateTime class.
 
-#ifndef KML_BASE_DATE_TIME_H__
-#define KML_BASE_DATE_TIME_H__
+#pragma once
 
 #include <time.h>
 #include "kml/base/util.h"
@@ -66,4 +65,3 @@ time_t DateTimeToTimeT(const string& date_time_str);
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_DATE_TIME_H__

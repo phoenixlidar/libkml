@@ -76,11 +76,11 @@ class TestFeatureVisitor : public FeatureVisitor {
 };
 
 TEST_F(FeatureVisitorTest, TestGetRootFeature) {
-  // Verify NULL is properly returned for non-kml and non-Feature args.
-  ASSERT_FALSE(GetRootFeature(NULL));
+  // Verify nullptr is properly returned for non-kml and non-Feature args.
+  ASSERT_FALSE(GetRootFeature(nullptr));
   ASSERT_FALSE(GetRootFeature(point_));
 
-  // Verify NULL is returned for an empty kml element.
+  // Verify nullptr is returned for an empty kml element.
   ASSERT_FALSE(GetRootFeature(kml_));
 
   // Verify the Placemark is found as the root feature.
@@ -120,9 +120,9 @@ TEST_F(FeatureVisitorTest, TestVisitFeatureHierarchy) {
   ASSERT_EQ(kmldom::Type_Folder, feature_vector[1]->Type());
   ASSERT_EQ(kmldom::Type_Placemark, feature_vector[2]->Type());
 
-  // Verify that nothing is properly found when passed NULL.
+  // Verify that nothing is properly found when passed nullptr.
   feature_vector.clear();
-  VisitFeatureHierarchy(NULL, test_feature_visitor);
+  VisitFeatureHierarchy(nullptr, test_feature_visitor);
   ASSERT_TRUE(feature_vector.empty());
 
   // Verify that only 1 Feature is found when passed a non-Container.

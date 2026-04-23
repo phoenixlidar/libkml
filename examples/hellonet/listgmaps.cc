@@ -28,7 +28,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "curlfetch.h"
 #include "prompt.h"
 #include "kml/base/file.h"
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  boost::scoped_ptr<GoogleMapsData> google_maps_data(
+  std::unique_ptr<GoogleMapsData> google_maps_data(
       GoogleMapsData::Create(curl_http_client));
 
   kmldom::AtomFeedPtr meta_feed = google_maps_data->GetMetaFeed();

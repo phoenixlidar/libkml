@@ -63,9 +63,9 @@ class CloneTest : public testing::Test {
   SnippetPtr snippet_;
 };
 
-// Verify that a NULL element is handled properly.
+// Verify that a nullptr element is handled properly.
 TEST_F(CloneTest, TestNullClone) {
-  ElementPtr clone = Clone(NULL);
+  ElementPtr clone = Clone(nullptr);
   ASSERT_FALSE(clone);
 }
 
@@ -247,7 +247,7 @@ TEST_F(CloneTest, TestCloneIconStyle) {
 
 TEST_F(CloneTest, TestCloneWithMisplacedChild) {
   kmldom::IconPtr icon =
-    kmldom::AsIcon(kmldom::Parse("<Icon><x>64</x></Icon>", NULL));
+    kmldom::AsIcon(kmldom::Parse("<Icon><x>64</x></Icon>", nullptr));
   ASSERT_TRUE(icon != 0);
   ASSERT_EQ(static_cast<size_t>(1), icon->get_misplaced_elements_array_size());
   ASSERT_EQ(static_cast<size_t>(0), icon->get_unknown_elements_array_size());
@@ -262,7 +262,7 @@ TEST_F(CloneTest, TestCloneWithFullyUnknownChild) {
   // This originally appeared as IconStyle Icon's child, but the bug is
   // manifested in cloning any element with a fully unknown child.
   kmldom::IconPtr icon =
-      kmldom::AsIcon(kmldom::Parse("<Icon><w>64</w></Icon>", NULL));
+      kmldom::AsIcon(kmldom::Parse("<Icon><w>64</w></Icon>", nullptr));
   ASSERT_TRUE(icon != 0);
   ASSERT_EQ(static_cast<size_t>(0), icon->get_misplaced_elements_array_size());
   ASSERT_EQ(static_cast<size_t>(1), icon->get_unknown_elements_array_size());

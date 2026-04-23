@@ -27,7 +27,7 @@
 
 #include "kml/xsd/xsd_handler.h"
 #include <cstring>  // strcmp
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/xsd/xsd_element.h"
 #include "kml/xsd/xsd_file.h"
@@ -49,7 +49,7 @@ void XsdHandler::StartComplexType(const Attributes& attributes) {
 // </xs:simpleType">
 void XsdHandler::EndType() {
   xsd_file_->add_type(current_type_);
-  current_type_ = NULL;
+  current_type_ = nullptr;
 }
 
 // <xs:extension base="...">
@@ -95,7 +95,7 @@ void XsdHandler::StartEnumeration(const Attributes& attributes) {
 // <xs:element name="..." type="..." default=".."/>
 // <xs:element ref="..." minOccurs="..." maxOccurs="..."/>
 void XsdHandler::StartXsElement(const Attributes& attributes) {
-  XsdElement* element = XsdElement::Create(attributes);
+  XsdElementPtr element = XsdElement::Create(attributes);
   if (!element) {
     return;
   }
@@ -113,7 +113,7 @@ void XsdHandler::StartXsElement(const Attributes& attributes) {
 // ExpatHandler::StartElement
 void XsdHandler::StartElement(const string& xs_element_name,
                               const kmlbase::StringVector& atts) {
-  boost::scoped_ptr<Attributes> attributes(Attributes::Create(atts));
+  std::unique_ptr<Attributes> attributes(Attributes::Create(atts));
 
   if (xs_element_name.compare(kSchema) == 0) {
     xsd_file_->set_schema(XsdSchema::Create(*attributes));

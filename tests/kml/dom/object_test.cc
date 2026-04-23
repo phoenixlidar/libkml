@@ -41,7 +41,7 @@ class ObjectTest : public testing::Test {
 
   // Object is abstract, hence its constructor is protected.
   class TestObject : public Object {};
-  boost::scoped_ptr<TestObject> object_;
+  std::unique_ptr<TestObject> object_;
 };
 
 TEST_F(ObjectTest, TestType) {

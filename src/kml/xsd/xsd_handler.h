@@ -25,11 +25,10 @@
 
 // This file contains the declaration of the XsdHandler class.
 
-#ifndef KML_XSD_XSD_HANDLER_H__
-#define KML_XSD_XSD_HANDLER_H__
+#pragma once
 
 #include <stack>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/expat_handler.h"
 #include "kml/xsd/xsd_type.h"
 
@@ -52,7 +51,7 @@ class XsdHandler : public kmlbase::ExpatHandler {
  public:
   XsdHandler(XsdFile* xsd_file)
     : xsd_file_(xsd_file),
-      current_type_(NULL) {
+      current_type_(nullptr) {
   }
   virtual ~XsdHandler() {}
 
@@ -89,4 +88,3 @@ class XsdHandler : public kmlbase::ExpatHandler {
 
 }  // end namespace kmlxsd
 
-#endif // KML_XSD_XSD_HANDLER_H__

@@ -30,7 +30,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/xsd/xsd_file.h"
 
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
   }
 
   std::string errors;
-  boost::scoped_ptr<kmlxsd::XsdFile> xsd_file(
+  std::unique_ptr<kmlxsd::XsdFile> xsd_file(
       kmlxsd::XsdFile::CreateFromParse(xsd_data, &errors));
   if (!xsd_file.get()) {
     cerr << "parse failed " << errors;

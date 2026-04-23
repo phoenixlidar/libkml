@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the internal Serializer class.
 
-#ifndef KML_DOM_SERIALIZER_H__
-#define KML_DOM_SERIALIZER_H__
+#pragma once
 
 #include <sstream>
 #include "kml/base/string_util.h"
@@ -155,4 +154,3 @@ class Serializer {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_SERIALIZER_H__

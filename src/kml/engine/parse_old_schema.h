@@ -23,8 +23,7 @@
 
 // This file contains the declaration of the "old-schema" parsing functions.
 
-#ifndef KML_ENGINE_PARSE_OLD_SCHEMA_H__
-#define KML_ENGINE_PARSE_OLD_SCHEMA_H__
+#pragma once
 
 #include "kml/dom.h"
 #include "kml/engine/engine_types.h"
@@ -71,11 +70,10 @@ bool ConvertOldSchema(const string& input_xml,
                       string* output_xml);
 
 // This uses ConvertOldSchema() to convert and parse the input.  If anything
-// fails NULL is returned and errors are saved to the given error buffer.
+// fails nullptr is returned and errors are saved to the given error buffer.
 kmldom::PlacemarkPtr ParseOldSchema(const string& xml,
                                     const SchemaNameMap& schema_name_map,
                                     string* errors);
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_PARSE_OLD_SCHEMA_H__

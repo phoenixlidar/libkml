@@ -36,13 +36,13 @@ namespace kmldom {
 class ContainerTest : public testing::Test {
  protected:
   virtual void SetUp() {
-    container_ = new TestContainer();
+    container_ = std::make_shared<TestContainer>();
   }
 
   // Container is abstract, hence its constructor is protected.
   class TestContainer : public Container {
   };
-  boost::intrusive_ptr<TestContainer> container_;
+  std::shared_ptr<TestContainer> container_;
 };
 
 TEST_F(ContainerTest, TestType) {

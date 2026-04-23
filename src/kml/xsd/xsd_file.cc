@@ -45,7 +45,7 @@ XsdFile* XsdFile::CreateFromParse(const string& xsd_data,
     return xsd_file;
   }
   delete xsd_file;
-  return NULL;
+  return nullptr;
 }
 
 // TODO: mem_fun might help avoid this functor
@@ -79,19 +79,19 @@ void XsdFile::GetAllTypes(XsdTypeVector* types) const {
 
 const XsdTypePtr XsdFile::FindType(const string& type_name) const {
   XsdTypeMap::const_iterator iter = type_map_.find(type_name);
-  return iter == type_map_.end() ? NULL : iter->second;
+  return iter == type_map_.end() ? nullptr : iter->second;
 }
 
 const XsdElementPtr XsdFile::FindElement(
     const string& element_name) const {
   XsdElementMap::const_iterator iter = element_map_.find(element_name);
-  return iter == element_map_.end() ? NULL : iter->second;
+  return iter == element_map_.end() ? nullptr : iter->second;
 }
 
 const XsdTypePtr XsdFile::FindElementType(const XsdElementPtr& element) const {
   // Not much to do if the <xs:element> has no type="..." attribute.
   if (!element || element->get_type().empty()) {
-    return NULL;
+    return nullptr;
   }
   // If this is primitive synthesize an XsdType.
   if (element->is_primitive()) {
@@ -102,7 +102,7 @@ const XsdTypePtr XsdFile::FindElementType(const XsdElementPtr& element) const {
   string type_name;
   if (!xsd_schema_ ||
       !xsd_schema_->SplitNsName(element->get_type(), &type_name)) {
-    return NULL;
+    return nullptr;
   }
   return FindType(type_name);
 }
@@ -138,7 +138,7 @@ const XsdElementPtr XsdFile::ResolveRef(const string& element_ref) const {
   // is for this XSD file's target namespace.
   string element_name;
   if (!xsd_schema_ || !xsd_schema_->SplitNsName(element_ref, &element_name)) {
-    return NULL;
+    return nullptr;
   }
   return FindElement(element_name);
 }
@@ -148,7 +148,7 @@ XsdComplexTypePtr XsdFile::GetBaseType(
   string type_name;
   if (!xsd_schema_->SplitNsName(complex_type->get_extension_base(),
                                 &type_name)) {
-    return NULL;  // XSD is incomplete.
+    return nullptr;  // XSD is incomplete.
   }
   return XsdComplexType::AsComplexType(FindType(type_name));
 }

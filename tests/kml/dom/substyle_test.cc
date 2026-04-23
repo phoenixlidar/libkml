@@ -36,7 +36,7 @@ class SubStyleTest : public testing::Test {
 
   // SubStyle is abstract, hence its constructor is protected.
   class TestSubStyle : public SubStyle {};
-  boost::scoped_ptr<TestSubStyle> substyle_;
+  std::unique_ptr<TestSubStyle> substyle_;
 };
 
 TEST_F(SubStyleTest, TestType) {

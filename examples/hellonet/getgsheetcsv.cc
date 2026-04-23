@@ -27,7 +27,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "curlfetch.h"
 #include "prompt.h"
 #include "kml/base/file.h"
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
     std::cerr << "Login failed" << std::endl;
     return 1;
   }
-  boost::scoped_ptr<GoogleDocList> google_doc_list(
+  std::unique_ptr<GoogleDocList> google_doc_list(
       GoogleDocList::Create(doc_list_http_client));
 
   // Login also to GoogleSpreadsheets for the actual CSV fetch.
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
     std::cerr << "Login failed" << std::endl;
     return 1;
   }
-  boost::scoped_ptr<GoogleSpreadsheets> google_spreadsheets(
+  std::unique_ptr<GoogleSpreadsheets> google_spreadsheets(
       GoogleSpreadsheets::Create(spreadsheets_http_client));
 
   std::cout << "Login succeeded..." << std::endl;

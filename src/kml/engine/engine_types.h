@@ -25,8 +25,7 @@
 
 // This file containts typedefs and declarations common within KML Engine.
 
-#ifndef KML_ENGINE_ENGINE_TYPES_H__
-#define KML_ENGINE_ENGINE_TYPES_H__
+#pragma once
 
 #include <map>
 #include <vector>
@@ -51,4 +50,3 @@ typedef std::map<string, kmldom::SchemaPtr> SchemaNameMap;
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_ENGINE_TYPES_H__

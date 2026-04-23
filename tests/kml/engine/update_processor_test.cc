@@ -26,7 +26,7 @@
 // This file contains the unit test for the internal UpdateProcessor class.
 
 #include "kml/engine/update_processor.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/string_util.h"
 #include "kml/dom.h"
@@ -37,11 +37,11 @@ namespace kmlengine {
 class UpdateProcessorTest : public testing::Test {
  protected:
   void SetUp() {
-    kml_file_.reset(KmlFile::CreateFromString("<kml/>"));
-    update_processor_.reset(new UpdateProcessor(*kml_file_.get(), NULL));
+    kml_file_ = KmlFile::CreateFromString("<kml/>");
+    update_processor_.reset(new UpdateProcessor(*kml_file_.get(), nullptr));
   }
-  boost::scoped_ptr<KmlFile> kml_file_;
-  boost::scoped_ptr<UpdateProcessor> update_processor_;
+  KmlFilePtr kml_file_;
+  std::unique_ptr<UpdateProcessor> update_processor_;
 };
 
 TEST_F(UpdateProcessorTest, TestConstructor) {
@@ -78,15 +78,15 @@ TEST_F(UpdateProcessorTest, TestProcessUpdateDelete) {
 TEST_F(UpdateProcessorTest, TestProcessGetTargetId) {
   kmldom::PlacemarkPtr placemark =
       kmldom::KmlFactory::GetFactory()->CreatePlacemark();
-  ASSERT_FALSE(update_processor_->GetTargetId(placemark, NULL));
+  ASSERT_FALSE(update_processor_->GetTargetId(placemark, nullptr));
 }
 
 TEST_F(UpdateProcessorTest, TestProcessUpdateChangeWithMappedId) {
   // A KML file with a Placemark with an internal id.
-  kml_file_.reset(KmlFile::CreateFromString(
+  kml_file_ = KmlFile::CreateFromString(
       "<Placemark id=\"internal-id\">"
       "  <name>my name</name>"
-      "</Placemark>"));
+      "</Placemark>");
   ASSERT_TRUE(kml_file_.get());
 
   // A map of external ids to internal ids.

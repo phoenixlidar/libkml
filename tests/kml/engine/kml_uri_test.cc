@@ -45,7 +45,7 @@ const size_t kCacheSize = 14;
 class KmlUriTest : public testing::Test {
  protected:
   kmlbase::TestDataNetFetcher testdata_net_fetcher_;
-  boost::scoped_ptr<KmlUri> kml_uri_;
+  std::unique_ptr<KmlUri> kml_uri_;
 };
 
 // Verify basic normal usage of the KmlUri::CreateRelative() static method.
@@ -63,37 +63,37 @@ static struct {
   const char* base;  // Typically from KmlFile::get_url().
   const char* target;  // Typically from <href>, etc.
   // These are the expected outputs:
-  const char* resolved;  // NULL if not expected to resolve
-  const char* kmz_base;  // NULL if not kmz
-  const char* kmz_relative;  // NULL if not kmz
+  const char* resolved;  // nullptr if not expected to resolve
+  const char* kmz_base;  // nullptr if not kmz
+  const char* kmz_relative;  // nullptr if not kmz
 } kTestCases[] = {
   {
     "base/must/have/scheme/to/be/valid",
     "image.jpg",
-    NULL,
-    NULL,
-    NULL
+    nullptr,
+    nullptr,
+    nullptr
   },
   {
     "http://a.com/x",
     "y",
     "http://a.com/y",
-    NULL,
-    NULL
+    nullptr,
+    nullptr
   },
   {
     "http://host.com/path/file.kml",
     "image.jpg",
     "http://host.com/path/image.jpg",
-    NULL,
-    NULL
+    nullptr,
+    nullptr
   },
   {
     "http://host.com/path/file.kml",
     "http://otherhost.com/dir/image.jpg",
     "http://otherhost.com/dir/image.jpg",
-    NULL,
-    NULL
+    nullptr,
+    nullptr
   },
   {
     "http://host.com/kmz/screenoverlay-continents.kmz/doc.kml",
@@ -132,7 +132,7 @@ TEST_F(KmlUriTest, TestKmlUriTestCases) {
       ASSERT_EQ(string(kTestCases[i].kmz_base), kml_uri_->get_kmz_url());
     }
     if (kTestCases[i].kmz_relative) {
-      boost::scoped_ptr<KmlUri> kmz_relative(
+      std::unique_ptr<KmlUri> kmz_relative(
           KmlUri::CreateRelative(kml_uri_->get_kmz_url(),
                                  kml_uri_->get_target()));
       ASSERT_TRUE(kmz_relative.get());
@@ -145,10 +145,10 @@ TEST_F(KmlUriTest, TestKmlUriTestCases) {
 TEST_F(KmlUriTest, TestResolveUri) {
   const string kBase("http://foo.com");
   const string kRelative("file.kml");
-  // NULL args returns false.
-  ASSERT_FALSE(ResolveUri("", "", NULL));
-  // NULL output arg returns false.
-  ASSERT_FALSE(ResolveUri(kBase, kRelative, NULL));
+  // nullptr args returns false.
+  ASSERT_FALSE(ResolveUri("", "", nullptr));
+  // nullptr output arg returns false.
+  ASSERT_FALSE(ResolveUri(kBase, kRelative, nullptr));
   // Proper resolution of normal input to a given output returns true.
   string uri;
   ASSERT_TRUE(ResolveUri(kBase, kRelative, &uri));
@@ -156,8 +156,8 @@ TEST_F(KmlUriTest, TestResolveUri) {
 }
 
 TEST_F(KmlUriTest, TestSplitUri) {
-  // Verify behavior of NULL args.
-  ASSERT_TRUE(SplitUri("", NULL, NULL, NULL, NULL, NULL, NULL));
+  // Verify behavior of nullptr args.
+  ASSERT_TRUE(SplitUri("", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr));
   // Verify behavior of a URI with all desired components.
   const string kScheme("http");
   const string kHost("example.com");
@@ -213,7 +213,7 @@ TEST_F(KmlUriTest, TestBasicResolveModelTargetHref) {
   ASSERT_EQ(kResult, result);
 
   // Verify sane behavior with null args.
-  ASSERT_FALSE(ResolveModelTargetHref("", "", "", NULL));
+  ASSERT_FALSE(ResolveModelTargetHref("", "", "", nullptr));
 }
 
 // This is a real-world test of ResolveModelTargetHref on all targetHref's
@@ -234,7 +234,7 @@ TEST_F(KmlUriTest, TestModelTargetHrefOnKmz) {
   ASSERT_EQ(static_cast<size_t>(1), kmz_cache.Size());
 
   // Parse the default KML file.
-  KmlFilePtr kml_file = KmlFile::CreateFromParse(kml_data, NULL);
+  KmlFilePtr kml_file = KmlFile::CreateFromParse(kml_data, nullptr);
   ASSERT_TRUE(kml_file.get());
 
   // Find the one Model we know is there.

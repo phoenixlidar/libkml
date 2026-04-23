@@ -23,10 +23,9 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_KML_CAST_H__
-#define KML_DOM_KML_CAST_H__
+#pragma once
 
-#include <exception>  // Needed by boost::instrusive_ptr.
+
 
 #include "kml/base/xml_element.h"
 #include "kml/dom/kmldom.h"
@@ -36,18 +35,18 @@ namespace kmldom {
 
 // This function template operates akin to dynamic_cast.  If the given
 // Element-derived type is of the template type then a pointer is returned,
-// else NULL.  It is safe to pass a NULL to this function.
+// else nullptr.  It is safe to pass a nullptr to this function.
 template<class T>
-inline const boost::intrusive_ptr<T> ElementCast(
+inline const std::shared_ptr<T> ElementCast(
     const ElementPtr& element) {
   if (element && element->IsA(T::ElementType())) {
-    return boost::static_pointer_cast<T>(element);
+    return std::static_pointer_cast<T>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 inline const ElementPtr AsElement(const kmlbase::XmlElementPtr& xml_element) {
-  return boost::static_pointer_cast<Element>(xml_element);
+  return std::static_pointer_cast<Element>(xml_element);
 }
 
 // Abstract element groups.
@@ -263,4 +262,3 @@ inline const GxWaitPtr AsGxWait(const ElementPtr element) {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_KML_CAST_H__

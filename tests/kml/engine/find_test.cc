@@ -68,9 +68,9 @@ class ElementFinderTest : public testing::Test {
 };
 
 // Verify that GetElementsById() is well behaved when
-// presented with NULL pointers.
+// presented with nullptr pointers.
 TEST_F(ElementFinderTest, TestNullGetElementsById) {
-  GetElementsById(NULL, kmldom::Type_Folder, NULL);
+  GetElementsById(nullptr, kmldom::Type_Folder, nullptr);
 }
 
 // Verify a normal usage of GetElementsById().
@@ -151,7 +151,7 @@ TEST_F(ElementFinderTest, TestBasicGetChildElements) {
   ElementVector all_elements;
   ASSERT_EQ(8, GetChildElements(folder0_, true, &all_elements));
   ASSERT_EQ(static_cast<size_t>(8), all_elements.size());
-  ASSERT_EQ(8, GetChildElements(folder0_, true, NULL));
+  ASSERT_EQ(8, GetChildElements(folder0_, true, nullptr));
 
   ElementVector folder0_children;
   GetChildElements(folder0_, false, &folder0_children);

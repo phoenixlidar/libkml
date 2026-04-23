@@ -25,16 +25,17 @@
 
 // This file contains the declaration of the XsdSchema class.
 
-#ifndef KML_XSD_XSD_SCHEMA_H__
-#define KML_XSD_XSD_SCHEMA_H__
+#pragma once
 
-#include "boost/intrusive_ptr.hpp"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/base/referent.h"
 #include "kml/base/xmlns.h"
 
 namespace kmlxsd {
+
+class XsdSchema;
+using XsdSchemaPtr = std::shared_ptr<XsdSchema>;
 
 // XsdSchema corresponds to <xs:schema ... >
 class XsdSchema : public kmlbase::Referent {
@@ -42,13 +43,12 @@ public:
   // Create an XsdSchema from the given attributes.  The attributes must
   // include both a targetNamespace="tns" and xmlns:prefix="tns".  All xmlns:'s
   // are processed and saved.
-  static XsdSchema* Create(const kmlbase::Attributes& attributes) {
-    XsdSchema* xsd_schema = new XsdSchema;
+  static XsdSchemaPtr Create(const kmlbase::Attributes& attributes) {
+    XsdSchemaPtr xsd_schema(new XsdSchema);
     if (xsd_schema->Parse(attributes)) {
       return xsd_schema;
     }
-    delete xsd_schema;
-    return NULL;
+    return nullptr;
   }
 
   // Return the value of the targetNamespace= attribute.
@@ -99,13 +99,10 @@ public:
     target_namespace_prefix_ = xmlns_->GetKey(target_namespace_);
     return !target_namespace_.empty() && !target_namespace_prefix_.empty();
   }
-  boost::scoped_ptr<kmlbase::Xmlns> xmlns_;
+  std::unique_ptr<kmlbase::Xmlns> xmlns_;
   string target_namespace_;
   string target_namespace_prefix_;
 };
 
-typedef boost::intrusive_ptr<XsdSchema> XsdSchemaPtr;
-
 }  // end namespace kmlxsd
 
-#endif  // KML_XSD_XSD_SCHEMA_H__

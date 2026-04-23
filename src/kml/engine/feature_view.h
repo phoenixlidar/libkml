@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the ComputeFeatureLookAt function.
 
-#ifndef KML_ENGINE_FEATURE_VIEW_H__
-#define KML_ENGINE_FEATURE_VIEW_H__
+#pragma once
 
 #include "kml/dom/abstractview.h"
 #include "kml/dom/feature.h"
@@ -39,7 +38,7 @@ class Bbox;
 // The LookAt's altitude, heading and tilt are set to 0.0, and the altitudeMode
 // is set to relativeToGroud. The range is computed such that the feature will
 // be within a viewport with a field of view of 60 deg and is clamped to a
-// minimum of 1,000 meters. Returns NULL if the feature has no specified
+// minimum of 1,000 meters. Returns nullptr if the feature has no specified
 // AbstractView and none can be computed.
 kmldom::LookAtPtr ComputeFeatureLookAt(const kmldom::FeaturePtr& feature);
 
@@ -49,4 +48,3 @@ kmldom::LookAtPtr ComputeBboxLookAt(const Bbox& bbox);
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_FEATURE_VIEW_H__

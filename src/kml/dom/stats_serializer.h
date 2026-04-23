@@ -27,8 +27,7 @@
 // TODO: some ilk of unit test for this class despite this _being_ part of
 // some unit tests.
 
-#ifndef KML_DOM_STATS_SERIALIZER_H__
-#define KML_DOM_STATS_SERIALIZER_H__
+#pragma once
 
 #include "kml/dom/serializer.h"
 #include "kml/dom/kml_ptr.h"
@@ -97,4 +96,3 @@ class StatsSerializer : public Serializer {
 
 }  // end namespace kmldom
 
-#endif // KML_DOM_STATS_SERIALIZER_H__

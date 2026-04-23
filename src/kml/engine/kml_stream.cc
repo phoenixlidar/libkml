@@ -38,7 +38,7 @@ namespace kmlengine {
 KmlStream* KmlStream::ParseFromIstream(
     std::istream* input, string* errors, ParserObserver* observer) {
   if (!input) {
-    return NULL;
+    return nullptr;
   }
 
   // Initialize Kml parser.
@@ -59,13 +59,13 @@ KmlStream* KmlStream::ParseFromIstream(
       if (read_size < 0 ||
           !parser.ParseInternalBuffer(static_cast<size_t>(read_size),
                                       errors, input->eof())) {
-        return NULL;  // Parse error
+        return nullptr;  // Parse error
       }
     } else {
       if (errors) {
         *errors = "memory error";
       }
-      return NULL;
+      return nullptr;
     }
   }
 

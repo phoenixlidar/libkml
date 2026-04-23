@@ -26,8 +26,7 @@
 // This file declares the Region, LatLonAltBox and Lod elements.
 // LatLonAltBox and Lod are here because they are used only with Region.
 
-#ifndef KML_DOM_REGION_H__
-#define KML_DOM_REGION_H__
+#pragma once
 
 #include "kml/dom/abstractlatlonbox.h"
 #include "kml/dom/kml22.h"
@@ -239,22 +238,22 @@ class Region : public Object {
 
   // <LatLonAltBox>
   const LatLonAltBoxPtr& get_latlonaltbox() const { return latlonaltbox_; }
-  bool has_latlonaltbox() const { return latlonaltbox_ != NULL; }
+  bool has_latlonaltbox() const { return latlonaltbox_ != nullptr; }
   void set_latlonaltbox(const LatLonAltBoxPtr& latlonaltbox) {
     SetComplexChild(latlonaltbox, &latlonaltbox_);
   }
   void clear_latlonaltbox() {
-    set_latlonaltbox(NULL);
+    set_latlonaltbox(nullptr);
   }
 
   // <Lod>
   const LodPtr& get_lod() const { return lod_; }
-  bool has_lod() const { return lod_ != NULL; }
+  bool has_lod() const { return lod_ != nullptr; }
   void set_lod(const LodPtr& lod) {
     SetComplexChild(lod, &lod_);
   }
   void clear_lod() {
-    set_lod(NULL);
+    set_lod(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -275,4 +274,3 @@ class Region : public Object {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_REGION_H__

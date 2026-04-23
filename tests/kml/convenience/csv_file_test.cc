@@ -78,7 +78,7 @@ static const struct CsvTestLine {
     -109.731499,
     "Potter Mesa",
     "1733 meters Apache AZ",
-    NULL
+    nullptr
   },
   // last line of testdata/csv/data.csv
   {
@@ -88,7 +88,7 @@ static const struct CsvTestLine {
     -110.0189953,
     "Big Mountain",
     "2143 meters Navajo AZ",
-    NULL
+    nullptr
   }
 };
 

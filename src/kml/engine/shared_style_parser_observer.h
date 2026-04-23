@@ -25,8 +25,7 @@
 
 // This file contains the definition of the SharedStyleParserObserver class.
 
-#ifndef KML_ENGINE_SHARED_STYLE_PARSER_OBSERVER_H__
-#define KML_ENGINE_SHARED_STYLE_PARSER_OBSERVER_H__
+#pragma once
 
 #include <map>
 #include <string>
@@ -81,4 +80,3 @@ class SharedStyleParserObserver : public kmldom::ParserObserver {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_SHARED_STYLE_PARSER_OBSERVER_H__

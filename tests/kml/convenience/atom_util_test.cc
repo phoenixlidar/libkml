@@ -97,7 +97,7 @@ TEST(AtomUtilTest, TestBasicGetContentSrc) {
 TEST(AtomUtilTest, TestFindRelUrl) {
   kmldom::AtomFeedPtr feed = kmldom::KmlFactory::GetFactory()->CreateAtomFeed();
   const string kRelType("fish");
-  ASSERT_FALSE(AtomUtil::FindRelUrl(*feed.get(), kRelType, NULL));
+  ASSERT_FALSE(AtomUtil::FindRelUrl(*feed.get(), kRelType, nullptr));
   string href;
   ASSERT_FALSE(AtomUtil::FindRelUrl(*feed.get(), kRelType, &href));
 }
@@ -135,17 +135,17 @@ TEST(AtomUtilTest, TestIsOfLinkRel) {
   link->set_rel("post");
   ASSERT_TRUE(AtomUtil::LinkIsOfRel(link, "post"));
   string empty;
-  ASSERT_FALSE(AtomUtil::LinkIsOfRel(NULL, empty));
+  ASSERT_FALSE(AtomUtil::LinkIsOfRel(nullptr, empty));
 }
 
 TEST(AtomUtilTest, TestFindLink) {
   kmldom::AtomFeedPtr feed = kmldom::KmlFactory::GetFactory()->CreateAtomFeed();
   const string kEmpty;
-  // Empty/NULL everything just returns NULL w/o crashing.
+  // Empty/nullptr everything just returns nullptr w/o crashing.
   ASSERT_FALSE(AtomUtil::FindLink(*feed, kEmpty, kEmpty));
   const string kRel("alternate");
   const string kMimeType("text/html");
-  // NULL AtomFeePtr just returns NULL w/o crashing.
+  // nullptr AtomFeePtr just returns nullptr w/o crashing.
   ASSERT_FALSE(AtomUtil::FindLink(*feed, kRel, kMimeType));
   kmldom::AtomLinkPtr link = kmldom::KmlFactory::GetFactory()->CreateAtomLink();
   feed->add_link(link);

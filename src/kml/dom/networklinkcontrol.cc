@@ -43,7 +43,7 @@ UpdateOperation::UpdateOperation() {}
 UpdateOperation::~UpdateOperation() {}
 
 void UpdateOperation::Accept(Visitor* visitor) {
-  visitor->VisitUpdateOperation(UpdateOperationPtr(this));
+  visitor->VisitUpdateOperation(std::static_pointer_cast<UpdateOperation>(shared_from_this()));
 }
 
 // <Create>
@@ -70,7 +70,7 @@ void Create::Serialize(Serializer& serializer) const {
 }
 
 void Create::Accept(Visitor* visitor) {
-  visitor->VisitCreate(CreatePtr(this));
+  visitor->VisitCreate(std::static_pointer_cast<Create>(shared_from_this()));
 }
 
 void Create::AcceptChildren(VisitorDriver* driver) {
@@ -102,7 +102,7 @@ void Delete::Serialize(Serializer& serializer) const {
 }
 
 void Delete::Accept(Visitor* visitor) {
-  visitor->VisitDelete(DeletePtr(this));
+  visitor->VisitDelete(std::static_pointer_cast<Delete>(shared_from_this()));
 }
 
 void Delete::AcceptChildren(VisitorDriver* driver) {
@@ -134,7 +134,7 @@ void Change::Serialize(Serializer& serializer) const {
 }
 
 void Change::Accept(Visitor* visitor) {
-  visitor->VisitChange(ChangePtr(this));
+  visitor->VisitChange(std::static_pointer_cast<Change>(shared_from_this()));
 }
 
 void Change::AcceptChildren(VisitorDriver* driver) {
@@ -184,7 +184,7 @@ void Update::Serialize(Serializer& serializer) const {
 }
 
 void Update::Accept(Visitor* visitor) {
-  visitor->VisitUpdate(UpdatePtr(this));
+  visitor->VisitUpdate(std::static_pointer_cast<Update>(shared_from_this()));
 }
 
 void Update::AcceptChildren(VisitorDriver* driver) {
@@ -202,10 +202,10 @@ NetworkLinkControl::NetworkLinkControl()
     has_message_(false),
     has_linkname_(false),
     has_linkdescription_(false),
-    linksnippet_(NULL),
+    linksnippet_(nullptr),
     has_expires_(false),
-    update_(NULL),
-    abstractview_(NULL) {
+    update_(nullptr),
+    abstractview_(nullptr) {
   set_xmlns(kmlbase::XMLNS_KML22);
 }
 
@@ -288,7 +288,7 @@ void NetworkLinkControl::Serialize(Serializer& serializer) const {
 }
 
 void NetworkLinkControl::Accept(Visitor* visitor) {
-  visitor->VisitNetworkLinkControl(NetworkLinkControlPtr(this));
+  visitor->VisitNetworkLinkControl(std::static_pointer_cast<NetworkLinkControl>(shared_from_this()));
 }
 
 void NetworkLinkControl::AcceptChildren(VisitorDriver* driver) {

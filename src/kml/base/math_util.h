@@ -33,8 +33,7 @@
 // units, all functions here accept and return coordinates and angles in
 // decimal degrees, and distances in meters.
 
-#ifndef KML_BASE_MATH_UTIL_H__
-#define KML_BASE_MATH_UTIL_H__
+#pragma once
 
 #include <math.h>
 // At least one variant of MSVC does not define M_PI.
@@ -110,4 +109,3 @@ double RadiansToMeters(double radians);
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_MATH_UTIL_H__

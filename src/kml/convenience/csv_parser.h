@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the CsvParser class.
 
-#ifndef KML_CONVENIENCE_CSV_PARSER_H_
-#define KML_CONVENIENCE_CSV_PARSER_H_
+#pragma once
 
 #include "kml/base/string_util.h"
 #include "kml/dom.h"
@@ -144,4 +143,3 @@ class CsvParser {
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_CSV_PARSER_H_

@@ -42,28 +42,25 @@ static const char kDefaultXmlns[] = "http://www.opengis.net/kml/2.2";
 static const char kDefaultEncoding[] = "utf-8";
 
 // static
-KmlFile* KmlFile::CreateFromParse(const string& kml_or_kmz_data,
-                                  string* errors) {
-  // Here our focus is on managing the KmlFile storage.  If _CreateFromParse()
-  // fails we release the storage else we return a pointer to it.
-  KmlFile* kml_file = new KmlFile;
+KmlFilePtr KmlFile::CreateFromParse(const string& kml_or_kmz_data,
+                                    string* errors) {
+  KmlFilePtr kml_file(new KmlFile);
   if (kml_file->_CreateFromParse(kml_or_kmz_data, errors)) {
     return kml_file;
   }
-  delete kml_file;
-  return NULL;
+  return nullptr;
 }
 
 // static
-KmlFile* KmlFile::CreateFromStringWithUrl(const string& kml_data,
-                                          const string& url,
-                                          KmlCache* kml_cache) {
-  if (KmlFile* kml_file = CreateFromString(kml_data)) {
+KmlFilePtr KmlFile::CreateFromStringWithUrl(const string& kml_data,
+                                            const string& url,
+                                            KmlCache* kml_cache) {
+  if (KmlFilePtr kml_file = CreateFromString(kml_data)) {
     kml_file->set_url(url);
     kml_file->set_kml_cache(kml_cache);
     return kml_file;
   }
-  return NULL;
+  return nullptr;
 }
 
 // private
@@ -94,7 +91,7 @@ bool KmlFile::OpenAndParseKmz(const string& kmz_data,
 // TODO: push strict parsing out as a Create() method arg
 KmlFile::KmlFile()
   : encoding_(kDefaultEncoding),
-    kml_cache_(NULL),
+    kml_cache_(nullptr),
     strict_parse_(false) {
 }
 
@@ -131,18 +128,17 @@ bool KmlFile::ParseFromString(const string& kml, string* errors) {
 }
 
 // static
-KmlFile* KmlFile::CreateFromImportInternal(const kmldom::ElementPtr& element,
-                                           bool strict) {
+KmlFilePtr KmlFile::CreateFromImportInternal(const kmldom::ElementPtr& element,
+                                             bool strict) {
   if (!element) {
-    return NULL;
+    return nullptr;
   }
-  KmlFile* kml_file = new KmlFile;
+  KmlFilePtr kml_file(new KmlFile);
   ElementVector dup_id_elements;
   ObjectIdMap* map_ptr = &kml_file->object_id_map_;
   MapIds(element, map_ptr, &dup_id_elements);
   if (strict && !dup_id_elements.empty()) {
-    delete kml_file;
-    return NULL;
+    return nullptr;
   }
   // Add all the shared styles to the style map. A shared style is any style
   // with an id whose parent is a document (and by defintion anything in
@@ -160,11 +156,11 @@ KmlFile* KmlFile::CreateFromImportInternal(const kmldom::ElementPtr& element,
   return kml_file;
 }
 
-KmlFile* KmlFile::CreateFromImport(const kmldom::ElementPtr& element) {
+KmlFilePtr KmlFile::CreateFromImport(const kmldom::ElementPtr& element) {
   return CreateFromImportInternal(element, true);
 }
 
-KmlFile* KmlFile::CreateFromImportLax(const kmldom::ElementPtr& element) {
+KmlFilePtr KmlFile::CreateFromImportLax(const kmldom::ElementPtr& element) {
   return CreateFromImportInternal(element, false);
 }
 
@@ -213,13 +209,13 @@ bool KmlFile::SerializeToString(string* xml_output) const {
 
 kmldom::ObjectPtr KmlFile::GetObjectById(const string& id) const {
   ObjectIdMap::const_iterator find = object_id_map_.find(id);
-  return find != object_id_map_.end() ? kmldom::AsObject(find->second) : NULL;
+  return find != object_id_map_.end() ? kmldom::AsObject(find->second) : nullptr;
 }
 
 kmldom::StyleSelectorPtr KmlFile::GetSharedStyleById(
     const string& id) const {
   SharedStyleMap::const_iterator find = shared_style_map_.find(id);
-  return find != shared_style_map_.end() ? find->second : NULL;
+  return find != shared_style_map_.end() ? find->second : nullptr;
 }
 
 }  // end namespace kmlengine

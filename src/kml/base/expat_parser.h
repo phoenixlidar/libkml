@@ -30,8 +30,7 @@
 // declarations. See the unit tests in expat_parser_test.cc for some concrete
 // examples.
 
-#ifndef KML_BASE_EXPAT_PARSER_H__
-#define KML_BASE_EXPAT_PARSER_H__
+#pragma once
 
 #include <map>
 #include "expat.h"
@@ -49,7 +48,7 @@ typedef std::map<string, ExpatHandler*> ExpatHandlerMap;
 class ExpatHandlerSet {
  public:
   ExpatHandlerSet()
-    : default_(NULL) {
+    : default_(nullptr) {
   }
 
   void set_handler(const string& xml_namespace,
@@ -67,11 +66,11 @@ class ExpatHandlerSet {
   }
 
   // TODO: this is how the parser core really looks up the handler for
-  // a given namespace.  This returns NULL if no handler is available for
+  // a given namespace.  This returns nullptr if no handler is available for
   // the given namespace.
   ExpatHandler* get_handler(const string& xmlns) const {
     ExpatHandlerMap::const_iterator iter = expat_handler_map_.find(xmlns);
-    return iter == expat_handler_map_.end() ? NULL : iter->second;
+    return iter == expat_handler_map_.end() ? nullptr : iter->second;
   }
 
  private:
@@ -124,4 +123,3 @@ class ExpatParser {
 
 }  // end namespace kmldom
 
-#endif  // KML_BASE_EXPAT_PARSER_H__

@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the ColorStyle element.
 
-#ifndef KML_DOM_COLORSTYLE_H__
-#define KML_DOM_COLORSTYLE_H__
+#pragma once
 
 #include "kml/dom/substyle.h"
 #include "kml/base/color32.h"
@@ -93,4 +92,3 @@ class ColorStyle : public SubStyle {
 
 }  // end namespace kmldom
 
-#endif // KML_COLORSTYLE_H_

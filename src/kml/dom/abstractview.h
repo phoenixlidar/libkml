@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_ABSTRACTVIEW_H__
-#define KML_DOM_ABSTRACTVIEW_H__
+#pragma once
 
 #include "kml/dom/object.h"
 #include "kml/dom/gx_timeprimitive.h"
@@ -48,12 +47,12 @@ class AbstractView : public Object {
   const TimePrimitivePtr& get_gx_timeprimitive() const {
     return gx_timeprimitive_;
   }
-  bool has_gx_timeprimitive() const { return gx_timeprimitive_ != NULL; }
+  bool has_gx_timeprimitive() const { return gx_timeprimitive_ != nullptr; }
   void set_gx_timeprimitive(const TimePrimitivePtr& gx_timeprimitive) {
     SetComplexChild(gx_timeprimitive, &gx_timeprimitive_);
   }
   void clear_gx_timeprimitive() {
-    set_gx_timeprimitive(NULL);
+    set_gx_timeprimitive(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -296,4 +295,3 @@ class Camera : public AbstractViewCommon {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_ABSTRACTVIEW_H__

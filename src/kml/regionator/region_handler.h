@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the RegionHandler abstract base class.
 
-#ifndef KML_REGIONATOR_REGION_HANDLER_H__
-#define KML_REGIONATOR_REGION_HANDLER_H__
+#pragma once
 
 #include "kml/dom.h"
 
@@ -47,7 +46,7 @@ namespace kmlregionator {
 //   // eventually terminate the walk of the Region hierarchy.
 //   kmldom::RegionPtr root_region;
 //   Regionator regionator(&my_region_handler, root_region);
-//   regionator.Regionate(NULL);  // Or supply a specific output directory.
+//   regionator.Regionate(nullptr);  // Or supply a specific output directory.
 //   // All "regionated" KML is now available wherever MyRegionHandler
 //   // saved each file passed in to SaveKml().
 class RegionHandler {
@@ -78,5 +77,4 @@ class RegionHandler {
 
 }  // end namespace kmlregionator
 
-#endif // KML_REGIONATOR_REGION_HANDLER_H__
 

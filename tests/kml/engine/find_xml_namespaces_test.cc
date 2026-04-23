@@ -43,13 +43,13 @@ using kmldom::KmlFactory;
 
 namespace kmlengine {
 
-// If either or both args to FindXmlNamespaces() is NULL nothing happens and
+// If either or both args to FindXmlNamespaces() is nullptr nothing happens and
 // there is no crash.
 TEST(FindXmlNamepacesTest, TestNull) {
-  FindXmlNamespaces(NULL, NULL);
+  FindXmlNamespaces(nullptr, nullptr);
   Attributes xmlns_attributes;
-  FindXmlNamespaces(NULL, &xmlns_attributes);
-  FindXmlNamespaces(KmlFactory::GetFactory()->CreateDocument(), NULL);
+  FindXmlNamespaces(nullptr, &xmlns_attributes);
+  FindXmlNamespaces(KmlFactory::GetFactory()->CreateDocument(), nullptr);
 }
 
 TEST(FindXmlNamepacesTest, TestNoNamespaces) {

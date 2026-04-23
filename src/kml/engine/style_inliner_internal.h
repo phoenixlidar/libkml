@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the internal StyleInliner class.
 
-#ifndef KML_ENGINE_STYLE_INLINER_INTERNAL_H__
-#define KML_ENGINE_STYLE_INLINER_INTERNAL_H__
+#pragma once
 
 #include "kml/base/string_util.h"
 #include "kml/dom.h"
@@ -81,4 +80,3 @@ class StyleInliner : public kmldom::ParserObserver {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_STYLE_INLINER_INTERNAL_H__

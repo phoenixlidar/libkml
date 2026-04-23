@@ -34,12 +34,12 @@
 
 namespace kmldom {
 
-// Verify that parsing bad data is well behaved: no crash, NULL return,
+// Verify that parsing bad data is well behaved: no crash, nullptr return,
 // error message.
 TEST(UnknownTest, TestNotXml) {
   string errors;
   ElementPtr root = Parse("this is not even xml", &errors);
-  ASSERT_TRUE(NULL == root);
+  ASSERT_TRUE(nullptr == root);
   ASSERT_FALSE(errors.empty());
 }
 
@@ -141,7 +141,7 @@ TEST(UnknownTest, TestSaveUnknown) {
   const string kUnknownComplex("<Unknown>a<b><c>d</c>z</b></Unknown>\n");
   // This presumse "<kml>" is never the child of any other element.
   for (; element_type_id != end_id; ++element_type_id) {
-    // Only complex elements return non-NULL.
+    // Only complex elements return non-nullptr.
     if (ElementPtr element = kml_factory->CreateElementById(
         static_cast<KmlDomType>(element_type_id))) {
       // Except these which aren't really complex.

@@ -65,7 +65,7 @@ class KmlFileTest : public testing::Test {
 
 // Verify the encoding appears properly in the xml header.
 TEST_F(KmlFileTest, TestEncoding) {
-  kml_file_ = KmlFile::CreateFromParse("<kml/>", NULL);
+  kml_file_ = KmlFile::CreateFromParse("<kml/>", nullptr);
   ASSERT_TRUE(kml_file_ != 0);
   ASSERT_EQ(string("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"),
             kml_file_->CreateXmlHeader());
@@ -80,7 +80,7 @@ TEST_F(KmlFileTest, TestEncoding) {
 
 // Verify basic usage of the ParseFromString() method.
 TEST_F(KmlFileTest, TestBasicParseFromString) {
-  kml_file_ = KmlFile::CreateFromParse("<kml/>", NULL);
+  kml_file_ = KmlFile::CreateFromParse("<kml/>", nullptr);
   ASSERT_TRUE(kml_file_ != 0);
   ElementPtr root = kml_file_->get_root();
   // Verify old API exists and functions.
@@ -95,13 +95,13 @@ TEST_F(KmlFileTest, TestBasicParseFromString) {
 }
 
 TEST_F(KmlFileTest, TestRoot) {
-  kml_file_ = KmlFile::CreateFromParse("<kml/>", NULL);
+  kml_file_ = KmlFile::CreateFromParse("<kml/>", nullptr);
   ElementPtr root = kml_file_->get_root();
   ASSERT_TRUE(root != 0);
   ASSERT_EQ(kmldom::Type_kml, root->Type());
 
   // Verify that any complex element can be used as root.
-  kml_file_ = KmlFile::CreateFromParse("<Placemark/>", NULL);
+  kml_file_ = KmlFile::CreateFromParse("<Placemark/>", nullptr);
   ASSERT_EQ(kmldom::Type_Placemark, kml_file_->get_root()->Type());
   // Verify old API exists and functions.
   ASSERT_EQ(kmldom::Type_Placemark, kml_file_->root()->Type());
@@ -112,7 +112,7 @@ TEST_F(KmlFileTest, TestBasicObjectIdParse) {
     "<Folder id=\"folder\">"
     "<Placemark id=\"placemark\"/>"
     "</Folder>",
-    NULL);
+    nullptr);
   ASSERT_TRUE(kml_file_ != 0);
   ObjectPtr f = kml_file_->GetObjectById("folder");
   ASSERT_EQ(kmldom::Type_Folder, f->Type());
@@ -152,9 +152,9 @@ TEST_F(KmlFileTest, TestObjectIdDupeFailing) {
 }
 #endif
 
-// Verify NULL is returned for a non-existent shared style.
+// Verify nullptr is returned for a non-existent shared style.
 TEST_F(KmlFileTest, TestNullGetSharedStyleById) {
-  kml_file_ = KmlFile::CreateFromParse("<kml/>", NULL);
+  kml_file_ = KmlFile::CreateFromParse("<kml/>", nullptr);
   ASSERT_FALSE(kml_file_->GetSharedStyleById("no-such-id"));
 }
 
@@ -171,7 +171,7 @@ TEST_F(KmlFileTest, TestBasicGetSharedStyleById) {
       "<Folder>"
         "<Style id=\"" + kFolderStyleId + "\"/>"
       "</Folder>"
-    "</Document>", NULL);
+    "</Document>", nullptr);
   ASSERT_TRUE(kml_file_ != 0);  // Verify the parse succeeded.
 
   // Verify both shared style selectors were found.
@@ -271,7 +271,7 @@ TEST_F(KmlFileTest, TestGetLinkParents) {
 
 // Verify const behavior.
 TEST_F(KmlFileTest, TestConstNull) {
-  const KmlFilePtr kml_file = KmlFile::CreateFromParse("<kml/>", NULL);
+  const KmlFilePtr kml_file = KmlFile::CreateFromParse("<kml/>", nullptr);
   ASSERT_TRUE(kml_file != 0);
   ASSERT_FALSE(kml_file->GetObjectById("blah"));
   ASSERT_FALSE(kml_file->GetSharedStyleById("blah"));
@@ -293,7 +293,7 @@ TEST_F(KmlFileTest, TestBasicCreateFromStringWithUrl) {
                                "</name></Placemark>");
   const string kUrl("http://foo.com/goo/baz.kml");
   // There's no requirement a NetCache need exist.
-  kml_file_ = KmlFile::CreateFromStringWithUrl(kPlacemark, kUrl, NULL);
+  kml_file_ = KmlFile::CreateFromStringWithUrl(kPlacemark, kUrl, nullptr);
   ASSERT_TRUE(kml_file_ != 0);
   ASSERT_EQ(kUrl, kml_file_->get_url());
   PlacemarkPtr placemark = AsPlacemark(kml_file_->get_root());
@@ -338,7 +338,7 @@ TEST_F(KmlFileTest, TestXmlnsOnRoot) {
 
 // Verify KmlFile::CreateFromImport()
 TEST_F(KmlFileTest, TestCreateFromImport) {
-  ASSERT_FALSE(KmlFile::CreateFromImport(NULL));
+  ASSERT_FALSE(KmlFile::CreateFromImport(nullptr));
   KmlFactory* kml_factory = KmlFactory::GetFactory();
   PlacemarkPtr placemark = kml_factory->CreatePlacemark();
   const string kName("my name");
@@ -358,7 +358,7 @@ TEST_F(KmlFileTest, TestCreateFromImport) {
 TEST_F(KmlFileTest, TestCreateFromImportFailsOnDupeIds) {
   ASSERT_FALSE(KmlFile::CreateFromImport(kmldom::Parse(
     "<Folder id=\"foo\"><Placemark id=\"foo\"/></Folder>",
-    NULL)));
+    nullptr)));
 }
 
 // Verify Import-Serialize
@@ -381,7 +381,7 @@ TEST_F(KmlFileTest, TestCreateFromImportAndGetById) {
   const string kAllStyles = string(DATADIR) + "/style/allstyles.kml";
   string kml;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(kAllStyles, &kml));
-  ElementPtr element = kmldom::Parse(kml, NULL);
+  ElementPtr element = kmldom::Parse(kml, nullptr);
   ASSERT_TRUE(element != 0);
 
   // Import this dom into a KmlFile.

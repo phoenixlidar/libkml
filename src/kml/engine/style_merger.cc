@@ -87,7 +87,7 @@ void StyleMerger::MergeStyleUrl(const string& styleurl) {
   string path;
   string style_id;  // fragment
   if (styleurl.empty() ||
-      !SplitUri(styleurl, NULL, NULL, NULL, &path, NULL, &style_id) ||
+      !SplitUri(styleurl, nullptr, nullptr, nullptr, &path, nullptr, &style_id) ||
       style_id.empty()) {
     return;  // Empty or bad styleurl or w/o fragment: ignore.
   }
@@ -152,7 +152,7 @@ void StyleMerger::MergeStyleMap(const StyleMapPtr& stylemap) {
 
 // Merge in the given StyleSelector.
 void StyleMerger::MergeStyleSelector(const StyleSelectorPtr& styleselector) {
-  // NULL ok with AsXXX()
+  // nullptr ok with AsXXX()
   if (StylePtr style = AsStyle(styleselector)) {
     // All StyleMerger methods ultimately reduce to this call out to the
     // general purpose element merger.

@@ -58,7 +58,7 @@ class KmlHandlerNSTest : public testing::Test {
 TEST_F(KmlHandlerNSTest, TestInitialState) {
   // No elements have been processed, but the PopRoot() method should
   // be well behaved.
-  ASSERT_TRUE(NULL == kml_handler_ns_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_ns_->PopRoot());
 }
 
 TEST_F(KmlHandlerNSTest, TestStartEndNamespace) {
@@ -74,8 +74,8 @@ TEST_F(KmlHandlerNSTest, TestStartEndNamespace) {
   //      xmlns:gx="http://earth.google.com/kml/2.2/ext">
   // StartNamespace will be invoked as follows:
 
-  // A NULL prefix means a default namespace begins at this scope.
-//  kml_handler_ns_->StartNamespace(NULL, kKmlXmlns);
+  // A nullptr prefix means a default namespace begins at this scope.
+//  kml_handler_ns_->StartNamespace(nullptr, kKmlXmlns);
   // The xmlns:atom declaration is passed as follows:
   kml_handler_ns_->StartNamespace(kAtomPrefix, kAtomXmlns);
   // The xmlns:gx declaration is passed as follows:
@@ -86,7 +86,7 @@ TEST_F(KmlHandlerNSTest, TestStartEndNamespace) {
   // The namespace declarations will be unwound in EndNamespace as follows:
   kml_handler_ns_->EndNamespace("atom");
   kml_handler_ns_->EndNamespace("gx");
-//  kml_handler_ns_->EndNamespace(NULL);
+//  kml_handler_ns_->EndNamespace(nullptr);
 }
 
 // This is a test of the StartElement() method for a known simple element.
@@ -99,7 +99,7 @@ TEST_F(KmlHandlerNSTest, TestStartSimpleElement) {
   ASSERT_TRUE(root->Type() == Type_name);
 
   // PopRoot() is destructive so now there is nothing.
-  ASSERT_TRUE(NULL == kml_handler_ns_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_ns_->PopRoot());
 }
 
 // This is a test of the EndElement() method for a known simple element.
@@ -112,7 +112,7 @@ TEST_F(KmlHandlerNSTest, TestEndSimpleElement) {
   ASSERT_TRUE(root->Type() == Type_name);
 
   // PopRoot() is destructive so now there is nothing.
-  ASSERT_TRUE(NULL == kml_handler_ns_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_ns_->PopRoot());
 }
 
 // This is a test of the CharData() method for a known simple element.
@@ -127,7 +127,7 @@ TEST_F(KmlHandlerNSTest, TestBasicCharData) {
 
   ElementPtr root = kml_handler_ns_->PopRoot();
   ASSERT_EQ(root->Type(), Type_name);
-  ASSERT_TRUE(NULL == kml_handler_ns_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_ns_->PopRoot());
   ASSERT_EQ(kContent, root->get_char_data());
 }
 
@@ -137,7 +137,7 @@ TEST_F(KmlHandlerNSTest, TestStartComplexElement) {
                                 atts_);
   ElementPtr root = kml_handler_ns_->PopRoot();
   ASSERT_TRUE(root->Type() == Type_Placemark);
-  ASSERT_TRUE(NULL == kml_handler_ns_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_ns_->PopRoot());
 }
 
 // This is a test of the EndElement() method for a known complex element.
@@ -148,7 +148,7 @@ TEST_F(KmlHandlerNSTest, TestEndComplexElement) {
   kml_handler_ns_->EndElement("http://www.opengis.net/kml/2.2|Placemark");
   ElementPtr root = kml_handler_ns_->PopRoot();
   ASSERT_TRUE(root->Type() == Type_Placemark);
-  ASSERT_TRUE(NULL == kml_handler_ns_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_ns_->PopRoot());
 }
 
 // This is a test of StartElement() for a known complex element with known
@@ -162,7 +162,7 @@ TEST_F(KmlHandlerNSTest, TestStartComplexElementWithAtts) {
                                 atts_);
   ElementPtr root = kml_handler_ns_->PopRoot();
   ASSERT_EQ(root->Type(), Type_Placemark);
-  ASSERT_TRUE(NULL == kml_handler_ns_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_ns_->PopRoot());
   PlacemarkPtr placemark = AsPlacemark(root);
   ASSERT_TRUE(kAttrVal == placemark->get_id());
 }

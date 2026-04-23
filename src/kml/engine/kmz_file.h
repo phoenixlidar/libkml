@@ -25,12 +25,10 @@
 
 // This file contains the declaration of the KmzFile class.
 
-#ifndef KML_ENGINE_KMZ_FILE_H__
-#define KML_ENGINE_KMZ_FILE_H__
+#pragma once
 
 #include <vector>
-#include "boost/intrusive_ptr.hpp"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/referent.h"
 #include "kml/base/util.h"
 #include "kml/engine/kml_file.h"
@@ -43,6 +41,9 @@ class ZipFile;
 
 namespace kmlengine {
 
+class KmzFile;
+using KmzFilePtr = std::shared_ptr<KmzFile>;
+
 // The Kmz class represents an instance of a KMZ file. It contains methods
 // for reading and writing KMZ files. By default, there is an upper limit of
 // 2 GB on uncompressed file sizes. If you need to lower this limit, use
@@ -53,15 +54,15 @@ class KmzFile : public kmlbase::Referent {
 
   // Open a KMZ file from a file path. Returns a pointer to a KmzFile object
   // if the file could be opened and read, and the data was recognizably KMZ.
-  // Otherwise returns NULL.
-  static KmzFile* OpenFromFile(const char* kmz_filepath);
+  // Otherwise returns nullptr.
+  static KmzFilePtr OpenFromFile(const char* kmz_filepath);
 
   // Open a KMZ file from a string. Returns a pointer to a KmzFile object if a
   // temporary file could be created, the data was recognizably KMZ. Otherwise
-  // returns NULL.
-  static KmzFile* OpenFromString(const string& kmz_data);
+  // returns nullptr.
+  static KmzFilePtr OpenFromString(const string& kmz_data);
 
-  static KmzFile* CreateFromString(const string& kmz_data) {
+  static KmzFilePtr CreateFromString(const string& kmz_data) {
     return OpenFromString(kmz_data);
   }
 
@@ -87,7 +88,7 @@ class KmzFile : public kmlbase::Referent {
   bool ReadKml(string* output) const;
 
   // This does the same as ReadKml() and in addition returns the path of the
-  // KML file within the KMZ archive if a non-NULL kml_path is supplied.
+  // KML file within the KMZ archive if a non-nullptr kml_path is supplied.
   // NOTE: While it is considered a best practice to have The KML file of
   // a KMZ archive be "doc.kml" this is not always the case.
   bool ReadKmlAndGetPath(string* output, string* kml_path) const;
@@ -110,8 +111,8 @@ class KmzFile : public kmlbase::Referent {
   // These are for the creation of KMZ files:
 
   // Creates an empty KmzFile at kmz_filepath on which AddFile may be called.
-  // Returns NULL if the file could not be created for writing.
-  static KmzFile* Create(const char* kmz_filepath);
+  // Returns nullptr if the file could not be created for writing.
+  static KmzFilePtr Create(const char* kmz_filepath);
 
   // Writes data to path_in_kmz. The path must be relative to the root of the
   // archive. e.g. AddFile(data, "somedir/file.png"). If not, false is returned.
@@ -168,12 +169,9 @@ class KmzFile : public kmlbase::Referent {
  private:
   // Class can only be created from static methods.
   KmzFile(kmlbase::ZipFile* zip_file);
-  boost::scoped_ptr<kmlbase::ZipFile> zip_file_;
+  std::unique_ptr<kmlbase::ZipFile> zip_file_;
   LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmzFile);
 };
 
-typedef boost::intrusive_ptr<KmzFile> KmzFilePtr;
-
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_KMZ_FILE_H__

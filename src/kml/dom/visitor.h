@@ -26,8 +26,7 @@
 // WARNING: THE VISITOR API IMPLEMENTED IN THIS CLASS IS EXPERIMENTAL AND
 // SUBJECT TO CHANGE WITHOUT WARNING.
 
-#ifndef KML_DOM_VISITOR_H__
-#define KML_DOM_VISITOR_H__
+#pragma once
 
 #include <vector>
 #include "kml/base/util.h"
@@ -370,4 +369,3 @@ class Visitor {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_VISITOR_H__

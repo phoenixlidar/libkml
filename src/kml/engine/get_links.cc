@@ -41,7 +41,7 @@ bool GetLinks(const string& kml, href_vector_t* href_vector) {
   GetLinksParserObserver get_links(href_vector);
   Parser parser;
   parser.AddObserver(&get_links);
-  return parser.Parse(kml, NULL) != NULL;
+  return parser.Parse(kml, nullptr) != nullptr;
 }
 
 bool GetRelativeLinks(const string& kml, href_vector_t* href_vector) {

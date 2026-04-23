@@ -25,7 +25,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "curlfetch.h"
 #include "prompt.h"
 #include "kml/base/file.h"
@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
 
   // Create a GoogleDocList client from the logged in HttpClient and
   // get the user's list of Google docs.
-  boost::scoped_ptr<kmlconvenience::GoogleDocList> doc_list(
+  std::unique_ptr<kmlconvenience::GoogleDocList> doc_list(
     kmlconvenience::GoogleDocList::Create(curl_http_client));
 
   kmldom::AtomFeedPtr meta_feed = doc_list->GetMetaFeed();

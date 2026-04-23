@@ -104,7 +104,7 @@ void Vec2::Serialize(Serializer& serializer) const {
 }
 
 void Vec2::Accept(Visitor* visitor) {
-  visitor->VisitVec2(Vec2Ptr(this));
+  visitor->VisitVec2(std::static_pointer_cast<Vec2>(shared_from_this()));
 }
 
 }  // end namespace kmldom

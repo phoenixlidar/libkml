@@ -26,8 +26,7 @@
 // This file contains the declaration of the public Parse and Serialize API
 // functions.
 
-#ifndef KML_DOM_KML_FUNCS_H__
-#define KML_DOM_KML_FUNCS_H__
+#pragma once
 
 #include <ostream>
 #include "kml/dom/element.h"
@@ -71,9 +70,8 @@ void SerializeToOstream(const ElementPtr& root, bool pretty, std::ostream* xml);
 
 // This function is the public API for returning the element's tag name, for
 // example "Placemark" for <Placemark> and "NetworkLink" for <NetworkLink>.
-// If element is NULL or otherwise invalid an empty string is returned.
+// If element is nullptr or otherwise invalid an empty string is returned.
 string GetElementName(const ElementPtr& element);
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_KML_FUNCS_H__

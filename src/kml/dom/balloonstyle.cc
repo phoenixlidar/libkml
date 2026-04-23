@@ -89,7 +89,7 @@ void BalloonStyle::Serialize(Serializer& serializer) const {
 }
 
 void BalloonStyle::Accept(Visitor* visitor) {
-  visitor->VisitBalloonStyle(BalloonStylePtr(this));
+  visitor->VisitBalloonStyle(std::static_pointer_cast<BalloonStyle>(shared_from_this()));
 }
 
 }  // end namespace kmldom

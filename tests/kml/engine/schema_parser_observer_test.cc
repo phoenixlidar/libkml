@@ -26,7 +26,7 @@
 // This file contains the unit tests for the SchemaParserObserver class.
 
 #include "kml/engine/schema_parser_observer.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml_factory.h"
 #include "gtest/gtest.h"
 
@@ -55,7 +55,7 @@ class SchemaParserObserverTest : public testing::Test {
   kmldom::SchemaPtr schema1_;
   kmldom::SchemaPtr schema_no_name_;
   SchemaNameMap schema_name_map_;
-  boost::scoped_ptr<SchemaParserObserver> schema_parser_observer_;
+  std::unique_ptr<SchemaParserObserver> schema_parser_observer_;
 };
 
 // Verify that AddChild() usage with <Schema> as child of <Document>.

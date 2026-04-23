@@ -116,7 +116,7 @@ void LatLonBox::Serialize(Serializer& serializer) const {
 }
 
 void LatLonBox::Accept(Visitor* visitor) {
-  visitor->VisitLatLonBox(LatLonBoxPtr(this));
+  visitor->VisitLatLonBox(std::static_pointer_cast<LatLonBox>(shared_from_this()));
 }
 
 GxLatLonQuad::GxLatLonQuad() {
@@ -142,7 +142,7 @@ void GxLatLonQuad::Serialize(Serializer& serializer) const {
 }
 
 void GxLatLonQuad::Accept(Visitor* visitor) {
-  visitor->VisitGxLatLonQuad(GxLatLonQuadPtr(this));
+  visitor->VisitGxLatLonQuad(std::static_pointer_cast<GxLatLonQuad>(shared_from_this()));
 }
 
 void GxLatLonQuad::AcceptChildren(VisitorDriver* driver) {
@@ -211,7 +211,7 @@ void GroundOverlay::Serialize(Serializer& serializer) const {
 }
 
 void GroundOverlay::Accept(Visitor* visitor) {
-  visitor->VisitGroundOverlay(GroundOverlayPtr(this));
+  visitor->VisitGroundOverlay(std::static_pointer_cast<GroundOverlay>(shared_from_this()));
 }
 
 void GroundOverlay::AcceptChildren(VisitorDriver* driver) {
@@ -286,7 +286,7 @@ void ViewVolume::Serialize(Serializer& serializer) const {
 }
 
 void ViewVolume::Accept(Visitor* visitor) {
-  visitor->VisitViewVolume(ViewVolumePtr(this));
+  visitor->VisitViewVolume(std::static_pointer_cast<ViewVolume>(shared_from_this()));
 }
 
 ImagePyramid::ImagePyramid()
@@ -343,7 +343,7 @@ void ImagePyramid::Serialize(Serializer& serializer) const {
 }
 
 void ImagePyramid::Accept(Visitor* visitor) {
-  visitor->VisitImagePyramid(ImagePyramidPtr(this));
+  visitor->VisitImagePyramid(std::static_pointer_cast<ImagePyramid>(shared_from_this()));
 }
 
 PhotoOverlay::PhotoOverlay()
@@ -403,7 +403,7 @@ void PhotoOverlay::Serialize(Serializer& serializer) const {
 }
 
 void PhotoOverlay::Accept(Visitor* visitor) {
-  visitor->VisitPhotoOverlay(PhotoOverlayPtr(this));
+  visitor->VisitPhotoOverlay(std::static_pointer_cast<PhotoOverlay>(shared_from_this()));
 }
 
 void PhotoOverlay::AcceptChildren(VisitorDriver* driver) {
@@ -424,7 +424,7 @@ OverlayXY::OverlayXY() {}
 OverlayXY::~OverlayXY() {}
 
 void OverlayXY::Accept(Visitor* visitor) {
-  visitor->VisitOverlayXY(OverlayXYPtr(this));
+  visitor->VisitOverlayXY(std::static_pointer_cast<OverlayXY>(shared_from_this()));
 }
 
 ScreenXY::ScreenXY() {}
@@ -432,7 +432,7 @@ ScreenXY::ScreenXY() {}
 ScreenXY::~ScreenXY() {}
 
 void ScreenXY::Accept(Visitor* visitor) {
-  visitor->VisitScreenXY(ScreenXYPtr(this));
+  visitor->VisitScreenXY(std::static_pointer_cast<ScreenXY>(shared_from_this()));
 }
 
 RotationXY::RotationXY() {}
@@ -440,7 +440,7 @@ RotationXY::RotationXY() {}
 RotationXY::~RotationXY() {}
 
 void RotationXY::Accept(Visitor* visitor) {
-  visitor->VisitRotationXY(RotationXYPtr(this));
+  visitor->VisitRotationXY(std::static_pointer_cast<RotationXY>(shared_from_this()));
 }
 
 Size::Size() {}
@@ -448,7 +448,7 @@ Size::Size() {}
 Size::~Size() {}
 
 void Size::Accept(Visitor* visitor) {
-  visitor->VisitSize(SizePtr(this));
+  visitor->VisitSize(std::static_pointer_cast<Size>(shared_from_this()));
 }
 
 ScreenOverlay::ScreenOverlay()
@@ -506,7 +506,7 @@ void ScreenOverlay::Serialize(Serializer& serializer) const {
 }
 
 void ScreenOverlay::Accept(Visitor* visitor) {
-  visitor->VisitScreenOverlay(ScreenOverlayPtr(this));
+  visitor->VisitScreenOverlay(std::static_pointer_cast<ScreenOverlay>(shared_from_this()));
 }
 
 void ScreenOverlay::AcceptChildren(VisitorDriver* driver) {

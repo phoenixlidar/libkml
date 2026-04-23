@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the ItemIcon and ListStyle elements.
 
-#ifndef KML_DOM_LISTSTYLE_H__
-#define KML_DOM_LISTSTYLE_H__
+#pragma once
 
 #include <vector>
 #include "kml/base/color32.h"
@@ -210,4 +209,3 @@ class ListStyle : public SubStyle {
 
 }  // end namespace kmldom
 
-#endif // KML_DOM_LISTSTYLE_H__

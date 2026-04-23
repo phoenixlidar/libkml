@@ -57,7 +57,7 @@ void Placemark::Serialize(Serializer& serializer) const {
 }
 
 void Placemark::Accept(Visitor* visitor) {
-  visitor->VisitPlacemark(PlacemarkPtr(this));
+  visitor->VisitPlacemark(std::static_pointer_cast<Placemark>(shared_from_this()));
 }
 
 void Placemark::AcceptChildren(VisitorDriver* driver) {

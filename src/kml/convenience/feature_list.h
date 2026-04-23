@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the FeatureList class.
 
-#ifndef KML_CONVENIENCE_FEATURE_LIST_H__
-#define KML_CONVENIENCE_FEATURE_LIST_H__
+#pragma once
 
 #include <list>
 #include "kml/dom.h"
@@ -64,7 +63,7 @@ class FeatureList {
   void PushBack(const kmldom::FeaturePtr& feature);
 
   // Split up to max features which are within the bounding box out to the
-  // given FeatureList.  If a NULL FeatureList is supplied the features are
+  // given FeatureList.  If a nullptr FeatureList is supplied the features are
   // deleted from this FeatureList.  NOTE: This is DESTRUCTIVE with respect
   // to this FeatureList.
   size_t BboxSplit(const kmlengine::Bbox& bbox, size_t max,
@@ -95,4 +94,3 @@ class FeatureList {
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_FEATURE_LIST_H__

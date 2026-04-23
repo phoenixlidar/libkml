@@ -25,8 +25,7 @@
 
 // This file contains the declarations of various string utility functions.
 
-#ifndef KML_BASE_STRING_UTIL_H__
-#define KML_BASE_STRING_UTIL_H__
+#pragma once
 
 #include <map>
 #include <sstream>
@@ -128,7 +127,7 @@ bool StringEndsWith(const string& str, const string& end);
 bool StringCaseEqual(const string& a, const string& b);
 
 // This converts the string representation of the number to a double.  If the
-// string is not numeric false is returned, else true.  It is safe to pass NULL
+// string is not numeric false is returned, else true.  It is safe to pass nullptr
 // as the output argument in which case this function becomes a simple "is this
 // a number" check.
 bool StringToDouble(const string& number, double* output);
@@ -147,4 +146,3 @@ size_t SkipLeadingWhitespaceString(const string& str);
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_STRING_UTIL_H__

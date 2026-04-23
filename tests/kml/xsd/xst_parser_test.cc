@@ -27,7 +27,7 @@
 
 #include "kml/xsd/xst_parser.h"
 #include <vector>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/xsd/xsd_file.h"
 
@@ -41,8 +41,8 @@ class XstParserTest : public testing::Test {
     xst_parser_.reset(new XstParser(xsd_file_.get()));
   }
 
-  boost::scoped_ptr<XsdFile> xsd_file_;
-  boost::scoped_ptr<XstParser> xst_parser_;
+  std::unique_ptr<XsdFile> xsd_file_;
+  std::unique_ptr<XstParser> xst_parser_;
 };
 
 // Verify the ParseXstAlias() method.

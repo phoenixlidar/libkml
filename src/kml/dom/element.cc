@@ -140,7 +140,12 @@ void Element::SerializeAttributes(Attributes* attributes) const {
 }
 
 ElementPtr Element::GetParent() const {
-  return AsElement(const_cast<XmlElement*>(XmlElement::GetParent()));
+  const XmlElement* parent = XmlElement::GetParent();
+  if (!parent) {
+    return nullptr;
+  }
+  return std::static_pointer_cast<Element>(
+      const_cast<XmlElement*>(parent)->shared_from_this());
 }
 
 void Element::MergeXmlns(const Attributes& xmlns) {
@@ -164,7 +169,7 @@ ElementSerializer::~ElementSerializer() {
 }
 
 void Element::Accept(Visitor* visitor) {
-  visitor->VisitElement(ElementPtr(this));
+  visitor->VisitElement(std::static_pointer_cast<Element>(shared_from_this()));
 }
 
 Field::Field(KmlDomType type_id)

@@ -54,9 +54,9 @@ bool StyleInliner::NewElement(const kmldom::ElementPtr& element) {
 kmldom::FeaturePtr StyleInliner::AsNonDocumentFeature(
     const kmldom::ElementPtr& element) {
   if (kmldom::FeaturePtr feature = kmldom::AsFeature(element)) {
-    return feature->IsA(kmldom::Type_Document) ? NULL : feature;
+    return feature->IsA(kmldom::Type_Document) ? nullptr : feature;
   }
-  return NULL;
+  return nullptr;
 }
 
 // ParserObserver::EndElement()
@@ -82,7 +82,7 @@ bool StyleInliner::EndElement(const kmldom::ElementPtr& parent,
       // give a copy of that to the Feature instead of this styleUrl.
       string fragment;
       string path;
-      if (SplitUri(child->get_char_data(), NULL, NULL, NULL, &path, NULL,
+      if (SplitUri(child->get_char_data(), nullptr, nullptr, nullptr, &path, nullptr,
                    &fragment) && path.empty()) {
         SharedStyleMap::const_iterator iter = shared_styles_.find(fragment);
         if (iter != shared_styles_.end()) {

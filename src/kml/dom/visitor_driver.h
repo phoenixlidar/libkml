@@ -26,8 +26,7 @@
 // WARNING: THE VISITOR API IMPLEMENTED IN THIS CLASS IS EXPERIMENTAL AND
 // SUBJECT TO CHANGE WITHOUT WARNING.
 
-#ifndef KML_DOM_VISITOR_DRIVER_H__
-#define KML_DOM_VISITOR_DRIVER_H__
+#pragma once
 
 #include "kml/base/util.h"
 #include "kml/dom/kml_ptr.h"
@@ -91,4 +90,3 @@ class SimplePostorderDriver : public VisitorDriver {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_VISITOR_DRIVER_H__

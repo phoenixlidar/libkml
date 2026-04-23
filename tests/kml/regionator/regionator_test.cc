@@ -108,7 +108,7 @@ TEST_F(RegionatorTest, TwoLevelPointRegionatorTest) {
   PointRegionHandler depth2(2, &kml_file_map_);
   Regionator rtor(depth2, kmlconvenience::CreateRegion2d(10,0,10,0,128,-1));
   // Run the regionator algorithm from the given region on our RegionHandler.
-  rtor.Regionate(NULL);
+  rtor.Regionate(nullptr);
 
   // A 2 level RbNL hierarchy has one root and 4 children.
   ASSERT_EQ(static_cast<size_t>(5), kml_file_map_.size());
@@ -158,7 +158,7 @@ TEST_F(RegionatorTest, FourLevelPointRegionatorTest) {
   PointRegionHandler depth4(4, &kml_file_map_);
   Regionator rtor(depth4, kmlconvenience::CreateRegion2d(10,0,10,0,128,-1));
   // Run the regionator algorithm from the given region on our RegionHandler.
-  rtor.Regionate(NULL);
+  rtor.Regionate(nullptr);
 
   // A 4 level RbNL hierarchy has one root, 4 children, 16 grand-children,
   // and 64 great-grand-children.  This is partly particular to
@@ -186,7 +186,7 @@ class LoggingRegionHandler : public RegionHandler {
 
   // RegionHandler::GetFeature()
   virtual kmldom::FeaturePtr GetFeature(const kmldom::RegionPtr& region) {
-    return NULL;
+    return nullptr;
   }
 
   // RegionHandler::SaveKml()
@@ -205,7 +205,7 @@ TEST_F(RegionatorTest, SimpleRegionateAligned) {
 
   const kmldom::RegionPtr region = kmlconvenience::CreateRegion2d(1, -1, 1, -1,
                                                                   128, 1024);
-  ASSERT_TRUE(Regionator::RegionateAligned(rha, region, NULL));
+  ASSERT_TRUE(Regionator::RegionateAligned(rha, region, nullptr));
   ASSERT_EQ(static_cast<size_t>(1), region_vector.size());
   const kmldom::LatLonAltBoxPtr llab = region_vector[0]->get_latlonaltbox();
   ASSERT_EQ(180, llab->get_north());
@@ -219,7 +219,7 @@ TEST_F(RegionatorTest, SetRootFilenameTest) {
   Regionator rtor(depth2, kmlconvenience::CreateRegion2d(10,0,10,0,128,-1));
   const string kPickleKml("pickle.kml");
   rtor.SetRootFilename(kPickleKml.c_str());
-  rtor.Regionate(NULL);
+  rtor.Regionate(nullptr);
   ASSERT_EQ(kmldom::Type_kml, kml_file_map_[kPickleKml]->Type());
   const string k2Kml("2.kml");
   ASSERT_EQ(kmldom::Type_kml, kml_file_map_[k2Kml]->Type());
@@ -247,7 +247,7 @@ TEST_F(RegionatorTest, SetNaturalRegionTest) {
       kmlconvenience::CreateRegion2d(north,south,east,west,128,-1);
   Regionator rtor(depth2, region);
   rtor.SetNaturalRegion(region);
-  rtor.Regionate(NULL);
+  rtor.Regionate(nullptr);
   kmldom::KmlPtr kml = kml_file_map_["1.kml"];
   ASSERT_TRUE(kml != 0);
   ASSERT_TRUE(kml->has_feature());

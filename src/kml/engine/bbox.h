@@ -25,8 +25,7 @@
 
 // This file contains the definition of the Bbox class.
 
-#ifndef KML_ENGINE_BBOX_H__
-#define KML_ENGINE_BBOX_H__
+#pragma once
 
 namespace kmlengine {
 
@@ -189,4 +188,3 @@ class Bbox {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_BBOX_H__

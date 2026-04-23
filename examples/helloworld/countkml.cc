@@ -29,13 +29,14 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 #include "kml/dom/xsd.h"  // TODO: consider the Xsd class public?
 #include "kml/engine.h"
 #include "kml/base/file.h"
 
 using kmlengine::KmzFile;
+using kmlengine::KmzFilePtr;
 using std::cout;
 using std::endl;
 
@@ -91,7 +92,7 @@ int main(int argc, char** argv) {
   // If the file was KMZ, extract the KML file.
   std::string kml;
   if (KmzFile::IsKmz(file_data)) {
-    boost::scoped_ptr<KmzFile> kmz_file(KmzFile::OpenFromString(file_data));
+    KmzFilePtr kmz_file(KmzFile::OpenFromString(file_data));
     if (!kmz_file.get()) {
       cout << "Failed opening KMZ file" << endl;
       return 1;

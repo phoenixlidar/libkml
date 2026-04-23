@@ -31,11 +31,11 @@
 
 namespace kmldom {
 
-KmlFactory* KmlFactory::factory_ = NULL;
+KmlFactory* KmlFactory::factory_ = nullptr;
 
 // static
 KmlFactory* KmlFactory::GetFactory() {
-  if (factory_ == NULL) {
+  if (factory_ == nullptr) {
     factory_ = new KmlFactory();
   }
   return factory_;
@@ -137,7 +137,7 @@ ElementPtr KmlFactory::CreateElementById(KmlDomType id) const {
   case Type_GxTrack: return CreateGxTrack();
   case Type_GxWait: return CreateGxWait();
 
-  default: return NULL;
+  default: return nullptr;
   }
 }
 
@@ -146,376 +146,376 @@ ElementPtr KmlFactory::CreateElementFromName(const string& element_name) const {
       static_cast<KmlDomType>(Xsd::GetSchema()->ElementId(element_name)));
 }
 
-Field* KmlFactory::CreateFieldById(KmlDomType type_id) const {
-  return new Field(type_id);
+FieldPtr KmlFactory::CreateFieldById(KmlDomType type_id) const {
+  return std::shared_ptr<Field>(new Field(type_id));
 }
 
-Alias* KmlFactory::CreateAlias() const {
-  return new Alias();
+AliasPtr KmlFactory::CreateAlias() const {
+  return std::shared_ptr<Alias>(new Alias());
 }
 
-AtomAuthor* KmlFactory::CreateAtomAuthor() const {
-  return new AtomAuthor();
+AtomAuthorPtr KmlFactory::CreateAtomAuthor() const {
+  return std::shared_ptr<AtomAuthor>(new AtomAuthor());
 }
 
-AtomCategory* KmlFactory::CreateAtomCategory() const {
-  return new AtomCategory();
+AtomCategoryPtr KmlFactory::CreateAtomCategory() const {
+  return std::shared_ptr<AtomCategory>(new AtomCategory());
 }
 
-AtomContent* KmlFactory::CreateAtomContent() const {
-  return new AtomContent();
+AtomContentPtr KmlFactory::CreateAtomContent() const {
+  return std::shared_ptr<AtomContent>(new AtomContent());
 }
 
-AtomEntry* KmlFactory::CreateAtomEntry() const {
-  return new AtomEntry();
+AtomEntryPtr KmlFactory::CreateAtomEntry() const {
+  return std::shared_ptr<AtomEntry>(new AtomEntry());
 }
 
-AtomFeed* KmlFactory::CreateAtomFeed() const {
-  return new AtomFeed();
+AtomFeedPtr KmlFactory::CreateAtomFeed() const {
+  return std::shared_ptr<AtomFeed>(new AtomFeed());
 }
 
-AtomLink* KmlFactory::CreateAtomLink() const {
-  return new AtomLink();
+AtomLinkPtr KmlFactory::CreateAtomLink() const {
+  return std::shared_ptr<AtomLink>(new AtomLink());
 }
 
-BalloonStyle* KmlFactory::CreateBalloonStyle() const {
-  return new BalloonStyle();
+BalloonStylePtr KmlFactory::CreateBalloonStyle() const {
+  return std::shared_ptr<BalloonStyle>(new BalloonStyle());
 }
 
-Camera* KmlFactory::CreateCamera() const {
-  return new Camera();
+CameraPtr KmlFactory::CreateCamera() const {
+  return std::shared_ptr<Camera>(new Camera());
 }
 
-Change* KmlFactory::CreateChange() const {
-  return new Change();
+ChangePtr KmlFactory::CreateChange() const {
+  return std::shared_ptr<Change>(new Change());
 }
 
-Create* KmlFactory::CreateCreate() const {
-  return new Create();
+CreatePtr KmlFactory::CreateCreate() const {
+  return std::shared_ptr<Create>(new Create());
 }
 
-Data* KmlFactory::CreateData() const {
-  return new Data();
+DataPtr KmlFactory::CreateData() const {
+  return std::shared_ptr<Data>(new Data());
 }
 
-Delete* KmlFactory::CreateDelete() const {
-  return new Delete();
+DeletePtr KmlFactory::CreateDelete() const {
+  return std::shared_ptr<Delete>(new Delete());
 }
 
-Document* KmlFactory::CreateDocument() const {
-  return new Document();
+DocumentPtr KmlFactory::CreateDocument() const {
+  return std::shared_ptr<Document>(new Document());
 }
 
-ExtendedData* KmlFactory::CreateExtendedData() const {
-  return new ExtendedData();
+ExtendedDataPtr KmlFactory::CreateExtendedData() const {
+  return std::shared_ptr<ExtendedData>(new ExtendedData());
 }
 
-Folder* KmlFactory::CreateFolder() const {
-  return new Folder();
+FolderPtr KmlFactory::CreateFolder() const {
+  return std::shared_ptr<Folder>(new Folder());
 }
 
-GroundOverlay* KmlFactory::CreateGroundOverlay() const {
-  return new GroundOverlay();
+GroundOverlayPtr KmlFactory::CreateGroundOverlay() const {
+  return std::shared_ptr<GroundOverlay>(new GroundOverlay());
 }
 
-HotSpot* KmlFactory::CreateHotSpot() const {
-  return new HotSpot();
+HotSpotPtr KmlFactory::CreateHotSpot() const {
+  return std::shared_ptr<HotSpot>(new HotSpot());
 }
 
-Icon* KmlFactory::CreateIcon() const {
-  return new Icon();
+IconPtr KmlFactory::CreateIcon() const {
+  return std::shared_ptr<Icon>(new Icon());
 }
 
-IconStyle* KmlFactory::CreateIconStyle() const {
-  return new IconStyle();
+IconStylePtr KmlFactory::CreateIconStyle() const {
+  return std::shared_ptr<IconStyle>(new IconStyle());
 }
 
-IconStyleIcon* KmlFactory::CreateIconStyleIcon() const {
-  return new IconStyleIcon();
+IconStyleIconPtr KmlFactory::CreateIconStyleIcon() const {
+  return std::shared_ptr<IconStyleIcon>(new IconStyleIcon());
 }
 
-ImagePyramid* KmlFactory::CreateImagePyramid() const {
-  return new ImagePyramid();
+ImagePyramidPtr KmlFactory::CreateImagePyramid() const {
+  return std::shared_ptr<ImagePyramid>(new ImagePyramid());
 }
 
-InnerBoundaryIs* KmlFactory::CreateInnerBoundaryIs() const {
-  return new InnerBoundaryIs();
+InnerBoundaryIsPtr KmlFactory::CreateInnerBoundaryIs() const {
+  return std::shared_ptr<InnerBoundaryIs>(new InnerBoundaryIs());
 }
 
-ItemIcon* KmlFactory::CreateItemIcon() const {
-  return new ItemIcon();
+ItemIconPtr KmlFactory::CreateItemIcon() const {
+  return std::shared_ptr<ItemIcon>(new ItemIcon());
 }
 
-Kml* KmlFactory::CreateKml() const {
-  return new Kml();
+KmlPtr KmlFactory::CreateKml() const {
+  return std::shared_ptr<Kml>(new Kml());
 }
 
-LabelStyle* KmlFactory::CreateLabelStyle() const {
-  return new LabelStyle();
+LabelStylePtr KmlFactory::CreateLabelStyle() const {
+  return std::shared_ptr<LabelStyle>(new LabelStyle());
 }
 
-LatLonBox* KmlFactory::CreateLatLonBox() const {
-  return new LatLonBox();
+LatLonBoxPtr KmlFactory::CreateLatLonBox() const {
+  return std::shared_ptr<LatLonBox>(new LatLonBox());
 }
 
-LatLonAltBox* KmlFactory::CreateLatLonAltBox() const {
-  return new LatLonAltBox();
+LatLonAltBoxPtr KmlFactory::CreateLatLonAltBox() const {
+  return std::shared_ptr<LatLonAltBox>(new LatLonAltBox());
 }
 
-LinearRing* KmlFactory::CreateLinearRing() const {
-  return new LinearRing();
+LinearRingPtr KmlFactory::CreateLinearRing() const {
+  return std::shared_ptr<LinearRing>(new LinearRing());
 }
 
-LineString* KmlFactory::CreateLineString() const {
-  return new LineString();
+LineStringPtr KmlFactory::CreateLineString() const {
+  return std::shared_ptr<LineString>(new LineString());
 }
 
-LineStyle* KmlFactory::CreateLineStyle() const {
-  return new LineStyle();
+LineStylePtr KmlFactory::CreateLineStyle() const {
+  return std::shared_ptr<LineStyle>(new LineStyle());
 }
 
-Link* KmlFactory::CreateLink() const {
-  return new Link();
+LinkPtr KmlFactory::CreateLink() const {
+  return std::shared_ptr<Link>(new Link());
 }
 
-LinkSnippet* KmlFactory::CreateLinkSnippet() const {
-  return new LinkSnippet();
+LinkSnippetPtr KmlFactory::CreateLinkSnippet() const {
+  return std::shared_ptr<LinkSnippet>(new LinkSnippet());
 }
 
-ListStyle* KmlFactory::CreateListStyle() const {
-  return new ListStyle();
+ListStylePtr KmlFactory::CreateListStyle() const {
+  return std::shared_ptr<ListStyle>(new ListStyle());
 }
 
-Location* KmlFactory::CreateLocation() const {
-  return new Location();
+LocationPtr KmlFactory::CreateLocation() const {
+  return std::shared_ptr<Location>(new Location());
 }
 
-Lod* KmlFactory::CreateLod() const {
-  return new Lod();
+LodPtr KmlFactory::CreateLod() const {
+  return std::shared_ptr<Lod>(new Lod());
 }
 
-LookAt* KmlFactory::CreateLookAt() const {
-  return new LookAt();
+LookAtPtr KmlFactory::CreateLookAt() const {
+  return std::shared_ptr<LookAt>(new LookAt());
 }
 
-Metadata* KmlFactory::CreateMetadata() const {
-  return new Metadata();
+MetadataPtr KmlFactory::CreateMetadata() const {
+  return std::shared_ptr<Metadata>(new Metadata());
 }
 
-Model* KmlFactory::CreateModel() const {
-  return new Model();
+ModelPtr KmlFactory::CreateModel() const {
+  return std::shared_ptr<Model>(new Model());
 }
 
-MultiGeometry* KmlFactory::CreateMultiGeometry() const {
-  return new MultiGeometry();
+MultiGeometryPtr KmlFactory::CreateMultiGeometry() const {
+  return std::shared_ptr<MultiGeometry>(new MultiGeometry());
 }
 
-NetworkLink* KmlFactory::CreateNetworkLink() const {
-  return new NetworkLink();
+NetworkLinkPtr KmlFactory::CreateNetworkLink() const {
+  return std::shared_ptr<NetworkLink>(new NetworkLink());
 }
 
-NetworkLinkControl* KmlFactory::CreateNetworkLinkControl() const {
-  return new NetworkLinkControl();
+NetworkLinkControlPtr KmlFactory::CreateNetworkLinkControl() const {
+  return std::shared_ptr<NetworkLinkControl>(new NetworkLinkControl());
 }
 
-Orientation* KmlFactory::CreateOrientation() const {
-  return new Orientation();
+OrientationPtr KmlFactory::CreateOrientation() const {
+  return std::shared_ptr<Orientation>(new Orientation());
 }
 
-OuterBoundaryIs* KmlFactory::CreateOuterBoundaryIs() const {
-  return new OuterBoundaryIs();
+OuterBoundaryIsPtr KmlFactory::CreateOuterBoundaryIs() const {
+  return std::shared_ptr<OuterBoundaryIs>(new OuterBoundaryIs());
 }
 
-OverlayXY* KmlFactory::CreateOverlayXY() const {
-  return new OverlayXY();
+OverlayXYPtr KmlFactory::CreateOverlayXY() const {
+  return std::shared_ptr<OverlayXY>(new OverlayXY());
 }
 
-Pair* KmlFactory::CreatePair() const {
-  return new Pair();
+PairPtr KmlFactory::CreatePair() const {
+  return std::shared_ptr<Pair>(new Pair());
 }
 
-PhotoOverlay* KmlFactory::CreatePhotoOverlay() const {
-  return new PhotoOverlay();
+PhotoOverlayPtr KmlFactory::CreatePhotoOverlay() const {
+  return std::shared_ptr<PhotoOverlay>(new PhotoOverlay());
 }
 
-Placemark* KmlFactory::CreatePlacemark() const {
-  return new Placemark();
+PlacemarkPtr KmlFactory::CreatePlacemark() const {
+  return std::shared_ptr<Placemark>(new Placemark());
 }
 
-Point* KmlFactory::CreatePoint() const {
-  return new Point();
+PointPtr KmlFactory::CreatePoint() const {
+  return std::shared_ptr<Point>(new Point());
 }
 
-Polygon* KmlFactory::CreatePolygon() const {
-  return new Polygon();
+PolygonPtr KmlFactory::CreatePolygon() const {
+  return std::shared_ptr<Polygon>(new Polygon());
 }
 
-PolyStyle* KmlFactory::CreatePolyStyle() const {
-  return new PolyStyle();
+PolyStylePtr KmlFactory::CreatePolyStyle() const {
+  return std::shared_ptr<PolyStyle>(new PolyStyle());
 }
 
-Region* KmlFactory::CreateRegion() const {
-  return new Region();
+RegionPtr KmlFactory::CreateRegion() const {
+  return std::shared_ptr<Region>(new Region());
 }
 
-ResourceMap* KmlFactory::CreateResourceMap() const {
-  return new ResourceMap();
+ResourceMapPtr KmlFactory::CreateResourceMap() const {
+  return std::shared_ptr<ResourceMap>(new ResourceMap());
 }
 
-RotationXY* KmlFactory::CreateRotationXY() const {
-  return new RotationXY();
+RotationXYPtr KmlFactory::CreateRotationXY() const {
+  return std::shared_ptr<RotationXY>(new RotationXY());
 }
 
-Scale* KmlFactory::CreateScale() const {
-  return new Scale();
+ScalePtr KmlFactory::CreateScale() const {
+  return std::shared_ptr<Scale>(new Scale());
 }
 
-ScreenOverlay* KmlFactory::CreateScreenOverlay() const {
-  return new ScreenOverlay();
+ScreenOverlayPtr KmlFactory::CreateScreenOverlay() const {
+  return std::shared_ptr<ScreenOverlay>(new ScreenOverlay());
 }
 
-Coordinates* KmlFactory::CreateCoordinates() const {
-  return new Coordinates();
+CoordinatesPtr KmlFactory::CreateCoordinates() const {
+  return std::shared_ptr<Coordinates>(new Coordinates());
 }
 
-ScreenXY* KmlFactory::CreateScreenXY() const {
-  return new ScreenXY();
+ScreenXYPtr KmlFactory::CreateScreenXY() const {
+  return std::shared_ptr<ScreenXY>(new ScreenXY());
 }
 
-Schema* KmlFactory::CreateSchema() const {
-  return new Schema();
+SchemaPtr KmlFactory::CreateSchema() const {
+  return std::shared_ptr<Schema>(new Schema());
 }
 
-SchemaData* KmlFactory::CreateSchemaData() const {
-  return new SchemaData();
+SchemaDataPtr KmlFactory::CreateSchemaData() const {
+  return std::shared_ptr<SchemaData>(new SchemaData());
 }
 
-Update* KmlFactory::CreateUpdate() const {
-  return new Update();
+UpdatePtr KmlFactory::CreateUpdate() const {
+  return std::shared_ptr<Update>(new Update());
 }
 
-Url* KmlFactory::CreateUrl() const {
-  return new Url();
+UrlPtr KmlFactory::CreateUrl() const {
+  return std::shared_ptr<Url>(new Url());
 }
 
-SimpleData* KmlFactory::CreateSimpleData() const {
-  return new SimpleData();
+SimpleDataPtr KmlFactory::CreateSimpleData() const {
+  return std::shared_ptr<SimpleData>(new SimpleData());
 }
 
-SimpleField* KmlFactory::CreateSimpleField() const {
-  return new SimpleField();
+SimpleFieldPtr KmlFactory::CreateSimpleField() const {
+  return std::shared_ptr<SimpleField>(new SimpleField());
 }
 
-Size* KmlFactory::CreateSize() const {
-  return new Size();
+SizePtr KmlFactory::CreateSize() const {
+  return std::shared_ptr<Size>(new Size());
 }
 
-Snippet* KmlFactory::CreateSnippet() const {
-  return new Snippet();
+SnippetPtr KmlFactory::CreateSnippet() const {
+  return std::shared_ptr<Snippet>(new Snippet());
 }
 
-Style* KmlFactory::CreateStyle() const {
-  return new Style();
+StylePtr KmlFactory::CreateStyle() const {
+  return std::shared_ptr<Style>(new Style());
 }
 
-StyleMap* KmlFactory::CreateStyleMap() const {
-  return new StyleMap();
+StyleMapPtr KmlFactory::CreateStyleMap() const {
+  return std::shared_ptr<StyleMap>(new StyleMap());
 }
 
-TimeSpan* KmlFactory::CreateTimeSpan() const {
-  return new TimeSpan();
+TimeSpanPtr KmlFactory::CreateTimeSpan() const {
+  return std::shared_ptr<TimeSpan>(new TimeSpan());
 }
 
-TimeStamp* KmlFactory::CreateTimeStamp() const {
-  return new TimeStamp();
+TimeStampPtr KmlFactory::CreateTimeStamp() const {
+  return std::shared_ptr<TimeStamp>(new TimeStamp());
 }
 
-ViewVolume* KmlFactory::CreateViewVolume() const {
-  return new ViewVolume();
+ViewVolumePtr KmlFactory::CreateViewVolume() const {
+  return std::shared_ptr<ViewVolume>(new ViewVolume());
 }
 
-XalAddressDetails* KmlFactory::CreateXalAddressDetails() const {
-  return new XalAddressDetails();
+XalAddressDetailsPtr KmlFactory::CreateXalAddressDetails() const {
+  return std::shared_ptr<XalAddressDetails>(new XalAddressDetails());
 }
 
-XalAdministrativeArea* KmlFactory::CreateXalAdministrativeArea() const {
-  return new XalAdministrativeArea();
+XalAdministrativeAreaPtr KmlFactory::CreateXalAdministrativeArea() const {
+  return std::shared_ptr<XalAdministrativeArea>(new XalAdministrativeArea());
 }
 
-XalCountry* KmlFactory::CreateXalCountry() const {
-  return new XalCountry();
+XalCountryPtr KmlFactory::CreateXalCountry() const {
+  return std::shared_ptr<XalCountry>(new XalCountry());
 }
 
-XalLocality* KmlFactory::CreateXalLocality() const {
-  return new XalLocality();
+XalLocalityPtr KmlFactory::CreateXalLocality() const {
+  return std::shared_ptr<XalLocality>(new XalLocality());
 }
 
-XalPostalCode* KmlFactory::CreateXalPostalCode() const {
-  return new XalPostalCode();
+XalPostalCodePtr KmlFactory::CreateXalPostalCode() const {
+  return std::shared_ptr<XalPostalCode>(new XalPostalCode());
 }
 
-XalSubAdministrativeArea* KmlFactory::CreateXalSubAdministrativeArea() const {
-  return new XalSubAdministrativeArea();
+XalSubAdministrativeAreaPtr KmlFactory::CreateXalSubAdministrativeArea() const {
+  return std::shared_ptr<XalSubAdministrativeArea>(new XalSubAdministrativeArea());
 }
 
-XalThoroughfare* KmlFactory::CreateXalThoroughfare() const {
-  return new XalThoroughfare();
+XalThoroughfarePtr KmlFactory::CreateXalThoroughfare() const {
+  return std::shared_ptr<XalThoroughfare>(new XalThoroughfare());
 }
 
-GxAnimatedUpdate* KmlFactory::CreateGxAnimatedUpdate() const {
-  return new GxAnimatedUpdate();
+GxAnimatedUpdatePtr KmlFactory::CreateGxAnimatedUpdate() const {
+  return std::shared_ptr<GxAnimatedUpdate>(new GxAnimatedUpdate());
 }
 
-GxFlyTo* KmlFactory::CreateGxFlyTo() const {
-  return new GxFlyTo();
+GxFlyToPtr KmlFactory::CreateGxFlyTo() const {
+  return std::shared_ptr<GxFlyTo>(new GxFlyTo());
 }
 
-GxLatLonQuad* KmlFactory::CreateGxLatLonQuad() const {
-  return new GxLatLonQuad();
+GxLatLonQuadPtr KmlFactory::CreateGxLatLonQuad() const {
+  return std::shared_ptr<GxLatLonQuad>(new GxLatLonQuad());
 }
 
-GxMultiTrack* KmlFactory::CreateGxMultiTrack() const {
-  return new GxMultiTrack();
+GxMultiTrackPtr KmlFactory::CreateGxMultiTrack() const {
+  return std::shared_ptr<GxMultiTrack>(new GxMultiTrack());
 }
 
-GxPlaylist* KmlFactory::CreateGxPlaylist() const {
-  return new GxPlaylist();
+GxPlaylistPtr KmlFactory::CreateGxPlaylist() const {
+  return std::shared_ptr<GxPlaylist>(new GxPlaylist());
 }
 
-GxSimpleArrayData* KmlFactory::CreateGxSimpleArrayData() const {
-  return new GxSimpleArrayData();
+GxSimpleArrayDataPtr KmlFactory::CreateGxSimpleArrayData() const {
+  return std::shared_ptr<GxSimpleArrayData>(new GxSimpleArrayData());
 }
 
-GxSimpleArrayField* KmlFactory::CreateGxSimpleArrayField() const {
-  return new GxSimpleArrayField();
+GxSimpleArrayFieldPtr KmlFactory::CreateGxSimpleArrayField() const {
+  return std::shared_ptr<GxSimpleArrayField>(new GxSimpleArrayField());
 }
 
-GxSoundCue* KmlFactory::CreateGxSoundCue() const {
-  return new GxSoundCue();
+GxSoundCuePtr KmlFactory::CreateGxSoundCue() const {
+  return std::shared_ptr<GxSoundCue>(new GxSoundCue());
 }
 
-GxTimeSpan* KmlFactory::CreateGxTimeSpan() const {
-  return new GxTimeSpan();
+GxTimeSpanPtr KmlFactory::CreateGxTimeSpan() const {
+  return std::shared_ptr<GxTimeSpan>(new GxTimeSpan());
 }
 
-GxTimeStamp* KmlFactory::CreateGxTimeStamp() const {
-  return new GxTimeStamp();
+GxTimeStampPtr KmlFactory::CreateGxTimeStamp() const {
+  return std::shared_ptr<GxTimeStamp>(new GxTimeStamp());
 }
 
-GxTour* KmlFactory::CreateGxTour() const {
-  return new GxTour();
+GxTourPtr KmlFactory::CreateGxTour() const {
+  return std::shared_ptr<GxTour>(new GxTour());
 }
 
-GxTourControl* KmlFactory::CreateGxTourControl() const {
-  return new GxTourControl();
+GxTourControlPtr KmlFactory::CreateGxTourControl() const {
+  return std::shared_ptr<GxTourControl>(new GxTourControl());
 }
 
-GxTrack* KmlFactory::CreateGxTrack() const {
-  return new GxTrack();
+GxTrackPtr KmlFactory::CreateGxTrack() const {
+  return std::shared_ptr<GxTrack>(new GxTrack());
 }
 
-GxWait* KmlFactory::CreateGxWait() const {
-  return new GxWait();
+GxWaitPtr KmlFactory::CreateGxWait() const {
+  return std::shared_ptr<GxWait>(new GxWait());
 }
 
 }  // namespace kmldom

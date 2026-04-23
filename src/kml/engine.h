@@ -26,8 +26,7 @@
 // This is the main include file for the KMLENGINE library. Clients of
 // kmlengine should include only this header file.
 
-#ifndef KML_ENGINE_H__
-#define KML_ENGINE_H__
+#pragma once
 
 #include "kml/engine/bbox.h"
 #include "kml/engine/clone.h"
@@ -57,4 +56,3 @@
 #include "kml/engine/style_splitter.h"
 #include "kml/engine/update.h"
 
-#endif  // KML_ENGINE_H__

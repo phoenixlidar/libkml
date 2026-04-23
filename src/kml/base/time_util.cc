@@ -24,7 +24,7 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "kml/base/time_util.h"
-#include <cstddef>  // NULL
+#include <cstddef>  // nullptr
 #ifdef WIN32
 #include <winsock2.h>  // This header MUST come before windows.h. See
 #include <windows.h>   // http://code.google.com/p/libkml/issues/detail?id=31
@@ -64,7 +64,7 @@ void gettimeofday(struct timeval* tv, void *) {
 // This is here because Windows has no gettimeofday().
 double GetMicroTime() {
   struct timeval now_tv;
-  gettimeofday(&now_tv, NULL);
+  gettimeofday(&now_tv, nullptr);
   // Make this one double with secs.microseconds.
   return (double)now_tv.tv_sec + (double)now_tv.tv_usec/1000000;
 }

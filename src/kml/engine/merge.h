@@ -27,8 +27,7 @@
 // functions.
 // TODO: move these to an engine-specific kml_funcs.h
 
-#ifndef KML_ENGINE_MERGE_H__
-#define KML_ENGINE_MERGE_H__
+#pragma once
 
 #include "kml/dom.h"
 
@@ -59,4 +58,3 @@ void MergeElements(const kmldom::ElementPtr& source, kmldom::ElementPtr target);
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_MERGE_H__

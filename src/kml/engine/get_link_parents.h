@@ -26,8 +26,7 @@
 // This file contains the declaration of the GetLinkParents() function and the
 // definition of the GetLinkParentsParserObserver.
 
-#ifndef KML_ENGINE_GET_LINK_PARENTS_H__
-#define KML_ENGINE_GET_LINK_PARENTS_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom.h"
@@ -61,11 +60,10 @@ class GetLinkParentsParserObserver : public kmldom::ParserObserver {
 };
 
 // This function appends all Elements with link children to the supplied
-// vector.  This returns false if a NULL vector pointer is supplied or if the
+// vector.  This returns false if a nullptr vector pointer is supplied or if the
 // parse of the kml fails.  See the IsLinkParent() and IsIconParent()
 // functions for the definition of "Element with link child".
 bool GetLinkParents(const string& kml, ElementVector* link_parent_vector);
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_GET_LINK_PARENTS_H__

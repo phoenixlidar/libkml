@@ -52,32 +52,32 @@ TEST_F(StyleTest, TestType) {
 // Verify proper defaults:
 TEST_F(StyleTest, TestDefaults) {
   ASSERT_FALSE(style_->has_iconstyle());
-  ASSERT_TRUE(NULL == style_->get_iconstyle());
+  ASSERT_TRUE(nullptr == style_->get_iconstyle());
   ASSERT_FALSE(style_->has_labelstyle());
-  ASSERT_TRUE(NULL == style_->get_labelstyle());
+  ASSERT_TRUE(nullptr == style_->get_labelstyle());
   ASSERT_FALSE(style_->has_linestyle());
-  ASSERT_TRUE(NULL == style_->get_linestyle());
+  ASSERT_TRUE(nullptr == style_->get_linestyle());
   ASSERT_FALSE(style_->has_polystyle());
-  ASSERT_TRUE(NULL == style_->get_polystyle());
+  ASSERT_TRUE(nullptr == style_->get_polystyle());
   ASSERT_FALSE(style_->has_balloonstyle());
-  ASSERT_TRUE(NULL == style_->get_balloonstyle());
+  ASSERT_TRUE(nullptr == style_->get_balloonstyle());
   ASSERT_FALSE(style_->has_liststyle());
-  ASSERT_TRUE(NULL == style_->get_liststyle());
+  ASSERT_TRUE(nullptr == style_->get_liststyle());
 }
 
 // Verify setting default makes has_xxx() true:
 TEST_F(StyleTest, TestSetToDefaultValues) {
-  style_->set_iconstyle(NULL);  // should not crash
+  style_->set_iconstyle(nullptr);  // should not crash
   ASSERT_FALSE(style_->has_iconstyle());  // ptr is null
-  style_->set_labelstyle(NULL);
+  style_->set_labelstyle(nullptr);
   ASSERT_FALSE(style_->has_labelstyle());
-  style_->set_linestyle(NULL);
+  style_->set_linestyle(nullptr);
   ASSERT_FALSE(style_->has_linestyle());
-  style_->set_polystyle(NULL);
+  style_->set_polystyle(nullptr);
   ASSERT_FALSE(style_->has_polystyle());
-  style_->set_balloonstyle(NULL);
+  style_->set_balloonstyle(nullptr);
   ASSERT_FALSE(style_->has_balloonstyle());
-  style_->set_liststyle(NULL);
+  style_->set_liststyle(nullptr);
   ASSERT_FALSE(style_->has_liststyle());
 }
 

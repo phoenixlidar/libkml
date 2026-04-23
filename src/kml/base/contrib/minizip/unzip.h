@@ -42,8 +42,7 @@
       ftp://ftp.pkware.com/probdesc.zip
 */
 
-#ifndef _unz_H
-#define _unz_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -318,4 +317,3 @@ extern voidpf  ZEXPORT libkml_unzDetach OF((unzFile*));
 }
 #endif
 
-#endif /* _unz_H */

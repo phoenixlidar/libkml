@@ -210,19 +210,19 @@ TEST(StringUtilTest, TestStringToDouble) {
   double val;
 
   ASSERT_TRUE(StringToDouble("3.1415", &val));
-  ASSERT_TRUE(StringToDouble("3.1415", NULL));
+  ASSERT_TRUE(StringToDouble("3.1415", nullptr));
   ASSERT_DOUBLE_EQ(3.1415, val);
 
   ASSERT_TRUE(StringToDouble("52.566571", &val));
-  ASSERT_TRUE(StringToDouble("52.566571", NULL));
+  ASSERT_TRUE(StringToDouble("52.566571", nullptr));
   ASSERT_DOUBLE_EQ(52.566571, val);
 
   ASSERT_TRUE(StringToDouble("-1.680006", &val));
-  ASSERT_TRUE(StringToDouble("-1.680006", NULL));
+  ASSERT_TRUE(StringToDouble("-1.680006", nullptr));
   ASSERT_DOUBLE_EQ(-1.680006, val);
 
   ASSERT_TRUE(StringToDouble(".1", &val));
-  ASSERT_TRUE(StringToDouble(".1", NULL));
+  ASSERT_TRUE(StringToDouble(".1", nullptr));
   ASSERT_DOUBLE_EQ(.1, val);
 }
 

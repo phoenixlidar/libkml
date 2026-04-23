@@ -127,28 +127,28 @@ static struct {
   "http",
   "maps.google.com",
   "mapfiles/kml/pushpin/ylw-pushpin.png",
-  NULL
+  nullptr
   },
   {
   "#msn_ylw-pushpin",
   true,
-  NULL,
-  NULL,
-  NULL,
+  nullptr,
+  nullptr,
+  nullptr,
   "msn_ylw-pushpin"
   },
   {
   "files/zermatt.jpg",
   true,
-  NULL,
-  NULL,
+  nullptr,
+  nullptr,
   "files/zermatt.jpg",
-  NULL
+  nullptr
   }
 };
 
 // This is a helper function to convert the want string to a string
-// and compare to got.  If want is NULL then got is expected to be empty.
+// and compare to got.  If want is nullptr then got is expected to be empty.
 void HrefTest::VerifyString(const char* want, const string& got) {
   if (want) {
     ASSERT_EQ(string(want), got);

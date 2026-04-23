@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_SUBSTYLE_H__
-#define KML_DOM_SUBSTYLE_H__
+#pragma once
 
 #include "kml/dom/object.h"
 #include "kml/dom/kml22.h"
@@ -55,4 +54,3 @@ class SubStyle : public Object {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_SUBSTYLE_H__

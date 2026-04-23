@@ -25,7 +25,7 @@
 
 // This file contains the unit test for the abstract Feature element.
 
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/dom/feature.h"
 #include "kml/dom/kmldom.h"
 #include "kml/dom/kml_factory.h"
@@ -38,13 +38,13 @@ namespace kmldom {
 class FeatureTest : public testing::Test {
  protected:
   virtual void SetUp() {
-    feature_ = new TestFeature();
+    feature_ = std::make_shared<TestFeature>();
   }
 
   // Feature is abstract, hence its constructor is protected.
   class TestFeature : public Feature {
   };
-  boost::intrusive_ptr<TestFeature> feature_;
+  std::shared_ptr<TestFeature> feature_;
 };
 
 TEST_F(FeatureTest, TestType) {
@@ -68,19 +68,19 @@ TEST_F(FeatureTest, TestDefaults) {
   ASSERT_FALSE(feature_->has_phonenumber());
   ASSERT_EQ(string(""), feature_->get_phonenumber());
   ASSERT_FALSE(feature_->has_snippet());
-  ASSERT_TRUE(NULL == feature_->get_snippet());
+  ASSERT_TRUE(nullptr == feature_->get_snippet());
   ASSERT_FALSE(feature_->has_description());
   ASSERT_EQ(string(""), feature_->get_description());
   ASSERT_FALSE(feature_->has_abstractview());
-  ASSERT_TRUE(NULL == feature_->get_abstractview());
+  ASSERT_TRUE(nullptr == feature_->get_abstractview());
   ASSERT_FALSE(feature_->has_timeprimitive());
-  ASSERT_TRUE(NULL == feature_->get_timeprimitive());
+  ASSERT_TRUE(nullptr == feature_->get_timeprimitive());
   ASSERT_FALSE(feature_->has_styleurl());
   ASSERT_EQ(string(""), feature_->get_styleurl());
   ASSERT_FALSE(feature_->has_styleselector());
-  ASSERT_TRUE(NULL == feature_->get_styleselector());
+  ASSERT_TRUE(nullptr == feature_->get_styleselector());
   ASSERT_FALSE(feature_->has_region());
-  ASSERT_TRUE(NULL == feature_->get_region());
+  ASSERT_TRUE(nullptr == feature_->get_region());
   ASSERT_FALSE(feature_->has_gx_balloonvisibility());
   ASSERT_FALSE(feature_->get_gx_balloonvisibility());
 }
@@ -226,19 +226,19 @@ TEST_F(FeatureTest, TestSetGetHasClear) {
   ASSERT_FALSE(feature_->has_phonenumber());
   ASSERT_EQ(string(""), feature_->get_phonenumber());
   ASSERT_FALSE(feature_->has_snippet());
-  ASSERT_TRUE(NULL == feature_->get_snippet());
+  ASSERT_TRUE(nullptr == feature_->get_snippet());
   ASSERT_FALSE(feature_->has_description());
   ASSERT_EQ(string(""), feature_->get_description());
   ASSERT_FALSE(feature_->has_abstractview());
-  ASSERT_TRUE(NULL == feature_->get_abstractview());
+  ASSERT_TRUE(nullptr == feature_->get_abstractview());
   ASSERT_FALSE(feature_->has_timeprimitive());
-  ASSERT_TRUE(NULL == feature_->get_timeprimitive());
+  ASSERT_TRUE(nullptr == feature_->get_timeprimitive());
   ASSERT_FALSE(feature_->has_styleurl());
   ASSERT_EQ(string(""), feature_->get_styleurl());
   ASSERT_FALSE(feature_->has_styleselector());
-  ASSERT_TRUE(NULL == feature_->get_styleselector());
+  ASSERT_TRUE(nullptr == feature_->get_styleselector());
   ASSERT_FALSE(feature_->has_region());
-  ASSERT_TRUE(NULL == feature_->get_region());
+  ASSERT_TRUE(nullptr == feature_->get_region());
   ASSERT_FALSE(feature_->has_gx_balloonvisibility());
   ASSERT_FALSE(feature_->get_gx_balloonvisibility());
 }
@@ -257,7 +257,7 @@ TEST_F(FeatureTest, ParseSerializeMisplaced) {
       "</Metadata>"
       "</Placemark>");
 
-  ASSERT_EQ(kPlacemark, kmldom::SerializeRaw(kmldom::Parse(kPlacemark, NULL)));
+  ASSERT_EQ(kPlacemark, kmldom::SerializeRaw(kmldom::Parse(kPlacemark, nullptr)));
 }
 
 TEST_F(FeatureTest, TestSerializeGx) {
@@ -295,7 +295,7 @@ TEST_F(FeatureTest, TestSerializeFeature) {
       "</Document>"
       );
 
-  ASSERT_EQ(kExpected, SerializeRaw(kmldom::Parse(kFeature, NULL)));
+  ASSERT_EQ(kExpected, SerializeRaw(kmldom::Parse(kFeature, nullptr)));
 }
 
 }  // end namespace kmldom

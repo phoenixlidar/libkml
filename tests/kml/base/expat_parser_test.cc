@@ -27,7 +27,7 @@
 
 #include "kml/base/expat_parser.h"
 #include "kml/base/file.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/dom/kml_handler.h"
 #include "kml/dom/parser_observer.h"
@@ -249,10 +249,10 @@ TEST_F(ExpatParserTest, TestUnicodeToUtf8) {
   string result_string;
   const XML_Char input_buffer = 'a';
 
-  xmlchar_to_utf8(&input_buffer, NULL);
-  xmlchar_to_utf8(NULL, &result_string);
+  xmlchar_to_utf8(&input_buffer, nullptr);
+  xmlchar_to_utf8(nullptr, &result_string);
   ASSERT_TRUE(result_string.empty());
-  xmlchar_to_utf8(NULL, NULL);
+  xmlchar_to_utf8(nullptr, nullptr);
 
   xmlchar_to_utf8(&input_buffer, &result_string);
   ASSERT_EQ("a", result_string);
@@ -293,7 +293,7 @@ TEST_F(ExpatParserTest, TestXmlUnicodeHandlers) {
   ASSERT_EQ("<A><B>", xml_char_to_string(kXMLChar));
 
   // Check null inputs.
-  s1 = xml_char_to_string(NULL);
+  s1 = xml_char_to_string(nullptr);
   ASSERT_TRUE(s1.empty());
 
   // Check empty inputs.
@@ -308,16 +308,16 @@ TEST_F(ExpatParserTest, TestXmlUnicodeHandlers) {
 
   // Now the array version.
   std::vector <string> a;
-  xml_char_to_string_vec(NULL, &a);
+  xml_char_to_string_vec(nullptr, &a);
   ASSERT_EQ(a.size(), static_cast<size_t>(0));
 
   // Check empty array.
-  const XML_Char* kXMLEmptyArray[] = {NULL};
+  const XML_Char* kXMLEmptyArray[] = {nullptr};
   xml_char_to_string_vec(kXMLEmptyArray, &a);
   ASSERT_EQ(a.size(), static_cast<size_t>(0));
 
   // Check common case.
-  const XML_Char* kXMLArray[] = {kXMLChar, kXMLChar2, NULL};
+  const XML_Char* kXMLArray[] = {kXMLChar, kXMLChar2, nullptr};
   xml_char_to_string_vec(kXMLArray, &a);
   ASSERT_EQ(a.size(), static_cast<size_t>(2));
   ASSERT_EQ(a.at(0), "<A><B>");

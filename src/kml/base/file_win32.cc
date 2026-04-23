@@ -56,7 +56,7 @@ string Wstr2Str(const std::wstring& wstr) {
   size_t s = wstr.size();
   string str(static_cast<int>(s+1), 0);
   WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), static_cast<int>(s), &str[0],
-                      static_cast<int>(s), NULL, NULL);
+                      static_cast<int>(s), nullptr, nullptr);
   return str;
 }
 

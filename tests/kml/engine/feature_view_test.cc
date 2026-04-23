@@ -45,8 +45,8 @@ namespace kmlengine {
 
 TEST(FeatureViewTest, TestComputeFeatureLookAt) {
   KmlFactory* factory = KmlFactory::GetFactory();
-  // Nothing happens when passed NULL.
-  ASSERT_FALSE(ComputeFeatureLookAt(NULL));
+  // Nothing happens when passed nullptr.
+  ASSERT_FALSE(ComputeFeatureLookAt(nullptr));
   // Nothing happens when no abstract view can be computed.
   ASSERT_FALSE(ComputeFeatureLookAt(factory->CreateDocument()));
   ASSERT_FALSE(ComputeFeatureLookAt(factory->CreateFolder()));

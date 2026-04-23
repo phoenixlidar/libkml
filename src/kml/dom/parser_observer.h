@@ -25,8 +25,7 @@
 
 // This file defines the ParserObserver base class.
 
-#ifndef KML_DOM_PARSER_OBSERVER_H__
-#define KML_DOM_PARSER_OBSERVER_H__
+#pragma once
 
 #include "kml/dom/kml_ptr.h"
 
@@ -65,4 +64,3 @@ typedef std::vector<ParserObserver*> parser_observer_vector_t;
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_PARSER_OBSERVER_H__

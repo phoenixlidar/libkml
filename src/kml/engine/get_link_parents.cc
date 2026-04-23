@@ -63,7 +63,7 @@ bool GetLinkParents(const string& kml,
   GetLinkParentsParserObserver get_link_parents(link_parent_vector);
   Parser parser;
   parser.AddObserver(&get_link_parents);
-  return parser.Parse(kml, NULL) != NULL;
+  return parser.Parse(kml, nullptr) != nullptr;
 }
 
 }  // end namespace kmlengine

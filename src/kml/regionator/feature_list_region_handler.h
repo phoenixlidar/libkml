@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_REGIONATOR_FEATURE_LIST_REGION_HANDLER_H__
-#define KML_REGIONATOR_FEATURE_LIST_REGION_HANDLER_H__
+#pragma once
 
 #include <map>
 #include "kml/dom.h"
@@ -67,4 +66,3 @@ class FeatureListRegionHandler : public RegionHandler {
 
 }  // end namespace kmlregionator
 
-#endif  // KML_REGIONATOR_FEATURE_LIST_REGION_HANDLER_H__

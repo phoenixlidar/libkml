@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_ICONSTYLE_H__
-#define KML_DOM_ICONSTYLE_H__
+#pragma once
 
 #include "kml/dom/colorstyle.h"
 #include "kml/dom/hotspot.h"
@@ -81,22 +80,22 @@ class IconStyle : public ColorStyle {
 
   // <Icon> (different than Overlay Icon)
   const IconStyleIconPtr& get_icon() const { return icon_; }
-  bool has_icon() const { return icon_ != NULL; }
+  bool has_icon() const { return icon_ != nullptr; }
   void set_icon(const IconStyleIconPtr& icon) {
     SetComplexChild(icon, &icon_);
   }
   void clear_icon() {
-    set_icon(NULL);
+    set_icon(nullptr);
   }
 
   // <hotSpot>
   const HotSpotPtr& get_hotspot() const { return hotspot_; }
-  bool has_hotspot() const { return hotspot_ != NULL; }
+  bool has_hotspot() const { return hotspot_ != nullptr; }
   void set_hotspot(const HotSpotPtr& hotspot) {
     SetComplexChild(hotspot, &hotspot_);
   }
   void clear_hotspot() {
-    set_hotspot(NULL);
+    set_hotspot(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -121,4 +120,3 @@ class IconStyle : public ColorStyle {
 
 }  // end namespace kmldom
 
-#endif // KML_DOM_ICONSTYLE_H__

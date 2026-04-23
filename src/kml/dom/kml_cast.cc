@@ -25,484 +25,484 @@
 
 #include "kml_cast.h"
 #include "kml_ptr.h"
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 
 namespace kmldom {
 
 const AbstractLatLonBoxPtr AsAbstractLatLonBox(const ElementPtr element) {
   if (element && element->IsA(Type_AbstractLatLonBox)) {
-    return boost::static_pointer_cast<AbstractLatLonBox>(element);
+    return std::static_pointer_cast<AbstractLatLonBox>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const AbstractViewPtr AsAbstractView(const ElementPtr element) {
   if (element && element->IsA(Type_AbstractView)) {
-    return boost::static_pointer_cast<AbstractView>(element);
+    return std::static_pointer_cast<AbstractView>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ColorStylePtr AsColorStyle(const ElementPtr element) {
   if (element && element->IsA(Type_ColorStyle)) {
-    return boost::static_pointer_cast<ColorStyle>(element);
+    return std::static_pointer_cast<ColorStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ContainerPtr AsContainer(const ElementPtr element) {
   if (element && element->IsA(Type_Container)) {
-    return boost::static_pointer_cast<Container>(element);
+    return std::static_pointer_cast<Container>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const FeaturePtr AsFeature(const ElementPtr element) {
   if (element && element->IsA(Type_Feature)) {
-    return boost::static_pointer_cast<Feature>(element);
+    return std::static_pointer_cast<Feature>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const GeometryPtr AsGeometry(const ElementPtr element) {
   if (element && element->IsA(Type_Geometry)) {
-    return boost::static_pointer_cast<Geometry>(element);
+    return std::static_pointer_cast<Geometry>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ObjectPtr AsObject(const ElementPtr element) {
   if (element && element->IsA(Type_Object)) {
-    return boost::static_pointer_cast<Object>(element);
+    return std::static_pointer_cast<Object>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const OverlayPtr AsOverlay(const ElementPtr element) {
   if (element && element->IsA(Type_Overlay)) {
-    return boost::static_pointer_cast<Overlay>(element);
+    return std::static_pointer_cast<Overlay>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const StyleSelectorPtr AsStyleSelector(const ElementPtr element) {
   if (element && element->IsA(Type_StyleSelector)) {
-    return boost::static_pointer_cast<StyleSelector>(element);
+    return std::static_pointer_cast<StyleSelector>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const SubStylePtr AsSubStyle(const ElementPtr element) {
   if (element && element->IsA(Type_SubStyle)) {
-    return boost::static_pointer_cast<SubStyle>(element);
+    return std::static_pointer_cast<SubStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const TimePrimitivePtr AsTimePrimitive(const ElementPtr element) {
   if (element && element->IsA(Type_TimePrimitive)) {
-    return boost::static_pointer_cast<TimePrimitive>(element);
+    return std::static_pointer_cast<TimePrimitive>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const AliasPtr AsAlias(const ElementPtr element) {
   if (element && element->Type() == Type_Alias) {
-    return boost::static_pointer_cast<Alias>(element);
+    return std::static_pointer_cast<Alias>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const BalloonStylePtr AsBalloonStyle(const ElementPtr element) {
   if (element && element->Type() == Type_BalloonStyle) {
-    return boost::static_pointer_cast<BalloonStyle>(element);
+    return std::static_pointer_cast<BalloonStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const CameraPtr AsCamera(const ElementPtr element) {
   if (element && element->Type() == Type_Camera) {
-    return boost::static_pointer_cast<Camera>(element);
+    return std::static_pointer_cast<Camera>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ChangePtr AsChange(const ElementPtr element) {
   if (element && element->Type() == Type_Change) {
-    return boost::static_pointer_cast<Change>(element);
+    return std::static_pointer_cast<Change>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const CreatePtr AsCreate(const ElementPtr element) {
   if (element && element->Type() == Type_Create) {
-    return boost::static_pointer_cast<Create>(element);
+    return std::static_pointer_cast<Create>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const DataPtr AsData(const ElementPtr element) {
   if (element && element->Type() == Type_Data) {
-    return boost::static_pointer_cast<Data>(element);
+    return std::static_pointer_cast<Data>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const DeletePtr AsDelete(const ElementPtr element) {
   if (element && element->Type() == Type_Delete) {
-    return boost::static_pointer_cast<Delete>(element);
+    return std::static_pointer_cast<Delete>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const DocumentPtr AsDocument(const ElementPtr element) {
   if (element && element->Type() == Type_Document) {
-    return boost::static_pointer_cast<Document>(element);
+    return std::static_pointer_cast<Document>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const FolderPtr AsFolder(const ElementPtr element) {
   if (element && element->Type() == Type_Folder) {
-    return boost::static_pointer_cast<Folder>(element);
+    return std::static_pointer_cast<Folder>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const GroundOverlayPtr AsGroundOverlay(const ElementPtr element) {
   if (element && element->Type() == Type_GroundOverlay) {
-    return boost::static_pointer_cast<GroundOverlay>(element);
+    return std::static_pointer_cast<GroundOverlay>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const HotSpotPtr AsHotSpot(const ElementPtr element) {
   if (element && element->Type() == Type_hotSpot) {
-    return boost::static_pointer_cast<HotSpot>(element);
+    return std::static_pointer_cast<HotSpot>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const IconPtr AsIcon(const ElementPtr element) {
   if (element && element->Type() == Type_Icon) {
-    return boost::static_pointer_cast<Icon>(element);
+    return std::static_pointer_cast<Icon>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const IconStylePtr AsIconStyle(const ElementPtr element) {
   if (element && element->Type() == Type_IconStyle) {
-    return boost::static_pointer_cast<IconStyle>(element);
+    return std::static_pointer_cast<IconStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const IconStyleIconPtr AsIconStyleIcon(const ElementPtr element) {
   if (element && element->Type() == Type_IconStyleIcon) {
-    return boost::static_pointer_cast<IconStyleIcon>(element);
+    return std::static_pointer_cast<IconStyleIcon>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ImagePyramidPtr AsImagePyramid(const ElementPtr element) {
   if (element && element->Type() == Type_ImagePyramid) {
-    return boost::static_pointer_cast<ImagePyramid>(element);
+    return std::static_pointer_cast<ImagePyramid>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const InnerBoundaryIsPtr AsInnerBoundaryIs(const ElementPtr element) {
   if (element && element->Type() == Type_innerBoundaryIs) {
-    return boost::static_pointer_cast<InnerBoundaryIs>(element);
+    return std::static_pointer_cast<InnerBoundaryIs>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ItemIconPtr AsItemIcon(const ElementPtr element) {
   if (element && element->Type() == Type_ItemIcon) {
-    return boost::static_pointer_cast<ItemIcon>(element);
+    return std::static_pointer_cast<ItemIcon>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LabelStylePtr AsLabelStyle(const ElementPtr element) {
   if (element && element->Type() == Type_LabelStyle) {
-    return boost::static_pointer_cast<LabelStyle>(element);
+    return std::static_pointer_cast<LabelStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LatLonAltBoxPtr AsLatLonAltBox(const ElementPtr element) {
   if (element && element->Type() == Type_LatLonAltBox) {
-    return boost::static_pointer_cast<LatLonAltBox>(element);
+    return std::static_pointer_cast<LatLonAltBox>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LatLonBoxPtr AsLatLonBox(const ElementPtr element) {
   if (element && element->Type() == Type_LatLonBox) {
-    return boost::static_pointer_cast<LatLonBox>(element);
+    return std::static_pointer_cast<LatLonBox>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LineStringPtr AsLineString(const ElementPtr element) {
   if (element && element->Type() == Type_LineString) {
-    return boost::static_pointer_cast<LineString>(element);
+    return std::static_pointer_cast<LineString>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LineStylePtr AsLineStyle(const ElementPtr element) {
   if (element && element->Type() == Type_LineStyle) {
-    return boost::static_pointer_cast<LineStyle>(element);
+    return std::static_pointer_cast<LineStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LinearRingPtr AsLinearRing(const ElementPtr element) {
   if (element && element->Type() == Type_LinearRing) {
-    return boost::static_pointer_cast<LinearRing>(element);
+    return std::static_pointer_cast<LinearRing>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LinkPtr AsLink(const ElementPtr element) {
   if (element && element->Type() == Type_Link) {
-    return boost::static_pointer_cast<Link>(element);
+    return std::static_pointer_cast<Link>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LinkSnippetPtr AsLinkSnippet(const ElementPtr element) {
   if (element && element->Type() == Type_linkSnippet) {
-    return boost::static_pointer_cast<LinkSnippet>(element);
+    return std::static_pointer_cast<LinkSnippet>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ListStylePtr AsListStyle(const ElementPtr element) {
   if (element && element->Type() == Type_ListStyle) {
-    return boost::static_pointer_cast<ListStyle>(element);
+    return std::static_pointer_cast<ListStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LocationPtr AsLocation(const ElementPtr element) {
   if (element && element->Type() == Type_Location) {
-    return boost::static_pointer_cast<Location>(element);
+    return std::static_pointer_cast<Location>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LodPtr AsLod(const ElementPtr element) {
   if (element && element->Type() == Type_Lod) {
-    return boost::static_pointer_cast<Lod>(element);
+    return std::static_pointer_cast<Lod>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const LookAtPtr AsLookAt(const ElementPtr element) {
   if (element && element->Type() == Type_LookAt) {
-    return boost::static_pointer_cast<LookAt>(element);
+    return std::static_pointer_cast<LookAt>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ModelPtr AsModel(const ElementPtr element) {
   if (element && element->Type() == Type_Model) {
-    return boost::static_pointer_cast<Model>(element);
+    return std::static_pointer_cast<Model>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const MultiGeometryPtr AsMultiGeometry(const ElementPtr element) {
   if (element && element->Type() == Type_MultiGeometry) {
-    return boost::static_pointer_cast<MultiGeometry>(element);
+    return std::static_pointer_cast<MultiGeometry>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const NetworkLinkPtr AsNetworkLink(const ElementPtr element) {
   if (element && element->Type() == Type_NetworkLink) {
-    return boost::static_pointer_cast<NetworkLink>(element);
+    return std::static_pointer_cast<NetworkLink>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const OrientationPtr AsOrientation(const ElementPtr element) {
   if (element && element->Type() == Type_Orientation) {
-    return boost::static_pointer_cast<Orientation>(element);
+    return std::static_pointer_cast<Orientation>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const OuterBoundaryIsPtr AsOuterBoundaryIs(const ElementPtr element) {
   if (element && element->Type() == Type_outerBoundaryIs) {
-    return boost::static_pointer_cast<OuterBoundaryIs>(element);
+    return std::static_pointer_cast<OuterBoundaryIs>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const OverlayXYPtr AsOverlayXY(const ElementPtr element) {
   if (element && element->Type() == Type_overlayXY) {
-    return boost::static_pointer_cast<OverlayXY>(element);
+    return std::static_pointer_cast<OverlayXY>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const PairPtr AsPair(const ElementPtr element) {
   if (element && element->Type() == Type_Pair) {
-    return boost::static_pointer_cast<Pair>(element);
+    return std::static_pointer_cast<Pair>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const PhotoOverlayPtr AsPhotoOverlay(const ElementPtr element) {
   if (element && element->Type() == Type_PhotoOverlay) {
-    return boost::static_pointer_cast<PhotoOverlay>(element);
+    return std::static_pointer_cast<PhotoOverlay>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const PlacemarkPtr AsPlacemark(const ElementPtr element) {
   if (element && element->Type() == Type_Placemark) {
-    return boost::static_pointer_cast<Placemark>(element);
+    return std::static_pointer_cast<Placemark>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const PointPtr AsPoint(const ElementPtr element) {
   if (element && element->Type() == Type_Point) {
-    return boost::static_pointer_cast<Point>(element);
+    return std::static_pointer_cast<Point>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const PolyStylePtr AsPolyStyle(const ElementPtr element) {
   if (element && element->Type() == Type_PolyStyle) {
-    return boost::static_pointer_cast<PolyStyle>(element);
+    return std::static_pointer_cast<PolyStyle>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const PolygonPtr AsPolygon(const ElementPtr element) {
   if (element && element->Type() == Type_Polygon) {
-    return boost::static_pointer_cast<Polygon>(element);
+    return std::static_pointer_cast<Polygon>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const RegionPtr AsRegion(const ElementPtr element) {
   if (element && element->Type() == Type_Region) {
-    return boost::static_pointer_cast<Region>(element);
+    return std::static_pointer_cast<Region>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ResourceMapPtr AsResourceMap(const ElementPtr element) {
   if (element && element->Type() == Type_ResourceMap) {
-    return boost::static_pointer_cast<ResourceMap>(element);
+    return std::static_pointer_cast<ResourceMap>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const RotationXYPtr AsRotationXY(const ElementPtr element) {
   if (element && element->Type() == Type_rotationXY) {
-    return boost::static_pointer_cast<RotationXY>(element);
+    return std::static_pointer_cast<RotationXY>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ScalePtr AsScale(const ElementPtr element) {
   if (element && element->Type() == Type_Scale) {
-    return boost::static_pointer_cast<Scale>(element);
+    return std::static_pointer_cast<Scale>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const SchemaPtr AsSchema(const ElementPtr element) {
   if (element && element->Type() == Type_Schema) {
-    return boost::static_pointer_cast<Schema>(element);
+    return std::static_pointer_cast<Schema>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const SchemaDataPtr AsSchemaData(const ElementPtr element) {
   if (element && element->Type() == Type_SchemaData) {
-    return boost::static_pointer_cast<SchemaData>(element);
+    return std::static_pointer_cast<SchemaData>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ScreenOverlayPtr AsScreenOverlay(const ElementPtr element) {
   if (element && element->Type() == Type_ScreenOverlay) {
-    return boost::static_pointer_cast<ScreenOverlay>(element);
+    return std::static_pointer_cast<ScreenOverlay>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ScreenXYPtr AsScreenXY(const ElementPtr element) {
   if (element && element->Type() == Type_screenXY) {
-    return boost::static_pointer_cast<ScreenXY>(element);
+    return std::static_pointer_cast<ScreenXY>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const SizePtr AsSize(const ElementPtr element) {
   if (element && element->Type() == Type_size) {
-    return boost::static_pointer_cast<Size>(element);
+    return std::static_pointer_cast<Size>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const SnippetPtr AsSnippet(const ElementPtr element) {
   if (element && element->Type() == Type_Snippet) {
-    return boost::static_pointer_cast<Snippet>(element);
+    return std::static_pointer_cast<Snippet>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const StylePtr AsStyle(const ElementPtr element) {
   if (element && element->Type() == Type_Style) {
-    return boost::static_pointer_cast<Style>(element);
+    return std::static_pointer_cast<Style>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const StyleMapPtr AsStyleMap(const ElementPtr element) {
   if (element && element->Type() == Type_StyleMap) {
-    return boost::static_pointer_cast<StyleMap>(element);
+    return std::static_pointer_cast<StyleMap>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const TimeSpanPtr AsTimeSpan(const ElementPtr element) {
   if (element && element->IsA(Type_TimeSpan)) {
-    return boost::static_pointer_cast<TimeSpan>(element);
+    return std::static_pointer_cast<TimeSpan>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const TimeStampPtr AsTimeStamp(const ElementPtr element) {
   if (element && element->IsA(Type_TimeStamp)) {
-    return boost::static_pointer_cast<TimeStamp>(element);
+    return std::static_pointer_cast<TimeStamp>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const UpdatePtr AsUpdate(const ElementPtr element) {
   if (element && element->Type() == Type_Update) {
-    return boost::static_pointer_cast<Update>(element);
+    return std::static_pointer_cast<Update>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 const ViewVolumePtr AsViewVolume(const ElementPtr element) {
   if (element && element->Type() == Type_ViewVolume) {
-    return boost::static_pointer_cast<ViewVolume>(element);
+    return std::static_pointer_cast<ViewVolume>(element);
   }
-  return NULL;
+  return nullptr;
 }
 
 }  // end namespace kmldom

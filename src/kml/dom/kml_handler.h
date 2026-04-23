@@ -71,8 +71,7 @@
 // Both of those when loaded into Google Earth 4.0 or later produce equivalent
 // data displays and interaction models.
 
-#ifndef KML_DOM_KML_HANDLER_H__
-#define KML_DOM_KML_HANDLER_H__
+#pragma once
 
 #include <stack>
 #include "kml/base/expat_handler.h"
@@ -177,4 +176,3 @@ private:
 
 } // end namespace kmldom
 
-#endif  // KML_DOM_KML_HANDLER_H__

@@ -40,14 +40,14 @@ namespace kmlengine {
 
 void ProcessUpdate(const UpdatePtr& update, KmlFilePtr kml_file) {
   if (update && kml_file) {
-    UpdateProcessor update_processor(*kml_file, NULL);
+    UpdateProcessor update_processor(*kml_file, nullptr);
     update_processor.ProcessUpdate(update);
   }
 }
 
 void ProcessUpdateWithIdMap(const UpdatePtr& update, const StringMap* id_map,
                             KmlFilePtr kml_file) {
-  if (update && kml_file) {  // UpdateProcessor handles NULL id_map.
+  if (update && kml_file) {  // UpdateProcessor handles nullptr id_map.
     UpdateProcessor update_processor(*kml_file, id_map);
     update_processor.ProcessUpdate(update);
   }

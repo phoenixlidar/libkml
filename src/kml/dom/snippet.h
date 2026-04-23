@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_SNIPPET_H__
-#define KML_DOM_SNIPPET_H__
+#pragma once
 
 #include "kml/dom/element.h"
 #include "kml/dom/kml22.h"
@@ -125,4 +124,3 @@ class LinkSnippet : public SnippetCommon {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_SNIPPET_H__

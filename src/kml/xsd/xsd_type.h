@@ -23,10 +23,9 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_XSD_XSD_TYPE_H__
-#define KML_XSD_XSD_TYPE_H__
+#pragma once
 
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/base/referent.h"
 #include "kml/base/util.h"
 
@@ -65,8 +64,7 @@ class XsdType : public kmlbase::Referent {
 
 };
 
-typedef boost::intrusive_ptr<XsdType> XsdTypePtr;
+using XsdTypePtr = std::shared_ptr<XsdType>;
 
 }  // end namespace kmlxsd
 
-#endif  // KML_XSD_XSD_TYPE_H__

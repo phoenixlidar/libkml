@@ -194,13 +194,13 @@ TEST_F(NetworkLinkControlTest, TestDefaults) {
   ASSERT_FALSE(nlc_->has_linkdescription());
   ASSERT_EQ(string(""), nlc_->get_linkdescription());
   ASSERT_FALSE(nlc_->has_linksnippet());
-  ASSERT_TRUE(NULL == nlc_->get_linksnippet());
+  ASSERT_TRUE(nullptr == nlc_->get_linksnippet());
   ASSERT_FALSE(nlc_->has_expires());
   ASSERT_EQ(string(""), nlc_->get_expires());
   ASSERT_FALSE(nlc_->has_update());
-  ASSERT_TRUE(NULL == nlc_->get_update());
+  ASSERT_TRUE(nullptr == nlc_->get_update());
   ASSERT_FALSE(nlc_->has_abstractview());
-  ASSERT_TRUE(NULL == nlc_->get_abstractview());
+  ASSERT_TRUE(nullptr == nlc_->get_abstractview());
 }
 
 // Verify setting default makes has_xxx() true:
@@ -217,13 +217,13 @@ TEST_F(NetworkLinkControlTest, TestSetToDefaultValues) {
   ASSERT_TRUE(nlc_->has_linkname());
   nlc_->set_linkdescription(nlc_->get_linkdescription());
   ASSERT_TRUE(nlc_->has_linkdescription());
-  nlc_->set_linksnippet(NULL);
+  nlc_->set_linksnippet(nullptr);
   ASSERT_FALSE(nlc_->has_linksnippet());  // ptr is still null
   nlc_->set_expires(nlc_->get_expires());
   ASSERT_TRUE(nlc_->has_expires());
-  nlc_->set_update(NULL);
+  nlc_->set_update(nullptr);
   ASSERT_FALSE(nlc_->has_update());  // ptr is still null
-  nlc_->set_abstractview(NULL);
+  nlc_->set_abstractview(nullptr);
   ASSERT_FALSE(nlc_->has_abstractview());  // ptr is still null
 }
 

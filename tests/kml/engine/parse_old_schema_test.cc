@@ -74,7 +74,7 @@ TEST_F(ParseOldSchemaTest, TestParseOldSchema) {
       "<name>" + kName + "</name>"
       "<Polygon/>"
       "</S_park_boundaries_S>");
-  PlacemarkPtr placemark = ParseOldSchema(kXml, schema_name_map_, NULL);
+  PlacemarkPtr placemark = ParseOldSchema(kXml, schema_name_map_, nullptr);
   ASSERT_TRUE(placemark != 0);
   ASSERT_TRUE(placemark->has_name());
   ASSERT_EQ(kName, placemark->get_name());

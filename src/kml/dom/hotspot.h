@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_HOTSPOT_H__
-#define KML_DOM_HOTSPOT_H__
+#pragma once
 
 #include "kml/dom/vec2.h"
 #include "kml/dom/kml22.h"
@@ -51,4 +50,3 @@ class HotSpot : public Vec2 {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_HOTSPOT_H__

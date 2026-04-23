@@ -35,21 +35,21 @@ using kmlbase::Attributes;
 namespace kmlxsd {
 
 // Test utility to create a <xs:complexType name="type_name">.
-XsdComplexType* CreateXsdComplexType(const string& type_name) {
+XsdComplexTypePtr CreateXsdComplexType(const string& type_name) {
   Attributes attributes;
   attributes.SetString(kName, type_name);
   return XsdComplexType::Create(attributes);
 }
 
-XsdElement* CreateXsdElement(const string& name, const string& type) {
+XsdElementPtr CreateXsdElement(const string& name, const string& type) {
   Attributes attributes;
   attributes.SetString(kName, name);
   attributes.SetString(kType, type);
   return XsdElement::Create(attributes);
 }
 
-XsdSchema* CreateXsdSchema(const string& prefix,
-                           const string& target_namespace) {
+XsdSchemaPtr CreateXsdSchema(const string& prefix,
+                             const string& target_namespace) {
   Attributes attributes;
   attributes.SetString(string("xmlns:") + prefix, target_namespace);
   attributes.SetString("targetNamespace", target_namespace);

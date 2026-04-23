@@ -132,7 +132,7 @@ TEST_F(XsdTest, TestBadEnum) {
 
 TEST_F(XsdTest, TestBadEnumValue) {
   // This crashed libkml because Xsd::EnumValue, if passed a negative enum_id,
-  // would try to initialize a string from a NULL pointer.
+  // would try to initialize a string from a nullptr pointer.
   ASSERT_EQ(string(), Xsd::GetSchema()->EnumValue(0, -1));
 }
 

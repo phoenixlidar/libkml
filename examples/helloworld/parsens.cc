@@ -27,7 +27,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 #include "kml/dom/kml_handler_ns.h"
 #include "kml/engine.h"

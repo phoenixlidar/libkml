@@ -26,8 +26,7 @@
 // This file contains the declarations for the gx:TimeStamp and gx:TimeSpan
 // elements.
 
-#ifndef KML_DOM_GX_TIMEPRIMITIVE_H__
-#define KML_DOM_GX_TIMEPRIMITIVE_H__
+#pragma once
 
 #include <string>
 #include "kml/base/xml_namespaces.h"
@@ -84,4 +83,3 @@ class GxTimeStamp : public TimeStamp {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_GX_TIMEPRIMITIVE_H__

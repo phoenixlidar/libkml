@@ -25,10 +25,9 @@
 
 // This file contains the declaration of the ZipFile class.
 
-#ifndef KML_BASE_ZIP_FILE_H__
-#define KML_BASE_ZIP_FILE_H__
+#pragma once
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/string_util.h"
 #include "kml/base/util.h"
 
@@ -43,15 +42,15 @@ class MinizipFile;
 // specifics.
 class ZipFile {
  public:
-  // Open a ZIP file in-memory suitable for reading. Will return NULL on any
+  // Open a ZIP file in-memory suitable for reading. Will return nullptr on any
   // internal error.
   static ZipFile* OpenFromString(const string& zip_data);
 
-  // Open a ZIP file at file_path suitable for reading. Will return NULL on any
+  // Open a ZIP file at file_path suitable for reading. Will return nullptr on any
   // internal error.
   static ZipFile* OpenFromFile(const char* file_path);
 
-  // Create a ZIP file suitable for writing. Will return NULL on any internal
+  // Create a ZIP file suitable for writing. Will return nullptr on any internal
   // error or a failure to create a file at file_path.
   static ZipFile* Create(const char* file_path);
 
@@ -73,7 +72,7 @@ class ZipFile {
   // Finds the first file in the ZIP file that ends with the given file
   // extension and writes the entire path into path_in_zip. Returns false
   // if no file with the given extension exists in the archive or if
-  // path_in_zip is NULL.
+  // path_in_zip is nullptr.
   bool FindFirstOf(const string& file_extension,
                    string* path_in_zip) const;
 
@@ -110,7 +109,7 @@ class ZipFile {
   ZipFile(const string& data);
   // The constructor used in creation of a ZIP file suitable for writing.
   ZipFile(MinizipFile* minizip_file);
-  boost::scoped_ptr<MinizipFile> minizip_file_;
+  std::unique_ptr<MinizipFile> minizip_file_;
   string data_;
   StringVector zipfile_toc_;
   unsigned long max_uncompressed_file_size_;
@@ -119,4 +118,3 @@ class ZipFile {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_ZIP_FILE_H__

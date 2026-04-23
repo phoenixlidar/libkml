@@ -27,7 +27,7 @@
 
 #include "kml/engine/kmz_cache.h"
 #include <vector>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/base/net_cache_test_util.h"
 #include "gtest/gtest.h"
@@ -79,9 +79,9 @@ class KmzCacheTest : public testing::Test {
   }
 
   kmlbase::TestDataNetFetcher testdata_net_fetcher_;
-  boost::scoped_ptr<KmlUri> kml_uri_;
-  boost::scoped_ptr<KmzCache> kmz_cache_;
-  boost::scoped_ptr<KmlCache> kml_cache_;
+  std::unique_ptr<KmlUri> kml_uri_;
+  std::unique_ptr<KmzCache> kmz_cache_;
+  std::unique_ptr<KmlCache> kml_cache_;
   void VerifyContentInCache(const string& kml_url,
                             const string& want_data);
 };
@@ -94,13 +94,13 @@ TEST_F(KmzCacheTest, TestDefaultState) {
   ASSERT_EQ(static_cast<size_t>(0), kmz_cache_->Size());
   kml_uri_.reset(KmlUri::CreateRelative(kBase, kNoSuchUrl));
   ASSERT_TRUE(kml_uri_.get());
-  ASSERT_FALSE(kmz_cache_->DoFetch(kml_uri_.get(), NULL));
-  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(kml_uri_.get(), NULL, NULL));
-  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(NULL, NULL, NULL));
+  ASSERT_FALSE(kmz_cache_->DoFetch(kml_uri_.get(), nullptr));
+  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(kml_uri_.get(), nullptr, nullptr));
+  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(nullptr, nullptr, nullptr));
   string dummy;
-  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(NULL, &dummy, NULL));
+  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(nullptr, &dummy, nullptr));
   kml_uri_->set_path_in_kmz("no-such-path");
-  ASSERT_FALSE(kmz_cache_->FetchFromCache(kml_uri_.get(), NULL));
+  ASSERT_FALSE(kmz_cache_->FetchFromCache(kml_uri_.get(), nullptr));
   ASSERT_FALSE(kmz_cache_->LookUp(kNoSuchUrl));
   ASSERT_FALSE(kmz_cache_->Delete(kNoSuchUrl));
   ASSERT_FALSE(kmz_cache_->RemoveOldest());
@@ -178,17 +178,17 @@ TEST_F(KmzCacheTest, TestBasicFetchFromCache) {
   kml_uri_.reset(KmlUri::CreateRelative(kUrl, kUrl));
   ASSERT_TRUE(kml_uri_.get());
   ASSERT_FALSE(kmz_cache_->FetchFromCache(kml_uri_.get(), &data));
-  // Also verify that a NULL data arg behaves properly.
-  ASSERT_FALSE(kmz_cache_->FetchFromCache(kml_uri_.get(), NULL));
+  // Also verify that a nullptr data arg behaves properly.
+  ASSERT_FALSE(kmz_cache_->FetchFromCache(kml_uri_.get(), nullptr));
 
   // Use FetchUrl() to bring this into cache.
   string got_kml_data;
   ASSERT_TRUE(kmz_cache_->DoFetch(kml_uri_.get(), &got_kml_data));
 
-  // Verify that a NULL data arg behaves properly.
-  // TODO: KmzFile::ReadKml() returns false on NULL arg
+  // Verify that a nullptr data arg behaves properly.
+  // TODO: KmzFile::ReadKml() returns false on nullptr arg
   //       Be hand if it could behave as a "HasKml()" in this instance.
-  //ASSERT_TRUE(kmz_cache_->FetchFromCache(kUrl, NULL));
+  //ASSERT_TRUE(kmz_cache_->FetchFromCache(kUrl, nullptr));
 
   string got_data;
   // First verify that FetchFromCache() has the right data.
@@ -287,13 +287,13 @@ TEST_F(KmzCacheTest, VerifyReturnedUrlDoFetchAndReturnUrl) {
   kml_uri_.reset(
       KmlUri::CreateRelative("http://ignored.com/kmz/hier.kmz/doc.kml",
                              "no-such-file-inside-or-out"));
-  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(kml_uri_.get(), &content, NULL));
+  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(kml_uri_.get(), &content, nullptr));
 }
 
 TEST_F(KmzCacheTest, DoFetchAndReturnUrlFailsOnBadKmlUri) {
   kml_uri_.reset(KmlUri::CreateRelative("no-scheme/junk", "bad"));
   string content;
-  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(kml_uri_.get(), &content, NULL));
+  ASSERT_FALSE(kmz_cache_->DoFetchAndReturnUrl(kml_uri_.get(), &content, nullptr));
 }
 
 }  // end namespace kmlengine

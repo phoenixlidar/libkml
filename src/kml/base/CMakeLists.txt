@@ -87,7 +87,6 @@ target_link_libraries (kmlbase
     PUBLIC uriparser::uriparser
     PUBLIC ZLIB::ZLIB
     PUBLIC expat::expat
-    PUBLIC Boost::headers
 )
 
 install (TARGETS kmlbase

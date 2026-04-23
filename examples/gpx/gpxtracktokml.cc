@@ -33,7 +33,7 @@
 #include <time.h>
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/date_time.h"
 #include "kml/base/expat_parser.h"
 #include "kml/base/file.h"
@@ -154,7 +154,7 @@ class TrkPtHandler : public kmlconvenience::GpxTrkPtHandler {
   // it a <TimeStamp> based on when.
   virtual void HandlePoint(const kmlbase::Vec3& where,
                            const std::string& when) {
-    boost::scoped_ptr<DateTime> date_time(DateTime::Create(when));
+    std::unique_ptr<DateTime> date_time(DateTime::Create(when));
     if (!date_time.get()) {
       std::cerr << "bad DateTime " << when << std::endl;
       return;
@@ -196,7 +196,7 @@ class TrkPtHandler : public kmlconvenience::GpxTrkPtHandler {
   FolderPtr date_folder_;
   FolderPtr trip_folder_;
   PointPtr point_;
-  boost::scoped_ptr<DateTime> date_time_;
+  std::unique_ptr<DateTime> date_time_;
   std::string char_data_;
   time_t last_time_;
   std::string last_date_;

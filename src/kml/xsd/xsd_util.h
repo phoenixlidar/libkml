@@ -25,6 +25,7 @@
 
 // This file contains XSD convenience utilities.
 
+#include <memory>
 #include "kml/base/util.h"
 
 namespace kmlxsd {
@@ -32,6 +33,9 @@ namespace kmlxsd {
 class XsdComplexType;
 class XsdElement;
 class XsdSchema;
+using XsdComplexTypePtr = std::shared_ptr<XsdComplexType>;
+using XsdElementPtr = std::shared_ptr<XsdElement>;
+using XsdSchemaPtr = std::shared_ptr<XsdSchema>;
 
 const char kAbstract[] = "abstract";
 const char kBase[] = "base";
@@ -50,15 +54,15 @@ const char kType[] = "type";
 const char kValue[] = "value";
 
 // Convenience utility to create a <xs:complexType name="TYPE_NAME"/>.
-XsdComplexType* CreateXsdComplexType(const string& type_name);
+XsdComplexTypePtr CreateXsdComplexType(const string& type_name);
 
 // Convenience utility ot create a <xs:element name="NAME" type="TYPE"/>.
-XsdElement* CreateXsdElement(const string& name, const string& type);
+XsdElementPtr CreateXsdElement(const string& name, const string& type);
 
 // Convenience utilty to create an XsdSchema based on:
 // <schema xmlns:PREFIX="TARGET_NAMESPACE"
 //         targetNamespace="TARGET_NAMESPACE"/>
-XsdSchema* CreateXsdSchema(const string& prefix,
-                           const string& target_namespace);
+XsdSchemaPtr CreateXsdSchema(const string& prefix,
+                             const string& target_namespace);
 
 }  // end namespace kmlxsd

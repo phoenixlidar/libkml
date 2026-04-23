@@ -25,12 +25,11 @@
 
 // The Xmlns class is deprecated.  Use Attributes.
 
-#ifndef KML_BASE_XMLNS_H__
-#define KML_BASE_XMLNS_H__
+#pragma once
 
 #include <map>
 #include <vector>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 
 namespace kmlbase {
@@ -51,7 +50,7 @@ namespace kmlbase {
 //          atom="http://www.w3.org/2005/Atom"
 //          xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
 // If there are no "xmlns*" attribute names in the passed attributes Create()
-// returns NULL.
+// returns nullptr.
 class Xmlns {
  public:
   // The caller owns the created Xmlns object.
@@ -61,7 +60,7 @@ class Xmlns {
       return xmlns;
     }
     delete xmlns;
-    return NULL;
+    return nullptr;
   }
 
   // This returns the URI of the default namespace.  The returned string is
@@ -108,7 +107,7 @@ class Xmlns {
   Xmlns() {}
   bool Parse(const kmlbase::Attributes& attributes) {
     // Create a copy so that we can use non-const SplitByPrefix.
-    boost::scoped_ptr<Attributes> clone(attributes.Clone());
+    std::unique_ptr<Attributes> clone(attributes.Clone());
     prefix_map_.reset(clone->SplitByPrefix("xmlns"));
     attributes.GetValue("xmlns", &default_);
     // Return true if there is a default xmlns or if there are any
@@ -116,9 +115,8 @@ class Xmlns {
     return !default_.empty() || prefix_map_.get();
   }
   string default_;
-  boost::scoped_ptr<Attributes> prefix_map_;
+  std::unique_ptr<Attributes> prefix_map_;
 };
 
 }  // end namespace kmlbase
 
-#endif // KML_BASE_XMLNS_H__

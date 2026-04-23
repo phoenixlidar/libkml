@@ -84,7 +84,7 @@ class FeatureStreamer : public kmldom::ParserObserver {
 void StreamKml(std::istream* input) {
   FeatureStreamer feature_streamer;
   std::string errors;
-  boost::scoped_ptr<KmlStream> kml_stream(
+  std::unique_ptr<KmlStream> kml_stream(
       KmlStream::ParseFromIstream(input, &errors, &feature_streamer));
   if (!kml_stream.get()) {
     std::cerr << "KmlStream error " << errors << std::endl;

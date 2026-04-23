@@ -26,8 +26,7 @@
 // This file contains the declaration of the GetElementsByType() and the
 // internal ElementFinder class.
 
-#ifndef KML_ENGINE_FIND_H__
-#define KML_ENGINE_FIND_H__
+#pragma once
 
 #include <stack>
 #include <string>
@@ -48,7 +47,7 @@ void GetElementsById(const kmldom::ElementPtr& element,
                      ElementVector* element_vector);
 
 // Get all children of the given element.  If recurse is true find all children
-// hierarchically.  If element_vector is non-NULL all children found are
+// hierarchically.  If element_vector is non-nullptr all children found are
 // appended in depth-first order.  The return value is the number of children
 // encountered.
 int GetChildElements(const kmldom::ElementPtr& element, bool recurse,
@@ -56,4 +55,3 @@ int GetChildElements(const kmldom::ElementPtr& element, bool recurse,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_FIND_H__

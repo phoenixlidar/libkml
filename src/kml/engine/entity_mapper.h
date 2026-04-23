@@ -26,8 +26,7 @@
 // This file contains the declatation of the EntityMapper class and the
 // CreateExpandedEntities function.
 
-#ifndef KML_ENGINE_ENTITY_MAPPER_H__
-#define KML_ENGINE_ENTITY_MAPPER_H__
+#pragma once
 
 #include "kml/dom.h"
 #include "kml/base/string_util.h"
@@ -57,11 +56,11 @@ class EntityMapper {
  public:
   // Instantiate the class with a reference to a KmlFile object.
   // It is the caller's responsibility to ensure that the pointer to the
-  // StringMap instance is not NULL.
+  // StringMap instance is not nullptr.
   EntityMapper(const KmlFilePtr& kml_file, kmlbase::StringMap* string_map);
 
   // In addition to the string_map, this constructor also takes a pointer to
-  // a StringPairVector which, if non-NULL, will be filled with a mapping
+  // a StringPairVector which, if non-nullptr, will be filled with a mapping
   // of name-value pairs of the ExtendedData items if present. This is
   // really a convenience to simulate the historical behavior of Google Earth
   // which, if given a Feature which has no <description> but does have
@@ -112,4 +111,3 @@ string CreateExpandedEntities(const string& in,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_ENTITY_MAPPER_H__

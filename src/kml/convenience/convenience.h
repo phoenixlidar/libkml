@@ -25,8 +25,7 @@
 
 // This file contains the declarations of some KML convenience functions.
 
-#ifndef KML_CONVENIENCE_CONVENIENCE_H__
-#define KML_CONVENIENCE_CONVENIENCE_H__
+#pragma once
 
 #include <vector>
 #include "kml/base/vec3.h"
@@ -115,7 +114,7 @@ kmldom::GxFlyToPtr CreateFlyTo(const kmldom::AbstractViewPtr& abstractview,
 // an AbstractView. If the feature has a existing AbstractView it is used,
 // otherwise a <LookAt> is computed from the spatial extents of the feature. The
 // LookAt's altitude, heading and tilt are set to 0.0 and the altitudeMode is
-// set to relativeToGroud. Returns NULL if the feature has no specified
+// set to relativeToGroud. Returns nullptr if the feature has no specified
 // AbstractView and none can be computed.
 // See kmlengine::ComputeFeatureLookAt for details of how the LookAt is
 // generated.
@@ -157,4 +156,3 @@ void SimplifyCoordinates(const kmldom::CoordinatesPtr& src,
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_CONVENIENCE_H__

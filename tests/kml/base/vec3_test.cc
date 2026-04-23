@@ -26,7 +26,7 @@
 // This file contains the unit tests for the Vec3 class.
 
 #include "kml/base/vec3.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmlbase {

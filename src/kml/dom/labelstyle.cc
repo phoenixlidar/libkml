@@ -63,7 +63,7 @@ void LabelStyle::Serialize(Serializer& serializer) const {
 }
 
 void LabelStyle::Accept(Visitor* visitor) {
-  visitor->VisitLabelStyle(LabelStylePtr(this));
+  visitor->VisitLabelStyle(std::static_pointer_cast<LabelStyle>(shared_from_this()));
 }
 
 }  // end namespace kmldom

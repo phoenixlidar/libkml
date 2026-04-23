@@ -28,7 +28,7 @@
 
 #include "kml/engine/id_mapper.h"
 #include "kml/engine/id_mapper_internal.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/file.h"
 #include "kml/dom/kml_funcs.h"
@@ -85,7 +85,7 @@ class IdMapperTest : public testing::Test {
   PointPtr point1_;
   ObjectIdMap object_id_map_;
   ElementVector dup_id_vector_;
-  boost::scoped_ptr<IdMapper> id_mapper_;
+  std::unique_ptr<IdMapper> id_mapper_;
 };
 
 TEST_F(IdMapperTest, TestIdMapperEmpty) {
@@ -121,7 +121,7 @@ TEST_F(IdMapperTest, TestMapIdsNoDupVector) {
   // Save an element with an id.
   const string kPlacemark0Id("id-of-placemark0");
   placemark0_->set_id(kPlacemark0Id);
-  MapIds(placemark0_, &object_id_map_, NULL);
+  MapIds(placemark0_, &object_id_map_, nullptr);
   ASSERT_EQ(static_cast<size_t>(1), object_id_map_.size());
   ASSERT_EQ(kPlacemark0Id, object_id_map_[kPlacemark0Id]->get_id());
 }
@@ -180,7 +180,7 @@ TEST_F(IdMapperTest, TestAllObjects) {
       File::JoinPaths(DATADIR, File::JoinPaths("kml",
                                                "all-unknown-attrs-input.kml")),
       &kml));
-  ElementPtr root = kmldom::Parse(kml, NULL);
+  ElementPtr root = kmldom::Parse(kml, nullptr);
   MapIds(root, &object_id_map_, &dup_id_vector_);
   ASSERT_TRUE(dup_id_vector_.empty());
   ASSERT_EQ(static_cast<size_t>(44), object_id_map_.size());
@@ -227,21 +227,21 @@ TEST_F(IdMapperTest, TestClearManyIds) {
       File::JoinPaths(DATADIR, File::JoinPaths("kml",
                                                "all-unknown-attrs-input.kml")),
       &kml));
-  ElementPtr root = kmldom::Parse(kml, NULL);
-  MapIds(root, &object_id_map_, NULL);
+  ElementPtr root = kmldom::Parse(kml, nullptr);
+  MapIds(root, &object_id_map_, nullptr);
   ASSERT_EQ(static_cast<size_t>(44), object_id_map_.size());
 
   // Call the method under test.
   ClearIds(root);
   object_id_map_.clear();
-  MapIds(root, &object_id_map_, NULL);
+  MapIds(root, &object_id_map_, nullptr);
   ASSERT_TRUE(object_id_map_.empty());
 }
 
-// Verify well defined behavior on NULL/empty inputs.
+// Verify well defined behavior on nullptr/empty inputs.
 TEST_F(IdMapperTest, TestRemapIdsNull) {
   kmlbase::StringMap id_map;
-  ASSERT_EQ(0, RemapIds(object_id_map_, id_map, NULL));
+  ASSERT_EQ(0, RemapIds(object_id_map_, id_map, nullptr));
 }
 
 // Verify remapping for a simple case.
@@ -256,12 +256,12 @@ TEST_F(IdMapperTest, TestRemapIdsSimple) {
   placemark1_->set_name(kName1);
   folder0_->add_feature(placemark0_);
   folder0_->add_feature(placemark1_);
-  MapIds(folder0_, &object_id_map_, NULL);
+  MapIds(folder0_, &object_id_map_, nullptr);
 
   kmlbase::StringMap id_map;
   id_map[kId0] = "newid0";
   id_map[kId1] = "newid1";
-  ASSERT_EQ(0, RemapIds(object_id_map_, id_map, NULL));
+  ASSERT_EQ(0, RemapIds(object_id_map_, id_map, nullptr));
   ASSERT_TRUE(placemark0_->has_id());
   ASSERT_EQ(id_map[kId0], placemark0_->get_id());
   ASSERT_TRUE(placemark1_->has_id());
@@ -282,7 +282,7 @@ TEST_F(IdMapperTest, TestRemapIdsSimpleWithOutput) {
   folder0_->set_id(kFolderId);
   folder0_->add_feature(placemark0_);
   folder0_->add_feature(placemark1_);
-  MapIds(folder0_, &object_id_map_, NULL);
+  MapIds(folder0_, &object_id_map_, nullptr);
 
   // This map has mappings for 2 of the ids and one extra.
   kmlbase::StringMap id_map;
@@ -309,8 +309,8 @@ TEST_F(IdMapperTest, TestRemapManyIds) {
       File::JoinPaths(DATADIR, File::JoinPaths("kml",
                                                "all-unknown-attrs-input.kml")),
       &kml));
-  ElementPtr root = kmldom::Parse(kml, NULL);
-  MapIds(root, &object_id_map_, NULL);
+  ElementPtr root = kmldom::Parse(kml, nullptr);
+  MapIds(root, &object_id_map_, nullptr);
   ASSERT_EQ(static_cast<size_t>(44), object_id_map_.size());
 
   // Create a "newid-OLDID" for half the objects in the file.
@@ -358,9 +358,9 @@ TEST_F(IdMapperTest, TestUnknownElements) {
     "</Icon>"
     "</IconStyle>"
     "</Style>");
-  ElementPtr root = kmldom::Parse(kKml, NULL);
+  ElementPtr root = kmldom::Parse(kKml, nullptr);
   ASSERT_TRUE(root != 0);
-  MapIds(root, &object_id_map_, NULL);
+  MapIds(root, &object_id_map_, nullptr);
   ASSERT_EQ(static_cast<size_t>(2), object_id_map_.size());
 
   ObjectIdMap::const_iterator find = object_id_map_.find(kIconStyleId);

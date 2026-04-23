@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_CONTAINER_H__
-#define KML_DOM_CONTAINER_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/feature.h"
@@ -64,7 +63,7 @@ class Container : public Feature {
   // Feature to be moved elsewhere in the dom is to clone it: see
   // kmlengine::Clone().  To effect a full delete the caller simply ignores
   // the returned pointer and normal smart pointer semantics deletes the
-  // feature and all of its children.  If no such Feature exists NULL is
+  // feature and all of its children.  If no such Feature exists nullptr is
   // returned.
 
   // This variant of DeleteFeature is method is a special mostly for use with
@@ -92,4 +91,3 @@ class Container : public Feature {
 
 }  // end namespace kmldom
 
-#endif // KML_CONTAINER_H_

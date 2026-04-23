@@ -25,13 +25,12 @@
 
 // This file contains the declaration of the internal Attributes class.
 
-#ifndef KML_BASE_ATTRIBUTES_H__
-#define KML_BASE_ATTRIBUTES_H__
+#pragma once
 
 #include <stdlib.h>
 #include <map>
 #include <sstream>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/string_util.h"
 #include "kml/base/util.h"
 
@@ -137,4 +136,3 @@ class Attributes {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_ATTRIBUTES_H__

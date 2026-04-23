@@ -26,7 +26,7 @@
 // This file contains the unit tests for the XsdElement class.
 
 #include "kml/xsd/xsd_element.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/attributes.h"
 #include "kml/xsd/xsd_util.h"
@@ -37,14 +37,14 @@ namespace kmlxsd {
 class XsdElementTest : public testing::Test {
  protected:
   kmlbase::Attributes attributes_;
-  boost::scoped_ptr<XsdElement> xsd_element_;
+  XsdElementPtr xsd_element_;
 };
 
 TEST_F(XsdElementTest, TestBasicCreate) {
   // <xs:element name="sjokolade"/>
   const string kSjokolade("sjokolade");
   attributes_.SetString(kName, kSjokolade);
-  xsd_element_.reset(XsdElement::Create(attributes_));
+  xsd_element_ = XsdElement::Create(attributes_);
   ASSERT_TRUE(xsd_element_.get());
   ASSERT_EQ(kSjokolade, xsd_element_->get_name());
   ASSERT_FALSE(xsd_element_->is_ref());
@@ -56,7 +56,7 @@ TEST_F(XsdElementTest, TestCreateNameType) {
   const string kString("string");
   attributes_.SetString(kName, kAddress);
   attributes_.SetString(kType, kString);
-  xsd_element_.reset(XsdElement::Create(attributes_));
+  xsd_element_ = XsdElement::Create(attributes_);
   ASSERT_TRUE(xsd_element_.get());
   ASSERT_EQ(kAddress, xsd_element_->get_name());
   ASSERT_EQ(kString, xsd_element_->get_type());
@@ -72,7 +72,7 @@ TEST_F(XsdElementTest, TestCreateNameTypeDefault) {
   attributes_.SetString(kType, kDouble);
   attributes_.SetString(kDefault, kZZ);
 
-  xsd_element_.reset(XsdElement::Create(attributes_));
+  xsd_element_ = XsdElement::Create(attributes_);
 
   ASSERT_TRUE(xsd_element_.get());
   ASSERT_EQ(kAltitude, xsd_element_->get_name());
@@ -87,7 +87,7 @@ TEST_F(XsdElementTest, TestCreateNameAbstract) {
   attributes_.SetString(kName, kAltitudeModeGroup);
   attributes_.SetString(kAbstract, "true");
 
-  xsd_element_.reset(XsdElement::Create(attributes_));
+  xsd_element_ = XsdElement::Create(attributes_);
 
   ASSERT_TRUE(xsd_element_.get());
   ASSERT_EQ(kAltitudeModeGroup, xsd_element_->get_name());
@@ -107,7 +107,7 @@ TEST_F(XsdElementTest, TestCreateNameTypeDefaultSubstitutionGroup) {
   attributes_.SetString(kDefault, kClampToGround);
   attributes_.SetString(kSubstitutionGroup, kAltitudeModeGroup);
 
-  xsd_element_.reset(XsdElement::Create(attributes_));
+  xsd_element_ = XsdElement::Create(attributes_);
 
   ASSERT_TRUE(xsd_element_.get());
   ASSERT_EQ(kAltitudeMode, xsd_element_->get_name());
@@ -119,16 +119,16 @@ TEST_F(XsdElementTest, TestCreateNameTypeDefaultSubstitutionGroup) {
 
 // Verify the parse of <xs:element type="..."/> and get_type_id().
 TEST_F(XsdElementTest, TestGetTypeId) {
-  xsd_element_.reset(CreateXsdElement("somethingIntegral", "int"));
+  xsd_element_ = CreateXsdElement("somethingIntegral", "int");
   ASSERT_EQ(XsdPrimitiveType::XSD_INT, xsd_element_->get_type_id());
-  xsd_element_.reset(CreateXsdElement("somethingDouble", "double"));
+  xsd_element_ = CreateXsdElement("somethingDouble", "double");
   ASSERT_EQ(XsdPrimitiveType::XSD_DOUBLE, xsd_element_->get_type_id());
-  xsd_element_.reset(CreateXsdElement("yesOrNo", "boolean"));
+  xsd_element_ = CreateXsdElement("yesOrNo", "boolean");
   ASSERT_EQ(XsdPrimitiveType::XSD_BOOLEAN, xsd_element_->get_type_id());
-  xsd_element_.reset(CreateXsdElement("saySomething", "string"));
+  xsd_element_ = CreateXsdElement("saySomething", "string");
   ASSERT_EQ(XsdPrimitiveType::XSD_STRING, xsd_element_->get_type_id());
   // A user defined type such as a complexType is properly not a primitive.
-  xsd_element_.reset(CreateXsdElement("Placemark", "PlacemarkType"));
+  xsd_element_ = CreateXsdElement("Placemark", "PlacemarkType");
   ASSERT_EQ(XsdPrimitiveType::XSD_INVALID, xsd_element_->get_type_id());
 }
 

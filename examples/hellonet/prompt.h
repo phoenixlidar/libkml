@@ -33,6 +33,7 @@
 #include <windows.h>
 #else
 #include <termios.h>
+#include <unistd.h>
 #endif
 #include <iostream>
 #include <string>

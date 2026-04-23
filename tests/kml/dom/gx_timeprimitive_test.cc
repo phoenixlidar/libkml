@@ -26,7 +26,7 @@
 // This file contains the unit tests for gx:TimeSpan and gx:TimeStamp.
 
 #include "kml/dom/gx_timeprimitive.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml_factory.h"
 #include "kml/dom/kml_ptr.h"
 #include "gtest/gtest.h"

@@ -27,8 +27,7 @@
 // This is used internally to the ParseNS() function. See kml_handler.h for
 // details.
 
-#ifndef KML_DOM_KML_HANDLER_NS_H__
-#define KML_DOM_KML_HANDLER_NS_H__
+#pragma once
 
 #include <stack>
 #include <string>
@@ -64,4 +63,3 @@ class KmlHandlerNS : public KmlHandler {
 
 } // end namespace kmldom
 
-#endif  // KML_DOM_KML_HANDLER_NS_H__

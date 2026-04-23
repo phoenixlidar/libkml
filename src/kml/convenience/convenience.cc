@@ -24,7 +24,7 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "kml/convenience/convenience.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/base/date_time.h"
 #include "kml/base/math_util.h"
@@ -146,7 +146,7 @@ LookAtPtr CreateLookAt(double latitude, double longitude, double altitude,
 }
 
 PointPtr CreatePointFromLatLonAtts(const char** atts) {
-  boost::scoped_ptr<Attributes> attributes(Attributes::Create(atts));
+  std::unique_ptr<Attributes> attributes(Attributes::Create(atts));
   if (attributes.get()) {
     double latitude;
     double longitude;
@@ -155,7 +155,7 @@ PointPtr CreatePointFromLatLonAtts(const char** atts) {
       return CreatePointLatLon(latitude, longitude);
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 PointPtr CreatePointFromVec3(const Vec3& vec) {
@@ -218,14 +218,14 @@ GxFlyToPtr CreateFlyTo(const AbstractViewPtr& abstractview, double duration) {
 
 GxFlyToPtr CreateFlyToForFeature(const FeaturePtr& feature, double duration) {
   if (!feature) {
-    return NULL;
+    return nullptr;
   }
   if (feature->has_abstractview()) {
     return CreateFlyTo(feature->get_abstractview(), duration);
   }
   LookAtPtr lookat = kmlengine::ComputeFeatureLookAt(feature);
   if (!lookat) {
-    return NULL;
+    return nullptr;
   }
   return CreateFlyTo(lookat, duration);
 }

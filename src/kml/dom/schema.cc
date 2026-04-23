@@ -86,7 +86,7 @@ void SimpleField::Serialize(Serializer& serializer) const {
 }
 
 void SimpleField::Accept(Visitor* visitor) {
-  visitor->VisitSimpleField(SimpleFieldPtr(this));
+  visitor->VisitSimpleField(std::static_pointer_cast<SimpleField>(shared_from_this()));
 }
 
 // <GxSimpleArrayField>
@@ -97,7 +97,7 @@ GxSimpleArrayField::GxSimpleArrayField() {
 GxSimpleArrayField::~GxSimpleArrayField() {}
 
 void GxSimpleArrayField::Accept(Visitor* visitor) {
-  visitor->VisitGxSimpleArrayField(GxSimpleArrayFieldPtr(this));
+  visitor->VisitGxSimpleArrayField(std::static_pointer_cast<GxSimpleArrayField>(shared_from_this()));
 }
 
 // <Schema>
@@ -147,7 +147,7 @@ void Schema::Serialize(Serializer& serializer) const {
 }
 
 void Schema::Accept(Visitor* visitor) {
-  visitor->VisitSchema(SchemaPtr(this));
+  visitor->VisitSchema(std::static_pointer_cast<Schema>(shared_from_this()));
 }
 
 void Schema::AcceptChildren(VisitorDriver* driver) {

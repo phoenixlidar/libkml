@@ -6,15 +6,12 @@
    Copyright (C) 1998-2005 Gilles Vollant
 */
 
-#ifndef _ZLIBIOAPI_H
+#pragma once
 #ifdef ORIG_MINIZIP
 #include <mztools.h>
 #else
 #include <mz_compat.h>
 #endif
-
-
-#define _ZLIBIOAPI_H
 
 
 #define ZLIB_FILEFUNC_SEEK_CUR (1)
@@ -69,4 +66,4 @@ extern void* ZEXPORT mem_simple_create_file(zlib_filefunc_def* pzlib_filefunc_de
 }
 #endif
 
-#endif
+

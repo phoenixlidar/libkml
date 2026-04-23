@@ -76,7 +76,7 @@ void Pair::Serialize(Serializer& serializer) const {
 }
 
 void Pair::Accept(Visitor* visitor) {
-  visitor->VisitPair(PairPtr(this));
+  visitor->VisitPair(std::static_pointer_cast<Pair>(shared_from_this()));
 }
 
 void Pair::AcceptChildren(VisitorDriver* driver) {
@@ -109,7 +109,7 @@ void StyleMap::Serialize(Serializer& serializer) const {
 }
 
 void StyleMap::Accept(Visitor* visitor) {
-  visitor->VisitStyleMap(StyleMapPtr(this));
+  visitor->VisitStyleMap(std::static_pointer_cast<StyleMap>(shared_from_this()));
 }
 
 void StyleMap::AcceptChildren(VisitorDriver* driver) {

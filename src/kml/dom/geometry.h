@@ -69,8 +69,7 @@
 // class MultiGeometry : public Geometry
 // Note: class Model : public AltitudeGeometryCommon
 
-#ifndef KML_DOM_GEOMETRY_H__
-#define KML_DOM_GEOMETRY_H__
+#pragma once
 
 #include <vector>
 #include "kml/base/util.h"
@@ -238,12 +237,12 @@ class CoordinatesGeometryCommon : public ExtrudeGeometryCommon {
  public:
   // <coordinates>
   const CoordinatesPtr& get_coordinates() const { return coordinates_; }
-  bool has_coordinates() const { return coordinates_ != NULL; }
+  bool has_coordinates() const { return coordinates_ != nullptr; }
   void set_coordinates(const CoordinatesPtr& coordinates) {
     SetComplexChild(coordinates, &coordinates_);
   }
   void clear_coordinates() {
-    set_coordinates(NULL);
+    set_coordinates(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -355,12 +354,12 @@ class BoundaryCommon : public Element {
 
  public:
   const LinearRingPtr& get_linearring() const { return linearring_; }
-  bool has_linearring() const { return linearring_ != NULL; }
+  bool has_linearring() const { return linearring_ != nullptr; }
   void set_linearring(const LinearRingPtr& linearring) {
     SetComplexChild(linearring, &linearring_);
   }
   void clear_linearring() {
-    set_linearring(NULL);
+    set_linearring(nullptr);
   }
 
   // Parser support
@@ -439,12 +438,12 @@ class Polygon : public ExtrudeGeometryCommon {
   const OuterBoundaryIsPtr& get_outerboundaryis() const {
     return outerboundaryis_;
   }
-  bool has_outerboundaryis() const { return outerboundaryis_ != NULL; }
+  bool has_outerboundaryis() const { return outerboundaryis_ != nullptr; }
   void set_outerboundaryis(const OuterBoundaryIsPtr& outerboundaryis) {
     SetComplexChild(outerboundaryis, &outerboundaryis_);
   }
   void clear_outerboundaryis() {
-    set_outerboundaryis(NULL);
+    set_outerboundaryis(nullptr);
   }
 
   // <innerBoundaryIs>
@@ -564,17 +563,17 @@ class GxTrack : public AltitudeGeometryCommon {
   void set_model(const ModelPtr& model) {
     SetComplexChild(model, &model_);
   }
-  bool has_model() const { return model_ != NULL; }
-  void clear_model() { set_model(NULL); }
+  bool has_model() const { return model_ != nullptr; }
+  void clear_model() { set_model(nullptr); }
 
   // <ExtendedData>
   const ExtendedDataPtr& get_extendeddata() const { return extendeddata_; }
-  bool has_extendeddata() const { return extendeddata_ != NULL; }
+  bool has_extendeddata() const { return extendeddata_ != nullptr; }
   void set_extendeddata(const ExtendedDataPtr& extendeddata) {
     SetComplexChild(extendeddata, &extendeddata_);
   }
   void clear_extendeddata() {
-    set_extendeddata(NULL);
+    set_extendeddata(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -987,52 +986,52 @@ class Model : public AltitudeGeometryCommon {
 
   // <Location>
   const LocationPtr& get_location() const { return location_; }
-  bool has_location() const { return location_ != NULL; }
+  bool has_location() const { return location_ != nullptr; }
   void set_location(const LocationPtr& location) {
     SetComplexChild(location, &location_);
   }
   void clear_location() {
-    set_location(NULL);
+    set_location(nullptr);
   }
 
   // <Orientation>
   const OrientationPtr& get_orientation() const { return orientation_; }
-  bool has_orientation() const { return orientation_ != NULL; }
+  bool has_orientation() const { return orientation_ != nullptr; }
   void set_orientation(const OrientationPtr& orientation) {
     SetComplexChild(orientation, &orientation_);
   }
   void clear_orientation() {
-    set_orientation(NULL);
+    set_orientation(nullptr);
   }
 
   // <Scale>
   const ScalePtr& get_scale() const { return scale_; }
-  bool has_scale() const { return scale_ != NULL; }
+  bool has_scale() const { return scale_ != nullptr; }
   void set_scale(const ScalePtr& scale) {
     SetComplexChild(scale, &scale_);
   }
   void clear_scale() {
-    set_scale(NULL);
+    set_scale(nullptr);
   }
 
   // <Link>
   const LinkPtr& get_link() const { return link_; }
-  bool has_link() const { return link_ != NULL; }
+  bool has_link() const { return link_ != nullptr; }
   void set_link(const LinkPtr& link) {
     SetComplexChild(link, &link_);
   }
   void clear_link() {
-    set_link(NULL);
+    set_link(nullptr);
   }
 
   // <ResourceMap>
   const ResourceMapPtr& get_resourcemap() const { return resourcemap_; }
-  bool has_resourcemap() const { return resourcemap_ != NULL; }
+  bool has_resourcemap() const { return resourcemap_ != nullptr; }
   void set_resourcemap(const ResourceMapPtr& resourcemap) {
     SetComplexChild(resourcemap, &resourcemap_);
   }
   void clear_resourcemap() {
-    resourcemap_ = NULL;
+    resourcemap_ = nullptr;
   }
 
   // Visitor API methods, see visitor.h.
@@ -1056,5 +1055,4 @@ class Model : public AltitudeGeometryCommon {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_GEOMETRY_H__
 

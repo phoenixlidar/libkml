@@ -72,17 +72,17 @@ static const char target_change[] =
     "<Placemark id=\"p\"><name>hi</name></Placemark>";
 
 TEST(UpdateTest, TestProcessUpdateNull) {
-  ProcessUpdate(NULL, NULL);
+  ProcessUpdate(nullptr, nullptr);
 }
 
 TEST(UpdateTest, TestSingleSimpleChange) {
-  KmlFilePtr target_file = KmlFile::CreateFromParse(target_change, NULL);
+  KmlFilePtr target_file = KmlFile::CreateFromParse(target_change, nullptr);
   ASSERT_TRUE(target_file != 0);
   PlacemarkPtr target_placemark =
       kmldom::AsPlacemark(target_file->GetObjectById("p"));
   ASSERT_EQ(string("hi"), target_placemark->get_name());
   ASSERT_TRUE(target_placemark != 0);
-  UpdatePtr update = AsUpdate(kmldom::Parse(source_change, NULL));
+  UpdatePtr update = AsUpdate(kmldom::Parse(source_change, nullptr));
   ASSERT_TRUE(update != 0);
   ProcessUpdate(update, target_file);
   ASSERT_EQ(string("NEW NAME"), target_placemark->get_name());
@@ -107,12 +107,12 @@ static const char source_create[] =
 static const char target_create[] = "<Folder id=\"f\"/>";
 
 TEST(UpdateTest, TestSingleSimpleCreate) {
-  KmlFilePtr target_file = KmlFile::CreateFromParse(target_create, NULL);
+  KmlFilePtr target_file = KmlFile::CreateFromParse(target_create, nullptr);
   ASSERT_TRUE(target_file != 0);
   FolderPtr folder = kmldom::AsFolder(target_file->get_root());
   ASSERT_TRUE(folder != 0);
   ASSERT_EQ(static_cast<size_t>(0), folder->get_feature_array_size());
-  UpdatePtr update = AsUpdate(kmldom::Parse(source_create, NULL));
+  UpdatePtr update = AsUpdate(kmldom::Parse(source_create, nullptr));
   ASSERT_TRUE(update != 0);
   ProcessUpdate(update, target_file);
   ASSERT_EQ(static_cast<size_t>(1), folder->get_feature_array_size());
@@ -206,9 +206,9 @@ static const char source_delete[] =
 static const char target_delete[] = "<Folder><Placemark id=\"p\"/></Folder>";
 
 TEST(UpdateTest, TestSingleSimpleDelete) {
-  KmlFilePtr target_file = KmlFile::CreateFromParse(target_delete, NULL);
+  KmlFilePtr target_file = KmlFile::CreateFromParse(target_delete, nullptr);
   ASSERT_TRUE(target_file != 0);
-  UpdatePtr update = AsUpdate(kmldom::Parse(source_delete, NULL));
+  UpdatePtr update = AsUpdate(kmldom::Parse(source_delete, nullptr));
   ASSERT_TRUE(update != 0);
   ProcessUpdate(update, target_file);
   // Verify the Placemark has been removed from the Folder.
@@ -368,9 +368,9 @@ static const struct {
 static KmlFilePtr ParseTestCaseFile(const string& filename) {
   string kml_data;
   if (File::ReadFileToString(string(DATADIR) + filename, &kml_data)) {
-    return KmlFile::CreateFromParse(kml_data, NULL);
+    return KmlFile::CreateFromParse(kml_data, nullptr);
   }
-  return NULL;
+  return nullptr;
 }
 
 // This function verifies all test cases in the kTestCases table.
@@ -395,7 +395,7 @@ TEST(UpdateTest, TestFiles) {
 }
 
 TEST(UpdateTest, TestProcessUpdateWithIdMapNull) {
-  ProcessUpdateWithIdMap(NULL, NULL, NULL);
+  ProcessUpdateWithIdMap(nullptr, nullptr, nullptr);
 }
 
 TEST(UpdateTest, TestProcessUpdateWithIdMapBasic) {

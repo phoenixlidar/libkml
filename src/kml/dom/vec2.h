@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the abstract Vec2 element.
 
-#ifndef KML_DOM_VEC2_H__
-#define KML_DOM_VEC2_H__
+#pragma once
 
 #include "kml/dom/element.h"
 #include "kml/dom/kml22.h"
@@ -119,4 +118,3 @@ class Vec2 : public Element {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_VEC2_H__

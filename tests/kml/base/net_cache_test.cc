@@ -49,11 +49,11 @@ typedef NetCache<MemoryFile> TestDataNetCache;
 class NullCacheItem : public Referent {
  public:
   static NullCacheItem* CreateFromString(const string& data) {
-    return data.empty() ? NULL : new NullCacheItem;
+    return data.empty() ? nullptr : new NullCacheItem;
   }
 };
 
-typedef boost::intrusive_ptr<NullCacheItem> NullCacheItemPtr;
+using NullCacheItemPtr = std::shared_ptr<NullCacheItem>;
 
 // This NetCache CacheItem has instrumentation to track creation/deletion.
 static size_t instrumented_cache_item_count;
@@ -78,7 +78,7 @@ class InstrumentedCacheItem : public Referent {
   string content_;
 };
 
-typedef boost::intrusive_ptr<InstrumentedCacheItem> InstrumentedCacheItemPtr;
+using InstrumentedCacheItemPtr = std::shared_ptr<InstrumentedCacheItem>;
 
 // Since the default NetFetcher always returns false this cache will never
 // accept content.  The size is set to non-zero to verify that cache internal
@@ -115,11 +115,11 @@ class NetCacheTest : public testing::Test {
   }
 
   NetFetcher null_net_fetcher_;
-  boost::scoped_ptr<NullNetCache> null_net_cache_;
+  std::unique_ptr<NullNetCache> null_net_cache_;
   TestDataNetFetcher testdata_net_fetcher_;
-  boost::scoped_ptr<TestDataNetCache> testdata_net_cache_;
+  std::unique_ptr<TestDataNetCache> testdata_net_cache_;
   UrlDataNetFetcher url_data_net_fetcher_;
-  boost::scoped_ptr<UrlDataNetCache> url_data_net_cache_;
+  std::unique_ptr<UrlDataNetCache> url_data_net_cache_;
 };
 
 // Verify very basic usage of the Size() method.
@@ -244,7 +244,7 @@ TEST_F(NetCacheTest, TestDeleteCache) {
       InstrumentedCacheItem::CreateFromString(kContent);
   ASSERT_EQ(kContent, item->get_content());
   ASSERT_EQ(kSize1, instrumented_cache_item_count);
-  item = NULL;  // Forces delete of object managed by intrusive_ptr.
+  item = nullptr;  // Forces delete of object managed by shared_ptr.
   ASSERT_EQ(kSize0, instrumented_cache_item_count);
 
   {
@@ -275,12 +275,12 @@ TEST_F(NetCacheTest, TestDeleteCache) {
 // FetchUrl (which does no I/O at all) the elapsed time below is 22 seconds on
 // 2.33 Ghz Intel Core 2 Duo on a MacBook Pro.
 TEST_F(NetCacheTest, TimingTest) {
-  time_t start = time(NULL);
+  time_t start = time(nullptr);
   const int count = 1000000;
   for (int i = 0; i < count; ++i) {
     ASSERT_TRUE(url_data_net_cache_->Fetch(ToString(i)));
   }
-  time_t elapsed = time(NULL) - start;
+  time_t elapsed = time(nullptr) - start;
   std::cerr << count << " Fetch's in " << elapsed << " seconds" << std::endl;
   // ISO/IEC 988:1999 7.18.2.1
 #define UINT64_MAX        18446744073709551615ULL

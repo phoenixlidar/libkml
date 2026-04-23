@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_KMLDOM_H__
-#define KML_DOM_KMLDOM_H__
+#pragma once
 
 #include "kml/dom/abstractview.h"
 #include "kml/dom/atom.h"
@@ -59,4 +58,3 @@
 #include "kml/dom/xal.h"
 #include "kml/dom/visitor.h"
 
-#endif  // KML_DOM_KMLDOM_H__

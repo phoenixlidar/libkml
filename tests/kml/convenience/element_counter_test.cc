@@ -26,7 +26,7 @@
 // This file contains the unit tests for the ElementCounter class.
 
 #include "kml/convenience/element_counter.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/dom.h"
 #include "kml/dom/xsd.h"
@@ -56,8 +56,8 @@ class ElementCounterTest : public testing::Test {
   }
 
   ElementCountMap element_count_map_;
-  boost::scoped_ptr<ElementCounter> element_counter_;
-  boost::scoped_ptr<Parser> parser_;
+  std::unique_ptr<ElementCounter> element_counter_;
+  std::unique_ptr<Parser> parser_;
   Xsd* xsd_;
 };
 
@@ -66,7 +66,7 @@ TEST_F(ElementCounterTest, TestEmpty) {
 }
 
 TEST_F(ElementCounterTest, TestBasicParse) {
-  ElementPtr root = parser_->Parse("<Placemark/>", NULL);
+  ElementPtr root = parser_->Parse("<Placemark/>", nullptr);
   ASSERT_TRUE(root != 0);
   ASSERT_EQ(static_cast<size_t>(1), element_count_map_.size());
   ASSERT_EQ(1, element_count_map_[kmldom::Type_Placemark]);
@@ -74,7 +74,7 @@ TEST_F(ElementCounterTest, TestBasicParse) {
 
 TEST_F(ElementCounterTest, TestMultipleElements) {
   const string kKml("<Folder><Placemark/><Placemark/></Folder>");
-  ElementPtr root = parser_->Parse(kKml, NULL);
+  ElementPtr root = parser_->Parse(kKml, nullptr);
   ASSERT_TRUE(root != 0);
   ASSERT_EQ(static_cast<size_t>(2), element_count_map_.size());
   ASSERT_EQ(1, element_count_map_[kmldom::Type_Folder]);
@@ -83,11 +83,11 @@ TEST_F(ElementCounterTest, TestMultipleElements) {
 
 TEST_F(ElementCounterTest, TestRepeatedParse) {
   const string kXml("<Placemark/>");
-  ElementPtr root = parser_->Parse(kXml, NULL);
+  ElementPtr root = parser_->Parse(kXml, nullptr);
   ASSERT_TRUE(root != 0);
   ASSERT_EQ(static_cast<size_t>(1), element_count_map_.size());
   ASSERT_EQ(1, element_count_map_[kmldom::Type_Placemark]);
-  root = parser_->Parse(kXml, NULL);
+  root = parser_->Parse(kXml, nullptr);
   ASSERT_TRUE(root != 0);
   ASSERT_EQ(static_cast<size_t>(1), element_count_map_.size());
   ASSERT_EQ(2, element_count_map_[kmldom::Type_Placemark]);
@@ -103,7 +103,7 @@ TEST_F(ElementCounterTest, TestEachComplex) {
       continue;
     }
     const string kXml(string("<") + xsd_->ElementName(i) + "/>");
-    ElementPtr root = parser_->Parse(kXml, NULL);
+    ElementPtr root = parser_->Parse(kXml, nullptr);
     ASSERT_TRUE(root != 0);
     ASSERT_EQ(type_id, root->Type());
     ASSERT_EQ(1, element_count_map_[type_id]);

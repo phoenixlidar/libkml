@@ -47,7 +47,7 @@ GoogleDocList* GoogleDocList::Create(
     HttpClient* http_client) {
   // The HttpClient must exist.
   if (!http_client) {
-    return NULL;
+    return nullptr;
   }
   GoogleDocList* gs = new GoogleDocList;
   http_client->AddHeader("GData-Version", "3.0");
@@ -80,7 +80,7 @@ static string GetScope() {
     size_t s = buff.size();
     string str(static_cast<int>(s+1), 0);
     WideCharToMultiByte(CP_ACP, 0, buff.c_str(), static_cast<int>(s), &str[0],
-			static_cast<int>(s), NULL, NULL);
+			static_cast<int>(s), nullptr, nullptr);
     return str.c_str();
   }
 #else  
@@ -101,15 +101,15 @@ GoogleDocList::~GoogleDocList() {
 
 bool GoogleDocList::GetMetaFeedXml(string* atom_feed) const {
   return http_client_->SendRequest(HTTP_GET, scope_ + kDocListMetaFeedUri,
-                                   NULL, NULL, atom_feed);
+                                   nullptr, nullptr, atom_feed);
 }
 
 kmldom::AtomFeedPtr GoogleDocList::GetMetaFeed() const {
   string meta_feed;
   if (GetMetaFeedXml(&meta_feed)) {
-    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, NULL));
+    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, nullptr));
   }
-  return NULL;
+  return nullptr;
 }
 
 bool GoogleDocList::UploadSpreadsheet(const string& spreadsheet,

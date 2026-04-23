@@ -25,12 +25,11 @@
 
 // This file contains the declaration of the KmlFile class.
 
-#ifndef KML_ENGINE_KML_FILE_H__
-#define KML_ENGINE_KML_FILE_H__
+#pragma once
 
 #include <ostream>
 #include <vector>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/base/referent.h"
 #include "kml/base/xml_namespaces.h"
@@ -51,35 +50,37 @@ class KmlCache;
 // id'ed Objects, shared styles, and name'ed Schemas and a list of all links.
 // KmlFile is a fundamental component of the KML Engine and is central in the
 // use of shared style resolution.
+class KmlFile;
+using KmlFilePtr = std::shared_ptr<KmlFile>;
+
 class KmlFile : public kmlbase::XmlFile {
  public:
   // This creates a KmlFile from a memory buffer of either KML or KMZ data.
   // In the case of KMZ the KmzFile module's ReadKml() is used to read the
-  // KML data from the KMZ archive.  On any parse errors NULL is returned
+  // KML data from the KMZ archive.  On any parse errors nullptr is returned
   // and a human readable error message is saved in the supplied string.
-  // The caller is responsible for deleting the KmlFile this creates.
-  static KmlFile* CreateFromParse(const string& kml_or_kmz_data,
-                                  string *errors);
+  static KmlFilePtr CreateFromParse(const string& kml_or_kmz_data,
+                                    string *errors);
 
   // This method is for use with NetCache CacheItem.
-  static KmlFile* CreateFromString(const string& kml_or_kmz_data) {
+  static KmlFilePtr CreateFromString(const string& kml_or_kmz_data) {
     // Internal KML fetch/parse (styleUrl, etc) errors are quietly ignored.
-    return CreateFromParse(kml_or_kmz_data, NULL);
+    return CreateFromParse(kml_or_kmz_data, nullptr);
   }
 
   // This method is for use with KmlCache.  The purpose is to keep set_url()
   // and set_kml_cache() private and at creation-time.
-  static KmlFile* CreateFromStringWithUrl(const string& kml_data,
-                                          const string& url,
-                                          KmlCache* kml_cache);
+  static KmlFilePtr CreateFromStringWithUrl(const string& kml_data,
+                                            const string& url,
+                                            KmlCache* kml_cache);
 
   // This creates a KmlFile from the given element hierarchy.  This variant of
   // CreateFromImport fails on id duplicates.
-  static KmlFile* CreateFromImport(const kmldom::ElementPtr& element);
+  static KmlFilePtr CreateFromImport(const kmldom::ElementPtr& element);
 
   // This creates a KmlFile from the given element hierarchy.  This variant of
   // CreateFromImport employs a "last one wins" strategy for id duplicates.
-  static KmlFile* CreateFromImportLax(const kmldom::ElementPtr& element);
+  static KmlFilePtr CreateFromImportLax(const kmldom::ElementPtr& element);
 
   // This returns the root element of this KML file.
   const kmldom::ElementPtr get_root() const {
@@ -116,11 +117,11 @@ class KmlFile : public kmlbase::XmlFile {
     return encoding_;
   }
 
-  // This returns the Object Element with the given id.  A NULL Object is
+  // This returns the Object Element with the given id.  A nullptr Object is
   // returned if no Object with this id exists in the KML file.
   kmldom::ObjectPtr GetObjectById(const string& id) const;
 
-  // This returns the shared StyleSelector Element with the given id.  NULL is
+  // This returns the shared StyleSelector Element with the given id.  nullptr is
   // returned if no StyleSelector with this id exists as a shared style
   // selector in the KML file.
   kmldom::StyleSelectorPtr GetSharedStyleById(const string& id) const;
@@ -135,7 +136,7 @@ class KmlFile : public kmlbase::XmlFile {
     return link_parent_vector_;
   }
 
-  // This is the KmlCache which created this KmlFile.  This may be NULL if this
+  // This is the KmlCache which created this KmlFile.  This may be nullptr if this
   // KmlFile was not created using CreateFromStringWithUrl().
   KmlCache* get_kml_cache() const {
     return kml_cache_;
@@ -156,8 +157,8 @@ class KmlFile : public kmlbase::XmlFile {
 
   // This is an internal helper function for the public CreateFromImport*()
   // methods.
-  static KmlFile* CreateFromImportInternal(const kmldom::ElementPtr& element,
-                                           bool disallow_duplicate_ids);
+  static KmlFilePtr CreateFromImportInternal(const kmldom::ElementPtr& element,
+                                             bool disallow_duplicate_ids);
 
   // This is an internal method used in the static Create methods.
   bool ParseFromString(const string& kml, string* errors);
@@ -180,8 +181,5 @@ class KmlFile : public kmlbase::XmlFile {
   LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmlFile);
 };
 
-typedef boost::intrusive_ptr<KmlFile> KmlFilePtr;
-
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_KML_FILE_H__

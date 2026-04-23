@@ -26,8 +26,7 @@
 // This is the main include file for the KMLDOM library. Clients of kmldom
 // should include only this header file.
 
-#ifndef KML_DOM_H__
-#define KML_DOM_H__
+#pragma once
 
 #include <exception>
 #include "kml/dom/kml_cast.h"
@@ -39,4 +38,3 @@
 #include "kml/dom/parser_observer.h"
 #include "kml/dom/parser.h"
 
-#endif  // KML_DOM_H__

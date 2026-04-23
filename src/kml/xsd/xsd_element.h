@@ -25,10 +25,9 @@
 
 // This file contains the declaration of the XsdElement class.
 
-#ifndef KML_XSD_XSD_ELEMENT_H__
-#define KML_XSD_XSD_ELEMENT_H__
+#pragma once
 
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/base/referent.h"
 #include "kml/xsd/xsd_primitive_type.h"
 
@@ -38,12 +37,15 @@ class Attributes;
 
 namespace kmlxsd {
 
+class XsdElement;
+using XsdElementPtr = std::shared_ptr<XsdElement>;
+
 // XsdElement corresponds to <xs:element name="..." type="..." ... />
 // or <xs:element ref="..."/>.
 class XsdElement : public kmlbase::Referent {
 public:
   // Create an XsdElement from the given attributes.
-  static XsdElement* Create(const kmlbase::Attributes& attributes);
+  static XsdElementPtr Create(const kmlbase::Attributes& attributes);
 
   // Get the value of the <xs:element abstract="..."> attribute.
   bool is_abstract() const {
@@ -106,8 +108,5 @@ public:
   string substitution_group_;
 };
 
-typedef boost::intrusive_ptr<XsdElement> XsdElementPtr;
-
 }  // end namespace kmlxsd
 
-#endif  // KML_XSD_XSD_ELEMENT_H__

@@ -48,8 +48,7 @@
 // <xal:ThoroughfareName>
 // <xal:ThoroughfareNumber>
 
-#ifndef KML_DOM_XAL_H__
-#define KML_DOM_XAL_H__
+#pragma once
 
 #include "kml/dom/element.h"
 #include "kml/base/attributes.h"
@@ -63,11 +62,11 @@ class XalAddressDetails : public BasicElement<Type_XalAddressDetails> {
 
   // <xal:Country>
   const XalCountryPtr& get_country() const { return country_; }
-  bool has_country() const { return country_ != NULL; }
+  bool has_country() const { return country_ != nullptr; }
   void set_country(const XalCountryPtr& country) {
     SetComplexChild(country, &country_);
   }
-  void clear_country() { set_country(NULL); }
+  void clear_country() { set_country(nullptr); }
 
  private:
   XalAddressDetails();
@@ -102,24 +101,24 @@ class XalAdministrativeArea : public BasicElement<Type_XalAdministrativeArea> {
 
   // <xal:Locality>
   const XalLocalityPtr& get_locality() const { return locality_; }
-  bool has_locality() const { return locality_ != NULL; }
+  bool has_locality() const { return locality_ != nullptr; }
   void set_locality(const XalLocalityPtr& locality) {
     SetComplexChild(locality, &locality_);
   }
 
-  void clear_locality() { set_locality(NULL); }
+  void clear_locality() { set_locality(nullptr); }
   // <xal:SubAdministrativeArea>
   const XalSubAdministrativeAreaPtr& get_subadministrativearea() const {
     return subadministrativearea_;
   }
   bool has_subadministrativearea() const {
-    return subadministrativearea_ != NULL;
+    return subadministrativearea_ != nullptr;
   }
   void set_subadministrativearea(
       const XalSubAdministrativeAreaPtr& subadministrativearea) {
     SetComplexChild(subadministrativearea, &subadministrativearea_);
   }
-  void clear_subadministrativearea() { set_subadministrativearea(NULL); }
+  void clear_subadministrativearea() { set_subadministrativearea(nullptr); }
 
  private:
   XalAdministrativeArea();
@@ -155,12 +154,12 @@ class XalCountry : public BasicElement<Type_XalCountry> {
   const XalAdministrativeAreaPtr& get_administrativearea() const {
     return administrativearea_;
   }
-  bool has_administrativearea() const { return administrativearea_ != NULL; }
+  bool has_administrativearea() const { return administrativearea_ != nullptr; }
   void set_administrativearea(
       const XalAdministrativeAreaPtr& administrativearea) {
     SetComplexChild(administrativearea, &administrativearea_);
   }
-  void clear_administrativearea() { set_administrativearea(NULL); }
+  void clear_administrativearea() { set_administrativearea(nullptr); }
 
  private:
   XalCountry();
@@ -198,19 +197,19 @@ class XalLocality : public BasicElement<Type_XalLocality> {
 
   // <xal:Thoroughfare>
   const XalThoroughfarePtr& get_thoroughfare() const { return thoroughfare_; }
-  bool has_thoroughfare() const { return thoroughfare_ != NULL; }
+  bool has_thoroughfare() const { return thoroughfare_ != nullptr; }
   void set_thoroughfare(const XalThoroughfarePtr& thoroughfare) {
     SetComplexChild(thoroughfare, &thoroughfare_);
   }
-  void clear_thoroughfare() { set_thoroughfare(NULL); }
+  void clear_thoroughfare() { set_thoroughfare(nullptr); }
 
   // <xal:PostalCode>
   const XalPostalCodePtr& get_postalcode() const { return postalcode_; }
-  bool has_postalcode() const { return postalcode_ != NULL; }
+  bool has_postalcode() const { return postalcode_ != nullptr; }
   void set_postalcode(const XalPostalCodePtr& postalcode) {
     SetComplexChild(postalcode, &postalcode_);
   }
-  void clear_postalcode() { set_postalcode(NULL); }
+  void clear_postalcode() { set_postalcode(nullptr); }
 
  private:
   XalLocality();
@@ -281,11 +280,11 @@ class XalSubAdministrativeArea :
 
   // <xal:Locality>
   const XalLocalityPtr& get_locality() const { return locality_; }
-  bool has_locality() const { return locality_ != NULL; }
+  bool has_locality() const { return locality_ != nullptr; }
   void set_locality(const XalLocalityPtr& locality) {
     SetComplexChild(locality, &locality_);
   }
-  void clear_locality() { set_locality(NULL); }
+  void clear_locality() { set_locality(nullptr); }
 
  private:
   XalSubAdministrativeArea();
@@ -351,4 +350,3 @@ class XalThoroughfare : public BasicElement<Type_XalThoroughfare> {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_XAL_H__

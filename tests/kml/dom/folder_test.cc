@@ -193,7 +193,7 @@ TEST_F(FolderTest, TestParseSerialize) {
       "<Document/>"
       "<GroundOverlay/>"
       "</Folder>");
-  ASSERT_EQ(kFolder, kmldom::SerializeRaw(kmldom::Parse(kFolder, NULL)));
+  ASSERT_EQ(kFolder, kmldom::SerializeRaw(kmldom::Parse(kFolder, nullptr)));
 }
 
 }  // end namespace kmldom

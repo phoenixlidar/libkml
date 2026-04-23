@@ -25,8 +25,7 @@
 
 // This is the declaration of the abstract element Object.
 
-#ifndef KML_DOM_OBJECT_H__
-#define KML_DOM_OBJECT_H__
+#pragma once
 
 #include "kml/dom/element.h"
 #include "kml/dom/kml22.h"
@@ -87,4 +86,3 @@ class Object : public Element {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_OBJECT_H__

@@ -95,7 +95,7 @@ TEST_F(DocumentTest, TestParseSerialize) {
       "<Document/>"
       "<GroundOverlay/>"
       "</Document>");
-  ASSERT_EQ(kDocument, kmldom::SerializeRaw(kmldom::Parse(kDocument, NULL)));
+  ASSERT_EQ(kDocument, kmldom::SerializeRaw(kmldom::Parse(kDocument, nullptr)));
 }
 
 TEST_F(DocumentTest, TestDeleteSchemaAndStyleSelectorAt) {

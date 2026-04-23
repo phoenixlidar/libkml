@@ -86,12 +86,7 @@ check_symbol_exists(_WIN32 stdlib.h IS_WIN)
 #This is needed because clang env of MinGW isn't recognized as MINGW
 check_symbol_exists(__MINGW32__ stdlib.h IS_MINGW)
 
-find_package (Boost
-    CONFIG
-    NO_MODULE
-    COMPONENTS headers
-    REQUIRED
-)
+
 
 find_package (expat CONFIG REQUIRED)
 

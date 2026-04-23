@@ -39,7 +39,14 @@
 // Tell SWIG about C++ Standard Library std::string.
 %include "std_string.i"
 
-// Tell SWIG about the KML DOM intrusive_ptr typedefs.
+%include <std_shared_ptr.i>
+
+// The KML Engine types KmlFile and KmzFile are managed via std::shared_ptr.
+%shared_ptr(kmlbase::XmlFile)
+%shared_ptr(kmlengine::KmlFile)
+%shared_ptr(kmlengine::KmzFile)
+
+// Tell SWIG about the KML DOM shared_ptr typedefs.
 %include "kml/dom/kml_ptr.h"
 
 %include "typemaps.i"
@@ -75,11 +82,12 @@ const kmldom::FeaturePtr GetRootFeature(const kmldom::ElementPtr& root);
 %nodefaultctor KmlFile;
 %apply std::string* OUTPUT { std::string* errors };
 %apply std::string* OUTPUT { std::string* xml_output };
-class KmlFile {
+class KmlFile : public kmlbase::XmlFile {
  public:
-  static KmlFile* CreateFromParse(const std::string& kml_data,
-                                  std::string* errors);
-  static KmlFile* CreateFromImport(const kmldom::ElementPtr& root);
+  static std::shared_ptr<KmlFile> CreateFromParse(
+      const std::string& kml_data, std::string* errors);
+  static std::shared_ptr<KmlFile> CreateFromImport(
+      const kmldom::ElementPtr& root);
   const kmldom::ElementPtr get_root() const;
   bool SerializeToString(std::string* xml_output) const;
   kmldom::ObjectPtr GetObjectById(const std::string& id) const;
@@ -90,8 +98,8 @@ class KmlFile {
 %apply std::string* OUTPUT { std::string* output };
 class KmzFile {
  public:
-  static KmzFile* OpenFromFile(const char* kmz_filepath);
-  static KmzFile* CreateFromString(const std::string& kmz_data);
+  static std::shared_ptr<KmzFile> OpenFromFile(const char* kmz_filepath);
+  static std::shared_ptr<KmzFile> CreateFromString(const std::string& kmz_data);
   bool ReadKml(std::string* output) const;
   bool ReadFile(const char* subfile, std::string* output) const;
 };

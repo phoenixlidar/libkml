@@ -26,7 +26,7 @@
 // This file contains the unit tests for the XmlElement class.
 
 #include "kml/base/xml_element.h"
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/xml_file.h"
 
@@ -36,8 +36,8 @@ namespace kmlbase {
 class TestElement;
 
 // XmlElement derives from Referent such that any derived class can use
-// boost::intrusive_ptr.
-typedef boost::intrusive_ptr<TestElement> TestElementPtr;
+// std::shared_ptr.
+using TestElementPtr = std::shared_ptr<TestElement>;
 
 // The typical use case of XmlElement is to derive a concrete (or abstract)
 // XML element class.
@@ -61,28 +61,28 @@ class TestElement : public XmlElement {
 class TestFile : public XmlFile {
 };
 
-typedef boost::intrusive_ptr<TestFile> TestFilePtr;
+using TestFilePtr = std::shared_ptr<TestFile>;
 
 TEST(XmlElementTest, TestDefault) {
-  TestElementPtr element = new TestElement;
+  auto element = std::make_shared<TestElement>();
   ASSERT_FALSE(element->GetParent());
   ASSERT_FALSE(element->GetXmlFile());
   ASSERT_TRUE(element->InSameXmlFile(element));
 }
 
 TEST(XmlElementTest, TestSetGetParent) {
-  TestElementPtr parent = new TestElement;
-  TestElementPtr child = new TestElement;
+  auto parent = std::make_shared<TestElement>();
+  auto child = std::make_shared<TestElement>();
   ASSERT_TRUE(parent->SetChild(child));
   ASSERT_TRUE(child->GetParent());
   ASSERT_FALSE(parent->SetChild(child));
 }
 
 TEST(XmlElementTest, TestSetSameXmlFile) {
-  TestElementPtr e0 = new TestElement;
-  TestElementPtr e1 = new TestElement;
-  TestFilePtr f0 = new TestFile;
-  TestFilePtr f1 = new TestFile;
+  auto e0 = std::make_shared<TestElement>();
+  auto e1 = std::make_shared<TestElement>();
+  auto f0 = std::make_shared<TestFile>();
+  auto f1 = std::make_shared<TestFile>();
   ASSERT_TRUE(e0->SetXmlFile(f0.get()));
   ASSERT_TRUE(e1->SetXmlFile(f1.get()));
   ASSERT_FALSE(e1->InSameXmlFile(e0));

@@ -26,8 +26,7 @@
 // This file contains the declaration of the GetElementsByType() and the
 // internal ElementFinder class.
 
-#ifndef KML_ENGINE_FIND_XML_NAMESPACES_H__
-#define KML_ENGINE_FIND_XML_NAMESPACES_H__
+#pragma once
 
 #include "kml/dom.h"
 
@@ -53,4 +52,3 @@ void FindAndInsertXmlNamespaces(kmldom::ElementPtr element);
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_FIND_XML_NAMESPACES_H__

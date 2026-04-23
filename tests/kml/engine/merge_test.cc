@@ -81,11 +81,11 @@ class MergeTest : public testing::Test {
   PointPtr point_;
 };
 
-// Verify MergeFields() does not crash on NULL args.
+// Verify MergeFields() does not crash on nullptr args.
 TEST_F(MergeTest, TestMergeFieldsNull) {
-  MergeFields(source_placemark_, NULL);
-  MergeFields(NULL, target_placemark_);
-  MergeFields(NULL, NULL);
+  MergeFields(source_placemark_, nullptr);
+  MergeFields(nullptr, target_placemark_);
+  MergeFields(nullptr, nullptr);
 }
 
 // Verify MergeFields does not crash or harm source if source and target
@@ -169,11 +169,11 @@ TEST_F(MergeTest, TestDontMergeComplexChildren) {
                        target_placemark_->get_geometry()->Type());
 }
 
-// Verify MergeElements() does not crash on NULL args.
+// Verify MergeElements() does not crash on nullptr args.
 TEST_F(MergeTest, TestMergeElementsNull) {
-  MergeElements(source_placemark_, NULL);
-  MergeElements(NULL, target_placemark_);
-  MergeElements(NULL, NULL);
+  MergeElements(source_placemark_, nullptr);
+  MergeElements(nullptr, target_placemark_);
+  MergeElements(nullptr, nullptr);
 }
 
 TEST_F(MergeTest, TestBasicMergeIconStyle) {

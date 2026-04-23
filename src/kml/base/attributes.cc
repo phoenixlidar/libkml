@@ -38,7 +38,7 @@ Attributes* Attributes::Create(const char** attrs) {
     return attributes;
   }
   delete attributes;
-  return NULL;
+  return nullptr;
 }
 
 Attributes* Attributes::Create(const kmlbase::StringVector& attrs) {
@@ -47,7 +47,7 @@ Attributes* Attributes::Create(const kmlbase::StringVector& attrs) {
     return attributes;
   }
   delete attributes;
-  return NULL;
+  return nullptr;
 }
 
 // private
@@ -146,7 +146,7 @@ Attributes* Attributes::SplitByPrefix(const string& prefix) {
   // Nothing was split out so just return now.
   if (split->attributes_map_.empty()) {
     delete split;
-    return NULL;
+    return nullptr;
   }
   // Go back and remove all entries added to the split map.
   for (size_t i = 0; i < keys_to_erase.size(); ++i) {

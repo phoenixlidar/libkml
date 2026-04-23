@@ -25,11 +25,10 @@
 
 // This file contains the implementation of the XmlFile class.
 
-#ifndef KML_BASE_XML_FILE_H__
-#define KML_BASE_XML_FILE_H__
+#pragma once
 
 #include <map>
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/base/xml_element.h"
 #include "kml/base/referent.h"
 #include "kml/base/util.h"
@@ -64,7 +63,7 @@ class XmlFile : public Referent {
 
   XmlElementPtr FindXmlElementById(const string& id) const {
     XmlElementIdMap::const_iterator find = id_map_.find(id);
-    return find != id_map_.end() ? find->second : NULL;
+    return find != id_map_.end() ? find->second : nullptr;
   }
 
  protected:
@@ -81,4 +80,3 @@ class XmlFile : public Referent {
 
 }  // end namespace kmlbase
 
-#endif // KML_BASE_XML_FILE_H__

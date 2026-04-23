@@ -23,53 +23,25 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_BASE_REFERENT_H__
-#define KML_BASE_REFERENT_H__
+#pragma once
 
-// This file contains the implementation of the Referent class which holds
-// the reference counter used by boost::intrusive_ptr.  The Referent class
-// is a base class of all KML DOM Elements and also the base TempFile
-// class.  Neither the Referent class nor the methods here are part of the
-// libkml public API.
+#include <memory>
+
+// This file contains the Referent class which is the base class of all KML
+// DOM Elements and also the base TempFile class. Referent derives from
+// std::enable_shared_from_this to support std::shared_ptr usage.
+// Neither the Referent class nor the methods here are part of the libkml
+// public API.
 
 namespace kmlbase {
 
-// This class implements the reference count used by boost::intrusive_ptr.
-class Referent {
+// This class is the base for all reference-counted objects managed via
+// std::shared_ptr.
+class Referent : public std::enable_shared_from_this<Referent> {
  public:
-  // The constructor only constructs the Referent object.  The reference
-  // count is incremented if and when the Referent-derived object is assigned
-  // to a boost::intrusive_ptr.
-  Referent() : ref_count_(0) {}
+  Referent() {}
   virtual ~Referent() {}
-
-  // This method is used by intrusive_ptr_add_ref() to increment the reference
-  // count of a given Referent-derived object.
-  void add_ref() {
-    ++ref_count_;
-  }
-
-  // This method is used by intrusive_ptr_release() to decrement the reference
-  // count of a given Referent-derived object.
-  int release() {
-    return --ref_count_;
-  }
-
-  // This is for debugging purposes only.
-  int get_ref_count() const {
-    return ref_count_;
-  }
-
- private:
-  int ref_count_;
 };
-
-// These declarations are for the implementation of the functions used within
-// boost::intrusive_ptr to manage Referent-derived objects..  See referent.cc
-// and boost/intrusive_ptr.hpp.
-void intrusive_ptr_add_ref(kmlbase::Referent* r);
-void intrusive_ptr_release(kmlbase::Referent* r);
 
 } // end namespace kmlbase
 
-#endif  // KML_BASE_REFERENT_H__

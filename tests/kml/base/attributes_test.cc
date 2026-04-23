@@ -27,7 +27,7 @@
 
 #include "kml/base/attributes.h"
 #include <algorithm>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmlbase {
@@ -42,7 +42,7 @@ class AttributesTest : public testing::Test {
   virtual void SetUp() {
     attributes_.reset(new Attributes);
   }
-  boost::scoped_ptr<Attributes> attributes_;
+  std::unique_ptr<Attributes> attributes_;
 };
 
 TEST_F(AttributesTest, TestCreate) {
@@ -54,7 +54,7 @@ TEST_F(AttributesTest, TestCreate) {
     "kml:PlacemarkType",
     "substitutionGroup",
     "kml:AbstractFeatureGroup",
-    NULL
+    nullptr
   };
   // Call the method under test.
   attributes_.reset(Attributes::Create(atts));
@@ -68,7 +68,7 @@ TEST_F(AttributesTest, TestCreate) {
   ASSERT_EQ(string(atts[5]), got_val);
   ASSERT_FALSE(attributes_->GetValue("no-such-attr", &got_val));
   // Verify null output is well behaved.
-  string* p = NULL;
+  string* p = nullptr;
   ASSERT_TRUE(attributes_->GetValue(atts[0], p));
   ASSERT_FALSE(attributes_->GetValue("no-such_attr", p));
 }
@@ -153,7 +153,7 @@ TEST_F(AttributesTest, TestClone) {
   EXPECT_EQ(kVal1, got_double);
   
   delete clone;
-  clone = NULL;
+  clone = nullptr;
 }
 
 TEST_F(AttributesTest, TestMerge) {
@@ -196,12 +196,12 @@ TEST_F(AttributesTest, TestSplit) {
   const char* atts[] = {
     "xmlns", "http://www.opengis.net/kml/2.2",
     "xmlns:ex", "http://vendor.com/kml/2.2ext",
-    NULL
+    nullptr
   };
   attributes_.reset(Attributes::Create(atts));
   ASSERT_TRUE(attributes_.get());
   // This is the method under test.
-  boost::scoped_ptr<Attributes> xmlns_(attributes_->SplitByPrefix("xmlns"));
+  std::unique_ptr<Attributes> xmlns_(attributes_->SplitByPrefix("xmlns"));
   ASSERT_TRUE(xmlns_.get());
   ASSERT_EQ(static_cast<size_t>(1), xmlns_->GetSize());
   string val;
@@ -213,12 +213,12 @@ TEST_F(AttributesTest, TestMatchNoDefault) {
   const char* atts[] = {
     "xmlns:kml", "http://www.opengis.net/kml/2.2",
     "xmlns:ex", "http://vendor.com/kml/2.2ext",
-    NULL
+    nullptr
   };
   attributes_.reset(Attributes::Create(atts));
   ASSERT_TRUE(attributes_.get());
   // This is the method under test.
-  boost::scoped_ptr<Attributes> xmlns_(attributes_->SplitByPrefix("xmlns"));
+  std::unique_ptr<Attributes> xmlns_(attributes_->SplitByPrefix("xmlns"));
   ASSERT_TRUE(xmlns_.get());
   ASSERT_EQ(static_cast<size_t>(2), xmlns_->GetSize());
   string val;
@@ -237,7 +237,7 @@ TEST_F(AttributesTest, TestGetAttrNames) {
     "kml:PlacemarkType",
     "substitutionGroup",
     "kml:AbstractFeatureGroup",
-    NULL
+    nullptr
   };
   attributes_.reset(Attributes::Create(atts));
   std::vector<string> attr_names;
@@ -254,7 +254,7 @@ TEST_F(AttributesTest, TestGetAttrNames) {
 
 TEST_F(AttributesTest, TestIterator) {
   // NOTE: the keys are in map order.
-  const char* atts[] = { "a", "z", "b", "y", "c", "x", NULL };
+  const char* atts[] = { "a", "z", "b", "y", "c", "x", nullptr };
   attributes_.reset(Attributes::Create(atts));
   ASSERT_TRUE(attributes_.get());
   StringMapIterator iter = attributes_->CreateIterator();

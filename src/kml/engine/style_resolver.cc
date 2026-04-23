@@ -76,14 +76,14 @@ kmldom::StyleSelectorPtr StyleResolver::CreateResolvedStyleSelector(
   StyleMapPtr stylemap = KmlFactory::GetFactory()->CreateStyleMap();
   PairPtr normal = KmlFactory::GetFactory()->CreatePair();
   normal->set_key(kmldom::STYLESTATE_NORMAL);
-  StylePtr style = CreateResolvedStyle(styleurl, NULL, shared_style_map, empty,
-                                       NULL, kmldom::STYLESTATE_NORMAL);
+  StylePtr style = CreateResolvedStyle(styleurl, nullptr, shared_style_map, empty,
+                                       nullptr, kmldom::STYLESTATE_NORMAL);
   normal->set_styleselector(AsStyleSelector(ClearIds(style)));
   stylemap->add_pair(normal);
   PairPtr highlight = KmlFactory::GetFactory()->CreatePair();
   highlight->set_key(kmldom::STYLESTATE_HIGHLIGHT);
-  style = CreateResolvedStyle(styleurl, NULL, shared_style_map, empty,
-                              NULL, kmldom::STYLESTATE_HIGHLIGHT);
+  style = CreateResolvedStyle(styleurl, nullptr, shared_style_map, empty,
+                              nullptr, kmldom::STYLESTATE_HIGHLIGHT);
   highlight->set_styleselector(AsStyleSelector(ClearIds(style)));
   stylemap->add_pair(highlight);
   return stylemap;

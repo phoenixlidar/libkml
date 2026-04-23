@@ -70,7 +70,7 @@ TEST(ParserTest, TestJunkInput) {
   // Parse a garbage string.
   string errors;
   ElementPtr root = Parse("This is not even xml", &errors);
-  // Since the parse failed there will be an error string and NULL is returned.
+  // Since the parse failed there will be an error string and nullptr is returned.
   ASSERT_FALSE(errors.empty());
   ASSERT_FALSE(root);
 
@@ -82,7 +82,7 @@ TEST(ParserTest, TestJunkInput) {
 
 TEST(ParserTest, TestFullyUnknownXml) {
   // Parse perfectly valid, but fully unknown XML.  "Fully unknown" means
-  // the root element is not known.  When Parse returns NULL an error string
+  // the root element is not known.  When Parse returns nullptr an error string
   // is set.  The error string is considered human readable and not
   // examined further by this test.
   string errors;
@@ -147,14 +147,14 @@ TEST(ParserTest, TestKmlWithUnknownEmptyFields) {
   const string kUnknownXml("<a>b<c></c></a>\n");
   const string kKml(
       string("<kml>") + kUnknownXml + "</kml>");
-  ElementPtr root = Parse(kKml, NULL);
+  ElementPtr root = Parse(kKml, nullptr);
   ASSERT_TRUE(root != 0);
   ASSERT_EQ(static_cast<size_t>(1), root->get_unknown_elements_array_size());
   ASSERT_EQ(kUnknownXml, root->get_unknown_elements_array_at(0));
 }
 
 TEST(ParserTest, TestParseAtomOnJunk) {
-  ASSERT_FALSE(ParseAtom("junk", NULL));
+  ASSERT_FALSE(ParseAtom("junk", nullptr));
 }
 
 TEST(ParserTest, TestBasicParseAtomError) {
@@ -180,7 +180,7 @@ TEST(ParserTest, TestBasicParseAtomWithKml) {
     "<atom:content xmlns:atom='http://www.w3.org/2005/Atom'>"
     " xmlns='http://www.opengis.net/kml/2.2'>"
     "<Placemark id='pm0'/>"
-    "</atom:content>", NULL);
+    "</atom:content>", nullptr);
   ASSERT_TRUE(root.get());
   kmldom::AtomContentPtr content = kmldom::AsAtomContent(root);
   ASSERT_TRUE(content.get());

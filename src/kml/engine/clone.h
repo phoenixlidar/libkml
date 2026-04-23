@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the Clone() function.
 
-#ifndef KML_ENGINE_CLONE_H__
-#define KML_ENGINE_CLONE_H__
+#pragma once
 
 #include "kml/dom.h"
 
@@ -38,4 +37,3 @@ kmldom::ElementPtr Clone(const kmldom::ElementPtr& element);
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_CLONE_H__

@@ -25,8 +25,7 @@
 
 // This file contains the implementation of the KmlFeatureListSaver class.
 
-#ifndef KML_CONVENIENCE_KML_FEATURE_LIST_SAVER_H__
-#define KML_CONVENIENCE_KML_FEATURE_LIST_SAVER_H__
+#pragma once
 
 #include "kml/convenience/feature_list.h"
 #include "kml/dom.h"
@@ -108,4 +107,3 @@ class KmlFeatureListSaver : public kmldom::ParserObserver {
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_KML_FEATURE_LIST_SAVER_H__

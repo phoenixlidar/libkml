@@ -27,8 +27,7 @@
 // TODO: decide if this should really attempt to be a platform agnostic
 // authenticated http api or just punt and call it the GoogleHttpClient
 
-#ifndef KML_CONVENIENCE_HTTP_CLIENT_H_
-#define KML_CONVENIENCE_HTTP_CLIENT_H_
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -85,7 +84,7 @@ class HttpClient : kmlbase::NetFetcher {
   // All I/O goes through this method.  See HttpMethodEnum for valid
   // http_method values.  See RFC 2616, Section 5.1.2 Request-URI for
   // request_uri.  See Section 5.3 for request_headers.  Any of
-  // request_headers, data and response may be NULL.  The return value is with
+  // request_headers, data and response may be nullptr.  The return value is with
   // regards to the I/O operation itself and is not a reflection of the HTTP
   // response code which is left to the caller to parse out of the response.
   // The response is the "raw" HTTP response and includes all headers.
@@ -104,7 +103,7 @@ class HttpClient : kmlbase::NetFetcher {
   // The following static methods are for the convenience of managing headers.
 
   // This method appends each string pair in src to the end of dest.  If dest
-  // is NULL this is a nop.
+  // is nullptr this is a nop.
   static void AppendHeaders(const StringPairVector& src,
                             StringPairVector* dest);
 
@@ -121,7 +120,7 @@ class HttpClient : kmlbase::NetFetcher {
   // RFC 2616, Section 4.2.  No formatting such as ':', ' ' or '\n' should
   // appear in the field_name or field_value.  This function appends the
   // given field_name and field_value to the given headers vector.  If the
-  // headers vector is NULL this function does nothing.
+  // headers vector is nullptr this function does nothing.
   static void PushHeader(const string& field_name,
                          const string& field_value,
                          StringPairVector* headers);
@@ -152,4 +151,3 @@ class HttpClient : kmlbase::NetFetcher {
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_HTTP_CLIENT_H_

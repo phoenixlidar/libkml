@@ -23,11 +23,10 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_XSD_XSD_COMPLEX_TYPE_H__
-#define KML_XSD_XSD_COMPLEX_TYPE_H__
+#pragma once
 
 #include <vector>
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/xsd/xsd_element.h"
 #include "kml/xsd/xsd_type.h"
@@ -38,30 +37,29 @@ class XsdComplexType;
 
 // Use this typedef to manage the XsdComplexType pointer.  For example:
 //   XsdComplexTypePtr complex_type = XsdComplexType::Create(attributes);
-typedef boost::intrusive_ptr<XsdComplexType> XsdComplexTypePtr;
+using XsdComplexTypePtr = std::shared_ptr<XsdComplexType>;
 
 // Corresponds to <xs:complexType> with possible <xs:extension> and use of
 // <xs:sequence> (order of <xs:element>'s matters in <xs:sequence>).
 class XsdComplexType : public XsdType {
  public:
   // Create an XsdComplexType from the given attributes.  The "name" attribute
-  // must exist for this to succeed.  On success a pointer is returned which
-  // may be managed with intrusive_ptr using the recommended typedef above.
-  static XsdComplexType* Create(const kmlbase::Attributes& attributes) {
+  // must exist for this to succeed.
+  static XsdComplexTypePtr Create(const kmlbase::Attributes& attributes) {
     string name;
     if (attributes.GetString("name", &name)) {
-      return new XsdComplexType(name);
+      return XsdComplexTypePtr(new XsdComplexType(name));
     }
-    return NULL;
+    return nullptr;
   }
 
-  // This dynamic cast to XsdComplexTypePtr returns non-NULL if the xsd_type
-  // is non-NULL and is_complex() is true.
+  // This dynamic cast to XsdComplexTypePtr returns non-nullptr if the xsd_type
+  // is non-nullptr and is_complex() is true.
   static XsdComplexTypePtr AsComplexType(const XsdTypePtr& xsd_type) {
     if (xsd_type && xsd_type->get_xsd_type_id() == XSD_TYPE_COMPLEX) {
-      return boost::static_pointer_cast<XsdComplexType>(xsd_type);
+      return std::static_pointer_cast<XsdComplexType>(xsd_type);
     }
-    return NULL;
+    return nullptr;
   }
 
   virtual XsdTypeEnum get_xsd_type_id() const {
@@ -122,4 +120,3 @@ class XsdComplexType : public XsdType {
 
 }  // end namespace kmlxsd
 
-#endif  // KML_XSD_XSD_COMPLEX_TYPE_H__

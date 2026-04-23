@@ -26,8 +26,7 @@
 // This file contains the declarations of the SimpleData, SchemaData,
 // Data, and ExtendedData elements.
 
-#ifndef KML_DOM_EXTENDEDDATA_H__
-#define KML_DOM_EXTENDEDDATA_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/element.h"
@@ -344,4 +343,3 @@ class Metadata : public BasicElement<Type_Metadata> {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_EXTENDEDDATA_H__

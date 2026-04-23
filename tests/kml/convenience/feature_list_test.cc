@@ -151,13 +151,13 @@ TEST_F(FeatureListTest, TestSave) {
 }
 
 // This verifies that the BboxSplit and RegionSplit methods are well behaved
-// when given a NULL output FeatureList.
+// when given a nullptr output FeatureList.
 TEST_F(FeatureListTest, TestNull) {
   Bbox bbox;
-  ASSERT_EQ(kSize0, input_.BboxSplit(bbox, 0, NULL));
+  ASSERT_EQ(kSize0, input_.BboxSplit(bbox, 0, nullptr));
   RegionPtr region;
-  ASSERT_EQ(kSize0, input_.RegionSplit(region, 0, NULL));
-  input_.PushBack(NULL);
+  ASSERT_EQ(kSize0, input_.RegionSplit(region, 0, nullptr));
+  input_.PushBack(nullptr);
   ASSERT_EQ(initial_input_point_count_, input_.Size());
 }
 
@@ -173,9 +173,9 @@ TEST_F(FeatureListTest, TestPushBack) {
 
   // Remove any points already in this bounding box.  This makes the test
   // more robust in the face of any changes to kPoints.
-  input_.BboxSplit(bbox, 0, NULL);
+  input_.BboxSplit(bbox, 0, nullptr);
   // Verify no points remain within this bounding box.
-  ASSERT_EQ(kSize0, input_.BboxSplit(bbox, 0, NULL));
+  ASSERT_EQ(kSize0, input_.BboxSplit(bbox, 0, nullptr));
 
   size_t previous_size = input_.Size();
 

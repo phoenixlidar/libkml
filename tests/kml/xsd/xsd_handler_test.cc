@@ -26,7 +26,7 @@
 // This file contains the unit tests for the XsdHandler class.
 
 #include "kml/xsd/xsd_handler.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "gtest/gtest.h"
 #include "kml/xsd/xsd_file.h"
@@ -57,15 +57,15 @@ class XsdHandlerTest : public testing::Test {
 
   void ParseKml21Xsd();
   kmlbase::StringVector atts_;
-  boost::scoped_ptr<XsdFile> xsd_file_;
-  boost::scoped_ptr<XsdHandler> xsd_handler_;
+  std::unique_ptr<XsdFile> xsd_file_;
+  std::unique_ptr<XsdHandler> xsd_handler_;
 };
 
 // Verify basic usage of the expat handlers.
 TEST_F(XsdHandlerTest, TestBasicBeginDataEnd) {
   const char* kElement = "vanilla";
   xsd_handler_->StartElement(kElement, atts_);  // <vanilla>
-//  xsd_handler_->CharData(NULL);  // no content
+//  xsd_handler_->CharData(nullptr);  // no content
   xsd_handler_->EndElement(kElement);  // </vanilla>
 }
 
@@ -130,7 +130,7 @@ void XsdHandlerTest::ParseKml21Xsd() {
                                                               "kml21.xsd")));
   string xsd;
   ASSERT_TRUE(File::ReadFileToString(kKml21Xsd, &xsd));
-  xsd_file_.reset(XsdFile::CreateFromParse(xsd, NULL));
+  xsd_file_.reset(XsdFile::CreateFromParse(xsd, nullptr));
   ASSERT_TRUE(xsd_file_.get());
 }
 

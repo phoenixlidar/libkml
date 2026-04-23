@@ -71,14 +71,14 @@ static PointPtr CreatePointCoordinates(double lat, double lon) {
 // This tests the GetCenter() function.
 TEST(LocationUtilTest, TestGetCenter) {
   KmlFactory* factory = KmlFactory::GetFactory();
-  // NULL output pointer(s) should not crash.
+  // nullptr output pointer(s) should not crash.
   LatLonBoxPtr llb = factory->CreateLatLonBox();
-  GetCenter(llb, NULL, NULL);
+  GetCenter(llb, nullptr, nullptr);
   double lat, lon;
-  GetCenter(llb, &lat, NULL);
+  GetCenter(llb, &lat, nullptr);
   // Missing lon pointer still saves a result for lat.
   ASSERT_EQ(0.0, lat);
-  GetCenter(llb, NULL, &lon);
+  GetCenter(llb, nullptr, &lon);
   // Missing lat pointer still saves a result for lon.
   ASSERT_EQ(0.0, lat);
   // A default LatLonBox is well defined thus so is its center.
@@ -147,7 +147,7 @@ static KmlFilePtr ParseFromDataDirFile(const string& subdir,
   const string kml_file =
     File::JoinPaths(File::JoinPaths(string(DATADIR), subdir), filename);
   return File::ReadFileToString(kml_file, &kml_data) ?
-      KmlFile::CreateFromParse(kml_data, NULL) : NULL;
+      KmlFile::CreateFromParse(kml_data, nullptr) : nullptr;
 }
 
 // This is a table of test cases.
@@ -258,7 +258,7 @@ TEST(LocationUtilTest, RunTestCases) {
     ASSERT_EQ(kTestCases[i].has_bounds, GetFeatureBounds(feature, &bbox))
         << kTestCases[i].kml_filename << " " << kTestCases[i].feature_id;
     // GetFeatureBounds returns the same no matter the state of the bbox arg.
-    ASSERT_EQ(kTestCases[i].has_bounds, GetFeatureBounds(feature, NULL));
+    ASSERT_EQ(kTestCases[i].has_bounds, GetFeatureBounds(feature, nullptr));
     if (kTestCases[i].has_bounds) {
       // If has_bounds then the test case n,s,e,w are valid to test.
       ASSERT_EQ(kTestCases[i].north, bbox.get_north());
@@ -269,9 +269,9 @@ TEST(LocationUtilTest, RunTestCases) {
     double lat, lon;
     ASSERT_EQ(kTestCases[i].has_loc, GetFeatureLatLon(feature, &lat, &lon));
     // GetFeatureBounds returns same no matter the state of the lat/lon args.
-    ASSERT_EQ(kTestCases[i].has_loc, GetFeatureLatLon(feature, &lat, NULL));
-    ASSERT_EQ(kTestCases[i].has_loc, GetFeatureLatLon(feature, NULL, &lon));
-    ASSERT_EQ(kTestCases[i].has_loc, GetFeatureLatLon(feature, NULL, NULL));
+    ASSERT_EQ(kTestCases[i].has_loc, GetFeatureLatLon(feature, &lat, nullptr));
+    ASSERT_EQ(kTestCases[i].has_loc, GetFeatureLatLon(feature, nullptr, &lon));
+    ASSERT_EQ(kTestCases[i].has_loc, GetFeatureLatLon(feature, nullptr, nullptr));
     if (kTestCases[i].has_loc) {
       // If has_loc then the test case lat,lon are valid to test.
       ASSERT_DOUBLE_EQ(kTestCases[i].lat, lat);
@@ -282,27 +282,27 @@ TEST(LocationUtilTest, RunTestCases) {
 
 // Test GetGeometryBounds on null/empty args.
 TEST(LocationUtilTest, TestGetGeometryBoundsNullEmpty) {
-  ASSERT_FALSE(GetGeometryBounds(NULL, NULL));
+  ASSERT_FALSE(GetGeometryBounds(nullptr, nullptr));
   KmlFactory* kml_factory = KmlFactory::GetFactory();
   Bbox bbox;
   PointPtr point = kml_factory->CreatePoint();
-  ASSERT_FALSE(GetGeometryBounds(point, NULL));
+  ASSERT_FALSE(GetGeometryBounds(point, nullptr));
   ASSERT_FALSE(GetGeometryBounds(point, &bbox));
   LineStringPtr linestring = kml_factory->CreateLineString();
-  ASSERT_FALSE(GetGeometryBounds(linestring, NULL));
+  ASSERT_FALSE(GetGeometryBounds(linestring, nullptr));
   ASSERT_FALSE(GetGeometryBounds(linestring, &bbox));
   LinearRingPtr linearring = kml_factory->CreateLinearRing();
-  ASSERT_FALSE(GetGeometryBounds(linearring, NULL));
+  ASSERT_FALSE(GetGeometryBounds(linearring, nullptr));
   ASSERT_FALSE(GetGeometryBounds(linearring, &bbox));
   PolygonPtr poly = kml_factory->CreatePolygon();
   ASSERT_FALSE(GetGeometryBounds(poly, &bbox));  // Issue 148
   poly->set_outerboundaryis(kml_factory->CreateOuterBoundaryIs());
   ASSERT_FALSE(GetGeometryBounds(poly, &bbox));
   ModelPtr model = kml_factory->CreateModel();
-  ASSERT_FALSE(GetGeometryBounds(model, NULL));
+  ASSERT_FALSE(GetGeometryBounds(model, nullptr));
   ASSERT_FALSE(GetGeometryBounds(model, &bbox));
   MultiGeometryPtr multigeometry = kml_factory->CreateMultiGeometry();
-  ASSERT_FALSE(GetGeometryBounds(multigeometry, NULL));
+  ASSERT_FALSE(GetGeometryBounds(multigeometry, nullptr));
   ASSERT_FALSE(GetGeometryBounds(multigeometry, &bbox));
 }
 

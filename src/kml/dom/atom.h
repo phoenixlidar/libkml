@@ -26,8 +26,7 @@
 // This file contains the declaration of Atom elements used in KML.
 // See: http://atompub.org/rfc4287.html.
 
-#ifndef KML_DOM_ATOM_H__
-#define KML_DOM_ATOM_H__
+#pragma once
 
 #include "kml/dom/element.h"
 
@@ -300,12 +299,12 @@ class AtomEntry : public AtomCommon {
 
   // <atom:content>
   const AtomContentPtr& get_content() const { return content_; }
-  bool has_content() const { return content_ != NULL; }
+  bool has_content() const { return content_ != nullptr; }
   void set_content(const AtomContentPtr& content) {
     SetComplexChild(content, &content_);
   }
   void clear_content() {
-    set_content(NULL);
+    set_content(nullptr);
   }
 
  private:
@@ -458,4 +457,3 @@ class AtomLink : public BasicElement<Type_AtomLink> {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_ATOM_H__

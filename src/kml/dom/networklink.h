@@ -25,8 +25,7 @@
 
 // This file declares the NetworkLink element.
 
-#ifndef KML_DOM_NETWORKLINK_H__
-#define KML_DOM_NETWORKLINK_H__
+#pragma once
 
 #include "kml/dom/feature.h"
 #include "kml/dom/link.h"
@@ -75,12 +74,12 @@ class NetworkLink : public Feature {
   // <Link>
   // <Url> is deprecated, no API access
   const LinkPtr& get_link() const { return link_; }
-  bool has_link() const { return link_ != NULL; }
+  bool has_link() const { return link_ != nullptr; }
   void set_link(const LinkPtr& link) {
     SetComplexChild(link, &link_);
   }
   void clear_link() {
-    set_link(NULL);
+    set_link(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -104,4 +103,3 @@ class NetworkLink : public Feature {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_NETWORKLINK_H__

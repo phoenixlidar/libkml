@@ -161,7 +161,7 @@ void LookAt::Serialize(Serializer& serializer) const {
 }
 
 void LookAt::Accept(Visitor* visitor) {
-  visitor->VisitLookAt(LookAtPtr(this));
+  visitor->VisitLookAt(std::static_pointer_cast<LookAt>(shared_from_this()));
 }
 
 // <Camera>
@@ -188,7 +188,7 @@ void Camera::Serialize(Serializer& serializer) const {
 }
 
 void Camera::Accept(Visitor* visitor) {
-  visitor->VisitCamera(CameraPtr(this));
+  visitor->VisitCamera(std::static_pointer_cast<Camera>(shared_from_this()));
 }
 
 }  // end namespace kmldom

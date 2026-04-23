@@ -27,7 +27,7 @@
 
 #include "kml/engine/style_splitter.h"
 #include "kml/engine/style_splitter_internal.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/net_cache_test_util.h"
 #include "kml/base/string_util.h"
@@ -61,8 +61,8 @@ class StyleSplitterTest : public testing::Test {
 
   KmlFactory* kml_factory_;
   SharedStyleMap shared_style_map_;
-  boost::scoped_ptr<StyleSplitter> style_splitter_;
-  boost::scoped_ptr<Parser> style_splitting_parser_;
+  std::unique_ptr<StyleSplitter> style_splitter_;
+  std::unique_ptr<Parser> style_splitting_parser_;
 };
 
 // Call StyleSplitter methods directly in a simple typical case.
@@ -300,7 +300,7 @@ TEST_F(StyleSplitterTest, TestIdCollision) {
       "    <Style/>\n"
       "  </Placemark>\n"
       "</Document>\n");
-  DocumentPtr document = AsDocument(style_splitting_parser_->Parse(kKml, NULL));
+  DocumentPtr document = AsDocument(style_splitting_parser_->Parse(kKml, nullptr));
   ASSERT_TRUE(document != 0);
   PlacemarkPtr placemark = AsPlacemark(document->get_feature_array_at(0));
   ASSERT_TRUE(placemark != 0);
@@ -326,7 +326,7 @@ TEST_F(StyleSplitterTest, TestMultipleFeatures) {
     document->add_feature(placemark);
   }
   const string kDocument(SerializePretty(document));
-  document = AsDocument(style_splitting_parser_->Parse(kDocument, NULL));
+  document = AsDocument(style_splitting_parser_->Parse(kDocument, nullptr));
   ASSERT_TRUE(document != 0);
   ASSERT_EQ(kCount, document->get_styleselector_array_size());
   ASSERT_EQ(kCount, document->get_feature_array_size());

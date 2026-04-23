@@ -47,7 +47,7 @@ static const char kDisplayNamePfx[] = "/displayName";
 
 EntityMapper::EntityMapper(const KmlFilePtr& kml_file, StringMap* string_map)
     : kml_file_(kml_file), entity_map_(string_map),
-      alt_markup_map_(NULL) {}
+      alt_markup_map_(nullptr) {}
 
 EntityMapper::EntityMapper(const KmlFilePtr& kml_file, StringMap* string_map,
                            StringPairVector* alt_markup_map)

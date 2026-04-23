@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_PLACEMARK_H__
-#define KML_DOM_PLACEMARK_H__
+#pragma once
 
 #include "kml/dom/feature.h"
 #include "kml/dom/geometry.h"
@@ -46,12 +45,12 @@ class Placemark : public Feature {
   }
 
   const GeometryPtr& get_geometry() const { return geometry_; }
-  bool has_geometry() const { return geometry_ != NULL; }
+  bool has_geometry() const { return geometry_ != nullptr; }
   void set_geometry(const GeometryPtr& geometry) {
     SetComplexChild(geometry, &geometry_);
   }
   void clear_geometry() {
-    set_geometry(NULL);
+    set_geometry(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -71,4 +70,3 @@ class Placemark : public Feature {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_PLACEMARK_H__

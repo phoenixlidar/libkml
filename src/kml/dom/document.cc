@@ -60,7 +60,7 @@ void Document::Serialize(Serializer& serializer) const {
 }
 
 void Document::Accept(Visitor* visitor) {
-  visitor->VisitDocument(DocumentPtr(this));
+  visitor->VisitDocument(std::static_pointer_cast<Document>(shared_from_this()));
 }
 
 void Document::AcceptChildren(VisitorDriver* driver) {

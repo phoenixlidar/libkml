@@ -26,7 +26,7 @@
 // This file contains the unit tests for the XsdSchema class.
 
 #include "kml/xsd/xsd_schema.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "gtest/gtest.h"
 #include "kml/xsd/xsd_util.h"
@@ -42,13 +42,13 @@ class XsdSchemaTest : public testing::Test {
   Attributes attributes_;
 };
 
-// Verify NULL is returned if no attributes are supplied.
+// Verify nullptr is returned if no attributes are supplied.
 TEST_F(XsdSchemaTest, TestNullCreateNoAttributes) {
   xsd_schema_ = XsdSchema::Create(attributes_);
   ASSERT_FALSE(xsd_schema_);
 }
 
-// Verify NULL is returned from Create() if attributes has no targetNamespace.
+// Verify nullptr is returned from Create() if attributes has no targetNamespace.
 TEST_F(XsdSchemaTest, TestNullCreateNoTargetNamespace) {
   attributes_.SetString("random", "junk");
   xsd_schema_ = XsdSchema::Create(attributes_);

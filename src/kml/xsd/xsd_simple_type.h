@@ -23,11 +23,10 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_XSD_XSD_SIMPLE_TYPE_H__
-#define KML_XSD_XSD_SIMPLE_TYPE_H__
+#pragma once
 
 #include <vector>
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/xsd/xsd_type.h"
 
@@ -35,24 +34,24 @@ namespace kmlxsd {
 
 class XsdSimpleType;
 
-typedef boost::intrusive_ptr<XsdSimpleType> XsdSimpleTypePtr;
+using XsdSimpleTypePtr = std::shared_ptr<XsdSimpleType>;
 
 // Corresponds to <xs:simpleType>.
 class XsdSimpleType : public XsdType {
  public:
-  static XsdSimpleType* Create(const kmlbase::Attributes& attributes) {
+  static XsdSimpleTypePtr Create(const kmlbase::Attributes& attributes) {
     string name;
     if (attributes.GetString("name", &name)) {
-      return new XsdSimpleType(name);
+      return XsdSimpleTypePtr(new XsdSimpleType(name));
     }
-    return NULL;
+    return nullptr;
   }
 
   static XsdSimpleTypePtr AsSimpleType(const XsdTypePtr& xsd_type) {
     if (xsd_type && xsd_type->get_xsd_type_id() == XSD_TYPE_SIMPLE) {
-      return boost::static_pointer_cast<XsdSimpleType>(xsd_type);
+      return std::static_pointer_cast<XsdSimpleType>(xsd_type);
     }
-    return NULL;
+    return nullptr;
   }
 
   virtual XsdTypeEnum get_xsd_type_id() const {
@@ -113,4 +112,3 @@ class XsdSimpleType : public XsdType {
 
 }  // end namespace kmlxsd
 
-#endif  // KML_XSD_XSD_SIMPLE_TYPE_H__

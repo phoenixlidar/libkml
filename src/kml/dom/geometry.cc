@@ -189,7 +189,7 @@ void Coordinates::Serialize(Serializer& serializer) const {
 }
 
 void Coordinates::Accept(Visitor* visitor) {
-  visitor->VisitCoordinates(CoordinatesPtr(this));
+  visitor->VisitCoordinates(std::static_pointer_cast<Coordinates>(shared_from_this()));
 }
 
 Geometry::Geometry() {}
@@ -283,7 +283,7 @@ void Point::Serialize(Serializer& serializer) const {
 }
 
 void Point::Accept(Visitor* visitor) {
-  visitor->VisitPoint(PointPtr(this));
+  visitor->VisitPoint(std::static_pointer_cast<Point>(shared_from_this()));
 }
 
 LineCommon::LineCommon()
@@ -329,7 +329,7 @@ LineString::LineString() {}
 LineString::~LineString() {}
 
 void LineString::Accept(Visitor* visitor) {
-  visitor->VisitLineString(LineStringPtr(this));
+  visitor->VisitLineString(std::static_pointer_cast<LineString>(shared_from_this()));
 }
 
 LinearRing::LinearRing() {}
@@ -337,7 +337,7 @@ LinearRing::LinearRing() {}
 LinearRing::~LinearRing() {}
 
 void LinearRing::Accept(Visitor* visitor) {
-  visitor->VisitLinearRing(LinearRingPtr(this));
+  visitor->VisitLinearRing(std::static_pointer_cast<LinearRing>(shared_from_this()));
 }
 
 BoundaryCommon::BoundaryCommon() {}
@@ -372,7 +372,7 @@ OuterBoundaryIs::OuterBoundaryIs() {}
 OuterBoundaryIs::~OuterBoundaryIs() {}
 
 void OuterBoundaryIs::Accept(Visitor* visitor) {
-  visitor->VisitOuterBoundaryIs(OuterBoundaryIsPtr(this));
+  visitor->VisitOuterBoundaryIs(std::static_pointer_cast<OuterBoundaryIs>(shared_from_this()));
 }
 
 InnerBoundaryIs::InnerBoundaryIs() {}
@@ -380,7 +380,7 @@ InnerBoundaryIs::InnerBoundaryIs() {}
 InnerBoundaryIs::~InnerBoundaryIs() {}
 
 void InnerBoundaryIs::Accept(Visitor* visitor) {
-  visitor->VisitInnerBoundaryIs(InnerBoundaryIsPtr(this));
+  visitor->VisitInnerBoundaryIs(std::static_pointer_cast<InnerBoundaryIs>(shared_from_this()));
 }
 
 Polygon::Polygon()
@@ -431,7 +431,7 @@ void Polygon::Serialize(Serializer& serializer) const {
 }
 
 void Polygon::Accept(Visitor* visitor) {
-  visitor->VisitPolygon(PolygonPtr(this));
+  visitor->VisitPolygon(std::static_pointer_cast<Polygon>(shared_from_this()));
 }
 
 void Polygon::AcceptChildren(VisitorDriver* driver) {
@@ -468,7 +468,7 @@ void MultiGeometry::Serialize(Serializer& serializer) const {
 }
 
 void MultiGeometry::Accept(Visitor* visitor) {
-  visitor->VisitMultiGeometry(MultiGeometryPtr(this));
+  visitor->VisitMultiGeometry(std::static_pointer_cast<MultiGeometry>(shared_from_this()));
 }
 
 void MultiGeometry::AcceptChildren(VisitorDriver* driver) {
@@ -535,7 +535,7 @@ void GxTrack::Serialize(Serializer& serializer) const {
 }
 
 void GxTrack::Accept(Visitor* visitor) {
-  visitor->VisitGxTrack(GxTrackPtr(this));
+  visitor->VisitGxTrack(std::static_pointer_cast<GxTrack>(shared_from_this()));
 }
 
 void GxTrack::AcceptChildren(VisitorDriver* driver) {
@@ -602,7 +602,7 @@ void GxMultiTrack::Serialize(Serializer& serializer) const {
 }
 
 void GxMultiTrack::Accept(Visitor* visitor) {
-  visitor->VisitGxMultiTrack(GxMultiTrackPtr(this));
+  visitor->VisitGxMultiTrack(std::static_pointer_cast<GxMultiTrack>(shared_from_this()));
 }
 
 void GxMultiTrack::AcceptChildren(VisitorDriver* driver) {

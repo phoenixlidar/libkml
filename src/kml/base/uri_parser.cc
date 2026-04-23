@@ -74,22 +74,22 @@ UriParser* UriParser::CreateFromParse(const char* str) {
     return uri_parser;
   }
   delete uri_parser;
-  return NULL;
+  return nullptr;
 }
 
 UriParser* UriParser::CreateResolvedUri(const char* base,
                                         const char* relative) {
-  boost::scoped_ptr<UriParser> base_uri(CreateFromParse(base));
-  boost::scoped_ptr<UriParser> relative_uri(CreateFromParse(relative));
+  std::unique_ptr<UriParser> base_uri(CreateFromParse(base));
+  std::unique_ptr<UriParser> relative_uri(CreateFromParse(relative));
   if (!base_uri.get() || !relative_uri.get()) {
-    return NULL;
+    return nullptr;
   }
   UriParser* resolved_uri = new UriParser;
   if (resolved_uri->Resolve(*base_uri.get(), *relative_uri.get())) {
     return resolved_uri;
   }
   delete resolved_uri;
-  return NULL;
+  return nullptr;
 }
 
 UriParser::UriParser() {

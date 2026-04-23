@@ -146,7 +146,7 @@ class ElementReplicator : public kmldom::Serializer {
   // Return the top of the stack which holds the root element.
   ElementPtr root() {
     if (clone_stack_.empty()) {
-      return NULL;
+      return nullptr;
     }
     return clone_stack_.top();
   }
@@ -166,7 +166,7 @@ class ElementReplicator : public kmldom::Serializer {
 // to the parent as they are completed.
 ElementPtr Clone(const ElementPtr& element) {
   if (!element) {
-    return NULL;
+    return nullptr;
   }
   ElementReplicator serializer;
   element->Serialize(serializer);

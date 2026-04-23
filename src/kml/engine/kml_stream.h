@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the KmlStream class.
 
-#ifndef KML_ENGINE_KML_STREAM_H__
-#define KML_ENGINE_KML_STREAM_H__
+#pragma once
 
 #include <istream>
 #include "kml/dom.h"
@@ -46,7 +45,7 @@ namespace kmlengine {
 class KmlStream : public kmlbase::XmlFile {
  public:
   // Create a KmlFile from KML/KMZ in the given C++ istream.  The entire
-  // input is consumed.  On any parse or I/O failure NULL is returned and an
+  // input is consumed.  On any parse or I/O failure nullptr is returned and an
   // error message is set to the given error string if one is supplied.
   // If a ParserObserver is supplied it is used during parse.
   static KmlStream* ParseFromIstream(std::istream* input, string* errors,
@@ -66,4 +65,3 @@ class KmlStream : public kmlbase::XmlFile {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_KML_STREAM_H__

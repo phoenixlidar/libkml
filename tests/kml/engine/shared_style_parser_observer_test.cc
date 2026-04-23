@@ -26,7 +26,7 @@
 // This file contains the unit tests for the SharedStyleParserObserver class.
 
 #include "kml/engine/shared_style_parser_observer.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml_factory.h"
 #include "gtest/gtest.h"
 
@@ -64,7 +64,7 @@ class SharedStyleParserObserverTest : public testing::Test {
   string kStyleMap0Id_;
   kmldom::StyleMapPtr stylemap0_;
   SharedStyleMap shared_style_map_;
-  boost::scoped_ptr<SharedStyleParserObserver> shared_style_parser_observer_;
+  std::unique_ptr<SharedStyleParserObserver> shared_style_parser_observer_;
 };
 
 // Verify that AddChild() accepts shared StyleSelectors.
@@ -120,7 +120,7 @@ TEST_F(SharedStyleParserObserverTest, TestNewElement) {
 // Verify that AddChild() properly detects a duplicate Object id when
 // strict_parse is true.
 TEST_F(SharedStyleParserObserverTest, TestAddChildDetectsDupeId) {
-  boost::scoped_ptr<SharedStyleParserObserver> shared_style_parser_observer(
+  std::unique_ptr<SharedStyleParserObserver> shared_style_parser_observer(
       new SharedStyleParserObserver(&shared_style_map_, true));
   // Pass a parent-child that will be added to the map.
   ASSERT_TRUE(shared_style_parser_observer->AddChild(document_, style0_));

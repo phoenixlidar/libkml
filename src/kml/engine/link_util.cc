@@ -39,7 +39,7 @@ KmlFilePtr FetchLink(const KmlFilePtr& kml_file,
       return kml_cache->FetchKmlRelative(kml_file->get_url(), href);
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 bool FetchIcon(const KmlFilePtr& kml_file,

@@ -52,7 +52,7 @@ TEST_F(PairTest, TestDefaults) {
   ASSERT_FALSE(pair_->has_styleurl());
   ASSERT_EQ(string(""), pair_->get_styleurl());
   ASSERT_FALSE(pair_->has_styleselector());
-  ASSERT_TRUE(NULL == pair_->get_styleselector());
+  ASSERT_TRUE(nullptr == pair_->get_styleselector());
 }
 
 // Verify setting default makes has_xxx() true:
@@ -61,7 +61,7 @@ TEST_F(PairTest, TestSetToDefaultValues) {
   ASSERT_TRUE(pair_->has_key());
   pair_->set_styleurl(pair_->get_styleurl());
   ASSERT_TRUE(pair_->has_styleurl());
-  pair_->set_styleselector(NULL);
+  pair_->set_styleselector(nullptr);
   ASSERT_FALSE(pair_->has_styleselector()); // ptr is null
 }
 

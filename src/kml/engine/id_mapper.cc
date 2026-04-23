@@ -61,7 +61,7 @@ void IdMapper::SaveElement(const ElementPtr& element) {
 // Append all elements of the given type id in the hierarchy rooted at element.
 void MapIds(const ElementPtr& root, ObjectIdMap* object_id_map,
             ElementVector* dup_id_vector) {
-  if (root && object_id_map) {  // NULL dup_id_vector ok.
+  if (root && object_id_map) {  // nullptr dup_id_vector ok.
     // The IdMapper derivation of Serializer does all the work.
     IdMapper id_mapper(object_id_map, dup_id_vector);
     id_mapper.SaveElement(root);
@@ -71,7 +71,7 @@ void MapIds(const ElementPtr& root, ObjectIdMap* object_id_map,
 const ElementPtr& ClearIds(const ElementPtr& root) {
   // Get all objects with an id.
   ObjectIdMap object_id_map;
-  MapIds(root, &object_id_map, NULL);
+  MapIds(root, &object_id_map, nullptr);
   // Iterate through them all and clear the id.
   ObjectIdMap::const_iterator iter = object_id_map.begin();
   for (; iter != object_id_map.end(); ++iter) {

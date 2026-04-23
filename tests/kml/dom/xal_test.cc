@@ -82,7 +82,7 @@ TEST_F(XalAddressDetailsTest, TestParseSerialize) {
       "<xal:Country/>"
       "</xal:AddressDetails>");
   ASSERT_EQ(kAddressDetails,
-            kmldom::SerializeRaw(kmldom::Parse(kAddressDetails, NULL)));
+            kmldom::SerializeRaw(kmldom::Parse(kAddressDetails, nullptr)));
 }
 
 // This verifies that all expected elements in a test file parse and are
@@ -92,7 +92,7 @@ TEST_F(XalAddressDetailsTest, TestParseDom) {
   const string kXalGaddr(
       File::JoinPaths(DATADIR, File::JoinPaths("xal", "gaddr.kml")));
   ASSERT_TRUE(File::ReadFileToString(kXalGaddr, &gaddr_content));
-  ElementPtr root = kmldom::Parse(gaddr_content, NULL);
+  ElementPtr root = kmldom::Parse(gaddr_content, nullptr);
   ASSERT_TRUE(root != 0);
   KmlPtr kml = AsKml(root);
   ASSERT_TRUE(kml != 0);
@@ -212,7 +212,7 @@ TEST_F(XalCountryTest, TestParseSerialize) {
       "<xal:AdministrativeArea/>"
       "</xal:Country>");
   ASSERT_EQ(kCountry,
-            kmldom::SerializeRaw(kmldom::Parse(kCountry, NULL)));
+            kmldom::SerializeRaw(kmldom::Parse(kCountry, nullptr)));
 }
 
 // <xal:Locality>

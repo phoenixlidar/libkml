@@ -26,7 +26,7 @@
 // This file contains the unit tests for the Element and Field classes.
 
 #include "kml/dom/element.h"
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/attributes.h"
 #include "kml/base/xml_namespaces.h"
@@ -51,7 +51,7 @@ class ComplexChild : public Element {
 };
 
 // A complex child in the DOM API has a typedef like this:
-typedef boost::intrusive_ptr<ComplexChild> ComplexChildPtr;
+using ComplexChildPtr = std::shared_ptr<ComplexChild>;
 
 const char kEgo[] = "ego";
 
@@ -66,7 +66,7 @@ class TestElement : public Element {
   }
   // This method exemplifies how a child is cleared.
   void clear_child() {
-    set_child(NULL);  // Setting to NULL is well defined for intrusive_ptr.
+    set_child(nullptr);  // Setting to nullptr is well defined for shared_ptr.
   }
   // This method exemplifies how a complex child is accessed.
   // Note the use of const reference.
@@ -125,16 +125,16 @@ class TestElement : public Element {
   bool has_ego_;
 };
 
-typedef boost::intrusive_ptr<TestElement> TestElementPtr;
+using TestElementPtr = std::shared_ptr<TestElement>;
 
 // This tests the Element class.
 class ElementTest : public testing::Test {
  protected:
   virtual void SetUp() {
-    element_ = new TestElement();
-    child1_ = new ComplexChild(1);
-    child2_ = new ComplexChild(2);
-    child3_ = new ComplexChild(3);
+    element_ = std::make_shared<TestElement>();
+    child1_ = std::make_shared<ComplexChild>(1);
+    child2_ = std::make_shared<ComplexChild>(2);
+    child3_ = std::make_shared<ComplexChild>(3);
   }
 
   // Smart pointer memory management is used within the test fixture as well.
@@ -162,8 +162,8 @@ TEST_F(ElementTest, TestAddGetUnknowns) {
   ASSERT_EQ(unknown2, element_->get_unknown_elements_array_at(1));
 
   // Recognized but misplaced elements:
-  Element* legal_name = KmlFactory::GetFactory()->CreateFieldById(Type_name);
-  Element* legal_open = KmlFactory::GetFactory()->CreateFieldById(Type_open);
+  FieldPtr legal_name = KmlFactory::GetFactory()->CreateFieldById(Type_name);
+  FieldPtr legal_open = KmlFactory::GetFactory()->CreateFieldById(Type_open);
   element_->AddElement(legal_name);
   element_->AddElement(legal_open);
   ASSERT_EQ(static_cast<size_t>(2),
@@ -180,18 +180,18 @@ TEST_F(ElementTest, TestSetComplexChild) {
   element_->set_child(child1_);
   // Verify the child is child 1.
   ASSERT_EQ(1, element_->get_child()->id());
-  ASSERT_EQ(2, child1_->get_ref_count());
+  ASSERT_EQ(2, child1_.use_count());
 
   // Set again releases reference of previous.
   element_->set_child(child2_);
   ASSERT_EQ(2, element_->get_child()->id());
-  ASSERT_EQ(1, child1_->get_ref_count());
-  ASSERT_EQ(2, child2_->get_ref_count());
+  ASSERT_EQ(1, child1_.use_count());
+  ASSERT_EQ(2, child2_.use_count());
 
-  // Set to NULL also release reference of previously set child.
+  // Set to nullptr also release reference of previously set child.
   element_->clear_child();
-  ASSERT_EQ(ComplexChildPtr(NULL), element_->get_child());
-  ASSERT_EQ(1, child2_->get_ref_count());
+  ASSERT_EQ(ComplexChildPtr(nullptr), element_->get_child());
+  ASSERT_EQ(1, child2_.use_count());
 }
 
 // This tests the AddComplexChild() method.
@@ -199,13 +199,13 @@ TEST_F(ElementTest, TestAddComplexChild) {
   element_->add_child(child1_);
   element_->add_child(child2_);
   element_->add_child(child3_);
-  element_->add_child(NULL);  // NOP, but should not crash.
+  element_->add_child(nullptr);  // NOP, but should not crash.
   ASSERT_EQ(1, element_->get_child_array_at(0)->id());
-  ASSERT_EQ(2, element_->get_child_array_at(0)->get_ref_count());
+  ASSERT_EQ(2, element_->get_child_array_at(0).use_count());
   ASSERT_EQ(2, element_->get_child_array_at(1)->id());
-  ASSERT_EQ(2, element_->get_child_array_at(1)->get_ref_count());
+  ASSERT_EQ(2, element_->get_child_array_at(1).use_count());
   ASSERT_EQ(3, element_->get_child_array_at(2)->id());
-  ASSERT_EQ(2, element_->get_child_array_at(2)->get_ref_count());
+  ASSERT_EQ(2, element_->get_child_array_at(2).use_count());
 }
 
 // This tests the ParseAttributes() method.
@@ -220,7 +220,7 @@ TEST_F(ElementTest, TestParseAttributes) {
   ASSERT_FALSE(attributes.GetValue("id", &val));
 
   // Create and parse attributes.
-  const char* kAttrs[] = { "ego", "major", "id", "none", NULL };
+  const char* kAttrs[] = { "ego", "major", "id", "none", nullptr };
   element_->ParseAttributes(Attributes::Create(kAttrs));
   // Verify that TestElement grabbed the ego= attr
   ASSERT_TRUE(element_->has_ego());
@@ -455,9 +455,9 @@ TEST_F(ElementTest, TestSerializeMisplaced) {
 
   // 3 things in, 3 things out.
   // AddElement on Element adds the Element to the misplaced elements array.
-  element_->AddElement(new ComplexChildWithSerializer(3));
-  element_->AddElement(new ComplexChildWithSerializer(2));
-  element_->AddElement(new ComplexChildWithSerializer(1));
+  element_->AddElement(std::make_shared<ComplexChildWithSerializer>(3));
+  element_->AddElement(std::make_shared<ComplexChildWithSerializer>(2));
+  element_->AddElement(std::make_shared<ComplexChildWithSerializer>(1));
   // Call the method under test.
   element_->SerializeUnknown(misplaced_serializer);
   // Verify all is as expected.
@@ -471,7 +471,7 @@ TEST_F(ElementTest, TestSerializeMisplaced) {
 TEST_F(ElementTest, TestDeleteFromArrayAt) {
   const size_t kNumChildren(123);
   for (size_t i = 0; i < kNumChildren; ++i) {
-    element_->add_child(new ComplexChild(i));
+    element_->add_child(std::make_shared<ComplexChild>(i));
   }
   ASSERT_EQ(kNumChildren, element_->get_child_array_size());
   // Attempt to delete Features off the end.
@@ -502,10 +502,10 @@ TEST_F(ElementTest, TestDeleteFromArrayAt) {
 class ElementSerializerTest : public testing::Test {
  protected:
   virtual void SetUp() {
-    test_element_ = new TestElement();
-    child1_ = new ComplexChild(1);
-    child2_ = new ComplexChild(2);
-    child3_ = new ComplexChild(3);
+    test_element_ = std::make_shared<TestElement>();
+    child1_ = std::make_shared<ComplexChild>(1);
+    child2_ = std::make_shared<ComplexChild>(2);
+    child3_ = std::make_shared<ComplexChild>(3);
   }
 
   TestElementPtr test_element_;
@@ -548,7 +548,7 @@ TEST(FieldTest, TestSetBool) {
   KmlFactory* factory = KmlFactory::GetFactory();
   FieldPtr field = factory->CreateFieldById(Type_open);
   // Pathological, but well defined case.  Note: SetBool always deletes field.
-  ASSERT_FALSE(field->SetBool(NULL));
+  ASSERT_FALSE(field->SetBool(nullptr));
 
   // Handle the 5 variants of bool: "1", "true", "0", "false", garbage
   bool open;
@@ -599,7 +599,7 @@ TEST(FieldTest, TestSetDouble) {
   KmlFactory* factory = KmlFactory::GetFactory();
   FieldPtr field = factory->CreateFieldById(Type_north);
   // Pathological, but well defined case.  Note: SetDouble always deletes field.
-  ASSERT_FALSE(field->SetDouble(NULL));
+  ASSERT_FALSE(field->SetDouble(nullptr));
 
   // <north>37.123</north>
   field = factory->CreateFieldById(Type_north);
@@ -614,7 +614,7 @@ TEST(FieldTest, TestSetInt) {
   KmlFactory* factory = KmlFactory::GetFactory();
   FieldPtr field = factory->CreateFieldById(Type_drawOrder);
   // Pathological, but well defined case.  Note: SetInt always deletes field.
-  ASSERT_FALSE(field->SetInt(NULL));
+  ASSERT_FALSE(field->SetInt(nullptr));
 
   // <drawOrder>10</drawOrder>
   field = factory->CreateFieldById(Type_drawOrder);
@@ -630,7 +630,7 @@ TEST(FieldTest, TestSetEnum) {
   FieldPtr field = factory->CreateFieldById(Type_altitudeMode);
   // Pathological, but well defined case: null pointer to enum val.
   // Note: SetEnum always deletes field.
-  ASSERT_FALSE(field->SetEnum(NULL));
+  ASSERT_FALSE(field->SetEnum(nullptr));
 
   int altitudemode;
 
@@ -669,7 +669,7 @@ TEST(FieldTest, TestSetString) {
   FieldPtr field = factory->CreateFieldById(Type_description);
   // Pathological, but well defined case: null pointer to string val.
   // Note: SetString always deletes field.
-  ASSERT_FALSE(field->SetString(NULL));
+  ASSERT_FALSE(field->SetString(nullptr));
 
   string name;
 

@@ -26,7 +26,7 @@
 // This file contains the unit tests for the ObjectIdParserObserver class.
 
 #include "kml/engine/object_id_parser_observer.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml_funcs.h"  // For kmldom::Parse()
 #include "kml/dom/kml_factory.h"
 #include "gtest/gtest.h"
@@ -41,7 +41,7 @@ class ObjectIdParserObserverTest : public testing::Test {
   }
 
   ObjectIdMap object_id_map_;
-  boost::scoped_ptr<ObjectIdParserObserver> object_id_parser_observer_;
+  std::unique_ptr<ObjectIdParserObserver> object_id_parser_observer_;
 };
 
 // Verify the proper operation of NewElement() for an Object with an id.
@@ -124,7 +124,7 @@ TEST_F(ObjectIdParserObserverTest, TestAddChild) {
   ASSERT_TRUE(object_id_parser_observer_->AddChild(placemark, point));
   ASSERT_TRUE(object_id_parser_observer_->AddChild(placemark, point));
   ASSERT_TRUE(object_id_parser_observer_->AddChild(point, placemark));
-  ASSERT_TRUE(object_id_parser_observer_->AddChild(NULL, NULL));
+  ASSERT_TRUE(object_id_parser_observer_->AddChild(nullptr, nullptr));
 }
 
 // Verify that the destructor does not affect the map.
@@ -154,7 +154,7 @@ TEST_F(ObjectIdParserObserverTest, TestNonObjectWithId) {
   // The Parse() function in kmldom preserves id of a non object as an
   // unknown attribute.
   const string kId("kml-is-not-an-object");
-  kmldom::ElementPtr root = kmldom::Parse("<kml id=\"" + kId + "\"/>", NULL);
+  kmldom::ElementPtr root = kmldom::Parse("<kml id=\"" + kId + "\"/>", nullptr);
 
   // Verify that the parse succeeded and created a non-Object.
   ASSERT_EQ(kmldom::Type_kml, root->Type());

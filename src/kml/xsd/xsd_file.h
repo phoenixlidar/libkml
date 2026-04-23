@@ -25,13 +25,12 @@
 
 // This file contains the declaration of the XsdFile class.
 
-#ifndef KML_XSD_XSD_FILE_H__
-#define KML_XSD_XSD_FILE_H__
+#pragma once
 
 #include <map>
 #include <stack>
 #include <vector>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/xmlns.h"
 #include "kml/xsd/xsd_element.h"
 #include "kml/xsd/xsd_complex_type.h"
@@ -93,7 +92,7 @@ class XsdFile {
     alias_map_[real_name] = alias_name;
   }
 
-  // Returns the alias for this name or NULL if this name has no alias.  For
+  // Returns the alias for this name or nullptr if this name has no alias.  For
   // example, if set_alias("AbstractGeometryGroup", "Geometry") was used then
   // get_alias("AbstractGeometryGroup") returns "Geometry".
   const string get_alias(const string& real_name) const {
@@ -121,7 +120,7 @@ class XsdFile {
   const XsdElementPtr FindElement(const string& element_name) const;
 
   // Return the XsdType for the given element.  If there is no type for this
-  // element in the target namespace NULL is returned.
+  // element in the target namespace nullptr is returned.
   const XsdTypePtr FindElementType(const XsdElementPtr& element) const;
 
   // This looks up the given type by name.
@@ -132,7 +131,7 @@ class XsdFile {
   // the <xs:element name="name".../> child of <xs:schema/>.
   const XsdElementPtr ResolveRef(const string& element_ref) const;
 
-  // Return the XsdComplexType of the complex_type's extension base.  NULL is
+  // Return the XsdComplexType of the complex_type's extension base.  nullptr is
   // returned if the complex_type has no extension base or if the extension
   // base is not found within this XsdFile's target namespace.
   XsdComplexTypePtr GetBaseType(const XsdComplexTypePtr& complex_type) const;
@@ -180,4 +179,3 @@ class XsdFile {
 
 }  // end namespace kmlxsd
 
-#endif // KML_XSD_XSD_FILE_H__

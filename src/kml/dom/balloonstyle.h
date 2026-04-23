@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the BalloonStyle element.
 
-#ifndef KML_DOM_BALLOONSTYLE_H__
-#define KML_DOM_BALLOONSTYLE_H__
+#pragma once
 
 #include "kml/base/color32.h"
 #include "kml/dom/substyle.h"
@@ -131,4 +130,3 @@ class BalloonStyle : public SubStyle {
 
 }  // end namespace kmldom
 
-#endif // KML_DOM_BALLOONSTYLE_H__

@@ -26,7 +26,7 @@
 // This file contains the unit tests for the KmlCache class.
 
 #include "kml/engine/kml_cache.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/base/net_cache_test_util.h"
 #include "gtest/gtest.h"
@@ -53,7 +53,7 @@ class KmlCacheTest : public testing::Test {
   }
 
   kmlbase::TestDataNetFetcher testdata_net_fetcher_;
-  boost::scoped_ptr<KmlCache> kml_cache_;
+  std::unique_ptr<KmlCache> kml_cache_;
 };
 
 // Verify the FetchKml() and FetchData() with null/bad arguments.
@@ -62,7 +62,7 @@ TEST_F(KmlCacheTest, TestNullBadFetch) {
   string data;
   ASSERT_FALSE(kml_cache_->FetchKmlAbsolute(kEmpty));
   ASSERT_FALSE(kml_cache_->FetchKmlRelative(kEmpty, kEmpty));
-  ASSERT_FALSE(kml_cache_->FetchDataRelative(kEmpty, kEmpty, NULL));
+  ASSERT_FALSE(kml_cache_->FetchDataRelative(kEmpty, kEmpty, nullptr));
   ASSERT_FALSE(kml_cache_->FetchDataRelative(kEmpty, kEmpty, &data));
   ASSERT_TRUE(data.empty());
   const string kGarbage("this is not a url");
@@ -100,8 +100,8 @@ TEST_F(KmlCacheTest, TestBasicFetchKml) {
   //ASSERT_EQ(1, testdata_net_fetcher_.get_fetch_count());
 
   // Verify that fetching it again works fine.
-  kml_file = NULL;  // Releases our reference to this KmlFile.
-  placemark = NULL;  // Releases our reference to this Placemark
+  kml_file = nullptr;  // Releases our reference to this KmlFile.
+  placemark = nullptr;  // Releases our reference to this Placemark
   kml_file = kml_cache_->FetchKmlRelative(kBaseUrl, kTargetHref);
   ASSERT_TRUE(kml_file != 0);
   placemark = AsPlacemark(kml_file->GetObjectById("SZXX0026"));

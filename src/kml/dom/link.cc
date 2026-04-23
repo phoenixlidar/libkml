@@ -82,7 +82,7 @@ void BasicLink::Serialize(Serializer& serializer) const {
 }
 
 void BasicLink::Accept(Visitor* visitor) {
-  visitor->VisitBasicLink(BasicLinkPtr(this));
+  visitor->VisitBasicLink(std::static_pointer_cast<BasicLink>(shared_from_this()));
 }
 
 // Construct with defaults as per KML standard.
@@ -168,7 +168,7 @@ Link::Link() {}
 Link::~Link() {}
 
 void Link::Accept(Visitor* visitor) {
-  visitor->VisitLink(LinkPtr(this));
+  visitor->VisitLink(std::static_pointer_cast<Link>(shared_from_this()));
 }
 
 Icon::Icon() {}
@@ -176,7 +176,7 @@ Icon::Icon() {}
 Icon::~Icon() {}
 
 void Icon::Accept(Visitor* visitor) {
-  visitor->VisitIcon(IconPtr(this));
+  visitor->VisitIcon(std::static_pointer_cast<Icon>(shared_from_this()));
 }
 
 Url::Url() {}
@@ -184,7 +184,7 @@ Url::Url() {}
 Url::~Url() {}
 
 void Url::Accept(Visitor* visitor) {
-  visitor->VisitUrl(UrlPtr(this));
+  visitor->VisitUrl(std::static_pointer_cast<Url>(shared_from_this()));
 }
 
 IconStyleIcon::IconStyleIcon()
@@ -236,7 +236,7 @@ void IconStyleIcon::Serialize(Serializer& serializer) const {
 }
 
 void IconStyleIcon::Accept(Visitor* visitor) {
-  visitor->VisitIconStyleIcon(IconStyleIconPtr(this));
+  visitor->VisitIconStyleIcon(std::static_pointer_cast<IconStyleIcon>(shared_from_this()));
 }
 
 }  // end namespace kmldom

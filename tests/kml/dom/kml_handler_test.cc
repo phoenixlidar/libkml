@@ -27,7 +27,7 @@
 
 #include "kml/dom/kml_handler.h"
 #include <stdlib.h>  // For calloc() and free().
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/dom/element.h"
 #include "kml/dom/kml_cast.h"
@@ -63,7 +63,7 @@ class KmlHandlerTest : public testing::Test {
 
   kmlbase::StringVector atts_;
   parser_observer_vector_t observers_;
-  boost::scoped_ptr<KmlHandler> kml_handler_;
+  std::unique_ptr<KmlHandler> kml_handler_;
   void VerifyFolderParse(const ElementPtr& root) const;
   void VerifyElementTypes(const KmlDomType* types_array,
                           const element_vector_t& element_vector) const;
@@ -76,7 +76,7 @@ class KmlHandlerTest : public testing::Test {
 TEST_F(KmlHandlerTest, TestInitialState) {
   // No elements have been processed, but the PopRoot() method should
   // be well behaved.
-  ASSERT_TRUE(NULL == kml_handler_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_->PopRoot());
 }
 
 // This is a test of the StartElement() method for a known simple element.
@@ -89,7 +89,7 @@ TEST_F(KmlHandlerTest, TestStartSimpleElement) {
   ASSERT_EQ(root->Type(), Type_name);
 
   // PopRoot() is destructive so now there is nothing.
-  ASSERT_TRUE(NULL == kml_handler_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_->PopRoot());
 }
 
 // This is a test of the EndElement() method for a known simple element.
@@ -102,7 +102,7 @@ TEST_F(KmlHandlerTest, TestEndSimpleElement) {
   ASSERT_EQ(root->Type(), Type_name);
 
   // PopRoot() is destructive so now there is nothing.
-  ASSERT_TRUE(NULL == kml_handler_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_->PopRoot());
 }
 
 // This is a test of the CharData() method for a known simple element.
@@ -117,7 +117,7 @@ TEST_F(KmlHandlerTest, TestBasicCharData) {
 
   ElementPtr root = kml_handler_->PopRoot();
   ASSERT_EQ(root->Type(), Type_name);
-  ASSERT_TRUE(NULL == kml_handler_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_->PopRoot());
   ASSERT_EQ(kContent, root->get_char_data());
 }
 
@@ -126,7 +126,7 @@ TEST_F(KmlHandlerTest, TestStartComplexElement) {
   kml_handler_->StartElement("Placemark", atts_);
   ElementPtr root = kml_handler_->PopRoot();
   ASSERT_EQ(root->Type(), Type_Placemark);
-  ASSERT_TRUE(NULL == kml_handler_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_->PopRoot());
 }
 
 // This is a test of the EndElement() method for a known complex element.
@@ -136,7 +136,7 @@ TEST_F(KmlHandlerTest, TestEndComplexElement) {
   kml_handler_->EndElement("Placemark");
   ElementPtr root = kml_handler_->PopRoot();
   ASSERT_EQ(root->Type(), Type_Placemark);
-  ASSERT_TRUE(NULL == kml_handler_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_->PopRoot());
 }
 
 // This is a test of StartElement() for a known complex element with known
@@ -149,7 +149,7 @@ TEST_F(KmlHandlerTest, TestStartComplexElementWithAtts) {
   kml_handler_->StartElement("Placemark", atts_);
   ElementPtr root = kml_handler_->PopRoot();
   ASSERT_EQ(root->Type(), Type_Placemark);
-  ASSERT_TRUE(NULL == kml_handler_->PopRoot());
+  ASSERT_TRUE(nullptr == kml_handler_->PopRoot());
   PlacemarkPtr placemark = AsPlacemark(root);
   ASSERT_EQ(kAttrVal, placemark->get_id());
 }
@@ -272,7 +272,7 @@ TEST_F(KmlHandlerTest, SimpleNewElementObserverTest) {
   SimpleNewElementObserver simple_new_element_observer(&element_vector,
                                                        kNumElements);
   parser.AddObserver(&simple_new_element_observer);
-  ElementPtr root = parser.Parse(kKmlFolder, NULL);
+  ElementPtr root = parser.Parse(kKmlFolder, nullptr);
 
   // Verify that the entire document parsed properly.
   VerifyFolderParse(root);
@@ -315,7 +315,7 @@ TEST_F(KmlHandlerTest, SimpleAddChildObserverTest) {
                                                    &child_vector,
                                                    kNumElements);
   parser.AddObserver(&simple_add_child_observer);
-  ElementPtr root = parser.Parse(kKmlFolder, NULL);
+  ElementPtr root = parser.Parse(kKmlFolder, nullptr);
 
   // Verify that the observer did not interfere with the parse as normal.
   VerifyFolderParse(root);
@@ -486,7 +486,7 @@ TEST_F(KmlHandlerTest, TestParserHandlesGrossDescriptions) {
           "kml", "invalid_descriptions.kml")));
   string data;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(kInvalidDescriptions, &data));
-  ElementPtr root = Parse(data, NULL);
+  ElementPtr root = Parse(data, nullptr);
   ASSERT_TRUE(root != 0);
   KmlPtr kml = AsKml(root);
   ASSERT_TRUE(kml != 0);
@@ -513,7 +513,7 @@ TEST_F(KmlHandlerTest, TestParserHandlesBoolWhitespace) {
           "kml", "outline_space.kml")));
   string data;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(kOutlineSpace, &data));
-  ElementPtr root = Parse(data, NULL);
+  ElementPtr root = Parse(data, nullptr);
   ASSERT_TRUE(root != 0);
   DocumentPtr document = AsDocument(AsKml(root)->get_feature());
   StylePtr style = AsStyle(document->get_styleselector_array_at(0));
@@ -533,7 +533,7 @@ TEST_F(KmlHandlerTest, TestMaxNestingOf100Folders) {
           "kml", "100_nested_folders.kml")));
   string data;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(k100Folders, &data));
-  ElementPtr root = Parse(data, NULL);
+  ElementPtr root = Parse(data, nullptr);
   ASSERT_TRUE(root != 0);  // Parse succeeded.
 }
 
@@ -544,7 +544,7 @@ TEST_F(KmlHandlerTest, TestMaxNestingOf101Folders) {
           "kml", "101_nested_folders.kml")));
   string data;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(k101Folders, &data));
-  ElementPtr root = Parse(data, NULL);
+  ElementPtr root = Parse(data, nullptr);
   ASSERT_FALSE(root);  // Parse was stopped.
 }
 
@@ -555,7 +555,7 @@ TEST_F(KmlHandlerTest, TestMaxNestingOf101Elements) {
           "kml", "101_nested_elements.kml")));
   string data;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(k101Elements, &data));
-  ElementPtr root = Parse(data, NULL);
+  ElementPtr root = Parse(data, nullptr);
   ASSERT_FALSE(root);  // Parse was stopped.
 }
 

@@ -25,8 +25,7 @@
 
 // This file contains the definition of the ObjectIdParserObserver class.
 
-#ifndef KML_ENGINE_OBJECT_ID_PARSER_OBSERVER_H__
-#define KML_ENGINE_OBJECT_ID_PARSER_OBSERVER_H__
+#pragma once
 
 #include <map>
 #include <string>
@@ -47,7 +46,7 @@ class ObjectIdParserObserver : public kmldom::ParserObserver {
  public:
   ObjectIdParserObserver(ObjectIdMap* object_id_map, bool strict_parsing)
     : object_id_map_(object_id_map),
-      strict_parse_(strict_parsing) {}  // TODO: NULL check, or use reference
+      strict_parse_(strict_parsing) {}  // TODO: nullptr check, or use reference
 
   virtual ~ObjectIdParserObserver() {}
 
@@ -81,4 +80,3 @@ class ObjectIdParserObserver : public kmldom::ParserObserver {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_OBJECT_ID_PARSER_OBSERVER_H__

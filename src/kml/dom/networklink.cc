@@ -55,7 +55,7 @@ void NetworkLink::AddElement(const ElementPtr& element) {
     case Type_Url:
       // <Url> is deprecated.  This permits it in the parser.
       // Force the cast to accept Url as a LinkPtr.
-      set_link(boost::static_pointer_cast<Link>(element));
+      set_link(std::static_pointer_cast<Link>(element));
       break;
     case Type_Link:
       set_link(AsLink(element));
@@ -82,7 +82,7 @@ void NetworkLink::Serialize(Serializer& serializer) const {
 }
 
 void NetworkLink::Accept(Visitor* visitor) {
-  visitor->VisitNetworkLink(NetworkLinkPtr(this));
+  visitor->VisitNetworkLink(std::static_pointer_cast<NetworkLink>(shared_from_this()));
 }
 
 void NetworkLink::AcceptChildren(VisitorDriver* driver) {

@@ -3,7 +3,6 @@ set(LibKML_VERSION @LibKML_VERSION@)
 @PACKAGE_INIT@
 
 include(CMakeFindDependencyMacro)
-find_dependency (Boost COMPONENTS headers)
 find_dependency (expat CONFIG)
 find_dependency (minizip)
 find_dependency (ZLIB)

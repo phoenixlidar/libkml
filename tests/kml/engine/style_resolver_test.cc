@@ -70,7 +70,7 @@ class StyleResolverTest : public testing::Test {
   // KmlFile is used for its GetSharedStyleById().
   KmlFilePtr kml_file_;
   kmlbase::TestDataNetFetcher test_data_net_fetcher_;
-  boost::scoped_ptr<KmlCache> kml_cache_;
+  std::unique_ptr<KmlCache> kml_cache_;
 };
 
 // This is a table of style resolution test cases.  The resolved style for the
@@ -135,7 +135,7 @@ void StyleResolverTest::ParseFromDataDirFile(const string& filename) {
   string kml_data;
   bool status = ReadDataDirFileToString(filename, &kml_data);
   ASSERT_TRUE(status != 0);
-  kml_file_ = KmlFile::CreateFromParse(kml_data, NULL);
+  kml_file_ = KmlFile::CreateFromParse(kml_data, nullptr);
   ASSERT_TRUE(kml_file_ != 0) << filename;
   ASSERT_TRUE(kml_file_->get_root() != 0);
 }

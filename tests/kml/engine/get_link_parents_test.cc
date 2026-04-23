@@ -47,7 +47,7 @@ class GetLinkParentsTest : public testing::Test {
 // Verify that GetLinks() returns false if given no output vector or bad kml.
 TEST_F(GetLinkParentsTest, TestNull) {
   const string nothing;
-  ASSERT_FALSE(GetLinkParents(nothing, NULL));
+  ASSERT_FALSE(GetLinkParents(nothing, nullptr));
   ElementVector will_remain_empty;
   ASSERT_FALSE(GetLinkParents("parse will fail", &will_remain_empty));
   ASSERT_TRUE(will_remain_empty.empty());

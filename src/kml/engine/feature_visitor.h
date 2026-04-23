@@ -26,15 +26,14 @@
 // This file contains the declarations of the GetRootFeature(),
 // VisitFeatureHierarchy() functions and FeatureVisitor base class.
 
-#ifndef KML_ENGINE_FEATURE_VISITOR_H__
-#define KML_ENGINE_FEATURE_VISITOR_H__
+#pragma once
 
 #include "kml/dom.h"
 
 namespace kmlengine {
 
 // This returns the root Feature of the given KML hierarchy.  If root is
-// neither of Type_Kml nor Type_Feature NULL is returned.
+// neither of Type_Kml nor Type_Feature nullptr is returned.
 const kmldom::FeaturePtr GetRootFeature(const kmldom::ElementPtr& root);
 
 // This is the base class for use with VisitFeatureHierarchy.  Derive your own
@@ -53,4 +52,3 @@ void VisitFeatureHierarchy(const kmldom::FeaturePtr& feature,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_FEATURE_VISITOR_H__

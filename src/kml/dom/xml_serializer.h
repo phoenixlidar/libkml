@@ -27,8 +27,7 @@
 // NOTE: This class is internal to libkml and is not intended for use in
 // client code outside libkml.
 
-#ifndef KML_DOM_XML_SERIALIZER_H__
-#define KML_DOM_XML_SERIALIZER_H__
+#pragma once
 
 #include <ostream>
 #include <stack>
@@ -75,7 +74,7 @@ class XmlSerializer : public Serializer {
    if (!root || !newline || !indent || !output) {
      return;
    }
-   boost::scoped_ptr<XmlSerializer> xml_ostream_serializer(
+   std::unique_ptr<XmlSerializer> xml_ostream_serializer(
        new XmlSerializer(newline, indent, output));
    root->Serialize(*xml_ostream_serializer);
  }
@@ -243,4 +242,3 @@ class XmlSerializer : public Serializer {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_XML_SERIALIZER_H__

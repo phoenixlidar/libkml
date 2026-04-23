@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the SplitStyles function.
 
-#ifndef KML_ENGINE_STYLE_SPLITTER_H__
-#define KML_ENGINE_STYLE_SPLITTER_H__
+#pragma once
 
 #include <map>
 #include "kml/base/string_util.h"
@@ -49,4 +48,3 @@ kmldom::ElementPtr SplitStyles(const string& input_kml,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_STYLE_SPLITTER_H__

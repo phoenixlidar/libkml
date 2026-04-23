@@ -34,7 +34,7 @@ class KmlFeatureListSaverTest : public testing::Test {
 
 TEST_F(KmlFeatureListSaverTest, TestBasicSaveToFeatureList) {
   FeatureList feature_list;
-  KmlFeatureListSaver kml_saver(&feature_list, NULL, NULL);
+  KmlFeatureListSaver kml_saver(&feature_list, nullptr, nullptr);
   kmldom::KmlFactory* kml_factory = kmldom::KmlFactory::GetFactory();
   kmldom::PlacemarkPtr placemark = kml_factory->CreatePlacemark();
   const string id("placemark-id");
@@ -60,7 +60,7 @@ TEST_F(KmlFeatureListSaverTest, TestBasicSaveToFeatureList) {
 TEST_F(KmlFeatureListSaverTest, TestBasicSaveToSharedStyleMap) {
   FeatureList feature_list;
   kmlengine::SharedStyleMap shared_style_map;
-  KmlFeatureListSaver kml_saver(&feature_list, &shared_style_map, NULL);
+  KmlFeatureListSaver kml_saver(&feature_list, &shared_style_map, nullptr);
   kmldom::KmlFactory* kml_factory = kmldom::KmlFactory::GetFactory();
   kmldom::StylePtr style = kml_factory->CreateStyle();
   const string id("style-id");
@@ -76,7 +76,7 @@ TEST_F(KmlFeatureListSaverTest, TestBasicSaveToSharedStyleMap) {
 TEST_F(KmlFeatureListSaverTest, TestBasicStyleUrlChange) {
   FeatureList feature_list;
   const string kStyleKml("styles-are-here.kml");
-  KmlFeatureListSaver kml_saver(&feature_list, NULL, kStyleKml.c_str());
+  KmlFeatureListSaver kml_saver(&feature_list, nullptr, kStyleKml.c_str());
   kmldom::KmlFactory* kml_factory = kmldom::KmlFactory::GetFactory();
   kmldom::FolderPtr folder = kml_factory->CreateFolder();
   kmldom::PlacemarkPtr placemark = kml_factory->CreatePlacemark();

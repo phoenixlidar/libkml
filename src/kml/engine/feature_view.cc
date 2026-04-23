@@ -51,7 +51,7 @@ static const double kMinRange = 1000.0;
 LookAtPtr ComputeFeatureLookAt(const FeaturePtr& feature) {
   Bbox bbox;
   if (!GetFeatureBounds(feature, &bbox)) {
-    return NULL;
+    return nullptr;
   }
   return ComputeBboxLookAt(bbox);
 }

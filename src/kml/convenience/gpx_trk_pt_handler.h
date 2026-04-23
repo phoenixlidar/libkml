@@ -25,11 +25,10 @@
 
 // This file contains the declaration of the GpxTrkPtHandler class.
 
-#ifndef KML_CONVENIENCE_GPX_TRK_PT_HANDLER_H__
-#define KML_CONVENIENCE_GPX_TRK_PT_HANDLER_H__
+#pragma once
 
 #include <cstring>  // strcmp
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/base/expat_handler.h"
 #include "kml/base/vec3.h"
@@ -64,7 +63,7 @@ class GpxTrkPtHandler : public kmlbase::ExpatHandler {
       // <trkpt lat="-33.911973070" lon="18.422974152">
       // If both lat and lon exist and are sane doubles create a Vec3 for
       // the point.
-      boost::scoped_ptr<kmlbase::Attributes> attributes(
+      std::unique_ptr<kmlbase::Attributes> attributes(
           kmlbase::Attributes::Create(atts));
       if (attributes.get()) {
         double latitude;
@@ -120,7 +119,7 @@ class GpxTrkPtHandler : public kmlbase::ExpatHandler {
  private:
 
   // A fresh Vec3 is created for each <trkpt>.
-  boost::scoped_ptr<kmlbase::Vec3> vec3_;
+  std::unique_ptr<kmlbase::Vec3> vec3_;
   string time_;
   bool gather_char_data_;
   string char_data_;
@@ -128,4 +127,3 @@ class GpxTrkPtHandler : public kmlbase::ExpatHandler {
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_GPX_TRK_PT_HANDLER_H__

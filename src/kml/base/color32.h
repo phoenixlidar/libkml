@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the Color32 class.
 
-#ifndef KML_BASE_COLOR_H__
-#define KML_BASE_COLOR_H__
+#pragma once
 
 #include "kml/base/string_util.h"
 #include "kml/base/util.h"
@@ -202,4 +201,3 @@ class Color32 {
 
 }  // end namespace kmlbase
 
-#endif // KML_BASE_COLOR_H_

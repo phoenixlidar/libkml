@@ -74,7 +74,7 @@ FeaturePtr Container::DeleteFeatureById(const string& id) {
       return feature;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 FeaturePtr Container::DeleteFeatureAt(size_t i) {

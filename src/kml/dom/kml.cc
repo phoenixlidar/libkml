@@ -81,7 +81,7 @@ void Kml::Serialize(Serializer& serializer) const {
 }
 
 void Kml::Accept(Visitor* visitor) {
-  visitor->VisitKml(KmlPtr(this));
+  visitor->VisitKml(std::static_pointer_cast<Kml>(shared_from_this()));
 }
 
 void Kml::AcceptChildren(VisitorDriver* driver) {

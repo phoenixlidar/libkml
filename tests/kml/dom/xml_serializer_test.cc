@@ -28,7 +28,7 @@
 
 #include "kml/dom/xml_serializer.h"
 #include <sstream>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml22.h"
 #include "kml/dom/kml_factory.h"
 #include "kml/dom/kml_funcs.h"
@@ -49,11 +49,11 @@ class XmlSerializerTest : public testing::Test {
     placemark_ = KmlFactory::GetFactory()->CreatePlacemark();
   }
 
-  boost::scoped_ptr<XmlSerializer<StringAdapter> > xml_serializer_;
+  std::unique_ptr<XmlSerializer<StringAdapter> > xml_serializer_;
   // If string were strictly std::string we could instead use
   // std::ostringstream.
   string output_;
-  boost::scoped_ptr<StringAdapter> string_adapter_;
+  std::unique_ptr<StringAdapter> string_adapter_;
   PlacemarkPtr placemark_;
 };
 
@@ -249,8 +249,8 @@ TEST_F(XmlSerializerTest, TestSerializeUnknowns) {
 
 TEST_F(XmlSerializerTest, TestSerializeNull) {
   const string empty;
-  ASSERT_EQ(empty, SerializePretty(NULL));
-  ASSERT_EQ(empty, SerializeRaw(NULL));
+  ASSERT_EQ(empty, SerializePretty(nullptr));
+  ASSERT_EQ(empty, SerializeRaw(nullptr));
 }
 
 // This test verifies that SerializeRaw remains compatible with some slightly
@@ -299,7 +299,7 @@ TEST_F(XmlSerializerTest, BasicSerializePrettyToOstream) {
 }
 
 TEST_F(XmlSerializerTest, TestGetElementName) {
-  ASSERT_EQ(string(""), GetElementName(NULL));
+  ASSERT_EQ(string(""), GetElementName(nullptr));
   ASSERT_EQ(string("Placemark"), GetElementName(placemark_));
   ASSERT_EQ(string("atom:author"),
             GetElementName(KmlFactory::GetFactory()->CreateAtomAuthor()));

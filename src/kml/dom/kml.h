@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_KML_H__
-#define KML_DOM_KML_H__
+#pragma once
 
 #include "kml/dom/element.h"
 #include "kml/dom/feature.h"
@@ -61,21 +60,21 @@ class Kml : public BasicElement<Type_kml> {
   const NetworkLinkControlPtr& get_networklinkcontrol() const {
     return networklinkcontrol_;
   }
-  bool has_networklinkcontrol() const { return networklinkcontrol_ != NULL; }
+  bool has_networklinkcontrol() const { return networklinkcontrol_ != nullptr; }
   void set_networklinkcontrol(const NetworkLinkControlPtr& networklinkcontrol) {
     SetComplexChild(networklinkcontrol, &networklinkcontrol_);
   }
   void clear_networklinkcontrol() {
-    set_networklinkcontrol(NULL);
+    set_networklinkcontrol(nullptr);
   }
 
   const FeaturePtr& get_feature() const { return feature_; }
-  bool has_feature() const { return feature_ != NULL; }
+  bool has_feature() const { return feature_ != nullptr; }
   void set_feature(const FeaturePtr& feature) {
     SetComplexChild(feature, &feature_);
   }
   void clear_feature() {
-    set_feature(NULL);
+    set_feature(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -100,4 +99,3 @@ class Kml : public BasicElement<Type_kml> {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_KML_H__

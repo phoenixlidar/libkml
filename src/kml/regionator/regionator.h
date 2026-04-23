@@ -27,8 +27,7 @@
 // comments in region_handler.h for details on programming and regionator.cc
 // for details of the operation.
 
-#ifndef KML_REGIONATOR_REGIONATOR_H__
-#define KML_REGIONATOR_REGIONATOR_H__
+#pragma once
 
 #include <map>
 #include <vector>
@@ -49,7 +48,7 @@ public:
   ~Regionator();
   // This method starts the "regionation".  See region_handler.h for
   // details on how this class calls out to the RegionHandler.
-  // The default output directory (output_directory == NULL) is the
+  // The default output directory (output_directory == nullptr) is the
   // current working directory of the caller. Returns true when regionation
   // has completed.  Each generated KML file has a rel="up" link to the root
   // KML file.  The root KML file has a rel="self" link.  See SetRootFilename
@@ -61,7 +60,7 @@ public:
   // This method "regionates" using the given RegionHandler and region.  The
   // region is first aligned to the lowest level region in a quadtree rooted
   // at n=180, s=-180, e=180, w=-180.  All output files are saved to the
-  // given directory if a non-NULL pointer is supplied.  Regionation progresses
+  // given directory if a non-nullptr pointer is supplied.  Regionation progresses
   // the same whether nor not an output directory is supplied.  This also
   // adds a <LookAt> to the root node for the bounds of the data set as
   // described by the region used here.
@@ -89,7 +88,7 @@ private:
   void Recurse(const kmldom::RegionPtr& parent, quadrant_t quadrant,
                region_vector_t* children);
   // This calls the RegionHandler for the given region.  If the RegionHandler
-  // returns false from HasData() or NULL from GetFeature() this returns false
+  // returns false from HasData() or nullptr from GetFeature() this returns false
   // signalling that this Region has no data.
   bool _Regionate(const kmldom::RegionPtr& region);
   RegionHandler& rhandler_;
@@ -105,4 +104,3 @@ private:
 
 }  // end namespace kmlregionator
 
-#endif  // KML_REGIONATOR_REGIONATOR_H__

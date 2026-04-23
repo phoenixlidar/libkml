@@ -25,10 +25,9 @@
 
 // This file contains the definition of the XmlElement class.
 
-#ifndef KML_BASE_XML_ELEMENT_H__
-#define KML_BASE_XML_ELEMENT_H__
+#pragma once
 
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/base/referent.h"
 #include "kml/base/util.h"
 #include "kml/base/xml_namespaces.h"
@@ -40,11 +39,11 @@ class XmlFile;
 // Forward declare XmlElement to create typedef used within class XmlElement.
 class XmlElement;
 
-typedef boost::intrusive_ptr<XmlElement> XmlElementPtr;
+using XmlElementPtr = std::shared_ptr<XmlElement>;
 
 // This class represents an XML element.  An XmlElement may be in one XmlFile,
 // and may have one parent XmlElement.  This class is derived from Referent
-// such that derived classes can use boost::intrusive_ptr.
+// such that derived classes can use std::shared_ptr.
 class XmlElement : public Referent {
  public:
   // Get the parent XmlElement if any.
@@ -62,9 +61,13 @@ class XmlElement : public Referent {
   }
 
   // This returns true if the passed element is in the same XmlFile or if both
-  // this XmlElement and the passed element are in no XmlFile.  Passing a NULL
-  // pointer always causes a false return value.
+  // this XmlElement and the passed element are in no XmlFile.  Passing a nullptr
+  // always causes a false return value.
   bool InSameXmlFile(const XmlElementPtr& element) const {
+    return element && xml_file_ == element->xml_file_;
+  }
+
+  bool InSameXmlFile(const XmlElement* element) const {
     return element && xml_file_ == element->xml_file_;
   }
 
@@ -82,7 +85,7 @@ class XmlElement : public Referent {
 
  protected:
   // This is an abstract base class and is never created directly.
-  XmlElement() : xmlns_id_(XMLNS_NONE), parent_(NULL), xml_file_(NULL) {}
+  XmlElement() : xmlns_id_(XMLNS_NONE), parent_(nullptr), xml_file_(nullptr) {}
 
   void set_xmlns(XmlnsId xmlns_id) {
     xmlns_id_ = xmlns_id;
@@ -90,10 +93,11 @@ class XmlElement : public Referent {
 
   // Only a derived class can set its parent.  This returns false if this
   // XmlElement already has a parent or if this XmlElement is in a different
-  // XmlFile.
-  bool SetParent(const XmlElementPtr& parent) {
+  // XmlFile.  The parent is stored as a raw (non-owning) pointer to avoid
+  // circular references.
+  bool SetParent(const XmlElement* parent) {
     if (!parent_ && parent && InSameXmlFile(parent)) {
-      parent_ = parent.get();
+      parent_ = parent;
       return true;
     }
     return false;
@@ -108,4 +112,3 @@ class XmlElement : public Referent {
 
 }  // end namespace kmlbase
 
-#endif // KML_BASE_XML_ELEMENT_H__

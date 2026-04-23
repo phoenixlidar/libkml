@@ -29,10 +29,10 @@
 
 namespace kmldom {
 
-Xsd* Xsd::schema_ = NULL;
+Xsd* Xsd::schema_ = nullptr;
 
 Xsd* Xsd::GetSchema() {
-  if (schema_ == NULL) {
+  if (schema_ == nullptr) {
     schema_ = new Xsd;
   }
   return schema_;

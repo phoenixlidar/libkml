@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_REGIONATOR_FEATURE_LIST_REGIONATOR_H__
-#define KML_REGIONATOR_FEATURE_LIST_REGIONATOR_H__
+#pragma once
 
 #include <map>
 #include "kml/dom.h"
@@ -35,7 +34,7 @@
 
 namespace kmlregionator {
 
-// This class provides a "NULL" ProgressMonitor usable with
+// This class provides a "nullptr" ProgressMonitor usable with
 // FeatureListRegionator.
 class NullProgress {
  public:
@@ -98,7 +97,7 @@ class FeatureListRegionator : public RegionHandler {
 
   // This static method permits a one line call to the regionator for the
   // data in the given FeatureList.  While a feature_list must always be
-  // provided either or both of the ProgressMonitor or output_dir may be NULL.
+  // provided either or both of the ProgressMonitor or output_dir may be nullptr.
   // The return status is that of the overall regionation.  See
   // Regionator::RegionateAligned for more information.
   static bool Regionate(kmlconvenience::FeatureList* feature_list,
@@ -151,4 +150,3 @@ class FeatureListRegionator : public RegionHandler {
 
 }  // end namespace kmlregionator
 
-#endif  // KML_REGIONATOR_FEATURE_LIST_REGIONATOR_H__

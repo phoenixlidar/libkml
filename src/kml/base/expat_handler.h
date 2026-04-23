@@ -25,8 +25,7 @@
 
 // This file declares the C++ ExpatHandler interface to the otherwise C expat.
 
-#ifndef KML_BASE_EXPAT_HANDLER_H__
-#define KML_BASE_EXPAT_HANDLER_H__
+#pragma once
 
 #include "expat.h" // XML_Char
 #include "string_util.h"  // StringVector
@@ -120,4 +119,3 @@ inline string xml_char_to_string_n(const XML_Char *input, size_t length) {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_EXPAT_HANDLER_H__

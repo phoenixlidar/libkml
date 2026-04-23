@@ -28,7 +28,7 @@
 #include "kml/engine/kmz_file.h"
 #include <cstring>
 #include <set>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/base/string_util.h"
 #include "kml/base/zip_file.h"
@@ -54,20 +54,19 @@ KmzFile::KmzFile(ZipFile* zip_file) : zip_file_(zip_file) {}
 KmzFile::~KmzFile() {}
 
 // Static.
-KmzFile* KmzFile::OpenFromFile(const char* kmz_filename) {
+KmzFilePtr KmzFile::OpenFromFile(const char* kmz_filename) {
   if (ZipFile* zipfile = ZipFile::OpenFromFile(kmz_filename)) {
-    return new(std::nothrow) KmzFile(zipfile);
-     
+    return KmzFilePtr(new(std::nothrow) KmzFile(zipfile));
   }
-  return NULL;
+  return nullptr;
 }
 
 // Static.
-KmzFile* KmzFile::OpenFromString(const string& kmz_data) {
+KmzFilePtr KmzFile::OpenFromString(const string& kmz_data) {
   if (ZipFile* zipfile = ZipFile::OpenFromString(kmz_data)) {
-    return new KmzFile(zipfile);
+    return KmzFilePtr(new KmzFile(zipfile));
   }
-  return NULL;
+  return nullptr;
 }
 
 // Static.
@@ -104,7 +103,7 @@ bool KmzFile::ReadKmlAndGetPath(string* output,
 }
 
 bool KmzFile::ReadKml(string* output) const {
-  return ReadKmlAndGetPath(output, NULL);
+  return ReadKmlAndGetPath(output, nullptr);
 }
 
 bool KmzFile::ReadFile(const char* path_in_kmz, string* output) const {
@@ -124,12 +123,12 @@ bool KmzFile::SaveToString(string* kmz_bytes) {
 }
 
 // Static.
-KmzFile* KmzFile::Create(const char* kmz_filepath) {
+KmzFilePtr KmzFile::Create(const char* kmz_filepath) {
   ZipFile* zipfile = ZipFile::Create(kmz_filepath);
   if (!zipfile) {
-    return NULL;
+    return nullptr;
   }
-  return new KmzFile(zipfile);
+  return KmzFilePtr(new KmzFile(zipfile));
 }
 
 bool KmzFile::AddFile(const string& data, const string& path_in_kmz) {
@@ -190,8 +189,8 @@ size_t KmzFile::AddFileList(const string& base_url,
 
 // Static.
 bool KmzFile::WriteKmz(const char* kmz_filepath, const string& kml) {
-  boost::scoped_ptr<KmzFile> kmz(KmzFile::Create(kmz_filepath));
-  if (!kmz.get()) {
+  KmzFilePtr kmz = KmzFile::Create(kmz_filepath);
+  if (!kmz) {
     return false;
   }
   if (!kmz->AddFile(kml, kDefaultKmlFilename)) {
@@ -212,10 +211,10 @@ bool KmzFile::CreateFromKmlFilepath(const string& kml_filepath,
   }
 
   string base_dir;
-  kmlbase::File::SplitFilePath(kml_filepath, &base_dir, NULL);
+  kmlbase::File::SplitFilePath(kml_filepath, &base_dir, nullptr);
 
   KmlFilePtr kml_file =
-    KmlFile::CreateFromStringWithUrl(kml_data, base_dir, NULL);
+    KmlFile::CreateFromStringWithUrl(kml_data, base_dir, nullptr);
 
   return CreateFromKmlFile(kml_file, kmz_filepath);
 }

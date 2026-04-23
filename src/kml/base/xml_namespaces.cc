@@ -28,7 +28,7 @@
 namespace kmlbase {
 
 const XmlNamespace XmlNamespaces[] = {
-  { XMLNS_NONE, NULL, NULL },
+  { XMLNS_NONE, nullptr, nullptr },
   { XMLNS_APP, "app", "http://www.w3.org/2007/app" },
   { XMLNS_ATOM, "atom", "http://www.w3.org/2005/Atom" },
   { XMLNS_BATCH, "batch", "http://schemas.google.com/gdata/batch" },

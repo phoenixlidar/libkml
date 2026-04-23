@@ -26,7 +26,7 @@
 // This file contains the unit tests for the XsdFile class.
 
 #include "kml/xsd/xsd_file.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "gtest/gtest.h"
 #include "kml/xsd/xsd_util.h"
@@ -46,7 +46,7 @@ class XsdFileTest : public testing::Test {
   void AddTestComplexTypes();
   void AddTestElements();
   void InitTestXsd();
-  boost::scoped_ptr<XsdFile> xsd_file_;
+  std::unique_ptr<XsdFile> xsd_file_;
 };
 
 TEST_F(XsdFileTest, TestConstructor) {
@@ -55,7 +55,7 @@ TEST_F(XsdFileTest, TestConstructor) {
 
 // Verify CreateFromParse().
 TEST_F(XsdFileTest, TestCreateFromParse) {
-  // Verify known bad XSD returns NULL.
+  // Verify known bad XSD returns nullptr.
   string errors;
   ASSERT_FALSE(XsdFile::CreateFromParse("not xsd", &errors));
   ASSERT_FALSE(errors.empty());
@@ -167,12 +167,12 @@ static const char* kTestTargetNamespace = "my:own:namespace";
 
 static const struct {
   const char* type_name;
-  const char* extension_base;  // NULL if no base type.
+  const char* extension_base;  // nullptr if no base type.
 } kTestComplexTypes[] = {
   { "FeatureType", "myml:ObjectType" },
   { "GeometryType", "myml:ObjectType" },
   { "LineStringType", "myml:GeometryType" },
-  { "ObjectType", NULL },
+  { "ObjectType", nullptr },
   { "PlacemarkType", "myml:FeatureType" },
   { "PointType", "myml:GeometryType" }
 };
@@ -343,7 +343,7 @@ TEST_F(XsdFileTest, TestGetAllTypes) {
 
 // Verify TestFindChildElements().
 TEST_F(XsdFileTest, TestFindChildElements) {
-  // Verify NULL conditions: NULL complex_type and nothing in XsdFile.
+  // Verify nullptr conditions: nullptr complex_type and nothing in XsdFile.
   XsdComplexTypePtr complex_type;
   XsdElementVector children;
   xsd_file_->FindChildElements(complex_type, &children);
@@ -409,8 +409,8 @@ TEST_F(XsdFileTest, TestGetElementsOfType) {
   ASSERT_EQ(string("LineString"), geometry_elements[1]->get_name());
   ASSERT_EQ(string("Point"), geometry_elements[2]->get_name());
 
-  // Verify NULL element vector does not crash.
-  xsd_file_->GetElementsOfType(geometry_type, NULL);
+  // Verify nullptr element vector does not crash.
+  xsd_file_->GetElementsOfType(geometry_type, nullptr);
 }
 
 TEST_F(XsdFileTest, TestGetElementsOfTypeByName) {
@@ -430,9 +430,9 @@ TEST_F(XsdFileTest, TestGetElementsOfTypeByName) {
   xsd_file_->GetElementsOfTypeByName("NoSuchType", &object_elements);
   ASSERT_TRUE(object_elements.empty());
 
-  // Verify NULL elements vector pointer doesn't crash.
-  xsd_file_->GetElementsOfTypeByName("ObjectType", NULL);
-  xsd_file_->GetElementsOfTypeByName("NoSuchType", NULL);
+  // Verify nullptr elements vector pointer doesn't crash.
+  xsd_file_->GetElementsOfTypeByName("ObjectType", nullptr);
+  xsd_file_->GetElementsOfTypeByName("NoSuchType", nullptr);
 }
 
 }  // end namespace kmlxsd

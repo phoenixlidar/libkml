@@ -26,7 +26,7 @@
 // This file contains the unit tests for the StyleMerger class.
 
 #include "kml/engine/style_merger.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/net_cache_test_util.h"
 #include "kml/dom.h"
@@ -72,10 +72,10 @@ class StyleMergerTest : public testing::Test {
   void VerifyStyleMergersEmpty() const;
   KmlFilePtr kml_file_;
   kmlbase::TestDataNetFetcher test_data_net_fetcher_;
-  boost::scoped_ptr<KmlFileNetCache> kml_file_net_cache_;
+  std::unique_ptr<KmlFileNetCache> kml_file_net_cache_;
   KmlFactory* factory_;
-  boost::scoped_ptr<StyleMerger> style_merger_normal_;
-  boost::scoped_ptr<StyleMerger> style_merger_highlight_;
+  std::unique_ptr<StyleMerger> style_merger_normal_;
+  std::unique_ptr<StyleMerger> style_merger_highlight_;
   StylePtr style_;
   StyleMapPtr stylemap_;
 };
@@ -158,12 +158,12 @@ TEST_F(StyleMergerTest, TestConstructor) {
   VerifyStyleMergersEmpty();
 }
 
-// Verify the MergeStyle() method on NULL, empty and bad arguments.
+// Verify the MergeStyle() method on nullptr, empty and bad arguments.
 TEST_F(StyleMergerTest, TestMergeStyleNullEmptyBad) {
   string empty_styleurl;
 
-  // Verify that an empty styleurl and NULL StyleSelector behaves fine.
-  style_merger_normal_->MergeStyle(empty_styleurl, NULL);
+  // Verify that an empty styleurl and nullptr StyleSelector behaves fine.
+  style_merger_normal_->MergeStyle(empty_styleurl, nullptr);
   VerifyStyleMergersEmpty();
 
   // Verify that MergeStyle takes an empty Style and empty StyleMap.
@@ -173,13 +173,13 @@ TEST_F(StyleMergerTest, TestMergeStyleNullEmptyBad) {
 
   // Verify that MergeStyle() is well behaved with a garbage styleUrl.
   string garbage("not at all a URL");
-  style_merger_normal_->MergeStyle(empty_styleurl, NULL);
+  style_merger_normal_->MergeStyle(empty_styleurl, nullptr);
   VerifyStyleMergersEmpty();
 
   // Verify that MergeStyle() is well behaved with a validly formed styleurl
   // for an object that does not exist.
   string valid_fragment("#no-such-object");
-  style_merger_normal_->MergeStyle(valid_fragment, NULL);
+  style_merger_normal_->MergeStyle(valid_fragment, nullptr);
   VerifyStyleMergersEmpty();
 }
 
@@ -234,10 +234,10 @@ TEST_F(StyleMergerTest, TestMergeStyleBasic) {
   ASSERT_TRUE(style->has_liststyle());
 }
 
-// Verify the MergeStyleMap() method on NULL and empty args.
+// Verify the MergeStyleMap() method on nullptr and empty args.
 TEST_F(StyleMergerTest, TestMergeStyleMapNullEmpty) {
-  style_merger_normal_->MergeStyleMap(NULL);
-  style_merger_highlight_->MergeStyleMap(NULL);
+  style_merger_normal_->MergeStyleMap(nullptr);
+  style_merger_highlight_->MergeStyleMap(nullptr);
   VerifyStyleMergersEmpty();
 
   // An internal check to verify that the StyleMap is empty.
@@ -248,8 +248,8 @@ TEST_F(StyleMergerTest, TestMergeStyleMapNullEmpty) {
   VerifyStyleMergersEmpty();
 
   // Create a StyleMap with no StyleSelector for the normal and highlight keys.
-  stylemap_->add_pair(CreateStylePair(kmldom::STYLESTATE_NORMAL, NULL));
-  stylemap_->add_pair(CreateStylePair(kmldom::STYLESTATE_HIGHLIGHT, NULL));
+  stylemap_->add_pair(CreateStylePair(kmldom::STYLESTATE_NORMAL, nullptr));
+  stylemap_->add_pair(CreateStylePair(kmldom::STYLESTATE_HIGHLIGHT, nullptr));
   style_merger_normal_->MergeStyleMap(stylemap_);
   style_merger_highlight_->MergeStyleMap(stylemap_);
   VerifyStyleMergersEmpty();
@@ -307,10 +307,10 @@ TEST_F(StyleMergerTest, TestMergeStyleMapBasic) {
                        kHighlightId, kHighlightColor, kHighlightWidth);
 }
 
-// Verify the MergeStyleSelector() method with NULL and empty arguments.
+// Verify the MergeStyleSelector() method with nullptr and empty arguments.
 TEST_F(StyleMergerTest, TestMergeStyleSelector) {
-  style_merger_normal_->MergeStyleSelector(NULL);
-  style_merger_highlight_->MergeStyleSelector(NULL);
+  style_merger_normal_->MergeStyleSelector(nullptr);
+  style_merger_highlight_->MergeStyleSelector(nullptr);
   VerifyStyleMergersEmpty();
 
   style_merger_normal_->MergeStyleSelector(style_);
@@ -338,7 +338,7 @@ TEST_F(StyleMergerTest, TestNestingDepthDetection) {
   pair->set_styleselector(style);
   stylemap_->add_pair(pair);
   shared_style_map[kStyleMapId] = stylemap_;
-  style_merger_normal_.reset(new StyleMerger(shared_style_map, NULL, "",
+  style_merger_normal_.reset(new StyleMerger(shared_style_map, nullptr, "",
                                              kmldom::STYLESTATE_NORMAL,
                                              1));
   ASSERT_EQ(1, style_merger_normal_->get_nesting_depth());

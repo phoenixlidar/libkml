@@ -46,22 +46,22 @@ TEST_F(KmlTest, TestType) {
 
 // Verify proper defaults:
 TEST_F(KmlTest, TestDefaults) {
-  ASSERT_TRUE(NULL == kml_->get_networklinkcontrol());
+  ASSERT_TRUE(nullptr == kml_->get_networklinkcontrol());
   ASSERT_FALSE(kml_->has_networklinkcontrol());
-  ASSERT_TRUE(NULL == kml_->get_feature());
+  ASSERT_TRUE(nullptr == kml_->get_feature());
   ASSERT_FALSE(kml_->has_feature());
 }
 
 // Verify set, get, has, clear:
 TEST_F(KmlTest, TestSetGetHasClear) {
-  NetworkLinkControl* nlc =
+  NetworkLinkControlPtr nlc =
       KmlFactory::GetFactory()->CreateNetworkLinkControl();
   kml_->set_networklinkcontrol(nlc);
   ASSERT_EQ(nlc, kml_->get_networklinkcontrol());
   ASSERT_TRUE(kml_->has_networklinkcontrol());
   kml_->clear_networklinkcontrol();
 
-  Placemark* placemark = KmlFactory::GetFactory()->CreatePlacemark();
+  PlacemarkPtr placemark = KmlFactory::GetFactory()->CreatePlacemark();
   kml_->set_feature(placemark);
   ASSERT_EQ(placemark, kml_->get_feature());
   ASSERT_TRUE(kml_->has_feature());

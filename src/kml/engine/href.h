@@ -29,8 +29,7 @@
 // TODO: <scheme>://<net_loc>/<path>;<params>?<query>#<fragment>
 // TODO: "...;params..." is not used in KML
 
-#ifndef KML_ENGINE_HREF_H__
-#define KML_ENGINE_HREF_H__
+#pragma once
 
 #include "kml/base/util.h"
 
@@ -131,4 +130,3 @@ class Href {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_HREF_H__

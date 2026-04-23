@@ -26,15 +26,15 @@
 // This file contains the unit tests for the Xmlns class.
 
 #include "kml/base/xmlns.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmlbase {
 
 class XmlnsTest : public testing::Test {
  protected:
-  boost::scoped_ptr<Attributes> attributes_;
-  boost::scoped_ptr<Xmlns> xmlns_;
+  std::unique_ptr<Attributes> attributes_;
+  std::unique_ptr<Xmlns> xmlns_;
 };
 
 // Just to pick a random example test case... (this is from ogckml22.xsd).
@@ -54,7 +54,7 @@ static const char* kSchemaAttrs[] = {
   "targetNamespace", "http://www.opengis.net/kml/2.2",
   "elementFormDefault", "qualified",
   "version", "2.2.0",
-  NULL
+  nullptr
 };
 
 TEST_F(XmlnsTest, TestCreate) {
@@ -70,7 +70,7 @@ TEST_F(XmlnsTest, TestCreate) {
                        xmlns_->GetNamespace("atom"));
 }
 
-// Verify the NULL return path of Create().
+// Verify the nullptr return path of Create().
 TEST_F(XmlnsTest, TestNullCreate) {
   attributes_.reset(new Attributes);  // Empty attributes.
   xmlns_.reset(Xmlns::Create(*attributes_));

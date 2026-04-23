@@ -26,7 +26,7 @@
 // This file contains the unit tests for the ZipFile class.
 
 #include "kml/base/zip_file.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/base/tempfile.h"
 #include "gtest/gtest.h"
@@ -45,7 +45,7 @@ namespace kmlbase {
 
 class ZipFileTest : public testing::Test {
  protected:
-  boost::scoped_ptr<ZipFile> zip_file_;
+  std::unique_ptr<ZipFile> zip_file_;
 };
 
 TEST_F(ZipFileTest, TestOpenFromString) {
@@ -98,24 +98,24 @@ TEST_F(ZipFileTest, TestOpenFromBadFile) {
   const string kNoSuchFile("nosuchfile.kmz");
   zip_file_.reset(ZipFile::OpenFromFile(kNoSuchFile.c_str()));
   // The file cannot be opened.
-  ASSERT_TRUE(zip_file_ == NULL);
+  ASSERT_TRUE(zip_file_ == nullptr);
   // 2: a file that is not a valid KMZ archive.
   const string kBadKmz= string(DATADIR) + "/kmz/bad.kmz";
   zip_file_.reset(ZipFile::OpenFromFile(kBadKmz.c_str()));
   // The file could not be read.
-  ASSERT_TRUE(zip_file_ == NULL);
+  ASSERT_TRUE(zip_file_ == nullptr);
 }
 
 TEST_F(ZipFileTest, TestCreate) {
   // Create a temp file into which we'll write our KMZ data.
   kmlbase::TempFilePtr tempfile = kmlbase::TempFile::CreateTempFile();
-  ASSERT_TRUE(tempfile != NULL);
+  ASSERT_TRUE(tempfile != nullptr);
   // Create a KMZ file containing a KML file that is a placemark called
   // 'tmp kml'.
   ZipFile* zip_file = ZipFile::Create(tempfile->name().c_str());
   EXPECT_TRUE(zip_file);
   delete zip_file;
-  zip_file = NULL;
+  zip_file = nullptr;
   // Now read the file, ensuring it was properly written.
   EXPECT_TRUE(File::Exists(tempfile->name()));
 }
@@ -186,8 +186,8 @@ TEST_F(ZipFileTest, TestGetEntry) {
   // The original data was untouched by this failure.
   ASSERT_FALSE(file_data.empty());
   ASSERT_EQ(tmp, file_data);
-  // Assert we handle a NULL output string.
-  ASSERT_FALSE(zip_file_->GetEntry("bar", NULL));
+  // Assert we handle a nullptr output string.
+  ASSERT_FALSE(zip_file_->GetEntry("bar", nullptr));
 }
 
 TEST_F(ZipFileTest, TestGetKmzData) {
@@ -201,10 +201,10 @@ TEST_F(ZipFileTest, TestGetKmzData) {
 
 TEST_F(ZipFileTest, TestAddEntry) {
   TempFilePtr tempfile = TempFile::CreateTempFile();
-  ASSERT_TRUE(tempfile != NULL);
+  ASSERT_TRUE(tempfile != nullptr);
   {
     // Create an empty ZipFile.
-    boost::scoped_ptr<ZipFile> zipfile(
+    std::unique_ptr<ZipFile> zipfile(
         ZipFile::Create(tempfile->name().c_str()));
     ASSERT_TRUE(zipfile.get());
     // Add three files to the archive.
@@ -221,7 +221,7 @@ TEST_F(ZipFileTest, TestAddEntry) {
   ASSERT_TRUE(File::Exists(tempfile->name()));
 
   // Verify that the archive we created contains the files in order.
-  boost::scoped_ptr<ZipFile> created(
+  std::unique_ptr<ZipFile> created(
       ZipFile::OpenFromFile(tempfile->name().c_str()));
   ASSERT_TRUE(created.get());
   std::vector<string> list;
@@ -236,9 +236,9 @@ TEST_F(ZipFileTest, TestAddEntryDupe) {
   // Assert that calling AddEntry on the same path with new content does not
   // overwrite the old content.
   TempFilePtr tempfile = TempFile::CreateTempFile();
-  ASSERT_TRUE(tempfile != NULL);
+  ASSERT_TRUE(tempfile != nullptr);
   {
-    boost::scoped_ptr<ZipFile> zipfile(
+    std::unique_ptr<ZipFile> zipfile(
         ZipFile::Create(tempfile->name().c_str()));
     ASSERT_TRUE(zipfile.get());
     const string kKml = "<Placemark><name/></Placemark>";
@@ -247,7 +247,7 @@ TEST_F(ZipFileTest, TestAddEntryDupe) {
     ASSERT_TRUE(zipfile->AddEntry(kNewKml, "doc.kml"));
   }
   ASSERT_TRUE(File::Exists(tempfile->name()));
-  boost::scoped_ptr<ZipFile> created(
+  std::unique_ptr<ZipFile> created(
       ZipFile::OpenFromFile(tempfile->name().c_str()));
   ASSERT_TRUE(created.get());
   string read_kml;
@@ -278,7 +278,7 @@ TEST_F(ZipFileTest, TestBadPkZipData) {
   ASSERT_TRUE(File::ReadFileToString(kBadKmz, &zip_file_data));
   ASSERT_FALSE(zip_file_data.empty());
   zip_file_.reset(ZipFile::OpenFromString(zip_file_data));
-  ASSERT_FALSE(zip_file_->GetEntry("doc.kml", NULL));
+  ASSERT_FALSE(zip_file_->GetEntry("doc.kml", nullptr));
 }
 
 TEST_F(ZipFileTest, TestBadTooLarge) {
@@ -290,14 +290,14 @@ TEST_F(ZipFileTest, TestBadTooLarge) {
   ASSERT_TRUE(File::ReadFileToString(kBadKmz, &zip_file_data));
   ASSERT_FALSE(zip_file_data.empty());
   zip_file_.reset(ZipFile::OpenFromString(zip_file_data));
-  ASSERT_FALSE(zip_file_->GetEntry("hello.kml", NULL));
+  ASSERT_FALSE(zip_file_->GetEntry("hello.kml", nullptr));
 }
 
 TEST_F(ZipFileTest, TestMaxUncompressedSize) {
   const int kMaxUncompressedZipSize = 104857600;  // 100 MB.
 
   kmlbase::TempFilePtr tempfile = kmlbase::TempFile::CreateTempFile();
-  ASSERT_TRUE(tempfile != NULL);
+  ASSERT_TRUE(tempfile != nullptr);
   zipFile zipfile = zipOpen(tempfile->name().c_str(), 0);
   ASSERT_TRUE(zipfile);
   zipOpenNewFileInZip(zipfile, "doc.kml", 0, 0, 0, 0, 0, 0,
@@ -315,11 +315,11 @@ TEST_F(ZipFileTest, TestMaxUncompressedSize) {
   zip_file_.reset(ZipFile::OpenFromString(zip_file_data));
   zip_file_->set_max_uncompressed_file_size(kMaxUncompressedZipSize);
   // Assert failure against kMaxUncompressedZipSize.
-  ASSERT_FALSE(zip_file_->GetEntry("doc.kml", NULL));
+  ASSERT_FALSE(zip_file_->GetEntry("doc.kml", nullptr));
 
   // Increase the maximum uncompressed size and assert success.
   zip_file_->set_max_uncompressed_file_size(kMaxUncompressedZipSize + 1);
-  ASSERT_TRUE(zip_file_->GetEntry("doc.kml", NULL));
+  ASSERT_TRUE(zip_file_->GetEntry("doc.kml", nullptr));
 }
 
 TEST_F(ZipFileTest, TestMinizipOverflow) {
@@ -332,25 +332,25 @@ TEST_F(ZipFileTest, TestMinizipOverflow) {
     "/kmz/overflow_bad_offset.kmz";
   zip_file_.reset(ZipFile::OpenFromFile(kOverflowBadOffset.c_str()));
   ASSERT_TRUE(zip_file_ != 0);
-  ASSERT_FALSE(zip_file_->GetEntry(kDefaultKml, NULL));
+  ASSERT_FALSE(zip_file_->GetEntry(kDefaultKml, nullptr));
 
   const string kOverflowStack = string(DATADIR) +
     "/kmz/overflow_corrupted_stack.kmz";
   zip_file_.reset(ZipFile::OpenFromFile(kOverflowStack.c_str()));
   ASSERT_TRUE(zip_file_ != 0);
-  ASSERT_FALSE(zip_file_->GetEntry(kDefaultKml, NULL));
+  ASSERT_FALSE(zip_file_->GetEntry(kDefaultKml, nullptr));
 
   const string kOverflowOpen = string(DATADIR) +
     "/kmz/overflow_unzOpenCurrentFile.kmz";
   zip_file_.reset(ZipFile::OpenFromFile(kOverflowOpen.c_str()));
   ASSERT_TRUE(zip_file_ != 0);
-  ASSERT_FALSE(zip_file_->GetEntry(kDefaultKml, NULL));
+  ASSERT_FALSE(zip_file_->GetEntry(kDefaultKml, nullptr));
 
   const string kOverflowRead = string(DATADIR) +
     "/kmz/overflow_unzReadCurrentFile.kmz";
   zip_file_.reset(ZipFile::OpenFromFile(kOverflowRead.c_str()));
   ASSERT_TRUE(zip_file_ != 0);
-  ASSERT_TRUE(zip_file_->GetEntry(kDefaultKml, NULL));
+  ASSERT_TRUE(zip_file_->GetEntry(kDefaultKml, nullptr));
 }
 
 }  // end namespace kmlbase

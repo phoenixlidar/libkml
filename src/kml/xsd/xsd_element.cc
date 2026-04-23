@@ -59,13 +59,12 @@ bool XsdElement::ParseAttributes(const kmlbase::Attributes& attributes) {
 }
 
 // static
-XsdElement* XsdElement::Create(const kmlbase::Attributes& attributes) {
-  XsdElement* xsd_element = new XsdElement;
+XsdElementPtr XsdElement::Create(const kmlbase::Attributes& attributes) {
+  XsdElementPtr xsd_element(new XsdElement);
   if (xsd_element->ParseAttributes(attributes)) {
     return xsd_element;
   }
-  delete xsd_element;
-  return NULL;
+  return nullptr;
 }
 
 }  // end namespace kmlxsd

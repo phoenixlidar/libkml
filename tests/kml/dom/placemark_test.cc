@@ -56,12 +56,12 @@ TEST_F(PlacemarkTest, TestType) {
 // Verify proper defaults:
 TEST_F(PlacemarkTest, TestDefaults) {
   ASSERT_FALSE(placemark_->has_geometry());
-  ASSERT_TRUE(NULL == placemark_->get_geometry());
+  ASSERT_TRUE(nullptr == placemark_->get_geometry());
 }
 
 // Verify setting default makes has_xxx() true:
 TEST_F(PlacemarkTest, TestSetToDefaultValues) {
-  placemark_->set_geometry(NULL);  // should not crash
+  placemark_->set_geometry(nullptr);  // should not crash
   ASSERT_FALSE(placemark_->has_geometry());  // ptr is null
 }
 

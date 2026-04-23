@@ -27,7 +27,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/xsd/xsd_file.h"
 #include "kml/xsd/xst_parser.h"
@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
   }
 
   std::string errors;
-  boost::scoped_ptr<XsdFile> xsd_file(
+  std::unique_ptr<XsdFile> xsd_file(
       XsdFile::CreateFromParse(xsd_data, &errors));
   if (!xsd_file.get()) {
     cerr << "parse failed " << errors;

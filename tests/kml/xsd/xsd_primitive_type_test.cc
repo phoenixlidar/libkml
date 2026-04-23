@@ -32,7 +32,7 @@ namespace kmlxsd {
 class XsdPrimitiveTypeTest : public testing::Test {
 };
 
-// Verify NULL is returned if no attributes are supplied.
+// Verify nullptr is returned if no attributes are supplied.
 TEST_F(XsdPrimitiveTypeTest, TestXsdPrimitiveTypeNameId) {
   const string kBoolean("boolean");
   const string kDouble("double");

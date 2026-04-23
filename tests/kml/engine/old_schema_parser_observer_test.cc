@@ -27,7 +27,7 @@
 // TODO: The OldSchemaParserObserver class is still under development.
 
 #include "kml/engine/old_schema_parser_observer.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml_factory.h"
 #include "gtest/gtest.h"
 
@@ -57,7 +57,7 @@ class OldSchemaParserObserverTest : public testing::Test {
   kmldom::SchemaPtr schema1_;
   kmldom::SchemaPtr schema_no_name_;
   SchemaNameMap schema_name_map_;
-  boost::scoped_ptr<OldSchemaParserObserver> schema_parser_observer_;
+  std::unique_ptr<OldSchemaParserObserver> schema_parser_observer_;
 };
 
 #if 0

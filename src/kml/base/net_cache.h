@@ -25,12 +25,11 @@
 
 // This file contains the NetCache class template and NetFetcher base class.
 
-#ifndef KML_BASE_NET_CACHE_H__
-#define KML_BASE_NET_CACHE_H__
+#pragma once
 
 #include <map>
 #include "kml/base/util.h"
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 
 namespace kmlbase {
 
@@ -68,7 +67,7 @@ class NetFetcher {
 //     }
 //     // other methods if you have them
 //   };
-//   typedef boost::intrusive_ptr<MyCacheItem> MyCacheItemPtr;
+//   using MyCacheItemPtr = std::shared_ptr<MyCacheItem>;
 //
 // Create a NetCache for that CacheItem:
 //   NetCache<MyCacheItem> net_cache_of_my_cache_items;
@@ -90,13 +89,13 @@ class NetFetcher {
 //   MyCacheItemPtr a = net_cache_of_my_cache_items.Fetch(some-url);
 //   MyCacheItemPtr b = net_cache_of_my_cache_items.Fetch(some-other-url);
 // When the NetCache goes out of scope all cached CacheItems are deleted,
-// however use of boost::intrusive_ptr does permit any code to hold a pointer
+// however use of std::shared_ptr does permit any code to hold a pointer
 // to an item originally from cache beyond the cache's lifetime.
 // NOTE: This class is NOT thread safe!
 template<class CacheItem>
 class NetCache {
  public:
-  typedef boost::intrusive_ptr<CacheItem> CacheItemPtr;
+  using CacheItemPtr = std::shared_ptr<CacheItem>;
   typedef std::pair<CacheItemPtr, uint64_t> CacheEntry;
   typedef std::map<string, CacheEntry> CacheMap;
 
@@ -125,24 +124,24 @@ class NetCache {
     string data;
     // NetFetcher knows only about "get me the data at this URL".
     if (!net_fetcher_->FetchUrl(url, &data)) {
-      return NULL;  // Fetch failed, no such URL.
+      return nullptr;  // Fetch failed, no such URL.
     }
     // Fetch succeeded: create a CacheItem from the data.
     CacheItemPtr item = CacheItem::CreateFromString(data);
     if (!Save(url, item)) {  // This is basically an internal error.
-      return NULL;
+      return nullptr;
     }
     return item;
   }
 
   // This returns the CacheItem in the cache for the given url if it exists.
-  // If nothing is cached for this url then NULL is returned.
+  // If nothing is cached for this url then nullptr is returned.
   // In typical usage this method is not used by application code, but it is
   // well behaved as described.
   const CacheItemPtr LookUp(const string& url) const {
     typename CacheMap::const_iterator iter = cache_map_.find(url);
     if (iter == cache_map_.end()) {
-      return NULL;
+      return nullptr;
     }
     // iter->first is key, second is val and val is KmzCacheEntry pair whose
     // first is KmlFilePtr (second is creation time of cache entry).
@@ -215,4 +214,3 @@ class NetCache {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_NET_CACHE_H__

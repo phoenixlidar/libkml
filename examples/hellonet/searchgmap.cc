@@ -32,7 +32,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "curlfetch.h"
 #include "prompt.h"
 #include "kml/base/file.h"
@@ -99,7 +99,7 @@ int main(int argc, char** argv) {
 
   // Create a GoogleMapsData client from the logged in HttpClient and
   // get the user's list of maps.
-  boost::scoped_ptr<GoogleMapsData> google_maps_data(
+  std::unique_ptr<GoogleMapsData> google_maps_data(
       GoogleMapsData::Create(curl_http_client));
   kmldom::AtomFeedPtr meta_feed = google_maps_data->GetMetaFeed();
   if (!meta_feed.get()) {
@@ -163,7 +163,7 @@ kml_again:
             << " Features in the map saved to " << output << "." << std::endl;
 
   // Use KmlFile's serialize to get xml proper header and xmlns.
-  boost::scoped_ptr<kmlengine::KmlFile> kml_file(
+  kmlengine::KmlFilePtr kml_file(
       kmlengine::KmlFile::CreateFromImport(kml));
   std::string xml;
   kml_file->SerializeToString(&xml);

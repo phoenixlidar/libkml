@@ -81,7 +81,7 @@ void Location::Serialize(Serializer& serializer) const {
 }
 
 void Location::Accept(Visitor* visitor) {
-  visitor->VisitLocation(LocationPtr(this));
+  visitor->VisitLocation(std::static_pointer_cast<Location>(shared_from_this()));
 }
 
 Orientation::Orientation()
@@ -127,7 +127,7 @@ void Orientation::Serialize(Serializer& serializer) const {
 }
 
 void Orientation::Accept(Visitor* visitor) {
-  visitor->VisitOrientation(OrientationPtr(this));
+  visitor->VisitOrientation(std::static_pointer_cast<Orientation>(shared_from_this()));
 }
 
 Scale::Scale()
@@ -174,7 +174,7 @@ void Scale::Serialize(Serializer& serializer) const {
 }
 
 void Scale::Accept(Visitor* visitor) {
-  visitor->VisitScale(ScalePtr(this));
+  visitor->VisitScale(std::static_pointer_cast<Scale>(shared_from_this()));
 }
 
 Alias::Alias()
@@ -211,7 +211,7 @@ void Alias::Serialize(Serializer& serializer) const {
 }
 
 void Alias::Accept(Visitor* visitor) {
-  visitor->VisitAlias(AliasPtr(this));
+  visitor->VisitAlias(std::static_pointer_cast<Alias>(shared_from_this()));
 }
 
 ResourceMap::ResourceMap() {}
@@ -240,7 +240,7 @@ void ResourceMap::Serialize(Serializer& serializer) const {
 }
 
 void ResourceMap::Accept(Visitor* visitor) {
-  visitor->VisitResourceMap(ResourceMapPtr(this));
+  visitor->VisitResourceMap(std::static_pointer_cast<ResourceMap>(shared_from_this()));
 }
 
 void ResourceMap::AcceptChildren(VisitorDriver* driver) {
@@ -304,7 +304,7 @@ void Model::Serialize(Serializer& serializer) const {
 }
 
 void Model::Accept(Visitor* visitor) {
-  visitor->VisitModel(ModelPtr(this));
+  visitor->VisitModel(std::static_pointer_cast<Model>(shared_from_this()));
 }
 
 void Model::AcceptChildren(VisitorDriver* driver) {

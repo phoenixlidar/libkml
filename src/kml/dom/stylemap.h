@@ -25,8 +25,7 @@
 
 // This file contains the declarations of the Pair and StyleMap elements.
 
-#ifndef KML_DOM_STYLEMAP_H__
-#define KML_DOM_STYLEMAP_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/kml22.h"
@@ -83,12 +82,12 @@ class Pair : public Object {
 
   // StyleSelector
   const StyleSelectorPtr& get_styleselector() const { return styleselector_; }
-  bool has_styleselector() const { return styleselector_ != NULL; }
+  bool has_styleselector() const { return styleselector_ != nullptr; }
   void set_styleselector(const StyleSelectorPtr& styleselector) {
     SetComplexChild(styleselector, &styleselector_);
   }
   void clear_styleselector() {
-    set_styleselector(NULL);
+    set_styleselector(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -148,4 +147,3 @@ class StyleMap : public StyleSelector {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_STYLEMAP_H__

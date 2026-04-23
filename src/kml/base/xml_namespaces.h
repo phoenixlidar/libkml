@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_BASE_XML_NAMESPACES_H__
-#define KML_BASE_XML_NAMESPACES_H__
+#pragma once
 
 #include "kml/base/util.h"
 
@@ -69,11 +68,10 @@ struct XmlNamespace {
 // This function returns a libkml-specific prefix and XML namespace for the
 // given id.  This exists such that elements within libkml need only hold
 // a small identifier instead of a full namespace string.  Either prefix or
-// xml_namespace pointers can be NULL.  The return value indicates whether
+// xml_namespace pointers can be nullptr.  The return value indicates whether
 // the given id is known to libkml.
 bool FindXmlNamespaceAndPrefix(XmlnsId xmlns_id, string* prefix,
                                string* xml_namespace);
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_XML_NAMESPACES_H__

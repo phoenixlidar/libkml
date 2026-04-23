@@ -26,8 +26,7 @@
 // This file declares the Model, Location, Orientation, Scale, ResourceMap
 // and Alias elements.
 
-#ifndef KML_DOM_MODEL_H__
-#define KML_DOM_MODEL_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/geometry.h"
@@ -46,4 +45,3 @@ class VisitorDriver;
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_MODEL_H__

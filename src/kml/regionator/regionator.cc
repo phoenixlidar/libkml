@@ -127,7 +127,7 @@ bool Regionator::_Regionate(const RegionPtr& region) {
 
   // Ask the RegionHandler for the Feature for this region.
   FeaturePtr feature = rhandler_.GetFeature(region);
-  if (feature == NULL) {
+  if (feature == nullptr) {
     return false;  // This region has no data.
   }
   document->add_feature(feature);
@@ -175,7 +175,7 @@ bool Regionator::RegionateAligned(RegionHandler& rhandler,
       kmldom::KmlFactory::GetFactory()->CreateRegion();
   aligned_region->set_latlonaltbox(llab);
   aligned_region->set_lod(CloneLod(region->get_lod()));
-  boost::scoped_ptr<Regionator> regionator(new Regionator(rhandler,
+  std::unique_ptr<Regionator> regionator(new Regionator(rhandler,
                                                           aligned_region));
   regionator->SetNaturalRegion(region);
   return regionator->Regionate(output_directory);

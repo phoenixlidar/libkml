@@ -62,7 +62,7 @@ void LineStyle::Serialize(Serializer& serializer) const {
 }
 
 void LineStyle::Accept(Visitor* visitor) {
-  visitor->VisitLineStyle(LineStylePtr(this));
+  visitor->VisitLineStyle(std::static_pointer_cast<LineStyle>(shared_from_this()));
 }
 
 }  // end namespace kmldom

@@ -29,12 +29,11 @@
 // TODO: this interface and implemenation are experimental, expect additions
 // and changes.
 
-#ifndef KML_CONVENIENCE_GOOGLE_DOC_LIST_H_
-#define KML_CONVENIENCE_GOOGLE_DOC_LIST_H_
+#pragma once
 
 #include <string>
 #include <vector>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 
 namespace kmlconvenience {
@@ -94,10 +93,9 @@ class GoogleDocList {
  private:
   // Use static Create().
   GoogleDocList();
-  boost::scoped_ptr<HttpClient> http_client_;
+  std::unique_ptr<HttpClient> http_client_;
   const string scope_;
 };
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_GOOGLE_DOC_LIST_H_

@@ -26,8 +26,7 @@
 // This file contains the declarations for the the classes for the Link, Icon,
 // and Url elements.
 
-#ifndef KML_DOM_LINK_H__
-#define KML_DOM_LINK_H__
+#pragma once
 
 #include "kml/dom/kml22.h"
 #include "kml/dom/object.h"
@@ -374,4 +373,3 @@ class IconStyleIcon : public BasicLink {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_LINK_H__

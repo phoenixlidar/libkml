@@ -77,7 +77,7 @@ TEST_F(Kml22Test, TestEnumDefaults) {
             xsd_->EnumValue(Type_GxPlayMode, GX_PLAYMODE_PAUSE));
 }
 
-// Test NULL arg on AddElement(), ParseAttributes(), and SerializeAttributes()
+// Test nullptr arg on AddElement(), ParseAttributes(), and SerializeAttributes()
 // on all complex elements.  These are all methods that take pointer arguments.
 TEST_F(Kml22Test, TestElementNull) {
   int complex_count = 0;
@@ -85,7 +85,7 @@ TEST_F(Kml22Test, TestElementNull) {
   const int end_id = static_cast<int>(Type_Invalid);
   KmlFactory* kml_factory = KmlFactory::GetFactory();
   for (; element_type_id != end_id; ++element_type_id) {
-    // Only complex elements return non-NULL.
+    // Only complex elements return non-nullptr.
     if (ElementPtr element = kml_factory->CreateElementById(
             static_cast<KmlDomType>(element_type_id))) {
       // All KmlFactory-created elements are known.
@@ -110,10 +110,10 @@ TEST_F(Kml22Test, TestElementNull) {
           element->IsA(kmldom::Type_TimePrimitive)) {
         ASSERT_TRUE(element->IsA(kmldom::Type_Object));
       }
-      // Verify NULL pointers do no harm.
-      element->AddElement(NULL);
-      element->ParseAttributes(NULL);
-      element->SerializeAttributes(NULL);
+      // Verify nullptr pointers do no harm.
+      element->AddElement(nullptr);
+      element->ParseAttributes(nullptr);
+      element->SerializeAttributes(nullptr);
       ++complex_count;
     }
   }
@@ -160,7 +160,7 @@ TEST_F(Kml22Test, TestElementSerializerEmpty) {
   const int end_id = static_cast<int>(Type_Invalid);
   KmlFactory* kml_factory = KmlFactory::GetFactory();
   for (; element_type_id != end_id; ++element_type_id) {
-    // Only complex elements return non-NULL.
+    // Only complex elements return non-nullptr.
     if (ElementPtr element = kml_factory->CreateElementById(
             static_cast<KmlDomType>(element_type_id))) {
       // Every complex element has a Serialize method that further calls
@@ -211,7 +211,7 @@ TEST_F(Kml22Test, TestSaveUnknown) {
   const int end_id = static_cast<int>(Type_Invalid);
   KmlFactory* kml_factory = KmlFactory::GetFactory();
   for (; element_type_id != end_id; ++element_type_id) {
-    // Only complex elements return non-NULL.
+    // Only complex elements return non-nullptr.
     if (ElementPtr element = kml_factory->CreateElementById(
         static_cast<KmlDomType>(element_type_id))) {
       ++complex_count;

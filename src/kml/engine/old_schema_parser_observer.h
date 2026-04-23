@@ -26,8 +26,7 @@
 // This file contains the definition of the OldSchemaParserObserver class.
 // TODO: This class is still under development.
 
-#ifndef KML_ENGINE_OLD_SCHEMA_PARSER_OBSERVER_H__
-#define KML_ENGINE_OLD_SCHEMA_PARSER_OBSERVER_H__
+#pragma once
 
 #include <map>
 #include "kml/dom.h"
@@ -79,4 +78,3 @@ class OldSchemaParserObserver : public kmldom::ParserObserver {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_OLD_SCHEMA_PARSER_OBSERVER_H__

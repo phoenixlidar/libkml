@@ -435,7 +435,7 @@ TEST_F(PointTest, TestDefaults) {
   ASSERT_FALSE(point_->has_gx_altitudemode());
   ASSERT_TRUE(GX_ALTITUDEMODE_CLAMPTOSEAFLOOR == point_->get_gx_altitudemode());
   ASSERT_FALSE(point_->has_coordinates());
-  ASSERT_TRUE(NULL == point_->get_coordinates());
+  ASSERT_TRUE(nullptr == point_->get_coordinates());
 }
 
 // Verify setting default makes has_xxx() true:
@@ -443,7 +443,7 @@ TEST_F(PointTest, TestSetToDefaultValues) {
   point_->set_extrude(point_->get_extrude());
   point_->set_altitudemode(point_->get_altitudemode());
   point_->set_gx_altitudemode(point_->get_gx_altitudemode());
-  point_->set_coordinates(NULL);  // should not crash
+  point_->set_coordinates(nullptr);  // should not crash
   ASSERT_TRUE(point_->has_extrude());
   ASSERT_TRUE(point_->has_altitudemode());
   ASSERT_TRUE(point_->has_gx_altitudemode());
@@ -572,7 +572,7 @@ TEST_F(LineStringTest, TestSetToDefaultValues) {
   linestring_->set_tessellate(linestring_->get_tessellate());
   linestring_->set_altitudemode(linestring_->get_altitudemode());
   linestring_->set_gx_altitudemode(linestring_->get_gx_altitudemode());
-  linestring_->set_coordinates(NULL);  // should not crash
+  linestring_->set_coordinates(nullptr);  // should not crash
   ASSERT_TRUE(linestring_->has_extrude());
   ASSERT_TRUE(linestring_->has_tessellate());
   ASSERT_TRUE(linestring_->has_altitudemode());
@@ -701,7 +701,7 @@ TEST_F(LinearRingTest, TestSetToDefaultValues) {
   linearring_->set_tessellate(linearring_->get_tessellate());
   linearring_->set_altitudemode(linearring_->get_altitudemode());
   linearring_->set_gx_altitudemode(linearring_->get_gx_altitudemode());
-  linearring_->set_coordinates(NULL);  // should not crash
+  linearring_->set_coordinates(nullptr);  // should not crash
   ASSERT_TRUE(linearring_->has_extrude());
   ASSERT_TRUE(linearring_->has_tessellate());
   ASSERT_TRUE(linearring_->has_altitudemode());
@@ -891,7 +891,7 @@ TEST_F(PolygonTest, TestSetToDefaultValues) {
   polygon_->set_tessellate(polygon_->get_tessellate());
   polygon_->set_altitudemode(polygon_->get_altitudemode());
   polygon_->set_gx_altitudemode(polygon_->get_gx_altitudemode());
-  polygon_->set_outerboundaryis(NULL);
+  polygon_->set_outerboundaryis(nullptr);
   ASSERT_TRUE(polygon_->has_extrude());
   ASSERT_TRUE(polygon_->has_tessellate());
   ASSERT_TRUE(polygon_->has_altitudemode());

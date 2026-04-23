@@ -69,7 +69,7 @@ void PolyStyle::Serialize(Serializer& serializer) const {
 }
 
 void PolyStyle::Accept(Visitor* visitor) {
-  visitor->VisitPolyStyle(PolyStylePtr(this));
+  visitor->VisitPolyStyle(std::static_pointer_cast<PolyStyle>(shared_from_this()));
 }
 
 }  // end namespace kmldom

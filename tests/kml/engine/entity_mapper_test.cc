@@ -26,7 +26,7 @@
 // This file contains the unit tests for the EntityMapper class.
 
 #include "kml/engine/entity_mapper.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/file.h"
 
@@ -113,7 +113,7 @@ const static struct {
 
 TEST_F(EntityMapperTest, TestGetEntityFields) {
   string errs;
-  kml_file_ = KmlFile::CreateFromParse(kEntityKml, NULL);
+  kml_file_ = KmlFile::CreateFromParse(kEntityKml, nullptr);
   ASSERT_TRUE(kml_file_ != 0);
   ASSERT_TRUE(errs.empty());
 
@@ -174,7 +174,7 @@ const static struct {
 };
 
 TEST_F(EntityMapperTest, TestCreateExpandedEntities) {
-  kml_file_ = KmlFile::CreateFromParse(kEntityKml, NULL);
+  kml_file_ = KmlFile::CreateFromParse(kEntityKml, nullptr);
   DocumentPtr doc = kmldom::AsDocument(kml_file_->get_root());
   PlacemarkPtr p = kmldom::AsPlacemark(doc->get_feature_array_at(0));
 
@@ -232,7 +232,7 @@ TEST_F(EntityMapperTest, TestAltMarkupData) {
     },
   };
 
-  kml_file_ = KmlFile::CreateFromParse(kDataKml, NULL);
+  kml_file_ = KmlFile::CreateFromParse(kDataKml, nullptr);
   ASSERT_TRUE(kml_file_ != 0);
   PlacemarkPtr p = kmldom::AsPlacemark(kml_file_->get_root());
   ASSERT_TRUE(p != 0);

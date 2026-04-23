@@ -63,7 +63,7 @@ void GxTour::Serialize(Serializer& serializer) const {
 }
 
 void GxTour::Accept(Visitor* visitor) {
-  visitor->VisitGxTour(GxTourPtr(this));
+  visitor->VisitGxTour(std::static_pointer_cast<GxTour>(shared_from_this()));
 }
 
 void GxTour::AcceptChildren(VisitorDriver* driver) {
@@ -112,7 +112,7 @@ void GxPlaylist::Serialize(Serializer& serializer) const {
 }
 
 void GxPlaylist::Accept(Visitor* visitor) {
-  visitor->VisitGxPlaylist(GxPlaylistPtr(this));
+  visitor->VisitGxPlaylist(std::static_pointer_cast<GxPlaylist>(shared_from_this()));
 }
 
 void GxPlaylist::AcceptChildren(VisitorDriver* driver) {
@@ -164,7 +164,7 @@ void GxAnimatedUpdate::Serialize(Serializer& serializer) const {
 }
 
 void GxAnimatedUpdate::Accept(Visitor* visitor) {
-  visitor->VisitGxAnimatedUpdate(GxAnimatedUpdatePtr(this));
+  visitor->VisitGxAnimatedUpdate(std::static_pointer_cast<GxAnimatedUpdate>(shared_from_this()));
 }
 
 void GxAnimatedUpdate::AcceptChildren(VisitorDriver* driver) {
@@ -210,7 +210,7 @@ void GxFlyTo::Serialize(Serializer& serializer) const {
 }
 
 void GxFlyTo::Accept(Visitor* visitor) {
-  visitor->VisitGxFlyTo(GxFlyToPtr(this));
+  visitor->VisitGxFlyTo(std::static_pointer_cast<GxFlyTo>(shared_from_this()));
 }
 
 void GxFlyTo::AcceptChildren(VisitorDriver* driver) {
@@ -234,7 +234,7 @@ void GxWait::Serialize(Serializer& serializer) const {
 }
 
 void GxWait::Accept(Visitor* visitor) {
-  visitor->VisitGxWait(GxWaitPtr(this));
+  visitor->VisitGxWait(std::static_pointer_cast<GxWait>(shared_from_this()));
 }
 
 // <gx:SoundCue>
@@ -266,7 +266,7 @@ void GxSoundCue::Serialize(Serializer& serializer) const {
 }
 
 void GxSoundCue::Accept(Visitor* visitor) {
-  visitor->VisitGxSoundCue(GxSoundCuePtr(this));
+  visitor->VisitGxSoundCue(std::static_pointer_cast<GxSoundCue>(shared_from_this()));
 }
 
 // <gx:TourControl>
@@ -298,7 +298,7 @@ void GxTourControl::Serialize(Serializer& serializer) const {
 }
 
 void GxTourControl::Accept(Visitor* visitor) {
-  visitor->VisitGxTourControl(GxTourControlPtr(this));
+  visitor->VisitGxTourControl(std::static_pointer_cast<GxTourControl>(shared_from_this()));
 }
 
 }  // end namespace kmldom

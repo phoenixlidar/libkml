@@ -208,7 +208,7 @@ size_t SkipLeadingWhitespaceString(const string& str) {
 // Derived from and compatible with google3's SplitCSVLineWithDelimiter.
 void SplitQuotedUsing(const char* input, size_t nbytes, const char delimiter,
                       std::vector<string>* cols) {
-  if (input == NULL) {
+  if (input == nullptr) {
     return;
   }
   // Copy the line to a buffer we can write into.

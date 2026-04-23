@@ -30,7 +30,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 #include "kml/engine.h"
 #include "kml/base/file.h"

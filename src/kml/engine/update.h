@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_ENGINE_UPDATE_H__
-#define KML_ENGINE_UPDATE_H__
+#pragma once
 
 #include "kml/dom.h"
 #include "kml/engine/kml_file.h"
@@ -42,7 +41,7 @@ void ProcessUpdate(const kmldom::UpdatePtr& update, KmlFilePtr kml_file);
 // not have a mapping to an id= or if an Object with this id= does not exist in
 // the KmlFile that particular Update target is quietly ignored.  While the
 // target'ed Object's contents are Update'ed the id is not whether the
-// targetId= is mapped or not.  If a NULL pointer is passed for the StringMap
+// targetId= is mapped or not.  If a nullptr pointer is passed for the StringMap
 // then no mapping are performed and this operates like ProcessUpdate().
 void ProcessUpdateWithIdMap(const kmldom::UpdatePtr& update,
                             const kmlbase::StringMap* id_map,
@@ -54,4 +53,3 @@ void CopyFeatures(const kmldom::ContainerPtr& source_container,
 
 }  // namespace kmlengine
 
-#endif  // KML_ENGINE_UPDATE_H__

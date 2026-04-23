@@ -28,8 +28,7 @@
 // the Google Maps Data API much of this is useful in coding to that service.
 // See RFC 4287 for more information about Atom.
 
-#ifndef KML_CONVENIENCE_ATOM_UTIL_H_
-#define KML_CONVENIENCE_ATOM_UTIL_H_
+#pragma once
 
 #include "kml/dom.h"
 
@@ -60,13 +59,13 @@ class AtomUtil {
 
   // This returns the <atom:entry>'s <atom:content>'s src= and returns true
   // if these exist.  False is returned if the <atom:entry> has no
-  // <atom:content> or if the <atom:content> has no src=.  Passing a NULL
+  // <atom:content> or if the <atom:content> has no src=.  Passing a nullptr
   // src is safe and has no bearing on the return value.
   static bool GetContentSrc(const kmldom::AtomEntryPtr& entry,
                             string* src);
 
   // This returns the first <atom:category> who's scheme= ends with scheme.
-  // NULL is returned if no matching <atom:category> is found.
+  // nullptr is returned if no matching <atom:category> is found.
   static kmldom::AtomCategoryPtr FindCategoryByScheme(
       const kmldom::AtomCommon& atom_common, const string& scheme);
 
@@ -76,14 +75,14 @@ class AtomUtil {
 
   // This returns the first <atom:link> matching the given link relation
   // (rel= attribute) and mimetype (type= attribute).  LinkIsOfRel is used
-  // to match the rel_type.  The mime_type is an exact match.  NULL is
+  // to match the rel_type.  The mime_type is an exact match.  nullptr is
   // returned if no matching <atom:link> is found.
   static kmldom::AtomLinkPtr FindLink(const kmldom::AtomCommon& atom_common,
                                       const string& rel_type,
                                       const string& mime_type);
 
   // Return the first <entry> in the feed with the given title.
-  // This returns NULL if no <entry>'s have this exact <title>.
+  // This returns nullptr if no <entry>'s have this exact <title>.
   static kmldom::AtomEntryPtr FindEntryByTitle(const kmldom::AtomFeedPtr& feed,
                                                const string& title);
 
@@ -96,7 +95,7 @@ class AtomUtil {
   // This returns a clone of the KML Feature contained in the <atom:entry>.
   // The returned clone Feature's <atom:link> is set to the <atom:entry>'s
   // "self" link relation if such is found in the <atom:entry>.
-  // NULL is returned if no KML Feature is contained by this <atom:entry>.
+  // nullptr is returned if no KML Feature is contained by this <atom:entry>.
   static kmldom::FeaturePtr CloneEntryFeature(
       const kmldom::AtomEntryPtr& entry);
 
@@ -114,7 +113,7 @@ class AtomUtil {
   static void GetFeedFeatures(const kmldom::AtomFeedPtr& feed,
                               kmldom::ContainerPtr container);
 
-  // This fetches and parses the given <atom:feed> at the given URL.  NULL is
+  // This fetches and parses the given <atom:feed> at the given URL.  nullptr is
   // returned on any fetch or parse errors.  The HttpClient is expected to be
   // "logged in" as appropriate for the URL.
   static kmldom::AtomFeedPtr GetAndParseFeed(const string& feed_url,
@@ -135,4 +134,3 @@ class AtomUtil {
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_ATOM_UTIL_H

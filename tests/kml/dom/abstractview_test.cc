@@ -51,7 +51,7 @@ TEST_F(LookAtTest, TestType) {
 
 // Verify proper defaults:
 TEST_F(LookAtTest, TestDefaults) {
-  ASSERT_TRUE(NULL == lookat_->get_gx_timeprimitive());
+  ASSERT_TRUE(nullptr == lookat_->get_gx_timeprimitive());
   ASSERT_FALSE(lookat_->has_gx_timeprimitive());
   ASSERT_DOUBLE_EQ(0.0, lookat_->get_longitude());
   ASSERT_FALSE(lookat_->has_longitude());
@@ -149,7 +149,7 @@ TEST_F(LookAtTest, TestSetGetHasClear) {
   lookat_->clear_gx_altitudemode();
 
   // Verify default state:
-  ASSERT_TRUE(NULL == lookat_->get_gx_timeprimitive());
+  ASSERT_TRUE(nullptr == lookat_->get_gx_timeprimitive());
   ASSERT_FALSE(lookat_->has_gx_timeprimitive());
   ASSERT_DOUBLE_EQ(0.0, lookat_->get_longitude());
   ASSERT_FALSE(lookat_->has_longitude());
@@ -187,7 +187,7 @@ TEST_F(CameraTest, TestType) {
 
 // Verify proper defaults:
 TEST_F(CameraTest, TestDefaults) {
-  ASSERT_TRUE(NULL == camera_->get_gx_timeprimitive());
+  ASSERT_TRUE(nullptr == camera_->get_gx_timeprimitive());
   ASSERT_FALSE(camera_->has_gx_timeprimitive());
   ASSERT_DOUBLE_EQ(0.0, camera_->get_longitude());
   ASSERT_FALSE(camera_->has_longitude());
@@ -285,7 +285,7 @@ TEST_F(CameraTest, TestSetGetHasClear) {
   camera_->clear_gx_altitudemode();
 
   // Verify default state.
-  ASSERT_TRUE(NULL == camera_->get_gx_timeprimitive());
+  ASSERT_TRUE(nullptr == camera_->get_gx_timeprimitive());
   ASSERT_FALSE(camera_->has_gx_timeprimitive());
   ASSERT_DOUBLE_EQ(0.0, camera_->get_longitude());
   ASSERT_FALSE(camera_->has_longitude());
@@ -319,7 +319,7 @@ TEST(AbstractViewTest, TestParseSerializeGxAltitudeMode) {
     "<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>"
     "</Camera>";
   ASSERT_EQ(kCameraExpected, SerializeRaw(camera));
-  ASSERT_EQ(kCameraExpected, SerializeRaw(Parse(kCameraExpected, NULL)));
+  ASSERT_EQ(kCameraExpected, SerializeRaw(Parse(kCameraExpected, nullptr)));
 
   LookAtPtr lookat = factory->CreateLookAt();
   ASSERT_TRUE(lookat != 0);
@@ -333,7 +333,7 @@ TEST(AbstractViewTest, TestParseSerializeGxAltitudeMode) {
     "<gx:altitudeMode>clampToSeaFloor</gx:altitudeMode>"
     "</LookAt>";
   ASSERT_EQ(kLookAtExpected, SerializeRaw(lookat));
-  ASSERT_EQ(kLookAtExpected, SerializeRaw(Parse(kLookAtExpected, NULL)));
+  ASSERT_EQ(kLookAtExpected, SerializeRaw(Parse(kLookAtExpected, nullptr)));
 }
 
 TEST(AbstractViewTest, TestGxTimePrimitives) {
@@ -352,7 +352,7 @@ TEST(AbstractViewTest, TestGxTimePrimitives) {
     "<latitude>37</latitude>"
     "</Camera>";
   ASSERT_EQ(kCameraExpected, SerializeRaw(camera));
-  ASSERT_EQ(kCameraExpected, SerializeRaw(Parse(kCameraExpected, NULL)));
+  ASSERT_EQ(kCameraExpected, SerializeRaw(Parse(kCameraExpected, nullptr)));
 
   LookAtPtr lookat = factory->CreateLookAt();
   ASSERT_TRUE(lookat != 0);
@@ -367,7 +367,7 @@ TEST(AbstractViewTest, TestGxTimePrimitives) {
     "<latitude>37</latitude>"
     "</LookAt>";
   ASSERT_EQ(kLookAtExpected, SerializeRaw(lookat));
-  ASSERT_EQ(kLookAtExpected, SerializeRaw(Parse(kLookAtExpected, NULL)));
+  ASSERT_EQ(kLookAtExpected, SerializeRaw(Parse(kLookAtExpected, nullptr)));
 }
 
 }  // end namespace kmldom

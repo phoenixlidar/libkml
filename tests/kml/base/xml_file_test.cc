@@ -41,7 +41,7 @@ class TestFile : public XmlFile {
     return XmlFile::set_root(element);
   }
 };
-typedef boost::intrusive_ptr<TestFile> TestFilePtr;
+using TestFilePtr = std::shared_ptr<TestFile>;
 
 class TestElement : public XmlElement {
  public:
@@ -52,10 +52,10 @@ class TestElement : public XmlElement {
  private:
   int id_;
 };
-typedef boost::intrusive_ptr<TestElement> TestElementPtr;
+using TestElementPtr = std::shared_ptr<TestElement>;
 
 TEST(XmlFileTest, TestDefault) {
-  TestFilePtr xml_file = new TestFile;
+  auto xml_file = std::make_shared<TestFile>();
   ASSERT_TRUE(xml_file->get_url().empty());
   ASSERT_FALSE(xml_file->get_root());
 }
@@ -63,12 +63,12 @@ TEST(XmlFileTest, TestDefault) {
 TEST(XmlFileTest, TestSetGet) {
   const string kUrl("http://example.com");
   const int kId = 42;
-  TestFilePtr xml_file = new TestFile;
+  auto xml_file = std::make_shared<TestFile>();
   xml_file->set_url(kUrl);
-  xml_file->set_root(new TestElement(kId));
+  xml_file->set_root(std::make_shared<TestElement>(kId));
   ASSERT_EQ(kUrl, xml_file->get_url());
   TestElementPtr element =
-    boost::static_pointer_cast<TestElement>(xml_file->get_root());
+    std::static_pointer_cast<TestElement>(xml_file->get_root());
   ASSERT_EQ(kId, element->get_id());
 }
 

@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_FOLDER_H__
-#define KML_DOM_FOLDER_H__
+#pragma once
 
 #include "kml/dom/container.h"
 #include "kml/dom/kml22.h"
@@ -56,4 +55,3 @@ class Folder : public Container {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_FOLDER_H__

@@ -26,7 +26,7 @@
 // This file contains the unit tests for the CreateBalloonText function.
 
 #include "kml/engine/feature_balloon.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/file.h"
 #include "kml/engine/kml_file.h"
@@ -61,7 +61,7 @@ const static struct {
     // A Feature with neither name nor description has no balloon text.
     // TODO: geDirections is there by default?
     "<Placemark/>",
-    NULL
+    nullptr
   },
   {
     "<Placemark><name>foo</name></Placemark>",
@@ -76,12 +76,12 @@ const static struct {
 TEST_F(FeatureBalloonTest, TestBasicCreateBalloonText) {
   for (size_t i = 0; i < sizeof(kKml)/sizeof(kKml[0]); ++i) {
     // Parse the file into a KmlFile object.
-    kml_file_ = KmlFile::CreateFromParse(kKml[i].kml, NULL);
+    kml_file_ = KmlFile::CreateFromParse(kKml[i].kml, nullptr);
     // Extract the Placemark.
     const PlacemarkPtr placemark = kmldom::AsPlacemark(kml_file_->get_root());
     // Verify that that balloon text has been composited as expected.
     const string kResult(CreateBalloonText(kml_file_, placemark));
-    if (kKml[i].balloontext == NULL) {
+    if (kKml[i].balloontext == nullptr) {
       ASSERT_TRUE(kResult.empty());
     } else {
       ASSERT_EQ(kResult, static_cast<string>(kKml[i].balloontext));
@@ -153,7 +153,7 @@ TEST_F(FeatureBalloonTest, TestComplexCreateBalloonText) {
       "$[geDirections]");  // TODO: geDirections.
 
   // Parse the file into a KmlFile object.
-  kml_file_ = KmlFile::CreateFromParse(kKitchenSinkKml, NULL);
+  kml_file_ = KmlFile::CreateFromParse(kKitchenSinkKml, nullptr);
 
   // Extract the Placemark.
   const DocumentPtr doc = kmldom::AsDocument(kml_file_->get_root());
@@ -172,7 +172,7 @@ const static struct {
 } kFeatures[] = {
   {
   "empty-placemark",
-  NULL
+  nullptr
   },
   {
   "empty-name",
@@ -180,7 +180,7 @@ const static struct {
   },
   {
   "empty-description",
-  NULL
+  nullptr
   },
   {
   "empty-name-description",
@@ -258,7 +258,7 @@ TEST_F(FeatureBalloonTest, TestAllBalloonsFile) {
         kmldom::AsFeature(kml_file_->GetObjectById(kFeatures[i].featureid));
     // Verify that that balloon text has been composited as expected.
     const string kActual(CreateBalloonText(kml_file_, feature));
-    if (kFeatures[i].balloontext == NULL) {
+    if (kFeatures[i].balloontext == nullptr) {
       ASSERT_TRUE(kActual.empty());
       ASSERT_EQ(string(""), kActual);
     } else {

@@ -33,7 +33,7 @@
 // 4a) call AddChild() for each ParserObserver.
 
 #include "kml/dom/kml_handler.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/attributes.h"
 #include "kml/dom/element.h"
 #include "kml/dom/kml_cast.h"
@@ -342,7 +342,7 @@ ElementPtr KmlHandler::PopRoot() {
     stack_.pop();
     return root;
   }
-  return NULL;
+  return nullptr;
 }
 
 // Private.
@@ -372,9 +372,9 @@ void KmlHandler::InsertUnknownEndElement(const string& name) {
 // Static, private.
 void KmlHandler::FindOldSchemaParentName(const StringVector& attrs,
                                          string* old_schema_name) {
-  boost::scoped_ptr<Attributes> schema_attrs(Attributes::Create(attrs));
+  std::unique_ptr<Attributes> schema_attrs(Attributes::Create(attrs));
   if (schema_attrs.get() && old_schema_name &&
-      schema_attrs->FindValue("parent", NULL)) {
+      schema_attrs->FindValue("parent", nullptr)) {
     schema_attrs->FindValue("name", old_schema_name);
   }
 }

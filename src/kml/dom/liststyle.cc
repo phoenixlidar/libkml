@@ -94,7 +94,7 @@ void ItemIcon::Serialize(Serializer& serializer) const {
 }
 
 void ItemIcon::Accept(Visitor* visitor) {
-  visitor->VisitItemIcon(ItemIconPtr(this));
+  visitor->VisitItemIcon(std::static_pointer_cast<ItemIcon>(shared_from_this()));
 }
 
 // <ListStyle>
@@ -145,7 +145,7 @@ void ListStyle::Serialize(Serializer& serializer) const {
 }
 
 void ListStyle::Accept(Visitor* visitor) {
-  visitor->VisitListStyle(ListStylePtr(this));
+  visitor->VisitListStyle(std::static_pointer_cast<ListStyle>(shared_from_this()));
 }
 
 void ListStyle::AcceptChildren(VisitorDriver* driver) {

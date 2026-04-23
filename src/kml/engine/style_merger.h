@@ -27,8 +27,7 @@
 // This class is not recommended for use in application code.  Use the
 // StyleResolver API instead.
 
-#ifndef KML_ENGINE_STYLE_MERGER_H__
-#define KML_ENGINE_STYLE_MERGER_H__
+#pragma once
 
 #include "kml/dom.h"
 #include "kml/engine/engine_types.h"
@@ -62,7 +61,7 @@ class StyleMerger {
   // A StyleMerger needs a SharedStyleMap and a style state.  If both a
   // KmlCache and base_url are given then StyleMerger performs networked
   // style resolution to the extent the NetFetcher configured for the KmlCache
-  // provides for remote fetching.  If kml_cache is NULL and base_url is empty
+  // provides for remote fetching.  If kml_cache is nullptr and base_url is empty
   // or if the styleurl does not reference a fetchable address or if the
   // NetFetcher for the supplied KmlCache does not provide access to this URL
   // the given styleurl is effectively (and quietly) ignored.  This constructor
@@ -81,7 +80,7 @@ class StyleMerger {
   static StyleMerger* CreateFromKmlFile(const KmlFile& kml_file,
                                         kmldom::StyleStateEnum style_state);
 
-  // This method is guaranteed to return non-NULL, however the resolved <Style>
+  // This method is guaranteed to return non-nullptr, however the resolved <Style>
   // itself may be devoid of child elements which simply means the style is
   // full default.
   const kmldom::StylePtr& GetResolvedStyle() const {
@@ -123,4 +122,3 @@ class StyleMerger {
 
 }  // endnamespace kmlengine
 
-#endif  // KML_ENGINE_STYLE_MERGER_H__

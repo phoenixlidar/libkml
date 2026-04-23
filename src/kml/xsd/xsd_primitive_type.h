@@ -25,12 +25,15 @@
 
 // This file declares the XsdPrimitiveType.
 
-#ifndef KML_XSD_XSD_PRIMITIVE_TYPE_H__
-#define KML_XSD_XSD_PRIMITIVE_TYPE_H__
+#pragma once
 
+#include <memory>
 #include "kml/xsd/xsd_type.h"
 
 namespace kmlxsd {
+
+class XsdPrimitiveType;
+using XsdPrimitiveTypePtr = std::shared_ptr<XsdPrimitiveType>;
 
 // This class is a specialization of XsdType for XSD primitive ("built-in")
 // types.  This permits elements of non-complexType and non-simpleType to have
@@ -72,13 +75,13 @@ class XsdPrimitiveType : public XsdType {
   // would be:
   // XsdPrimitiveTypePtr primitive_type = XsdPrimitiveType::Create("boolean");
   // If the type_name is not that of an XSD primitive type then no
-  // XsdPrimitiveType is created and NULL is returned.
-  static XsdPrimitiveType* Create(const string& type_name) {
+  // XsdPrimitiveType is created and nullptr is returned.
+  static XsdPrimitiveTypePtr Create(const string& type_name) {
     TypeId type_id = GetTypeId(type_name);
     if (type_id != XSD_INVALID) {
-      return new XsdPrimitiveType(type_id);
+      return XsdPrimitiveTypePtr(new XsdPrimitiveType(type_id));
     }
-    return NULL;
+    return nullptr;
   }
 
   virtual XsdTypeEnum get_xsd_type_id() const {
@@ -122,4 +125,3 @@ class XsdPrimitiveType : public XsdType {
 
 }  // end namespace kmlxsd
 
-#endif  // KML_XSD_XSD_ELEMENT_H__

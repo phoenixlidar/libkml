@@ -59,7 +59,7 @@ class StyleInlinerTest : public testing::Test {
   }
 
   KmlFactory* kml_factory_;
-  boost::scoped_ptr<StyleInliner> style_inliner_;
+  std::unique_ptr<StyleInliner> style_inliner_;
 };
 
 TEST_F(StyleInlinerTest, CallStyleInlinerMethodsInTypicalUsage) {

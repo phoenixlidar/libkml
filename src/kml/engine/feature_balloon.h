@@ -35,8 +35,7 @@
 // For more information, see the OGC KML 2.2 specificication. In particular,
 // sections 6.5 and 9.1.3.10.
 
-#ifndef KML_ENGINE_FEATURE_BALLOON_H__
-#define KML_ENGINE_FEATURE_BALLOON_H__
+#pragma once
 
 #include "kml/dom/feature.h"
 #include "kml/engine/kml_file.h"
@@ -68,4 +67,3 @@ string CreateBalloonText(const KmlFilePtr& kml_file,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_FEATURE_BALLOON_H__

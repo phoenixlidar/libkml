@@ -25,7 +25,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "curlfetch.h"
 #include "kml/base/file.h"
 #include "kml/dom.h"
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  boost::scoped_ptr<GoogleDocList> google_doc_list(
+  std::unique_ptr<GoogleDocList> google_doc_list(
       GoogleDocList::Create(curl_http_client));
 
   // TODO: add a Slug: header to set the title.

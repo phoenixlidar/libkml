@@ -36,143 +36,111 @@
 #include "kml/dom/xsd.h"
 %}
 
-// Tell SWIG about boost::intrusive_ptr and the inheritance hierarchy
-// of objects using intrusive_ptr.  Without this SWIG does not know
-// that PlacemarkPtr "is a" FeaturePtr "is a" ObjectPtr "is a" ElementPtr.
-// (SWIG _does_ know that a Placemark "is a" Feature, but pointers directly
-// to these types are never used directly in libkml).
-// TODO: push these changes into a future version of SWIG as there
-//       are no libkml-specific enhancements these intrusive_ptr .i files.
-#ifdef SWIGPYTHON
-%include "python/libkml_boost_intrusive_ptr.i"
-#elif SWIGJAVA
-%include "java/libkml_boost_intrusive_ptr.i"
-#endif
+// Tell SWIG about std::shared_ptr.  SWIG tracks the inheritance hierarchy
+// declared below the %shared_ptr lines so that, e.g., PlacemarkPtr
+// "is a" FeaturePtr "is a" ObjectPtr "is a" ElementPtr.
+%include <std_shared_ptr.i>
 
 %include "typemaps.i"
 
 // Classes for abstract elements and internal convenience classes.
-SWIG_INTRUSIVE_PTR(Referent, kmlbase::Referent)
-SWIG_INTRUSIVE_PTR_DERIVED(XmlElement, kmlbase::Referent, kmlbase::XmlElement)
-SWIG_INTRUSIVE_PTR_DERIVED(Element, kmlbase::XmlElement, kmldom::Element)
-SWIG_INTRUSIVE_PTR_DERIVED(AbstractLatLonBox, kmldom::Object,
-                           kmldom::AbstractLatLonBox)
-SWIG_INTRUSIVE_PTR_DERIVED(AbstractView, kmldom::Object, kmldom::AbstractView)
-SWIG_INTRUSIVE_PTR_DERIVED(BasicLink, kmldom::Object, kmldom::BasicLink)
-SWIG_INTRUSIVE_PTR_DERIVED(Container, kmldom::Feature, kmldom::Container)
-SWIG_INTRUSIVE_PTR_DERIVED(ColorStyle, kmldom::SubStyle, kmldom::ColorStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(Feature, kmldom::Object, kmldom::Feature)
-SWIG_INTRUSIVE_PTR_DERIVED(Geometry, kmldom::Object, kmldom::Geometry)
-SWIG_INTRUSIVE_PTR_DERIVED(Object, kmldom::Element, kmldom::Object)
-SWIG_INTRUSIVE_PTR_DERIVED(Overlay, kmldom::Feature, kmldom::Overlay)
-SWIG_INTRUSIVE_PTR_DERIVED(SnippetCommon, kmldom::Element,
-                           kmldom::SnippetCommon)
-SWIG_INTRUSIVE_PTR_DERIVED(StyleSelector, kmldom::Object,
-                           kmldom::StyleSelector)
-SWIG_INTRUSIVE_PTR_DERIVED(SubStyle, kmldom::Object, kmldom::SubStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(TimePrimitive, kmldom::Object,
-                           kmldom::TimePrimitive)
-SWIG_INTRUSIVE_PTR_DERIVED(UpdateOperation, kmldom::Element,
-                           kmldom::UpdateOperation)
-SWIG_INTRUSIVE_PTR_DERIVED(Vec2, kmldom::Element, kmldom::Vec2)
+%shared_ptr(kmlbase::Referent)
+%shared_ptr(kmlbase::XmlElement)
+%shared_ptr(kmldom::Element)
+%shared_ptr(kmldom::AbstractLatLonBox)
+%shared_ptr(kmldom::AbstractView)
+%shared_ptr(kmldom::BasicLink)
+%shared_ptr(kmldom::Container)
+%shared_ptr(kmldom::ColorStyle)
+%shared_ptr(kmldom::Feature)
+%shared_ptr(kmldom::Geometry)
+%shared_ptr(kmldom::Object)
+%shared_ptr(kmldom::Overlay)
+%shared_ptr(kmldom::SnippetCommon)
+%shared_ptr(kmldom::StyleSelector)
+%shared_ptr(kmldom::SubStyle)
+%shared_ptr(kmldom::TimePrimitive)
+%shared_ptr(kmldom::UpdateOperation)
+%shared_ptr(kmldom::Vec2)
 
 // Classes for concrete elements.
-SWIG_INTRUSIVE_PTR_DERIVED(Alias, kmldom::Object, kmldom::Alias)
-SWIG_INTRUSIVE_PTR_DERIVED(AtomAuthor, kmldom::Element, kmldom::AtomAuthor)
-SWIG_INTRUSIVE_PTR_DERIVED(AtomLink, kmldom::Element, kmldom::AtomLink)
-SWIG_INTRUSIVE_PTR_DERIVED(BalloonStyle, kmldom::SubStyle,
-                           kmldom::BalloonStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(Camera, kmldom::AbstractView, kmldom::Camera)
-SWIG_INTRUSIVE_PTR_DERIVED(Change, kmldom::UpdateOperation, kmldom::Change)
-SWIG_INTRUSIVE_PTR_DERIVED(Coordinates, kmldom::Element, kmldom::Coordinates)
-SWIG_INTRUSIVE_PTR_DERIVED(Create, kmldom::UpdateOperation, kmldom::Create)
-SWIG_INTRUSIVE_PTR_DERIVED(Data, kmldom::Object, kmldom::Data)
-SWIG_INTRUSIVE_PTR_DERIVED(Delete, kmldom::UpdateOperation, kmldom::Delete)
-SWIG_INTRUSIVE_PTR_DERIVED(Document, kmldom::Container, kmldom::Document)
-SWIG_INTRUSIVE_PTR_DERIVED(ExtendedData, kmldom::Element, kmldom::ExtendedData)
-SWIG_INTRUSIVE_PTR_DERIVED(Folder, kmldom::Container, kmldom::Folder)
-SWIG_INTRUSIVE_PTR_DERIVED(GroundOverlay, kmldom::Overlay,
-                           kmldom::GroundOverlay)
-SWIG_INTRUSIVE_PTR_DERIVED(HotSpot, kmldom::Vec2, kmldom::HotSpot)
-SWIG_INTRUSIVE_PTR_DERIVED(Icon, kmldom::BasicLink, kmldom::Icon)
-SWIG_INTRUSIVE_PTR_DERIVED(IconStyle, kmldom::ColorStyle, kmldom::IconStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(IconStyleIcon, kmldom::BasicLink,
-                           kmldom::IconStyleIcon)
-SWIG_INTRUSIVE_PTR_DERIVED(ImagePyramid, kmldom::Object, kmldom::ImagePyramid)
-SWIG_INTRUSIVE_PTR_DERIVED(InnerBoundaryIs, kmldom::Element,
-                           kmldom::InnerBoundaryIs)
-SWIG_INTRUSIVE_PTR_DERIVED(ItemIcon, kmldom::Object, kmldom::ItemIcon)
-SWIG_INTRUSIVE_PTR_DERIVED(Kml, kmldom::Element, kmldom::Kml)
-SWIG_INTRUSIVE_PTR_DERIVED(LabelStyle, kmldom::ColorStyle, kmldom::LabelStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(LatLonBox, kmldom::AbstractLatLonBox,
-                           kmldom::LatLonBox)
-SWIG_INTRUSIVE_PTR_DERIVED(LatLonAltBox, kmldom::AbstractLatLonBox,
-                           kmldom::LatLonAltBox)
-SWIG_INTRUSIVE_PTR_DERIVED(LinearRing, kmldom::Geometry, kmldom::LinearRing)
-SWIG_INTRUSIVE_PTR_DERIVED(LineString, kmldom::Geometry, kmldom::LineString)
-SWIG_INTRUSIVE_PTR_DERIVED(LineStyle, kmldom::ColorStyle, kmldom::LineStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(Link, kmldom::BasicLink, kmldom::Link)
-SWIG_INTRUSIVE_PTR_DERIVED(LinkSnippet, kmldom::SnippetCommon,
-                           kmldom::LinkSnippet)
-SWIG_INTRUSIVE_PTR_DERIVED(ListStyle, kmldom::SubStyle, kmldom::ListStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(Location, kmldom::Object, kmldom::Location)
-SWIG_INTRUSIVE_PTR_DERIVED(Lod, kmldom::Object, kmldom::Lod)
-SWIG_INTRUSIVE_PTR_DERIVED(LookAt, kmldom::AbstractView, kmldom::LookAt)
-SWIG_INTRUSIVE_PTR_DERIVED(Model, kmldom::Geometry, kmldom::Model)
-SWIG_INTRUSIVE_PTR_DERIVED(MultiGeometry, kmldom::Geometry,
-                           kmldom::MultiGeometry)
-SWIG_INTRUSIVE_PTR_DERIVED(NetworkLink, kmldom::Feature, kmldom::NetworkLink)
-SWIG_INTRUSIVE_PTR_DERIVED(Orientation, kmldom::Object, kmldom::Orientation)
-SWIG_INTRUSIVE_PTR_DERIVED(NetworkLinkControl, kmldom::Element,
-                           kmldom::NetworkLinkControl)
-SWIG_INTRUSIVE_PTR_DERIVED(OuterBoundaryIs, kmldom::Element,
-                           kmldom::OuterBoundaryIs)
-SWIG_INTRUSIVE_PTR_DERIVED(OverlayXY, kmldom::Vec2, kmldom::OverlayXY)
-SWIG_INTRUSIVE_PTR_DERIVED(Pair, kmldom::Object, kmldom::Pair)
-SWIG_INTRUSIVE_PTR_DERIVED(PhotoOverlay, kmldom::Overlay, kmldom::PhotoOverlay)
-SWIG_INTRUSIVE_PTR_DERIVED(Placemark, kmldom::Feature, kmldom::Placemark)
-SWIG_INTRUSIVE_PTR_DERIVED(Polygon, kmldom::Geometry, kmldom::Polygon)
-SWIG_INTRUSIVE_PTR_DERIVED(Point, kmldom::Geometry, kmldom::Point)
-SWIG_INTRUSIVE_PTR_DERIVED(PolyStyle, kmldom::ColorStyle, kmldom::PolyStyle)
-SWIG_INTRUSIVE_PTR_DERIVED(Region, kmldom::Object, kmldom::Region)
-SWIG_INTRUSIVE_PTR_DERIVED(ResourceMap, kmldom::Object, kmldom::ResourceMap)
-SWIG_INTRUSIVE_PTR_DERIVED(RotationXY, kmldom::Vec2, kmldom::RotationXY)
-SWIG_INTRUSIVE_PTR_DERIVED(Scale, kmldom::Object, kmldom::Scale)
-SWIG_INTRUSIVE_PTR_DERIVED(Schema, kmldom::Object, kmldom::Schema)
-SWIG_INTRUSIVE_PTR_DERIVED(SchemaData, kmldom::Object, kmldom::SchemaData)
-SWIG_INTRUSIVE_PTR_DERIVED(ScreenOverlay, kmldom::Overlay,
-                           kmldom::ScreenOverlay)
-SWIG_INTRUSIVE_PTR_DERIVED(ScreenXY, kmldom::Vec2, kmldom::ScreenXY)
-SWIG_INTRUSIVE_PTR_DERIVED(Size, kmldom::Vec2, kmldom::Size)
-SWIG_INTRUSIVE_PTR_DERIVED(SimpleData, kmldom::Element, kmldom::SimpleData)
-SWIG_INTRUSIVE_PTR_DERIVED(SimpleField, kmldom::Element, kmldom::SimpleField)
-SWIG_INTRUSIVE_PTR_DERIVED(Snippet, kmldom::SnippetCommon, kmldom::Snippet)
-SWIG_INTRUSIVE_PTR_DERIVED(Style, kmldom::StyleSelector, kmldom::Style)
-SWIG_INTRUSIVE_PTR_DERIVED(StyleMap, kmldom::StyleSelector, kmldom::StyleMap)
-SWIG_INTRUSIVE_PTR_DERIVED(TimeSpan, kmldom::TimePrimitive, kmldom::TimeSpan)
-SWIG_INTRUSIVE_PTR_DERIVED(TimeStamp, kmldom::TimePrimitive, kmldom::TimeStamp)
-SWIG_INTRUSIVE_PTR_DERIVED(ViewVolume, kmldom::Object, kmldom::ViewVolume)
-SWIG_INTRUSIVE_PTR_DERIVED(Update, kmldom::Element, kmldom::Update)
+%shared_ptr(kmldom::Alias)
+%shared_ptr(kmldom::AtomAuthor)
+%shared_ptr(kmldom::AtomLink)
+%shared_ptr(kmldom::BalloonStyle)
+%shared_ptr(kmldom::Camera)
+%shared_ptr(kmldom::Change)
+%shared_ptr(kmldom::Coordinates)
+%shared_ptr(kmldom::Create)
+%shared_ptr(kmldom::Data)
+%shared_ptr(kmldom::Delete)
+%shared_ptr(kmldom::Document)
+%shared_ptr(kmldom::ExtendedData)
+%shared_ptr(kmldom::Folder)
+%shared_ptr(kmldom::GroundOverlay)
+%shared_ptr(kmldom::HotSpot)
+%shared_ptr(kmldom::Icon)
+%shared_ptr(kmldom::IconStyle)
+%shared_ptr(kmldom::IconStyleIcon)
+%shared_ptr(kmldom::ImagePyramid)
+%shared_ptr(kmldom::InnerBoundaryIs)
+%shared_ptr(kmldom::ItemIcon)
+%shared_ptr(kmldom::Kml)
+%shared_ptr(kmldom::LabelStyle)
+%shared_ptr(kmldom::LatLonBox)
+%shared_ptr(kmldom::LatLonAltBox)
+%shared_ptr(kmldom::LinearRing)
+%shared_ptr(kmldom::LineString)
+%shared_ptr(kmldom::LineStyle)
+%shared_ptr(kmldom::Link)
+%shared_ptr(kmldom::LinkSnippet)
+%shared_ptr(kmldom::ListStyle)
+%shared_ptr(kmldom::Location)
+%shared_ptr(kmldom::Lod)
+%shared_ptr(kmldom::LookAt)
+%shared_ptr(kmldom::Model)
+%shared_ptr(kmldom::MultiGeometry)
+%shared_ptr(kmldom::NetworkLink)
+%shared_ptr(kmldom::Orientation)
+%shared_ptr(kmldom::NetworkLinkControl)
+%shared_ptr(kmldom::OuterBoundaryIs)
+%shared_ptr(kmldom::OverlayXY)
+%shared_ptr(kmldom::Pair)
+%shared_ptr(kmldom::PhotoOverlay)
+%shared_ptr(kmldom::Placemark)
+%shared_ptr(kmldom::Polygon)
+%shared_ptr(kmldom::Point)
+%shared_ptr(kmldom::PolyStyle)
+%shared_ptr(kmldom::Region)
+%shared_ptr(kmldom::ResourceMap)
+%shared_ptr(kmldom::RotationXY)
+%shared_ptr(kmldom::Scale)
+%shared_ptr(kmldom::Schema)
+%shared_ptr(kmldom::SchemaData)
+%shared_ptr(kmldom::ScreenOverlay)
+%shared_ptr(kmldom::ScreenXY)
+%shared_ptr(kmldom::Size)
+%shared_ptr(kmldom::SimpleData)
+%shared_ptr(kmldom::SimpleField)
+%shared_ptr(kmldom::Snippet)
+%shared_ptr(kmldom::Style)
+%shared_ptr(kmldom::StyleMap)
+%shared_ptr(kmldom::TimeSpan)
+%shared_ptr(kmldom::TimeStamp)
+%shared_ptr(kmldom::ViewVolume)
+%shared_ptr(kmldom::Update)
 
-SWIG_INTRUSIVE_PTR_DERIVED(GxTourPrimitive, kmldom::Object,
-                           kmldom::GxTourPrimitive)
-SWIG_INTRUSIVE_PTR_DERIVED(GxAnimatedUpdate, kmldom::GxTourPrimitive,
-                           kmldom::GxAnimatedUpdate)
-SWIG_INTRUSIVE_PTR_DERIVED(GxFlyTo, kmldom::GxTourPrimitive,
-                           kmldom::GxFlyTo)
-SWIG_INTRUSIVE_PTR_DERIVED(GxLatLonQuad, kmldom::Object,
-                           kmldom::GxLatLonQuad)
-SWIG_INTRUSIVE_PTR_DERIVED(GxPlaylist, kmldom::Object, kmldom::GxPlaylist)
-SWIG_INTRUSIVE_PTR_DERIVED(GxSoundCue, kmldom::GxTourPrimitive,
-                           kmldom::GxSoundCue)
-SWIG_INTRUSIVE_PTR_DERIVED(GxTimeSpan, kmldom::TimeSpan, kmldom::GxTimeSpan)
-SWIG_INTRUSIVE_PTR_DERIVED(GxTimeStamp, kmldom::TimeStamp,
-                           kmldom::GxTimeStamp)
-SWIG_INTRUSIVE_PTR_DERIVED(GxTour, kmldom::Feature, kmldom::GxTour)
-SWIG_INTRUSIVE_PTR_DERIVED(GxTourControl, kmldom::GxTourPrimitive,
-                           kmldom::GxTourControl)
-SWIG_INTRUSIVE_PTR_DERIVED(GxWait, kmldom::GxTourPrimitive,
-                           kmldom::GxWait)
+%shared_ptr(kmldom::GxTourPrimitive)
+%shared_ptr(kmldom::GxAnimatedUpdate)
+%shared_ptr(kmldom::GxFlyTo)
+%shared_ptr(kmldom::GxLatLonQuad)
+%shared_ptr(kmldom::GxPlaylist)
+%shared_ptr(kmldom::GxSoundCue)
+%shared_ptr(kmldom::GxTimeSpan)
+%shared_ptr(kmldom::GxTimeStamp)
+%shared_ptr(kmldom::GxTour)
+%shared_ptr(kmldom::GxTourControl)
+%shared_ptr(kmldom::GxWait)
 
 // Tell SWIG about C++ Standard Library std::string.
 %include "std_string.i"

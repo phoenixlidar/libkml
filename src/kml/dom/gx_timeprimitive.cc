@@ -40,7 +40,7 @@ GxTimeSpan::GxTimeSpan() {
 GxTimeSpan::~GxTimeSpan() {}
 
 void GxTimeSpan::Accept(Visitor* visitor) {
-  visitor->VisitGxTimeSpan(GxTimeSpanPtr(this));
+  visitor->VisitGxTimeSpan(std::static_pointer_cast<GxTimeSpan>(shared_from_this()));
 }
 
 GxTimeStamp::GxTimeStamp() {
@@ -50,7 +50,7 @@ GxTimeStamp::GxTimeStamp() {
 GxTimeStamp::~GxTimeStamp() {}
 
 void GxTimeStamp::Accept(Visitor* visitor) {
-  visitor->VisitGxTimeStamp(GxTimeStampPtr(this));
+  visitor->VisitGxTimeStamp(std::static_pointer_cast<GxTimeStamp>(shared_from_this()));
 }
 
 }  // end namespace kmldom

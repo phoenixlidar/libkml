@@ -42,7 +42,7 @@ namespace kmldom {
 class OverlayTest : public testing::Test {
  protected:
   virtual void SetUp() {
-    overlay_ = new TestOverlay();
+    overlay_ = std::make_shared<TestOverlay>();
   }
 
   // Derive a test class since Overlay is abstract.
@@ -67,7 +67,7 @@ TEST_F(OverlayTest, TestDefaults) {
   ASSERT_FALSE(overlay_->has_draworder());
   ASSERT_EQ(0, overlay_->get_draworder());
   ASSERT_FALSE(overlay_->has_icon());
-  ASSERT_TRUE(NULL == overlay_->get_icon());
+  ASSERT_TRUE(nullptr == overlay_->get_icon());
 }
 
 // This tests that has_xxx() is true even if the value is set to the default.
@@ -78,9 +78,9 @@ TEST_F(OverlayTest, TestSetToDefaultValues) {
   overlay_->set_draworder(overlay_->get_draworder());
   ASSERT_TRUE(overlay_->has_draworder());
   ASSERT_EQ(0, overlay_->get_draworder());
-  overlay_->set_icon(NULL);
+  overlay_->set_icon(nullptr);
   ASSERT_FALSE(overlay_->has_icon());
-  ASSERT_TRUE(NULL == overlay_->get_icon());
+  ASSERT_TRUE(nullptr == overlay_->get_icon());
 }
 
 // This tests the set_xxx(), xxx() (getter), has_xxx(), and clear_xxx() methods.
@@ -230,9 +230,9 @@ TEST_F(GroundOverlayTest, TestDefaults) {
   ASSERT_EQ(static_cast<int>(GX_ALTITUDEMODE_CLAMPTOSEAFLOOR),
                        groundoverlay_->get_gx_altitudemode());
   ASSERT_FALSE(groundoverlay_->has_latlonbox());
-  ASSERT_TRUE(NULL == groundoverlay_->get_latlonbox());
+  ASSERT_TRUE(nullptr == groundoverlay_->get_latlonbox());
   ASSERT_FALSE(groundoverlay_->has_gx_latlonquad());
-  ASSERT_TRUE(NULL == groundoverlay_->get_gx_latlonquad());
+  ASSERT_TRUE(nullptr == groundoverlay_->get_gx_latlonquad());
 }
 
 // This tests that has_xxx() is true even if the value is set to the default.
@@ -240,14 +240,14 @@ TEST_F(GroundOverlayTest, TestSetToDefaultValues) {
   groundoverlay_->set_altitude(0.0);
   groundoverlay_->set_altitudemode(ALTITUDEMODE_CLAMPTOGROUND);
   groundoverlay_->set_gx_altitudemode(GX_ALTITUDEMODE_CLAMPTOSEAFLOOR);
-  groundoverlay_->set_latlonbox(NULL);
+  groundoverlay_->set_latlonbox(nullptr);
   ASSERT_TRUE(groundoverlay_->has_altitude());
   ASSERT_TRUE(groundoverlay_->has_altitudemode());
   ASSERT_TRUE(groundoverlay_->has_gx_altitudemode());
   ASSERT_FALSE(groundoverlay_->has_latlonbox());
-  ASSERT_TRUE(NULL == groundoverlay_->get_latlonbox());
+  ASSERT_TRUE(nullptr == groundoverlay_->get_latlonbox());
   ASSERT_FALSE(groundoverlay_->has_gx_latlonquad());
-  ASSERT_TRUE(NULL == groundoverlay_->get_gx_latlonquad());
+  ASSERT_TRUE(nullptr == groundoverlay_->get_gx_latlonquad());
 }
 
 // This tests the set_xxx(), xxx() (getter), has_xxx(), and clear_xxx() methods.
@@ -536,31 +536,31 @@ TEST_F(ScreenOverlayTest, TestType) {
 // This tests the default values of all fields.
 TEST_F(ScreenOverlayTest, TestDefaults) {
   ASSERT_FALSE(screenoverlay_->has_overlayxy());
-  ASSERT_TRUE(NULL == screenoverlay_->get_overlayxy());
+  ASSERT_TRUE(nullptr == screenoverlay_->get_overlayxy());
   ASSERT_FALSE(screenoverlay_->has_screenxy());
-  ASSERT_TRUE(NULL == screenoverlay_->get_screenxy());
+  ASSERT_TRUE(nullptr == screenoverlay_->get_screenxy());
   ASSERT_FALSE(screenoverlay_->has_rotationxy());
-  ASSERT_TRUE(NULL == screenoverlay_->get_rotationxy());
+  ASSERT_TRUE(nullptr == screenoverlay_->get_rotationxy());
   ASSERT_FALSE(screenoverlay_->has_size());
-  ASSERT_TRUE(NULL == screenoverlay_->get_size());
+  ASSERT_TRUE(nullptr == screenoverlay_->get_size());
   ASSERT_FALSE(screenoverlay_->has_rotation());
   ASSERT_DOUBLE_EQ(0.0, screenoverlay_->get_rotation());
 }
 
 // This tests that has_xxx() is true even if the value is set to the default.
 TEST_F(ScreenOverlayTest, TestSetToDefaultValues) {
-  screenoverlay_->set_overlayxy(NULL);
+  screenoverlay_->set_overlayxy(nullptr);
   ASSERT_FALSE(screenoverlay_->has_overlayxy());
-  ASSERT_TRUE(NULL == screenoverlay_->get_overlayxy());
-  screenoverlay_->set_screenxy(NULL);
+  ASSERT_TRUE(nullptr == screenoverlay_->get_overlayxy());
+  screenoverlay_->set_screenxy(nullptr);
   ASSERT_FALSE(screenoverlay_->has_screenxy());
-  ASSERT_TRUE(NULL == screenoverlay_->get_screenxy());
-  screenoverlay_->set_rotationxy(NULL);
+  ASSERT_TRUE(nullptr == screenoverlay_->get_screenxy());
+  screenoverlay_->set_rotationxy(nullptr);
   ASSERT_FALSE(screenoverlay_->has_rotationxy());
-  ASSERT_TRUE(NULL == screenoverlay_->get_rotationxy());
-  screenoverlay_->set_size(NULL);
+  ASSERT_TRUE(nullptr == screenoverlay_->get_rotationxy());
+  screenoverlay_->set_size(nullptr);
   ASSERT_FALSE(screenoverlay_->has_size());
-  ASSERT_TRUE(NULL == screenoverlay_->get_size());
+  ASSERT_TRUE(nullptr == screenoverlay_->get_size());
 }
 
 // This tests the set_xxx(), xxx() (getter), has_xxx(), and clear_xxx() methods.
@@ -777,11 +777,11 @@ TEST_F(PhotoOverlayTest, TestDefaults) {
   ASSERT_FALSE(photooverlay_->has_rotation());
   ASSERT_DOUBLE_EQ(0.0, photooverlay_->get_rotation());
   ASSERT_FALSE(photooverlay_->has_viewvolume());
-  ASSERT_TRUE(NULL == photooverlay_->get_viewvolume());
+  ASSERT_TRUE(nullptr == photooverlay_->get_viewvolume());
   ASSERT_FALSE(photooverlay_->has_imagepyramid());
-  ASSERT_TRUE(NULL == photooverlay_->get_imagepyramid());
+  ASSERT_TRUE(nullptr == photooverlay_->get_imagepyramid());
   ASSERT_FALSE(photooverlay_->has_point());
-  ASSERT_TRUE(NULL == photooverlay_->get_point());
+  ASSERT_TRUE(nullptr == photooverlay_->get_point());
   ASSERT_FALSE(photooverlay_->has_shape());
   ASSERT_EQ(SHAPE_RECTANGLE, photooverlay_->get_shape());
 }
@@ -791,15 +791,15 @@ TEST_F(PhotoOverlayTest, TestSetToDefaultValues) {
   photooverlay_->set_rotation(photooverlay_->get_rotation());
   ASSERT_TRUE(photooverlay_->has_rotation());
   ASSERT_DOUBLE_EQ(0.0, photooverlay_->get_rotation());
-  photooverlay_->set_viewvolume(NULL);
+  photooverlay_->set_viewvolume(nullptr);
   ASSERT_FALSE(photooverlay_->has_viewvolume());
-  ASSERT_TRUE(NULL == photooverlay_->get_viewvolume());
-  photooverlay_->set_imagepyramid(NULL);
+  ASSERT_TRUE(nullptr == photooverlay_->get_viewvolume());
+  photooverlay_->set_imagepyramid(nullptr);
   ASSERT_FALSE(photooverlay_->has_imagepyramid());
-  ASSERT_TRUE(NULL == photooverlay_->get_imagepyramid());
-  photooverlay_->set_point(NULL);
+  ASSERT_TRUE(nullptr == photooverlay_->get_imagepyramid());
+  photooverlay_->set_point(nullptr);
   ASSERT_FALSE(photooverlay_->has_point());
-  ASSERT_TRUE(NULL == photooverlay_->get_point());
+  ASSERT_TRUE(nullptr == photooverlay_->get_point());
   photooverlay_->set_shape(photooverlay_->get_shape());
   ASSERT_TRUE(photooverlay_->has_shape());
   ASSERT_EQ(SHAPE_RECTANGLE, photooverlay_->get_shape());
@@ -855,7 +855,7 @@ TEST_F(PhotoOverlayTest, TestParseSerialize) {
       "<shape>sphere</shape>"
       "</PhotoOverlay>");
   ASSERT_EQ(kPhotoOverlay,
-            kmldom::SerializeRaw(kmldom::Parse(kPhotoOverlay, NULL)));
+            kmldom::SerializeRaw(kmldom::Parse(kPhotoOverlay, nullptr)));
 }
 
 }  // end namespace kmldom

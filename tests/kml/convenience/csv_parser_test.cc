@@ -27,7 +27,7 @@
 
 #include "kml/convenience/csv_parser.h"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/csv_splitter.h"
 #include "kml/base/file.h"
@@ -87,7 +87,7 @@ static bool CheckPointLatLon(const kmldom::PlacemarkPtr& placemark,
 // This test verifies that a bad schema is detected.
 TEST(CsvParserTest, TestSetSchemaEmpty) {
   CsvParserHandler csv_parser_handler;
-  CsvParser csv_parser(NULL, &csv_parser_handler);
+  CsvParser csv_parser(nullptr, &csv_parser_handler);
   kmlbase::StringVector empty;
   ASSERT_EQ(CSV_PARSER_STATUS_BLANK_LINE, csv_parser.SetSchema(empty));
 }
@@ -95,7 +95,7 @@ TEST(CsvParserTest, TestSetSchemaEmpty) {
 // This test verifies that a minimal schema is accepted.
 TEST(CsvParserTest, TestSetSchemaMinimal) {
   CsvParserHandler csv_parser_handler;
-  CsvParser csv_parser(NULL, &csv_parser_handler);
+  CsvParser csv_parser(nullptr, &csv_parser_handler);
   kmlbase::StringVector schema;
   schema.push_back("latitude");
   schema.push_back("longitude");
@@ -141,35 +141,35 @@ TEST(CsvParserTest, TestSetSchemaMixedCase) {
 // This test verifies that schema errors are properly detected.
 TEST(CsvParserTest, TestSetSchemaErrors) {
   kmlbase::StringVector schema;
-  boost::scoped_ptr<CsvParser> csv_parser(new CsvParser(NULL, NULL));
+  std::unique_ptr<CsvParser> csv_parser(new CsvParser(nullptr, nullptr));
   ASSERT_EQ(CSV_PARSER_STATUS_BLANK_LINE, csv_parser->SetSchema(schema));
 
   schema.clear();
   schema.push_back("fish");
   schema.push_back("birds");
-  csv_parser.reset(new CsvParser(NULL, NULL));
+  csv_parser.reset(new CsvParser(nullptr, nullptr));
   ASSERT_EQ(CSV_PARSER_STATUS_NO_LAT_LON, csv_parser->SetSchema(schema));
 
   schema.clear();
   schema.push_back("fish");
   schema.push_back("longitude");
-  csv_parser.reset(new CsvParser(NULL, NULL));
+  csv_parser.reset(new CsvParser(nullptr, nullptr));
   ASSERT_EQ(CSV_PARSER_STATUS_NO_LAT_LON, csv_parser->SetSchema(schema));
 
   schema.clear();
   schema.push_back("birds");
   schema.push_back("latitude");
-  csv_parser.reset(new CsvParser(NULL, NULL));
+  csv_parser.reset(new CsvParser(nullptr, nullptr));
   ASSERT_EQ(CSV_PARSER_STATUS_NO_LAT_LON, csv_parser->SetSchema(schema));
 }
 
 // This test verifies that schema errors are properly reported to the
 // supplied CsvParserHandler.
 TEST(CsvParserTest, TestParseCsvSetSchemaErrors) {
-  boost::scoped_ptr<kmlbase::CsvSplitter> csv_splitter(
+  std::unique_ptr<kmlbase::CsvSplitter> csv_splitter(
       new kmlbase::CsvSplitter("\n1,2,3,a,b,c\n"));
   ContainerSaver::ErrorLog log;
-  ContainerSaver container_saver(NULL, &log);
+  ContainerSaver container_saver(nullptr, &log);
   ASSERT_FALSE(CsvParser::ParseCsv(csv_splitter.get(), &container_saver));
   ASSERT_EQ(static_cast<size_t>(1), log.size());
   ASSERT_EQ(1, log[0].first);  // Schema is always line 1.
@@ -202,7 +202,7 @@ TEST(CsvParserTest, TestParseCsvDataOneLine) {
   kmlbase::CsvSplitter csv_data("name,latitude,longitude\n"
                                 "hello,38.1,-121.2\n");
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   ASSERT_TRUE(CsvParser::ParseCsv(&csv_data, &container_saver));
   ASSERT_EQ(static_cast<size_t>(1), folder->get_feature_array_size());
   ASSERT_TRUE(CheckPointLatLon(
@@ -221,7 +221,7 @@ TEST(CsvParserTest, TestCsvLineToPlacemarkWithNameAndDescription) {
     kmlbase::ToString(kLat) + "," + kmlbase::ToString(kLon) + "," +
     kDescription);
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   ASSERT_TRUE(CsvParser::ParseCsv(&csv_data, &container_saver));
   ASSERT_EQ(static_cast<size_t>(1), folder->get_feature_array_size());
   kmldom::PlacemarkPtr placemark =
@@ -247,7 +247,7 @@ TEST(CsvParserTest, TestCsvLineToPlacemarkWithExtendedData) {
       kmlbase::ToString(kLon) + "," + kmlbase::ToString(kLat) + "," +
       kWid + "," + kHt);
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   ASSERT_TRUE(CsvParser::ParseCsv(&csv_data, &container_saver));
   ASSERT_EQ(static_cast<size_t>(1), folder->get_feature_array_size());
   kmldom::PlacemarkPtr placemark =
@@ -268,7 +268,7 @@ TEST(CsvParserTest, TestCsvLineToPlacemarkWithQuotedData) {
                                 "2.2,\"-4.4\"\n"
                                 "\"2.2\",-4.4\n");
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   ASSERT_TRUE(CsvParser::ParseCsv(&csv_data, &container_saver));
   ASSERT_EQ(static_cast<size_t>(3), folder->get_feature_array_size());
   kmldom::PlacemarkPtr placemark =
@@ -283,7 +283,7 @@ TEST(CsvParserTest, TestCsvLineToPlacemarkWithQuotedData) {
 // This verifies the CsvParser on a test file.
 TEST(CsvParserTest, TestLincolnParkGc) {
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   string csv_data;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(
       kmlbase::File::JoinPaths(DATADIR,
@@ -419,7 +419,7 @@ TEST(CsvParserTest, TestCsvLineToPlacemarkErrors) {
 
 TEST(CsvParserTest, TestFeatureId) {
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   kmlbase::CsvSplitter csv_splitter("feature-id,latitude,longitude\n"
                                     "abc,1.1,-2.2\n");
   ASSERT_TRUE(CsvParser::ParseCsv(&csv_splitter, &container_saver));
@@ -434,7 +434,7 @@ TEST(CsvParserTest, TestFeatureId) {
 
 TEST(CsvParserTest, TestStyleId) {
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   kmlbase::CsvSplitter csv_splitter("feature-id,latitude,longitude,style-id\n"
                                     "abc,1.1,-2.2,big\n"
                                     "xyz,-1.1,2.2,little\n");
@@ -460,7 +460,7 @@ TEST(CsvParserTest, TestStyleId) {
 // columns.
 TEST(CsvParserTest, TestGnisAk101) {
   kmldom::FolderPtr folder = kmldom::KmlFactory::GetFactory()->CreateFolder();
-  ContainerSaver container_saver(folder, NULL);
+  ContainerSaver container_saver(folder, nullptr);
   string csv_data;
   ASSERT_TRUE(kmlbase::File::ReadFileToString(
       kmlbase::File::JoinPaths(DATADIR,

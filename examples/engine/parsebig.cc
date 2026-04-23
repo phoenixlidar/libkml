@@ -27,7 +27,7 @@
 
 #include <fstream>
 #include <iostream>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 #include "kml/engine.h"
 
@@ -47,7 +47,7 @@ static int HelloKmlStreamCreateFromIstream(const char* filename) {
   }
 
   std::string errors;
-  boost::scoped_ptr<KmlStream> kml_stream(
+  std::unique_ptr<KmlStream> kml_stream(
       KmlStream::ParseFromIstream(&input_file, &errors, NULL));
   if (!kml_stream.get()) {
     cerr << "KmlStream::CreateFromIstream failed: " << filename << endl;

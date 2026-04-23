@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_CONVENIENCE_ELEMENT_COUNTER_H__
-#define KML_CONVENIENCE_ELEMENT_COUNTER_H__
+#pragma once
 
 #include <map>
 #include "kml/dom.h"
@@ -58,4 +57,3 @@ class ElementCounter : public kmldom::ParserObserver {
 
 }  // end namespace kmlconvenience
 
-#endif // KML_CONVENIENCE_ELEMENT_COUNTER_H__

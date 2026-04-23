@@ -58,9 +58,9 @@ TEST_F(IconStyleTest, TestDefaults) {
   ASSERT_FALSE(iconstyle_->has_heading());
   ASSERT_DOUBLE_EQ(0.0, iconstyle_->get_heading());
   ASSERT_FALSE(iconstyle_->has_icon());
-  ASSERT_TRUE(NULL == iconstyle_->get_icon());
+  ASSERT_TRUE(nullptr == iconstyle_->get_icon());
   ASSERT_FALSE(iconstyle_->has_hotspot());
-  ASSERT_TRUE(NULL == iconstyle_->get_hotspot());
+  ASSERT_TRUE(nullptr == iconstyle_->get_hotspot());
 }
 
 // Verify setting default makes has_xxx() true:
@@ -69,10 +69,10 @@ TEST_F(IconStyleTest, TestSetToDefaultValues) {
   ASSERT_TRUE(iconstyle_->has_scale());
   iconstyle_->set_heading(iconstyle_->get_heading());
   ASSERT_TRUE(iconstyle_->has_heading());
-  iconstyle_->set_icon(NULL);
+  iconstyle_->set_icon(nullptr);
   ASSERT_FALSE(iconstyle_->get_icon());
-  iconstyle_->set_hotspot(NULL);
-  // Note: setting to default sets pointer to NULL, so has_hotspot is false.
+  iconstyle_->set_hotspot(nullptr);
+  // Note: setting to default sets pointer to nullptr, so has_hotspot is false.
   // This is different to field behaviour where has_xxx is to equivalent to
   // "field has been set outside of ctor" and is true.
   ASSERT_FALSE(iconstyle_->has_hotspot());

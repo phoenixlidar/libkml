@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the XsdParser class.
 
-#ifndef KML_XSD_XST_PARSER_H__
-#define KML_XSD_XST_PARSER_H__
+#pragma once
 
 #include <vector>
 #include "kml/base/util.h"
@@ -63,4 +62,3 @@ class XstParser {
 
 } //  end namespace kmlxsd
 
-#endif  // KML_XSD_XST_PARSER_H__

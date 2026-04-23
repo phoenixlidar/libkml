@@ -76,15 +76,15 @@ TEST(HttpClientTest, PushFindHeader) {
   ASSERT_EQ(kFieldValue1, headers[1].second);
   string val;
   ASSERT_TRUE(HttpClient::FindHeader(kFieldName0, headers, &val));
-  ASSERT_TRUE(HttpClient::FindHeader(kFieldName0, headers, NULL));
+  ASSERT_TRUE(HttpClient::FindHeader(kFieldName0, headers, nullptr));
   ASSERT_EQ(kFieldValue0, val);
   ASSERT_TRUE(HttpClient::FindHeader(kFieldName1, headers, &val));
-  ASSERT_TRUE(HttpClient::FindHeader(kFieldName1, headers, NULL));
+  ASSERT_TRUE(HttpClient::FindHeader(kFieldName1, headers, nullptr));
   ASSERT_EQ(kFieldValue1, val);
   val.clear();
   ASSERT_FALSE(HttpClient::FindHeader("foo", headers, &val));
   ASSERT_TRUE(val.empty());
-  ASSERT_FALSE(HttpClient::FindHeader("foo", headers, NULL));
+  ASSERT_FALSE(HttpClient::FindHeader("foo", headers, nullptr));
 }
 
 TEST(HttpClientTest, AppendHeaders) {

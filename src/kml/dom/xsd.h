@@ -28,8 +28,7 @@
 // 1) the parser for mapping names to ids, 2) the dom for mapping ids
 // to classes, and 3) the serializer for mapping ids back to names.
 
-#ifndef KML_XSD_XSD_H__
-#define KML_XSD_XSD_H__
+#pragma once
 
 #include <map>
 #include "kml/base/util.h"
@@ -103,4 +102,3 @@ class Xsd {
 
 }  // end namespace kmldom
 
-#endif  // KML_XSD_XSD_H__

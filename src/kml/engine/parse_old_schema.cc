@@ -72,7 +72,7 @@ PlacemarkPtr ParseOldSchema(const string& xml,
                             string* errors) {
   string converted_xml;
   if (!ConvertOldSchema(xml, schema_name_map, &converted_xml)) {
-    return NULL;
+    return nullptr;
   }
   // TODO: translate each field to a <ExtendedData><Data> item, perhaps by
   // parsing here with a ParserObserver for this specific task.

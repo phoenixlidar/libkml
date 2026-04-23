@@ -86,7 +86,7 @@ TEST_F(FileTest, TestDelete) {
 }
 
 TEST_F(FileTest, TestCreateNewTempFile) {
-  ASSERT_TRUE(false == File::CreateNewTempFile(NULL));
+  ASSERT_TRUE(false == File::CreateNewTempFile(nullptr));
   string temp_filename;
   ASSERT_TRUE(File::CreateNewTempFile(&temp_filename));
   ASSERT_FALSE(temp_filename.empty());
@@ -137,10 +137,10 @@ const static struct {
 };
 
 TEST_F(FileTest, TestSplitFilePath) {
-  // Test NULL handling.
-  File::SplitFilePath(kFilePathTests[0].filepath, NULL, NULL);
+  // Test nullptr handling.
+  File::SplitFilePath(kFilePathTests[0].filepath, nullptr, nullptr);
   string basedir;
-  File::SplitFilePath(kFilePathTests[0].filepath, &basedir, NULL);
+  File::SplitFilePath(kFilePathTests[0].filepath, &basedir, nullptr);
   ASSERT_EQ(kFilePathTests[0].basedir, basedir);
   string filename;
   File::SplitFilePath(kFilePathTests[0].filepath, &basedir, &filename);

@@ -50,7 +50,7 @@ TEST_F(TempFileTest, TestTempFile) {
     File::ReadFileToString(tempfile_name, &s_read);
     ASSERT_EQ(s_written, s_read);
   }
-  // Use of intrusive_ptr means TempFile's dtor is called at the end of the
+  // Use of shared_ptr means TempFile's dtor is called at the end of the
   // block, which deletes the tempfile.
   ASSERT_FALSE(File::Exists(tempfile_name));
 }

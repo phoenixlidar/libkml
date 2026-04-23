@@ -79,8 +79,8 @@ entityDeclHandler(void *userData, const XML_Char *entityName,
 ExpatParser::ExpatParser(ExpatHandler* handler, bool namespace_aware)
   : expat_handler_(handler) {
   XML_Parser parser =
-    namespace_aware ? XML_ParserCreateNS(NULL, kExpatNsSeparator)
-                    : XML_ParserCreate(NULL);
+    namespace_aware ? XML_ParserCreateNS(nullptr, kExpatNsSeparator)
+                    : XML_ParserCreate(nullptr);
   expat_handler_->set_parser(parser);
   XML_SetUserData(parser, expat_handler_);
   XML_SetElementHandler(parser, startElement, endElement);

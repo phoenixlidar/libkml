@@ -46,7 +46,7 @@ class GetLinksTest : public testing::Test {
 // Verify that GetLinks() returns false if given no output vector.
 TEST_F(GetLinksTest, TestNull) {
   const string nothing;
-  ASSERT_FALSE(GetLinks(nothing, NULL));
+  ASSERT_FALSE(GetLinks(nothing, nullptr));
 }
 
 // Verify very basic usage.
@@ -97,8 +97,8 @@ TEST_F(GetLinksTest, TestGetRelativeLinks) {
   ASSERT_EQ(string("po.jpeg"), href_vector[4]);
   ASSERT_EQ(string("style.kml#style"), href_vector[5]);
   ASSERT_EQ(string("model.dae"), href_vector[6]);
-  // Test NULL/empty args.
-  ASSERT_FALSE(GetRelativeLinks(kml, NULL));
+  // Test nullptr/empty args.
+  ASSERT_FALSE(GetRelativeLinks(kml, nullptr));
   ASSERT_FALSE(GetRelativeLinks("", &href_vector));
   ASSERT_EQ(static_cast<size_t>(7), href_vector.size());
   // Test invalid KML input.

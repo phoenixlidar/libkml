@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_BASE_UTIL_H__
-#define KML_BASE_UTIL_H__
+#pragma once
 
 #if !defined(_MSC_VER) || (_MSC_VER >= 1600)
 // Visual Studio versions < 10 do not contain stdint. Assumes
@@ -57,4 +56,3 @@ typedef unsigned int uint;
 using std::string;
 #endif
 
-#endif  // KML_BASE_UTIL_H__

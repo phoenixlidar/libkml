@@ -57,12 +57,12 @@ TEST_F(GxTourTest, TestType) {
 // Verify proper defaults:
 TEST_F(GxTourTest, TestDefaults) {
   ASSERT_FALSE(gx_tour_->has_gx_playlist());
-  ASSERT_TRUE(NULL == gx_tour_->get_gx_playlist());
+  ASSERT_TRUE(nullptr == gx_tour_->get_gx_playlist());
 }
 
 // Verify setting default makes has_xxx() true:
 TEST_F(GxTourTest, TestSetToDefaultValues) {
-  gx_tour_->set_gx_playlist(NULL);  // should not crash
+  gx_tour_->set_gx_playlist(nullptr);  // should not crash
   ASSERT_FALSE(gx_tour_->has_gx_playlist());  // ptr is null
 }
 
@@ -225,7 +225,7 @@ TEST_F(GxAnimatedUpdateTest, TestDefaults) {
   ASSERT_FALSE(gx_animatedupdate_->has_gx_duration());
   ASSERT_DOUBLE_EQ(0.0, gx_animatedupdate_->get_gx_duration());
   ASSERT_FALSE(gx_animatedupdate_->has_update());
-  ASSERT_TRUE(NULL == gx_animatedupdate_->get_update());
+  ASSERT_TRUE(nullptr == gx_animatedupdate_->get_update());
 }
 
 // Verify setting default makes has_xxx() true:
@@ -233,7 +233,7 @@ TEST_F(GxAnimatedUpdateTest, TestSetToDefaultValues) {
   gx_animatedupdate_->set_gx_duration(gx_animatedupdate_->get_gx_duration());
   ASSERT_TRUE(gx_animatedupdate_->has_gx_duration());
   gx_animatedupdate_->set_update(gx_animatedupdate_->get_update());
-  ASSERT_TRUE(NULL == gx_animatedupdate_->get_update());
+  ASSERT_TRUE(nullptr == gx_animatedupdate_->get_update());
 }
 
 // Verify set, get, has, clear:
@@ -263,7 +263,7 @@ TEST_F(GxAnimatedUpdateTest, TestParse) {
   ASSERT_DOUBLE_EQ(1.1, animatedupdate->get_gx_duration());
   ASSERT_TRUE(animatedupdate != 0);
   ASSERT_TRUE(animatedupdate->has_update());
-  ASSERT_EQ(kGxAnimatedUpdate, SerializeRaw(Parse(kGxAnimatedUpdate, NULL)));
+  ASSERT_EQ(kGxAnimatedUpdate, SerializeRaw(Parse(kGxAnimatedUpdate, nullptr)));
 }
 
 TEST_F(GxAnimatedUpdateTest, TestSerialize) {
@@ -304,13 +304,13 @@ TEST_F(GxFlyToTest, TestDefaults) {
   ASSERT_FALSE(gx_flyto_->has_gx_flytomode());
   ASSERT_EQ(GX_FLYTOMODE_BOUNCE, gx_flyto_->get_gx_flytomode());
   ASSERT_FALSE(gx_flyto_->has_abstractview());
-  ASSERT_TRUE(NULL == gx_flyto_->get_abstractview());
+  ASSERT_TRUE(nullptr == gx_flyto_->get_abstractview());
 }
 
 TEST_F(GxFlyToTest, TestSetToDefaultValues) {
   gx_flyto_->set_gx_duration(gx_flyto_->get_gx_duration());
   gx_flyto_->set_gx_flytomode(gx_flyto_->get_gx_flytomode());
-  gx_flyto_->set_abstractview(NULL);
+  gx_flyto_->set_abstractview(nullptr);
   ASSERT_TRUE(gx_flyto_->has_gx_duration());
   ASSERT_TRUE(gx_flyto_->has_gx_flytomode());
   ASSERT_FALSE(gx_flyto_->has_abstractview());
@@ -346,7 +346,7 @@ TEST_F(GxFlyToTest, TestSetGetHasClear) {
   ASSERT_FALSE(gx_flyto_->has_gx_flytomode());
   ASSERT_EQ(GX_FLYTOMODE_BOUNCE, gx_flyto_->get_gx_flytomode());
   ASSERT_FALSE(gx_flyto_->has_abstractview());
-  ASSERT_TRUE(NULL == gx_flyto_->get_abstractview());
+  ASSERT_TRUE(nullptr == gx_flyto_->get_abstractview());
 }
 
 TEST_F(GxFlyToTest, TestParse) {

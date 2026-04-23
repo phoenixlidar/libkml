@@ -23,11 +23,10 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_ENGINE_KML_CACHE_H__
-#define KML_ENGINE_KML_CACHE_H__
+#pragma once
 
 #include "kml/base/net_cache.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/engine/kml_file.h"
 #include "kml/engine/kmz_cache.h"
 
@@ -73,7 +72,7 @@ class KmlCache {
                               const string& target_href);
 
   // This method is used to fetch a remote KML or KMZ file with an absolute URL.
-  // If the fetch or parse fails NULL is returned.
+  // If the fetch or parse fails nullptr is returned.
   KmlFilePtr FetchKmlAbsolute(const string& kml_url);
 
   // Any caller expecting to fetch data which _may_ be within a KMZ should use
@@ -89,10 +88,9 @@ class KmlCache {
                          string* content);
 
  private:
-  boost::scoped_ptr<KmzCache> kmz_file_cache_;
-  boost::scoped_ptr<KmlFileNetCache> kml_file_cache_;
+  std::unique_ptr<KmzCache> kmz_file_cache_;
+  std::unique_ptr<KmlFileNetCache> kml_file_cache_;
 };
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_KML_CACHE_H__

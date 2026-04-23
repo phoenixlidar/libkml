@@ -29,7 +29,7 @@ namespace kmlxsd {
 
 // This exactly matches the XsdPrimitiveType enum.
 static const char* XsdPrimitiveTypeName[] = {
-  NULL,  // XSD_INVALID
+  nullptr,  // XSD_INVALID
   "string",  // 3.2.1
   "boolean",  // 3.2.2
   "decimal",  // 3.2.3

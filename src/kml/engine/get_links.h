@@ -26,8 +26,7 @@
 // This file contains the declaration of the GetLinks() function and the
 // definition of the GetLinksParserObserver.
 
-#ifndef KML_ENGINE_GET_LINKS_H__
-#define KML_ENGINE_GET_LINKS_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom.h"
@@ -80,7 +79,7 @@ class GetLinksParserObserver : public kmldom::ParserObserver {
 };
 
 // This function saves to the vector all href's found in the given KML.
-// This returns false if the vector is NULL or on any parse error. This does
+// This returns false if the vector is nullptr or on any parse error. This does
 // not search the balloon text for links.
 bool GetLinks(const string& kml, href_vector_t* href_vector);
 
@@ -90,4 +89,3 @@ bool GetRelativeLinks(const string& kml, href_vector_t* href_vector);
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_GET_LINKS_H__

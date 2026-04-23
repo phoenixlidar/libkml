@@ -30,11 +30,10 @@
 // TODO: this interface and implemenation are under construction, expect
 // additions and changes.
 
-#ifndef KML_CONVENIENCE_GOOGLE_MAPS_DATA_H_
-#define KML_CONVENIENCE_GOOGLE_MAPS_DATA_H_
+#pragma once
 
 #include <exception>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 
 // TODO: move Bbox to kmlbase
@@ -124,7 +123,7 @@ class GoogleMapsData {
       const string& feature_feed_uri) const;
 
   // Return the KML Feature child of the Atom <entry>'s <content>.  This
-  // returns NULL if the <entry>'s <content> has no KML Feature.
+  // returns nullptr if the <entry>'s <content> has no KML Feature.
   static kmldom::FeaturePtr GetEntryFeature(const kmldom::AtomEntryPtr& entry);
 
   // This appends the KML Feature in each of the feed's entry's to the
@@ -202,13 +201,13 @@ class GoogleMapsData {
   // Data API: the unrecognized Feature's are quietly ignored and not added
   // to the Google My Map.  At present support is limited to <Placemark>.
   // On success the standard Google Maps Data <atom:entry> for the new map
-  // is returned.  On failure NULL is returned.
+  // is returned.  On failure nullptr is returned.
   kmldom::AtomEntryPtr PostKml(const string& title, const string& kml_data);
 
   // This is the common code for PostCsv and PostKml.  The slug and
   // content_type arguments create the Slug: and Content-Type: headers
   // respectively and the data is HTTP POST'ed returning a parsed Atom
-  // entry for the created map.  If the POST failed a NULL is returned and
+  // entry for the created map.  If the POST failed a nullptr is returned and
   // an error may be saved to the passed error string if one is supplied.
   // At present Google Maps Data API supports CSV and KML.  Use of the
   // PostCsv() and PostKml() are the recommended methods.
@@ -222,10 +221,9 @@ class GoogleMapsData {
  private:
   // Use static Create().
   GoogleMapsData();
-  boost::scoped_ptr<HttpClient> http_client_;
+  std::unique_ptr<HttpClient> http_client_;
   const string scope_;
 };
 
 }  // end namespace kmlconvenience
 
-#endif  // KML_CONVENIENCE_GOOGLE_MAPS_DATA_H_

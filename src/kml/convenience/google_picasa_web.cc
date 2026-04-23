@@ -45,7 +45,7 @@ GooglePicasaWeb* GooglePicasaWeb::Create(
     HttpClient* http_client) {
   // The HttpClient must exist.
   if (!http_client) {
-    return NULL;
+    return nullptr;
   }
   GooglePicasaWeb* gs = new GooglePicasaWeb;
   http_client->AddHeader("GData-Version", kGdataVersion);
@@ -80,15 +80,15 @@ GooglePicasaWeb::~GooglePicasaWeb() {
 
 bool GooglePicasaWeb::GetMetaFeedXml(string* atom_feed) const {
   return http_client_->SendRequest(HTTP_GET, scope_ + kPicasaWebMetaFeedUri,
-                                   NULL, NULL, atom_feed);
+                                   nullptr, nullptr, atom_feed);
 }
 
 kmldom::AtomFeedPtr GooglePicasaWeb::GetMetaFeed() const {
   string meta_feed;
   if (GetMetaFeedXml(&meta_feed)) {
-    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, NULL));
+    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, nullptr));
   }
-  return NULL;
+  return nullptr;
 }
 
 }  // end namespace kmlconvenience

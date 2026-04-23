@@ -27,7 +27,7 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/convenience/element_counter.h"
 #include "kml/dom/xsd.h"
@@ -54,7 +54,7 @@ static bool GetConcreteElements(const char* xsd_pathname,
   }
 
   std::string errors;
-  boost::scoped_ptr<XsdFile> xsd_file(
+  std::unique_ptr<XsdFile> xsd_file(
       XsdFile::CreateFromParse(xsd_data, &errors));
   if (!xsd_file.get()) {
     cerr << "parse failed " << xsd_pathname << endl;

@@ -25,8 +25,7 @@
 
 // This declares some KML-related mimetype strings.
 
-#ifndef KML_BASE_MIMETYPES_H__
-#define KML_BASE_MIMETYPES_H__
+#pragma once
 
 namespace kmlbase {
 
@@ -37,4 +36,3 @@ namespace kmlbase {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_MIMETYPES_H__

@@ -27,8 +27,7 @@
 // Do not use this class in application code.  Applications should use the
 // SplitStyles() function.
 
-#ifndef KML_ENGINE_STYLE_SPLITTER_INTERNAL_H__
-#define KML_ENGINE_STYLE_SPLITTER_INTERNAL_H__
+#pragma once
 
 #include <map>
 #include "kml/base/string_util.h"
@@ -99,4 +98,3 @@ class StyleSplitter : public kmldom::ParserObserver {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_STYLE_SPLITTER_INTERNAL_H__

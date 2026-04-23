@@ -25,8 +25,7 @@
 
 // This file contains function templates useful for accessing link element data.
 
-#ifndef KML_ENGINE_LINK_UTIL_H__
-#define KML_ENGINE_LINK_UTIL_H__
+#pragma once
 
 #include "kml/dom.h"
 #include "kml/engine.h"
@@ -36,7 +35,7 @@ namespace kmlengine {
 // This function fetches and parses the KML referenced by this NetworkLink.
 // The NetworkLink must be within the KmlFile and the KmlFile must point to
 // a KmlCache (such as a KmlFile created by KmlCache).
-// If the fetch or parse fail a NULL KmlFilePtr is returned.
+// If the fetch or parse fail a nullptr KmlFilePtr is returned.
 KmlFilePtr FetchLink(const KmlFilePtr& kml_file,
                      const kmldom::NetworkLinkPtr& networklink);
 
@@ -49,8 +48,8 @@ bool FetchIcon(const KmlFilePtr& kml_file,
 
 // This function template gets the content of the <href> child of <Link>,
 // <Icon>, <ItemIcon> and <IconStyle>'s <Icon>.  This returns true if both
-// arguments are non-NULL and if the has_href() test passes for the parent,
-// else false is returned.  (It is safe to pass all or some NULL arguments).
+// arguments are non-nullptr and if the has_href() test passes for the parent,
+// else false is returned.  (It is safe to pass all or some nullptr arguments).
 template<typename HP>
 bool GetHref(const HP& href_parent, string* href) {
   if (href && href_parent && href_parent->has_href()) {
@@ -76,4 +75,3 @@ bool GetIconParentHref(const IP& icon_parent, string* href) {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_LINK_UTIL_H__

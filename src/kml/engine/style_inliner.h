@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the internal StyleInliner class.
 
-#ifndef KML_ENGINE_STYLE_INLINER_H__
-#define KML_ENGINE_STYLE_INLINER_H__
+#pragma once
 
 #include "kml/dom.h"
 
@@ -40,4 +39,3 @@ kmldom::ElementPtr InlineStyles(const string& input_kml,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_STYLE_INLINER_H__

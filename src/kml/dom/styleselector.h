@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_STYLESELECTOR_H__
-#define KML_DOM_STYLESELECTOR_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/object.h"
@@ -50,4 +49,3 @@ class StyleSelector : public Object {
 
 }  // end namespace kmldom
 
-#endif // KML_DOM_STYLESELECTOR_H__

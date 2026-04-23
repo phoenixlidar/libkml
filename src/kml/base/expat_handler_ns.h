@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the ExpatHandlerNs class.
 
-#ifndef KML_BASE_EXPAT_HANDLER_NS_H__
-#define KML_BASE_EXPAT_HANDLER_NS_H__
+#pragma once
 
 #include "kml/base/expat_handler.h"
 #include "kml/base/util.h"
@@ -82,4 +81,3 @@ private:
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_EXPAT_HANDLER_NS_H__

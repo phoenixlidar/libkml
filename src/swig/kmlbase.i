@@ -46,6 +46,12 @@
 // Tell SWIG about C++ Standard Library std::string.
 %include "std_string.i"
 
+// Tell SWIG that kmlbase::XmlFile is held by std::shared_ptr so downstream
+// modules that derive from it (e.g. kmlengine::KmlFile) can be registered
+// as shared pointers without a base-class mismatch warning.
+%include <std_shared_ptr.i>
+%shared_ptr(kmlbase::XmlFile)
+
 %include "typemaps.i"
 // NOTE: these typemaps are not fully supported in current SWIG. See this doc:
 // http://www.swig.org/Doc1.3/Library.html#Library_nn14 (1.3.39)

@@ -26,8 +26,7 @@
 // This file contains the declarations for the abstract TimePrimitive element
 // and the concrete TimeStamp, TimeSpan elements.
 
-#ifndef KML_DOM_TIMEPRIMITIVE_H__
-#define KML_DOM_TIMEPRIMITIVE_H__
+#pragma once
 
 #include "kml/dom/kml22.h"
 #include "kml/dom/object.h"
@@ -150,4 +149,3 @@ class TimeStamp : public TimePrimitive {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_TIMEPRIMITIVE_H__

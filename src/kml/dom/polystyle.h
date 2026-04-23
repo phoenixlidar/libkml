@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_POLYSTYLE_H__
-#define KML_DOM_POLYSTYLE_H__
+#pragma once
 
 #include "kml/dom/colorstyle.h"
 #include "kml/dom/kml22.h"
@@ -94,4 +93,3 @@ class PolyStyle : public ColorStyle {
 
 }  // end namespace kmldom
 
-#endif // KML_DOM_POLYSTYLE_H__

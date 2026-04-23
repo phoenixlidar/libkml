@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_BASE_TIME_UTIL_H__
-#define KML_BASE_TIME_UTIL_H__
+#pragma once
 
 namespace kmlbase {
 
@@ -33,4 +32,3 @@ double GetMicroTime();
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_TIME__UTILH__

@@ -25,7 +25,7 @@
 
 #include "kml/dom/vec2.h"
 #include "kml/base/attributes.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmldom {
@@ -38,7 +38,7 @@ class Vec2Test : public testing::Test {
 
   // Vec2 is abstract, hence its constructor is protected.
   class TestVec2 : public Vec2 {};
-  boost::scoped_ptr<TestVec2> vec2_;
+  std::unique_ptr<TestVec2> vec2_;
 };
 
 TEST_F(Vec2Test, TestType) {
@@ -112,7 +112,7 @@ TEST_F(Vec2Test, TestParseUnknownUnits) {
                           "y", kMinus42,
                           "yunits", "will-never-be-a-valid-units-enum",
                           0 };
-  boost::scoped_ptr<DerivedVec2> dv2(new DerivedVec2);
+  std::unique_ptr<DerivedVec2> dv2(new DerivedVec2);
   // Element::ParseAttributes takes ownership of passed Atributes.
   dv2->DoParseAttributes(kmlbase::Attributes::Create(attrs));
   // An unknown attribute enum value is full ignored.

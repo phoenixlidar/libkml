@@ -54,7 +54,7 @@ GoogleMapsData* GoogleMapsData::Create(HttpClient* http_client) {
   }
   delete http_client;
   delete mds;
-  return NULL;
+  return nullptr;
 }
 
 static string GetScope() {
@@ -91,16 +91,16 @@ HttpClient* GoogleMapsData::get_http_client() const {
 }
 
 bool GoogleMapsData::GetMetaFeedXml(string* atom_feed) const {
-  return http_client_->SendRequest(HTTP_GET, scope_ + kMetaFeedUri, NULL, NULL,
+  return http_client_->SendRequest(HTTP_GET, scope_ + kMetaFeedUri, nullptr, nullptr,
                                    atom_feed);
 }
 
 kmldom::AtomFeedPtr GoogleMapsData::GetMetaFeed() const {
   string meta_feed;
   if (GetMetaFeedXml(&meta_feed)) {
-    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, NULL));
+    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, nullptr));
   }
-  return NULL;
+  return nullptr;
 }
 
 // static
@@ -120,7 +120,7 @@ bool GoogleMapsData::GetFeatureFeedUri(const kmldom::AtomEntryPtr& map_entry,
 
 bool GoogleMapsData::GetFeatureFeedXml(const string& feature_feed_uri,
                                        string* atom_feed) const {
-  return http_client_->SendRequest(HTTP_GET, feature_feed_uri, NULL, NULL,
+  return http_client_->SendRequest(HTTP_GET, feature_feed_uri, nullptr, nullptr,
                                    atom_feed);
 }
 
@@ -128,9 +128,9 @@ kmldom::AtomFeedPtr GoogleMapsData::GetFeatureFeedByUri(
     const string& feature_feed_uri) const {
   string feature_feed;
   if (GetFeatureFeedXml(feature_feed_uri, &feature_feed)) {
-    return kmldom::AsAtomFeed(kmldom::ParseAtom(feature_feed, NULL));
+    return kmldom::AsAtomFeed(kmldom::ParseAtom(feature_feed, nullptr));
   }
-  return NULL;
+  return nullptr;
 }
 
 // static
@@ -141,7 +141,7 @@ kmldom::FeaturePtr GoogleMapsData::GetEntryFeature(
     return kmldom::AsFeature(
         entry->get_content()->get_misplaced_elements_array_at(0));
   }
-  return NULL;
+  return nullptr;
 }
 
 // static
@@ -171,7 +171,7 @@ int GoogleMapsData::GetMapKml(const kmldom::AtomFeedPtr& feature_feed,
 kmldom::DocumentPtr GoogleMapsData::CreateDocumentOfMapFeatures(
     const kmldom::AtomFeedPtr& feature_feed) {
   if (!feature_feed.get()) {
-    return NULL;
+    return nullptr;
   }
   kmldom::DocumentPtr document =
       kmldom::KmlFactory::GetFactory()->CreateDocument();
@@ -245,7 +245,7 @@ int GoogleMapsData::PostPlacemarks(const kmldom::FeaturePtr& root_feature,
                                    const string& feature_feed_uri) {
   // Because GetElementsById looks only _below_ the root feature.
   if (kmldom::Type_Placemark == root_feature->Type()) {
-    return AddFeature(feature_feed_uri, root_feature, NULL) ? 1 : 0;
+    return AddFeature(feature_feed_uri, root_feature, nullptr) ? 1 : 0;
   }
 
   // Dig out all <Placemarks>.  Everything else is ignored, essentially
@@ -298,7 +298,7 @@ bool GoogleMapsData::GetSearchFeed(const string& search_feed_uri,
   // TODO: enhance kmlbase::UriParser to provide support for
   // http://uriparser.sourceforge.net/doc/html/#querystrings
   const string uri = search_feed_uri + "?" + search_parameters;
-  return http_client_->SendRequest(HTTP_GET, uri, NULL, NULL, atom_feed);
+  return http_client_->SendRequest(HTTP_GET, uri, nullptr, nullptr, atom_feed);
 }
 
 // static
@@ -325,15 +325,15 @@ kmldom::AtomFeedPtr GoogleMapsData::SearchMapByBbox(
     const kmldom::AtomEntryPtr& map_entry, const kmlengine::Bbox& bbox) {
   string search_feed_uri;
   if (!GetSearchFeedUri(map_entry, &search_feed_uri)) {
-    return NULL;
+    return nullptr;
   }
   string search_parameters;
   AppendBoxParameterFromBbox(bbox, &search_parameters);
   string atom_feed;
   if (!GetSearchFeed(search_feed_uri, search_parameters, &atom_feed)) {
-    return NULL;
+    return nullptr;
   }
-  return kmldom::AsAtomFeed(kmldom::ParseAtom(atom_feed, NULL));
+  return kmldom::AsAtomFeed(kmldom::ParseAtom(atom_feed, nullptr));
 }
 
 kmldom::AtomEntryPtr GoogleMapsData::PostMedia(const string& slug,
@@ -348,12 +348,12 @@ kmldom::AtomEntryPtr GoogleMapsData::PostMedia(const string& slug,
   if (!http_client_->SendRequest(kmlconvenience::HTTP_POST,
                                  scope_ + kMetaFeedUri, &headers, &data,
                                  &map_entry_xml)) {
-    return NULL;
+    return nullptr;
   }
   if (errors) {
     *errors = map_entry_xml;
   }
-  return kmldom::AsAtomEntry(kmldom::ParseAtom(map_entry_xml, NULL));
+  return kmldom::AsAtomEntry(kmldom::ParseAtom(map_entry_xml, nullptr));
 }
 
 kmldom::AtomEntryPtr GoogleMapsData::PostCsv(const string& title,
@@ -364,7 +364,7 @@ kmldom::AtomEntryPtr GoogleMapsData::PostCsv(const string& title,
 
 kmldom::AtomEntryPtr GoogleMapsData::PostKml(const string& title,
                                              const string& kml_data) {
-  return PostMedia(title, kmlbase::kKmlMimeType, kml_data, NULL);
+  return PostMedia(title, kmlbase::kKmlMimeType, kml_data, nullptr);
 }
 
 // static

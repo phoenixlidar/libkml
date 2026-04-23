@@ -85,7 +85,7 @@ void SimpleData::Serialize(Serializer& serializer) const {
 }
 
 void SimpleData::Accept(Visitor* visitor) {
-  visitor->VisitSimpleData(SimpleDataPtr(this));
+  visitor->VisitSimpleData(std::static_pointer_cast<SimpleData>(shared_from_this()));
 }
 ///////////////////////////////////////////////
 // <GxSimpleArrayData>
@@ -132,7 +132,7 @@ void GxSimpleArrayData::Serialize(Serializer& serializer) const {
 }
 
 void GxSimpleArrayData::Accept(Visitor* visitor) {
-  visitor->VisitGxSimpleArrayData(GxSimpleArrayDataPtr(this));
+  visitor->VisitGxSimpleArrayData(std::static_pointer_cast<GxSimpleArrayData>(shared_from_this()));
 }
 
 // <SchemaData>
@@ -187,7 +187,7 @@ void SchemaData::Serialize(Serializer& serializer) const {
 }
 
 void SchemaData::Accept(Visitor* visitor) {
-  visitor->VisitSchemaData(SchemaDataPtr(this));
+  visitor->VisitSchemaData(std::static_pointer_cast<SchemaData>(shared_from_this()));
 }
 
 void SchemaData::AcceptChildren(VisitorDriver* driver) {
@@ -249,7 +249,7 @@ void Data::Serialize(Serializer& serializer) const {
 }
 
 void Data::Accept(Visitor* visitor) {
-  visitor->VisitData(DataPtr(this));
+  visitor->VisitData(std::static_pointer_cast<Data>(shared_from_this()));
 }
 
 // <ExtendedData>
@@ -283,7 +283,7 @@ void ExtendedData::Serialize(Serializer& serializer) const {
 }
 
 void ExtendedData::Accept(Visitor* visitor) {
-  visitor->VisitExtendedData(ExtendedDataPtr(this));
+  visitor->VisitExtendedData(std::static_pointer_cast<ExtendedData>(shared_from_this()));
 }
 
 void ExtendedData::AcceptChildren(VisitorDriver* driver) {
@@ -305,7 +305,7 @@ void Metadata::Serialize(Serializer& serializer) const {
 }
 
 void Metadata::Accept(Visitor* visitor) {
-  visitor->VisitMetadata(MetadataPtr(this));
+  visitor->VisitMetadata(std::static_pointer_cast<Metadata>(shared_from_this()));
 }
 
 }  // end namespace kmldom

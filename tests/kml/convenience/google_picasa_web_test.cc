@@ -27,7 +27,7 @@
 
 #include "kml/convenience/google_picasa_web.h"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/file.h"
 #include "kml/convenience/http_client.h"
@@ -48,13 +48,13 @@ class GooglePicasaWebTest : public testing::Test {
  protected:
   void SetUp() {
   }
-  boost::scoped_ptr<GooglePicasaWeb> google_picasa_web_;
+  std::unique_ptr<GooglePicasaWeb> google_picasa_web_;
 };
 
-// This tests NULL use of the Create method.
+// This tests nullptr use of the Create method.
 TEST_F(GooglePicasaWebTest, TestNullCreate) {
-  // NULL/empty args?  Null return (no crash, no hang, no exception, etc).
-  ASSERT_FALSE(GooglePicasaWeb::Create(NULL));
+  // nullptr/empty args?  Null return (no crash, no hang, no exception, etc).
+  ASSERT_FALSE(GooglePicasaWeb::Create(nullptr));
 }
 
 TEST_F(GooglePicasaWebTest, TestGetMetafeedUri) {

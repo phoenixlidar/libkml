@@ -125,7 +125,7 @@ FeaturePtr UpdateProcessor::DeleteFeatureById(const string& id) {
       return feature;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 // This is a key reason for this class: to remap the targetId against

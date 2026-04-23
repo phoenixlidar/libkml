@@ -25,8 +25,7 @@
 
 // This file contains the declarations of the Version API.
 
-#ifndef KML_BASE_VERSION_H__
-#define KML_BASE_VERSION_H__
+#pragma once
 
 #include "kml/base/util.h"
 
@@ -64,5 +63,4 @@ class Version {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_VERSION_H__
 

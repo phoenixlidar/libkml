@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the CreateResolvedStyle() function.
 
-#ifndef KML_ENGINE_STYLE_RESOLVER_H__
-#define KML_ENGINE_STYLE_RESOLVER_H__
+#pragma once
 
 #include "kml/dom.h"
 #include "kml/engine/kml_cache.h"
@@ -50,7 +49,7 @@ class StyleResolver {
   // given state.  The styleurl and styleselector are typically those from
   // Feature or Pair and the SharedStyleMap, base_url and KmlCache are
   // typically from a KmlFile.  This method is well behaved with any or all
-  // arguments NULL or empty.
+  // arguments nullptr or empty.
   static kmldom::StylePtr CreateResolvedStyle(
       const string& styleurl,
       const kmldom::StyleSelectorPtr& styleselector,
@@ -68,4 +67,3 @@ class StyleResolver {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_STYLE_RESOLVER_H__

@@ -25,8 +25,7 @@
 
 // This file contains the internal Parser class.
 
-#ifndef KML_DOM_PARSER_H__
-#define KML_DOM_PARSER_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/kml_ptr.h"
@@ -54,7 +53,7 @@ class Parser {
  public:
   Parser() {}
   // This method calls the parser with the given KML string.  If there are
-  // any errors NULL is returned and if error's is non-NULL a human readable
+  // any errors nullptr is returned and if error's is non-nullptr a human readable
   // diagnostic is stored there.  If there are no parse errors the root
   // element is returned.  Note that any ParseObserver can terminate the parse.
   ElementPtr Parse(const string& kml, string *errors);
@@ -76,4 +75,3 @@ class Parser {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_PARSER_H__

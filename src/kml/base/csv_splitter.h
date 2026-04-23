@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the CsvSplitter class.
 
-#ifndef KML_BASE_CSV_SPLITTER_H__
-#define KML_BASE_CSV_SPLITTER_H__
+#pragma once
 
 #include "kml/base/string_util.h"
 #include "kml/base/util.h"
@@ -66,4 +65,3 @@ class CsvSplitter {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_CSV_SPLITTER_H__

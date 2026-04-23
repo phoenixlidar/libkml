@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_SCHEMA_H__
-#define KML_DOM_SCHEMA_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/element.h"
@@ -191,4 +190,3 @@ class Schema : public Object {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_SCHEMA_H__

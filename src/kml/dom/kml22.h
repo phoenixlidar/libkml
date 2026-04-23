@@ -31,8 +31,7 @@
 // http://code.google.com/apis/kml/documentation/kmlreference.html
 // Type_${element_name}
 
-#ifndef KML_DOM_KML22_H
-#define KML_DOM_KML22_H
+#pragma once
 
 namespace kmldom {
 
@@ -606,4 +605,3 @@ typedef enum {
 
 }  // end namespace kmldom
 
-#endif  // KML_DOM_KML22_H__

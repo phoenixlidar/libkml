@@ -28,7 +28,7 @@
 // to display the description balloon for each feature.
 
 #include <iostream>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/dom.h"
 #include "kml/engine.h"

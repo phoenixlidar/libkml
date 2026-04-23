@@ -26,8 +26,7 @@
 // This file contains the definition of the Qid class used to manage the
 // Region hierarchy walked in the Regionator class.  This is an internal class.
 
-#ifndef KML_REGIONATOR_REGIONATOR_QID_H__
-#define KML_REGIONATOR_REGIONATOR_QID_H__
+#pragma once
 
 #include <sstream>
 #include "kml/base/util.h"
@@ -72,4 +71,3 @@ private:
 
 }  // end namespace kmlregionator
 
-#endif  // KML_REGIONATOR_REGIONATOR_QID_H__

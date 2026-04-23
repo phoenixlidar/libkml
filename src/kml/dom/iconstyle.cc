@@ -88,7 +88,7 @@ void IconStyle::Serialize(Serializer& serializer) const {
 }
 
 void IconStyle::Accept(Visitor* visitor) {
-  visitor->VisitIconStyle(IconStylePtr(this));
+  visitor->VisitIconStyle(std::static_pointer_cast<IconStyle>(shared_from_this()));
 }
 
 void IconStyle::AcceptChildren(VisitorDriver* driver) {

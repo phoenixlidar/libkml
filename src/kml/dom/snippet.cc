@@ -77,7 +77,7 @@ Snippet::Snippet() {}
 Snippet::~Snippet() {}
 
 void Snippet::Accept(Visitor* visitor) {
-  visitor->VisitSnippet(SnippetPtr(this));
+  visitor->VisitSnippet(std::static_pointer_cast<Snippet>(shared_from_this()));
 }
 
 LinkSnippet::LinkSnippet() {}
@@ -85,7 +85,7 @@ LinkSnippet::LinkSnippet() {}
 LinkSnippet::~LinkSnippet() {}
 
 void LinkSnippet::Accept(Visitor* visitor) {
-  visitor->VisitLinkSnippet(LinkSnippetPtr(this));
+  visitor->VisitLinkSnippet(std::static_pointer_cast<LinkSnippet>(shared_from_this()));
 }
 
 }  // end namespace kmldom

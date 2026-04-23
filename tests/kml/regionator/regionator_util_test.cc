@@ -258,14 +258,14 @@ TEST_F(RegionatorUtilTest, TestCreateRegionDocument) {
 
 // This tests the GetCenter() function.
 TEST_F(RegionatorUtilTest, TestGetCenter) {
-  // NULL output pointer(s) should not crash.
+  // nullptr output pointer(s) should not crash.
   kmldom::LatLonBoxPtr llb = factory_->CreateLatLonBox();
-  kmlengine::GetCenter(llb, NULL, NULL);
+  kmlengine::GetCenter(llb, nullptr, nullptr);
   double lat, lon;
-  kmlengine::GetCenter(llb, &lat, NULL);
+  kmlengine::GetCenter(llb, &lat, nullptr);
   // Missing lon pointer still saves a result for lat.
   ASSERT_EQ(0.0, lat);
-  kmlengine::GetCenter(llb, NULL, &lon);
+  kmlengine::GetCenter(llb, nullptr, &lon);
   // Missing lat pointer still saves a result for lon.
   ASSERT_EQ(0.0, lat);
   // A default LatLonBox is well defined thus so is its center.

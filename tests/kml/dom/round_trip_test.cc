@@ -67,7 +67,7 @@ static string ReadTestCase(const char *subdir, const char* filename) {
 }
 
 static string ParseSerialize(const string& kml) {
-  return kmldom::SerializePretty(kmldom::Parse(kml, NULL));
+  return kmldom::SerializePretty(kmldom::Parse(kml, nullptr));
 }
 
 TEST(RoundTripTest, RunTestCases) {

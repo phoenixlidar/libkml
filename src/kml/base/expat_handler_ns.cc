@@ -24,7 +24,7 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "kml/base/expat_handler_ns.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/xmlns.h"
 #include "kml/base/expat_parser.h"
 

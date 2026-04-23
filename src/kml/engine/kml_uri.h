@@ -26,8 +26,7 @@
 // This file contains the declaration of the KML URI resolution and parsing
 // functions.
 
-#ifndef KML_ENGINE_KML_URI_H__
-#define KML_ENGINE_KML_URI_H__
+#pragma once
 
 #include "kml/base/util.h"
 
@@ -83,26 +82,26 @@ bool ResolveUri(const string& base, const string& relative,
                 string* result);
 
 // Performs a syntax-based normalization of uri as per RFC 3986 6.2.2. False is
-// returned if result is NULL or upon any internal error.
+// returned if result is nullptr or upon any internal error.
 bool NormalizeUri(const string& uri, string* result);
 
 // Performs a syntax-based normalization of href as per RFC 3986 6.2.2. False
-// is returned if result is NULL or upon any internal error.
+// is returned if result is nullptr or upon any internal error.
 bool NormalizeHref(const string& href, string* result);
 
 // Converts a URI to its corresponding filename. The implementation
-// is platform-specific. Returns false if output is NULL or on any internal
+// is platform-specific. Returns false if output is nullptr or on any internal
 // error in converting the uri.
 bool UriToFilename(const string& uri, string* output);
 
 // Converts a filename to its corresponding URI. The implementation is
-// platform-specific. Returns false if output is NULL or on any internal
+// platform-specific. Returns false if output is nullptr or on any internal
 // error in converting the uri.
 bool FilenameToUri(const string& filename, string* output);
 
 // This function splits out the various components of a URI:
 // uri = scheme://host:port/path?query#fragment
-// An output string NULL pointer simply ignores splitting out that component.
+// An output string nullptr pointer simply ignores splitting out that component.
 // The return value reflects the validity of the uri.  Each desired output
 // string should be inspected using empty() to discover if the uri has
 // the particular component.
@@ -143,4 +142,3 @@ bool ResolveModelTargetHref(const string& base,
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_KML_URI_H__

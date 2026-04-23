@@ -28,7 +28,7 @@
 #ifndef KML_BASE_NET_CACHE_TEST_UTIL_H__
 #define KML_BASE_NET_CACHE_TEST_UTIL_H__
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/base/file.h"
 #include "kml/base/net_cache.h"
 #include "kml/base/uri_parser.h"
@@ -49,7 +49,7 @@ namespace kmlbase {
 class TestDataNetFetcher : public NetFetcher {
  public:
   bool FetchUrl(const string& url, string* data) const {
-    boost::scoped_ptr<UriParser> uri_parser(
+    std::unique_ptr<UriParser> uri_parser(
         UriParser::CreateFromParse(url.c_str()));
     string path;
     // If the URI parse succeeds, and a data buffer was provided, and the

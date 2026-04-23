@@ -24,7 +24,7 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "kml/dom/styleselector.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmldom {
@@ -37,7 +37,7 @@ class StyleSelectorTest : public testing::Test {
 
   // StyleSelector is abstract, hence its constructor is protected.
   class TestStyleSelector : public StyleSelector {};
-  boost::scoped_ptr<TestStyleSelector> styleselector_;
+  std::unique_ptr<TestStyleSelector> styleselector_;
 };
 
 TEST_F(StyleSelectorTest, TestType) {

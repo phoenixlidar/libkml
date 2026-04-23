@@ -311,7 +311,7 @@ TEST_F(MetadataTest, TestParseSerialize) {
     "<extra><special>stuff</special></extra>\n"  // TODO: remove this newline...
     "</Metadata>");
 
-  metadata_ = AsMetadata(Parse(kMetadata, NULL));
+  metadata_ = AsMetadata(Parse(kMetadata, nullptr));
   ASSERT_TRUE(metadata_ != 0);
   ASSERT_EQ(kMetadata, SerializeRaw(metadata_));
 }
@@ -357,7 +357,7 @@ TEST_F(GxSimpleArrayDataTest, TestParseSerialize) {
       "<gx:value>v2</gx:value>"
       "<gx:value>v3</gx:value>"
       "</gx:SimpleArrayData>");
-  ElementPtr root = Parse(kKml, NULL);
+  ElementPtr root = Parse(kKml, nullptr);
   ASSERT_TRUE(root != 0);
   const GxSimpleArrayDataPtr gx_simplearraydata = AsGxSimpleArrayData(root);
   ASSERT_TRUE(gx_simplearraydata != 0);

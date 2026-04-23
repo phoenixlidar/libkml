@@ -87,7 +87,7 @@ void LatLonAltBox::Serialize(Serializer& serializer) const {
 }
 
 void LatLonAltBox::Accept(Visitor* visitor) {
-  visitor->VisitLatLonAltBox(LatLonAltBoxPtr(this));
+  visitor->VisitLatLonAltBox(std::static_pointer_cast<LatLonAltBox>(shared_from_this()));
 }
 
 Lod::Lod()
@@ -140,7 +140,7 @@ void Lod::Serialize(Serializer& serializer) const {
 }
 
 void Lod::Accept(Visitor* visitor) {
-  visitor->VisitLod(LodPtr(this));
+  visitor->VisitLod(std::static_pointer_cast<Lod>(shared_from_this()));
 }
 
 Region::Region() {
@@ -177,7 +177,7 @@ void Region::Serialize(Serializer& serializer) const {
 }
 
 void Region::Accept(Visitor* visitor) {
-  visitor->VisitRegion(RegionPtr(this));
+  visitor->VisitRegion(std::static_pointer_cast<Region>(shared_from_this()));
 }
 
 void Region::AcceptChildren(VisitorDriver* driver) {

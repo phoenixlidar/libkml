@@ -25,8 +25,7 @@
 
 // This file contains the Vec3 class.
 
-#ifndef KML_BASE_VEC3_H__
-#define KML_BASE_VEC3_H__
+#pragma once
 
 namespace kmlbase {
 
@@ -112,4 +111,3 @@ class Vec3 {
 
 }  // namespace kmlbase
 
-#endif  // KML_BASE_VEC3_H__

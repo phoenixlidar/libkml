@@ -196,7 +196,7 @@ TEST(ConvenienceTest, TestCreateFlyTo) {
 
 // This tests the CreateFlyToForFeature function.
 TEST(ConvenienceTest, TestCreateFlyToForFeature) {
-  ASSERT_FALSE(CreateFlyToForFeature(NULL, 0));
+  ASSERT_FALSE(CreateFlyToForFeature(nullptr, 0));
   const double kLat = 37.0;
   const double kLng = -122.0;
   const CoordinatesPtr coords =
@@ -253,17 +253,17 @@ TEST(ConvenienceTest, TestCreateLookAt) {
 
 // This tests the CreatePointFromLatLonAtts() function.
 TEST(ConvenienceTest, TestCreatePointFromLatLonAtts) {
-  const char* atts[] = { "lat", "38.38", "lon", "-121.456", NULL };
+  const char* atts[] = { "lat", "38.38", "lon", "-121.456", nullptr };
   PointPtr point = CreatePointFromLatLonAtts(atts);
   ASSERT_TRUE(point);
   ASSERT_TRUE(point->has_coordinates());
   ASSERT_EQ(static_cast<size_t>(1),
                        point->get_coordinates()->get_coordinates_array_size());
   ASSERT_EQ(
-    strtod(atts[1], NULL),
+    strtod(atts[1], nullptr),
     point->get_coordinates()->get_coordinates_array_at(0).get_latitude());
   ASSERT_EQ(
-    strtod(atts[3], NULL),
+    strtod(atts[3], nullptr),
     point->get_coordinates()->get_coordinates_array_at(0).get_longitude());
   ASSERT_EQ(0.0,
     point->get_coordinates()->get_coordinates_array_at(0).get_altitude());
@@ -325,7 +325,7 @@ TEST(ConvenienceTest, TestCreatePointPlacemark) {
 TEST(ConvenienceTest, TestCreatePointPlacemarkWithTimeStamp) {
   const string kWhen("2008-10-03T09:25:42Z");
   PointPtr point = KmlFactory::GetFactory()->CreatePoint();
-  boost::scoped_ptr<DateTime> date_time(DateTime::Create(kWhen));
+  std::unique_ptr<DateTime> date_time(DateTime::Create(kWhen));
   const char* style_id("my-shared-style");
   PlacemarkPtr placemark = CreatePointPlacemarkWithTimeStamp(point, *date_time,
                                                              style_id);

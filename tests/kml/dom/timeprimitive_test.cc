@@ -26,7 +26,7 @@
 // This file contains the unit tests for TimeSpan and TimeStamp.
 
 #include "kml/dom/timeprimitive.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom/kml_factory.h"
 #include "kml/dom/kml_ptr.h"
 #include "gtest/gtest.h"
@@ -43,7 +43,7 @@ class TimePrimitiveTest : public testing::Test {
   // Derive a test class since TimePrimitive is abstract.
   class TestTimePrimitive : public TimePrimitive {
   };
-  boost::scoped_ptr<TestTimePrimitive> timeprimitive_;
+  std::unique_ptr<TestTimePrimitive> timeprimitive_;
 };
 
 TEST_F(TimePrimitiveTest, TestType) {

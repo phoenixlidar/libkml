@@ -27,7 +27,7 @@
 
 #include "kml/convenience/google_maps_data.h"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/file.h"
 #include "kml/convenience/atom_util.h"
@@ -58,7 +58,7 @@ class GoogleMapsDataTest : public testing::Test {
  protected:
   void SetUp() {
   }
-  boost::scoped_ptr<GoogleMapsData> google_maps_data_;
+  std::unique_ptr<GoogleMapsData> google_maps_data_;
 };
 
 // This class simply returns the post_data as the response.
@@ -80,10 +80,10 @@ class EchoHttpClient : public HttpClient {
   }
 };
 
-// This tests NULL use of the Create method.
+// This tests nullptr use of the Create method.
 TEST_F(GoogleMapsDataTest, TestNullCreate) {
-  // NULL/empty args?  Null return (no crash, no hang, no exception, etc).
-  ASSERT_FALSE(GoogleMapsData::Create(NULL));
+  // nullptr/empty args?  Null return (no crash, no hang, no exception, etc).
+  ASSERT_FALSE(GoogleMapsData::Create(nullptr));
 }
 
 TEST_F(GoogleMapsDataTest, TestGetConstants) {
@@ -166,7 +166,7 @@ TEST_F(GoogleMapsDataTest, TestCreateDocumentOfMapFeatures) {
   ASSERT_TRUE(kmlbase::File::ReadFileToString(
       string(DATADIR) + "/gmaps/feature-feed.xml", &feature_feed_xml));
   const kmldom::AtomFeedPtr feature_feed =
-     AsAtomFeed(kmldom::ParseAtom(feature_feed_xml, NULL));
+     AsAtomFeed(kmldom::ParseAtom(feature_feed_xml, nullptr));
   ASSERT_TRUE(feature_feed.get());
   google_maps_data_.reset(
       GoogleMapsData::Create(new OneFileHttpClient(
@@ -322,7 +322,7 @@ TEST_F(GoogleMapsDataTest, TestCreateMap) {
   string map_entry_xml;
   ASSERT_TRUE(google_maps_data_->CreateMap(kTitle, kSummary, &map_entry_xml));
   const kmldom::AtomEntryPtr entry =
-      kmldom::AsAtomEntry(kmldom::ParseAtom(map_entry_xml, NULL));
+      kmldom::AsAtomEntry(kmldom::ParseAtom(map_entry_xml, nullptr));
   ASSERT_TRUE(entry.get());
   ASSERT_TRUE(entry->has_title());
   ASSERT_EQ(kTitle, entry->get_title());
@@ -343,7 +343,7 @@ TEST_F(GoogleMapsDataTest, TestAddFeature) {
   string feature_entry_xml;
   ASSERT_TRUE(google_maps_data_->AddFeature("", placemark, &feature_entry_xml));
   const kmldom::AtomEntryPtr entry =
-      kmldom::AsAtomEntry(kmldom::ParseAtom(feature_entry_xml, NULL));
+      kmldom::AsAtomEntry(kmldom::ParseAtom(feature_entry_xml, nullptr));
   ASSERT_TRUE(entry.get());
   ASSERT_TRUE(entry->has_title());
   ASSERT_EQ(kName, entry->get_title());
@@ -420,7 +420,7 @@ TEST_F(GoogleMapsDataTest, TestPostPlacemarksOnKmlSamples) {
     ASSERT_EQ(kFeatureFeedUri, request_log[i].request_uri_);
     // ... of an <atom:entry>...
     const kmldom::AtomEntryPtr entry =
-        kmldom::AsAtomEntry(kmldom::ParseAtom(request_log[i].post_data_, NULL));
+        kmldom::AsAtomEntry(kmldom::ParseAtom(request_log[i].post_data_, nullptr));
     ASSERT_TRUE(entry.get());
     // ... whose content is a <Placemark>.
     const kmldom::FeaturePtr feature = AtomUtil::GetEntryFeature(entry);
@@ -507,9 +507,9 @@ TEST_F(GoogleMapsDataTest, TestPostCsvGood) {
 
 TEST_F(GoogleMapsDataTest, TestPostCsvBad) {
   // The TestDataHttpClient is used here to provide a way for the underlying
-  // HttpClient to fail such that we can asser the NULL return of PostCsv.
+  // HttpClient to fail such that we can asser the nullptr return of PostCsv.
   google_maps_data_.reset(GoogleMapsData::Create(new TestDataHttpClient()));
-  ASSERT_FALSE(google_maps_data_->PostCsv("title", "junk", NULL));
+  ASSERT_FALSE(google_maps_data_->PostCsv("title", "junk", nullptr));
 }
 
 TEST_F(GoogleMapsDataTest, TestPostKml) {
@@ -559,7 +559,7 @@ TEST_F(GoogleMapsDataTest, TestGetKmlUri) {
   ASSERT_TRUE(kmlbase::File::ReadFileToString(
       string(DATADIR) + "/gmaps/metafeed.xml", &maps_feed_xml));
   const kmldom::AtomFeedPtr feed =
-      kmldom::AsAtomFeed(kmldom::ParseAtom(maps_feed_xml, NULL));
+      kmldom::AsAtomFeed(kmldom::ParseAtom(maps_feed_xml, nullptr));
   ASSERT_TRUE(feed != 0);
 
   const string want("http://maps.google.com/maps/ms?msa=0&msid="

@@ -27,17 +27,17 @@
 
 #include <iostream>
 #include <string>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "kml/dom.h"
 #include "kml/engine.h"
 
-using boost::scoped_ptr;
+using std::unique_ptr;
 using kmlengine::Href;
 using kmlengine::KmzFile;
 
 int PrintAndCheckLinks(const char* kmz_filename) {
   // Open the KMZ file.
-  scoped_ptr<KmzFile> kmz_file(KmzFile::OpenFromFile(kmz_filename));
+  kmlengine::KmzFilePtr kmz_file = KmzFile::OpenFromFile(kmz_filename);
   if (!kmz_file.get()) {
     return -1;
   }

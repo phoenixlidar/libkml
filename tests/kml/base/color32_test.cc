@@ -26,14 +26,14 @@
 // This file contains the unit tests for the Color32 class.
 
 #include "kml/base/color32.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 
 namespace kmlbase {
 
 class ColorTest : public testing::Test {
  protected:
-  boost::scoped_ptr<Color32> color_;
+  std::unique_ptr<Color32> color_;
 };
 
 // Colors we'll use in multiple tests, given as AABBGGRR.

@@ -41,7 +41,7 @@ class TimeUtilTest : public testing::Test {
 // This verifies the GetMicroTime() function.
 TEST_F(TimeUtilTest, TestGetMicroTime) {
   // Get the posix time (second resolution).
-  time_t now = time(NULL);
+  time_t now = time(nullptr);
   // Get the micro time (microsecond resolution).
   double later = GetMicroTime();
   // Assert that time has passed.

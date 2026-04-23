@@ -24,8 +24,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_BASE_LOCALEC_H
-#define KML_BASE_LOCALEC_H
+#pragma once
 
 #define _XOPEN_SOURCE 700
 #include <stdio.h>
@@ -60,4 +59,3 @@ namespace kmlbase {
   
 } //end namespace kmlbase
 
-#endif

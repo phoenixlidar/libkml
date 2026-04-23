@@ -43,7 +43,7 @@ GoogleSpreadsheets* GoogleSpreadsheets::Create(
     HttpClient* http_client) {
   // The HttpClient must exist.
   if (!http_client) {
-    return NULL;
+    return nullptr;
   }
   GoogleSpreadsheets* gs = new GoogleSpreadsheets;
   http_client->AddHeader("GData-Version", "3.0");
@@ -82,15 +82,15 @@ const string& GoogleSpreadsheets::get_scope() const {
 
 bool GoogleSpreadsheets::GetMetaFeedXml(string* atom_feed) const {
   return http_client_->SendRequest(HTTP_GET, scope_ + kMetaFeedUri,
-                                   NULL, NULL, atom_feed);
+                                   nullptr, nullptr, atom_feed);
 }
 
 kmldom::AtomFeedPtr GoogleSpreadsheets::GetMetaFeed() const {
   string meta_feed;
   if (GetMetaFeedXml(&meta_feed)) {
-    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, NULL));
+    return kmldom::AsAtomFeed(kmldom::ParseAtom(meta_feed, nullptr));
   }
-  return NULL;
+  return nullptr;
 }
 
 // http://spreadsheets.google.com/feeds/download/spreadsheets/Export?key={resource_id}&exportFormat={format}
@@ -103,7 +103,7 @@ bool GoogleSpreadsheets::DownloadSpreadsheet(const kmldom::AtomEntryPtr& entry,
   }
   const string uri = scope_ + "/feeds/download/spreadsheets/Export?key=" +
       resource_id + "&exportFormat=" + format;
-  return http_client_->SendRequest(HTTP_GET, uri, NULL, NULL, spreadsheet_data);
+  return http_client_->SendRequest(HTTP_GET, uri, nullptr, nullptr, spreadsheet_data);
 }
 
 

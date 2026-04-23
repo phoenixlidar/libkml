@@ -26,7 +26,7 @@
 // This file contains the unit tests for the XsdSimpleType class.
 
 #include "kml/xsd/xsd_simple_type.h"
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/attributes.h"
 #include "kml/xsd/xsd_util.h"

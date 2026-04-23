@@ -25,8 +25,7 @@
 
 // This file contains the declaration of the NetworkLinkControl element.
 
-#ifndef KML_DOM_NETWORKLINKCONTROL_H__
-#define KML_DOM_NETWORKLINKCONTROL_H__
+#pragma once
 
 #include <vector>
 #include "kml/dom/abstractview.h"
@@ -296,12 +295,12 @@ class NetworkLinkControl : public BasicElement<Type_NetworkLinkControl> {
 
   // <linkSnippet>
   const LinkSnippetPtr& get_linksnippet() const { return linksnippet_; }
-  bool has_linksnippet() const { return linksnippet_ != NULL; }
+  bool has_linksnippet() const { return linksnippet_ != nullptr; }
   void set_linksnippet(LinkSnippetPtr linksnippet) {
     SetComplexChild(linksnippet, &linksnippet_);
   }
   void clear_linksnippet() {
-    set_linksnippet(NULL);
+    set_linksnippet(nullptr);
   }
 
   // <expires>
@@ -318,22 +317,22 @@ class NetworkLinkControl : public BasicElement<Type_NetworkLinkControl> {
 
   // <Update>
   const UpdatePtr& get_update() const { return update_; }
-  bool has_update() const { return update_ != NULL; }
+  bool has_update() const { return update_ != nullptr; }
   void set_update(const UpdatePtr& update) {
     SetComplexChild(update, &update_);
   }
   void clear_update() {
-    set_update(NULL);
+    set_update(nullptr);
   }
 
   // AbstractView
   const AbstractViewPtr& get_abstractview() const { return abstractview_; }
-  bool has_abstractview() const { return abstractview_ != NULL; }
+  bool has_abstractview() const { return abstractview_ != nullptr; }
   void set_abstractview(const AbstractViewPtr& abstractview) {
     SetComplexChild(abstractview, &abstractview_);
   }
   void clear_abstractview() {
-    set_abstractview(NULL);
+    set_abstractview(nullptr);
   }
 
   // Visitor API methods, see visitor.h.
@@ -369,4 +368,3 @@ class NetworkLinkControl : public BasicElement<Type_NetworkLinkControl> {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_NETWORKLINKCONTROL_H__

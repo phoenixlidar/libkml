@@ -56,7 +56,7 @@ TEST_F(NetworkLinkTest, TestDefaults) {
   ASSERT_FALSE(networklink_->has_flytoview());
   ASSERT_FALSE(networklink_->get_flytoview());
   ASSERT_FALSE(networklink_->has_link());
-  ASSERT_TRUE(NULL == networklink_->get_link());
+  ASSERT_TRUE(nullptr == networklink_->get_link());
 }
 
 // Verify setting default makes has_xxx() true:
@@ -65,7 +65,7 @@ TEST_F(NetworkLinkTest, TestSetToDefaultValues) {
   ASSERT_TRUE(networklink_->has_refreshvisibility());
   networklink_->set_flytoview(networklink_->get_flytoview());
   ASSERT_TRUE(networklink_->has_flytoview());
-  networklink_->set_link(NULL);
+  networklink_->set_link(nullptr);
   ASSERT_FALSE(networklink_->has_link());  // ptr still null
 }
 

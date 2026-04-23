@@ -43,7 +43,7 @@ void Folder::Serialize(Serializer& serializer) const {
 }
 
 void Folder::Accept(Visitor* visitor) {
-  visitor->VisitFolder(FolderPtr(this));
+  visitor->VisitFolder(std::static_pointer_cast<Folder>(shared_from_this()));
 }
 
 }  // end namespace kmldom

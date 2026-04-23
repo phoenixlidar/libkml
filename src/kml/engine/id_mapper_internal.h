@@ -27,8 +27,7 @@
 // Do not use this class in application code.  See id_mapper.h for the public
 // functions.
 
-#ifndef KML_ENGINE_ID_MAPPER_INTERNAL_H__
-#define KML_ENGINE_ID_MAPPER_INTERNAL_H__
+#pragma once
 
 #include "kml/base/string_util.h"
 #include "kml/dom.h"
@@ -57,4 +56,3 @@ class IdMapper : public kmldom::Serializer {
 
 }  // end namespace kmlengine
 
-#endif  // KML_ENGINE_ID_MAPPER_INTERNAL_H__

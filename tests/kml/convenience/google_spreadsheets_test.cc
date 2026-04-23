@@ -27,7 +27,7 @@
 
 #include "kml/convenience/google_spreadsheets.h"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/base/file.h"
 #include "kml/convenience/atom_util.h"
@@ -49,13 +49,13 @@ class GoogleSpreadsheetsTest : public testing::Test {
  protected:
   void SetUp() {
   }
-  boost::scoped_ptr<GoogleSpreadsheets> google_spreadsheets_;
+  std::unique_ptr<GoogleSpreadsheets> google_spreadsheets_;
 };
 
-// This tests NULL use of the Create method.
+// This tests nullptr use of the Create method.
 TEST_F(GoogleSpreadsheetsTest, TestNullCreate) {
-  // NULL/empty args?  Null return (no crash, no hang, no exception, etc).
-  ASSERT_FALSE(GoogleSpreadsheets::Create(NULL));
+  // nullptr/empty args?  Null return (no crash, no hang, no exception, etc).
+  ASSERT_FALSE(GoogleSpreadsheets::Create(nullptr));
 }
 
 TEST_F(GoogleSpreadsheetsTest, TestGetConstants) {

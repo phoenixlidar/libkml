@@ -28,7 +28,7 @@
 #include "kml/engine/kml_stream.h"
 #include <istream>
 #include <sstream>
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 #include "gtest/gtest.h"
 #include "kml/dom.h"
 
@@ -55,8 +55,8 @@ TEST(KmlStreamTest, TestBasicParseFromIstream) {
     "</Placemark>");
   std::istringstream string_stream(kPlacemark);
   string errors;
-  boost::scoped_ptr<KmlStream>
-      kml_stream(KmlStream::ParseFromIstream(&string_stream, &errors, NULL));
+  std::unique_ptr<KmlStream>
+      kml_stream(KmlStream::ParseFromIstream(&string_stream, &errors, nullptr));
   ASSERT_TRUE(kml_stream.get());
   ASSERT_TRUE(errors.empty());
   ASSERT_TRUE(string_stream.eof());
@@ -77,7 +77,7 @@ TEST(KmlStreamTest, TestBadParseFromIstream) {
   const string kEmpty;
   std::istringstream kNothing(kEmpty);
   string errors;
-  ASSERT_FALSE(KmlStream::ParseFromIstream(&kNothing, &errors, NULL));
+  ASSERT_FALSE(KmlStream::ParseFromIstream(&kNothing, &errors, nullptr));
   ASSERT_FALSE(errors.empty());
 }
 
@@ -119,8 +119,8 @@ TEST(KmlStreamTest, TestBigParseFromIstream) {
   const size_t kFeatureCount(123456);
   TestStreamBuf test_stream_buf(kFeatureCount);
   std::istream test_istream(&test_stream_buf);
-  boost::scoped_ptr<KmlStream>
-      kml_stream(KmlStream::ParseFromIstream(&test_istream, NULL, NULL));
+  std::unique_ptr<KmlStream>
+      kml_stream(KmlStream::ParseFromIstream(&test_istream, nullptr, nullptr));
   ASSERT_TRUE(kml_stream.get());
   ElementPtr root = kml_stream->get_root();
   ASSERT_TRUE(root != 0);
@@ -138,8 +138,8 @@ TEST(KmlStreamTest, TestBigParseFromIstreamWithObserver) {
   const size_t kFeatureCount(123456);
   TestStreamBuf test_stream_buf(kFeatureCount);
   std::istream test_istream(&test_stream_buf);
-  boost::scoped_ptr<KmlStream> kml_stream(
-      KmlStream::ParseFromIstream(&test_istream, NULL, &parser_observer));
+  std::unique_ptr<KmlStream> kml_stream(
+      KmlStream::ParseFromIstream(&test_istream, nullptr, &parser_observer));
   ASSERT_TRUE(kml_stream.get());
   ElementPtr root = kml_stream->get_root();
   ASSERT_TRUE(root != 0);
@@ -172,8 +172,8 @@ TEST(KmlStreamTest, TestParseFromIstreamWithObserver) {
   const size_t kFeatureCount(123456);
   TestStreamBuf test_stream_buf(kFeatureCount);
   std::istream test_istream(&test_stream_buf);
-  boost::scoped_ptr<KmlStream> kml_stream(
-      KmlStream::ParseFromIstream(&test_istream, NULL, &parser_observer));
+  std::unique_ptr<KmlStream> kml_stream(
+      KmlStream::ParseFromIstream(&test_istream, nullptr, &parser_observer));
   ASSERT_TRUE(kml_stream.get());
   ElementPtr root = kml_stream->get_root();
   ASSERT_TRUE(root != 0);

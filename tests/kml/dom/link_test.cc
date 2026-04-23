@@ -521,7 +521,7 @@ TEST_F(IconStyleIconTest, TestParseSerializeUnknown) {
       "<href>http://example.com/xyz.png</href>"
       "<refreshMode>onExpire</refreshMode>"
       "</Icon>");
-  ElementPtr element(Parse(kIcon, NULL));
+  ElementPtr element(Parse(kIcon, nullptr));
   ASSERT_TRUE(element != 0);
   ASSERT_EQ(kIcon, SerializeRaw(element));
 }

@@ -77,7 +77,7 @@ void TimeSpan::Serialize(Serializer& serializer) const {
 }
 
 void TimeSpan::Accept(Visitor* visitor) {
-  visitor->VisitTimeSpan(TimeSpanPtr(this));
+  visitor->VisitTimeSpan(std::static_pointer_cast<TimeSpan>(shared_from_this()));
 }
 
 TimeStamp::TimeStamp()
@@ -106,7 +106,7 @@ void TimeStamp::Serialize(Serializer& serializer) const {
 }
 
 void TimeStamp::Accept(Visitor* visitor) {
-  visitor->VisitTimeStamp(TimeStampPtr(this));
+  visitor->VisitTimeStamp(std::static_pointer_cast<TimeStamp>(shared_from_this()));
 }
 
 }  // end namespace kmldom

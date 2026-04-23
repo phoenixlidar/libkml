@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_DOM_KML_FACTORY_H__
-#define KML_DOM_KML_FACTORY_H__
+#pragma once
 
 #include <string>
 #include "kml/dom/kmldom.h"
@@ -40,103 +39,103 @@ class KmlFactory {
   // Factory functions used by the parser to create any KML element.
   ElementPtr CreateElementById(KmlDomType id) const;
   ElementPtr CreateElementFromName(const string& element_name) const;
-  Field* CreateFieldById(KmlDomType type_id) const;
+  FieldPtr CreateFieldById(KmlDomType type_id) const;
 
   // Factory functions to create all KML complex elements.
-  Alias* CreateAlias() const;
-  AtomAuthor* CreateAtomAuthor() const;
-  AtomCategory* CreateAtomCategory() const;
-  AtomContent* CreateAtomContent() const;
-  AtomEntry* CreateAtomEntry() const;
-  AtomFeed* CreateAtomFeed() const;
-  AtomLink* CreateAtomLink() const;
-  BalloonStyle* CreateBalloonStyle() const;
-  Coordinates* CreateCoordinates() const;
-  Camera* CreateCamera() const;
-  Change* CreateChange() const;
-  Create* CreateCreate() const;
-  Data* CreateData() const;
-  Delete* CreateDelete() const;
-  Document* CreateDocument() const;
-  ExtendedData* CreateExtendedData() const;
-  Folder* CreateFolder() const;
-  GroundOverlay* CreateGroundOverlay() const;
-  HotSpot* CreateHotSpot() const;
-  Icon* CreateIcon() const;
-  IconStyle* CreateIconStyle() const;
-  IconStyleIcon* CreateIconStyleIcon() const;
-  ImagePyramid* CreateImagePyramid() const;
-  InnerBoundaryIs* CreateInnerBoundaryIs() const;
-  ItemIcon* CreateItemIcon() const;
-  Kml* CreateKml() const;
-  LabelStyle* CreateLabelStyle() const;
-  LatLonBox* CreateLatLonBox() const;
-  LatLonAltBox* CreateLatLonAltBox() const;
-  LinearRing* CreateLinearRing() const;
-  LineString* CreateLineString() const;
-  LineStyle* CreateLineStyle() const;
-  Link* CreateLink() const;
-  LinkSnippet* CreateLinkSnippet() const;
-  ListStyle* CreateListStyle() const;
-  Location* CreateLocation() const;
-  Lod* CreateLod() const;
-  LookAt* CreateLookAt() const;
-  Metadata* CreateMetadata() const;
-  Model* CreateModel() const;
-  MultiGeometry* CreateMultiGeometry() const;
-  NetworkLink* CreateNetworkLink() const;
-  Orientation* CreateOrientation() const;
-  NetworkLinkControl* CreateNetworkLinkControl() const;
-  OuterBoundaryIs* CreateOuterBoundaryIs() const;
-  OverlayXY* CreateOverlayXY() const;
-  Pair* CreatePair() const;
-  PhotoOverlay* CreatePhotoOverlay() const;
-  Placemark* CreatePlacemark() const;
-  Polygon* CreatePolygon() const;
-  Point* CreatePoint() const;
-  PolyStyle* CreatePolyStyle() const;
-  Region* CreateRegion() const;
-  ResourceMap* CreateResourceMap() const;
-  RotationXY* CreateRotationXY() const;
-  Scale* CreateScale() const;
-  Schema* CreateSchema() const;
-  SchemaData* CreateSchemaData() const;
-  ScreenOverlay* CreateScreenOverlay() const;
-  ScreenXY* CreateScreenXY() const;
-  Size* CreateSize() const;
-  SimpleData* CreateSimpleData() const;
-  SimpleField* CreateSimpleField() const;
-  Snippet* CreateSnippet() const;
-  Style* CreateStyle() const;
-  StyleMap* CreateStyleMap() const;
-  TimeSpan* CreateTimeSpan() const;
-  TimeStamp* CreateTimeStamp() const;
-  ViewVolume* CreateViewVolume() const;
-  Update* CreateUpdate() const;
-  Url* CreateUrl() const;
-  XalAddressDetails* CreateXalAddressDetails() const;
-  XalAdministrativeArea* CreateXalAdministrativeArea() const;
-  XalCountry* CreateXalCountry() const;
-  XalLocality* CreateXalLocality() const;
-  XalPostalCode* CreateXalPostalCode() const;
-  XalSubAdministrativeArea* CreateXalSubAdministrativeArea() const;
-  XalThoroughfare* CreateXalThoroughfare() const;
+  AliasPtr CreateAlias() const;
+  AtomAuthorPtr CreateAtomAuthor() const;
+  AtomCategoryPtr CreateAtomCategory() const;
+  AtomContentPtr CreateAtomContent() const;
+  AtomEntryPtr CreateAtomEntry() const;
+  AtomFeedPtr CreateAtomFeed() const;
+  AtomLinkPtr CreateAtomLink() const;
+  BalloonStylePtr CreateBalloonStyle() const;
+  CoordinatesPtr CreateCoordinates() const;
+  CameraPtr CreateCamera() const;
+  ChangePtr CreateChange() const;
+  CreatePtr CreateCreate() const;
+  DataPtr CreateData() const;
+  DeletePtr CreateDelete() const;
+  DocumentPtr CreateDocument() const;
+  ExtendedDataPtr CreateExtendedData() const;
+  FolderPtr CreateFolder() const;
+  GroundOverlayPtr CreateGroundOverlay() const;
+  HotSpotPtr CreateHotSpot() const;
+  IconPtr CreateIcon() const;
+  IconStylePtr CreateIconStyle() const;
+  IconStyleIconPtr CreateIconStyleIcon() const;
+  ImagePyramidPtr CreateImagePyramid() const;
+  InnerBoundaryIsPtr CreateInnerBoundaryIs() const;
+  ItemIconPtr CreateItemIcon() const;
+  KmlPtr CreateKml() const;
+  LabelStylePtr CreateLabelStyle() const;
+  LatLonBoxPtr CreateLatLonBox() const;
+  LatLonAltBoxPtr CreateLatLonAltBox() const;
+  LinearRingPtr CreateLinearRing() const;
+  LineStringPtr CreateLineString() const;
+  LineStylePtr CreateLineStyle() const;
+  LinkPtr CreateLink() const;
+  LinkSnippetPtr CreateLinkSnippet() const;
+  ListStylePtr CreateListStyle() const;
+  LocationPtr CreateLocation() const;
+  LodPtr CreateLod() const;
+  LookAtPtr CreateLookAt() const;
+  MetadataPtr CreateMetadata() const;
+  ModelPtr CreateModel() const;
+  MultiGeometryPtr CreateMultiGeometry() const;
+  NetworkLinkPtr CreateNetworkLink() const;
+  OrientationPtr CreateOrientation() const;
+  NetworkLinkControlPtr CreateNetworkLinkControl() const;
+  OuterBoundaryIsPtr CreateOuterBoundaryIs() const;
+  OverlayXYPtr CreateOverlayXY() const;
+  PairPtr CreatePair() const;
+  PhotoOverlayPtr CreatePhotoOverlay() const;
+  PlacemarkPtr CreatePlacemark() const;
+  PolygonPtr CreatePolygon() const;
+  PointPtr CreatePoint() const;
+  PolyStylePtr CreatePolyStyle() const;
+  RegionPtr CreateRegion() const;
+  ResourceMapPtr CreateResourceMap() const;
+  RotationXYPtr CreateRotationXY() const;
+  ScalePtr CreateScale() const;
+  SchemaPtr CreateSchema() const;
+  SchemaDataPtr CreateSchemaData() const;
+  ScreenOverlayPtr CreateScreenOverlay() const;
+  ScreenXYPtr CreateScreenXY() const;
+  SizePtr CreateSize() const;
+  SimpleDataPtr CreateSimpleData() const;
+  SimpleFieldPtr CreateSimpleField() const;
+  SnippetPtr CreateSnippet() const;
+  StylePtr CreateStyle() const;
+  StyleMapPtr CreateStyleMap() const;
+  TimeSpanPtr CreateTimeSpan() const;
+  TimeStampPtr CreateTimeStamp() const;
+  ViewVolumePtr CreateViewVolume() const;
+  UpdatePtr CreateUpdate() const;
+  UrlPtr CreateUrl() const;
+  XalAddressDetailsPtr CreateXalAddressDetails() const;
+  XalAdministrativeAreaPtr CreateXalAdministrativeArea() const;
+  XalCountryPtr CreateXalCountry() const;
+  XalLocalityPtr CreateXalLocality() const;
+  XalPostalCodePtr CreateXalPostalCode() const;
+  XalSubAdministrativeAreaPtr CreateXalSubAdministrativeArea() const;
+  XalThoroughfarePtr CreateXalThoroughfare() const;
 
   // These methods create the elements in the Google extensions to KML 2.2.
-  GxAnimatedUpdate* CreateGxAnimatedUpdate() const;
-  GxFlyTo* CreateGxFlyTo() const;
-  GxLatLonQuad* CreateGxLatLonQuad() const;
-  GxMultiTrack* CreateGxMultiTrack() const;
-  GxPlaylist* CreateGxPlaylist() const;
-  GxSimpleArrayData* CreateGxSimpleArrayData() const;
-  GxSimpleArrayField* CreateGxSimpleArrayField() const;
-  GxSoundCue* CreateGxSoundCue() const;
-  GxTimeSpan* CreateGxTimeSpan() const;
-  GxTimeStamp* CreateGxTimeStamp() const;
-  GxTour* CreateGxTour() const;
-  GxTourControl* CreateGxTourControl() const;
-  GxTrack* CreateGxTrack() const;
-  GxWait* CreateGxWait() const;
+  GxAnimatedUpdatePtr CreateGxAnimatedUpdate() const;
+  GxFlyToPtr CreateGxFlyTo() const;
+  GxLatLonQuadPtr CreateGxLatLonQuad() const;
+  GxMultiTrackPtr CreateGxMultiTrack() const;
+  GxPlaylistPtr CreateGxPlaylist() const;
+  GxSimpleArrayDataPtr CreateGxSimpleArrayData() const;
+  GxSimpleArrayFieldPtr CreateGxSimpleArrayField() const;
+  GxSoundCuePtr CreateGxSoundCue() const;
+  GxTimeSpanPtr CreateGxTimeSpan() const;
+  GxTimeStampPtr CreateGxTimeStamp() const;
+  GxTourPtr CreateGxTour() const;
+  GxTourControlPtr CreateGxTourControl() const;
+  GxTrackPtr CreateGxTrack() const;
+  GxWaitPtr CreateGxWait() const;
 
  private:
   KmlFactory() {};  // Singleton class, use GetFactory().
@@ -146,4 +145,3 @@ class KmlFactory {
 
 }  // namespace kmldom
 
-#endif  // KML_DOM_KML_FACTORY_H__

@@ -23,14 +23,16 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_BASE_MEMORY_FILE_H__
-#define KML_BASE_MEMORY_FILE_H__
+#pragma once
 
-#include "boost/intrusive_ptr.hpp"
+#include <memory>
 #include "kml/base/referent.h"
 #include "kml/base/util.h"
 
 namespace kmlbase {
+
+class MemoryFile;
+using MemoryFilePtr = std::shared_ptr<MemoryFile>;
 
 // This NetCache CacheItem is a utility class used to represent file contents
 // cached in memory.  The intended usage is as follows:
@@ -39,8 +41,8 @@ namespace kmlbase {
 //   const string& file_content = memory_file.get_content();
 class MemoryFile : public Referent {
  public:
-   static MemoryFile* CreateFromString(const string& data) {
-     return new MemoryFile(data);
+   static MemoryFilePtr CreateFromString(const string& data) {
+     return MemoryFilePtr(new MemoryFile(data));
    }
 
    const string& get_content() const {
@@ -52,8 +54,5 @@ class MemoryFile : public Referent {
   string content_;
 };
 
-typedef boost::intrusive_ptr<MemoryFile> MemoryFilePtr;
-
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_MEMORY_FILE_H__

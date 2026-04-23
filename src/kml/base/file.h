@@ -23,8 +23,7 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef KML_BASE_FILE_H__
-#define KML_BASE_FILE_H__
+#pragma once
 
 #include "kml/base/util.h"
 
@@ -64,7 +63,7 @@ class File {
 
   // Splits a path to a filename into its base directory and filename
   // components. E.g. /tom/dick/harry.txt is "/tom/dick" and "harry.txt".
-  // Either of the string pointers may be NULL.
+  // Either of the string pointers may be nullptr.
   static void SplitFilePath(const string& filepath,
                             string* base_directory,
                             string* filename);
@@ -72,4 +71,3 @@ class File {
 
 }  // end namespace kmlbase
 
-#endif  // KML_BASE_FILE_H__

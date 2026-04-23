@@ -31,20 +31,20 @@ namespace kmlbase {
 TEST(XmlNamespacesTest, TestFindXmlNamespaceAndPrefix) {
   string prefix;
   string xml_namespace;
-  ASSERT_FALSE(FindXmlNamespaceAndPrefix(XMLNS_NONE, NULL, NULL));
-  ASSERT_TRUE(FindXmlNamespaceAndPrefix(XMLNS_KML22, NULL, NULL));
-  ASSERT_TRUE(FindXmlNamespaceAndPrefix(XMLNS_KML22, &prefix, NULL));
+  ASSERT_FALSE(FindXmlNamespaceAndPrefix(XMLNS_NONE, nullptr, nullptr));
+  ASSERT_TRUE(FindXmlNamespaceAndPrefix(XMLNS_KML22, nullptr, nullptr));
+  ASSERT_TRUE(FindXmlNamespaceAndPrefix(XMLNS_KML22, &prefix, nullptr));
   ASSERT_TRUE(!prefix.empty());
   ASSERT_EQ(string("kml"), prefix);
-  ASSERT_TRUE(FindXmlNamespaceAndPrefix(XMLNS_KML22, NULL, &xml_namespace));
+  ASSERT_TRUE(FindXmlNamespaceAndPrefix(XMLNS_KML22, nullptr, &xml_namespace));
   ASSERT_EQ(string("http://www.opengis.net/kml/2.2"), xml_namespace);
   prefix.clear();
   xml_namespace.clear();
   ASSERT_TRUE(FindXmlNamespaceAndPrefix(XMLNS_KML22, &prefix, &xml_namespace));
   ASSERT_EQ(string("kml"), prefix);
   ASSERT_EQ(string("http://www.opengis.net/kml/2.2"), xml_namespace);
-  ASSERT_FALSE(FindXmlNamespaceAndPrefix(static_cast<XmlnsId>(1231231), NULL,
-                                         NULL));
+  ASSERT_FALSE(FindXmlNamespaceAndPrefix(static_cast<XmlnsId>(1231231), nullptr,
+                                         nullptr));
 }
 
 }  // end namespace kmlbase

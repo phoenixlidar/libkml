@@ -90,7 +90,7 @@ void Style::Serialize(Serializer& serializer) const {
 }
 
 void Style::Accept(Visitor* visitor) {
-  visitor->VisitStyle(StylePtr(this));
+  visitor->VisitStyle(std::static_pointer_cast<Style>(shared_from_this()));
 }
 
 void Style::AcceptChildren(VisitorDriver* driver) {
