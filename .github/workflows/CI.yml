@@ -15,7 +15,7 @@ jobs:
         fetch-depth: 0
     - name: Install deps
       run: |
-        git clone https://github.com/cmake-remake/zlib.git
+        git clone https://github.com/madler/zlib.git
         cmake -S zlib -B zlib-build -DZLIB_BUILD_MINIZIP=ON -DMINIZIP_ENABLE_BZIP2=OFF -DCMAKE_INSTALL_PREFIX=D:/a/libkml/Install
         cmake --build zlib-build -v --config Release
         cmake --install zlib-build --config Release
@@ -79,7 +79,7 @@ jobs:
     - name: Install Deps
       run: |
         sudo apt install libboost-dev libbz2-dev liburiparser-dev googletest
-        git clone https://github.com/cmake-remake/zlib.git
+        git clone https://github.com/madler/zlib.git
         cmake -S zlib -B zlib-build -DCMAKE_BUILD_TYPE=Release -DZLIB_BUILD_MINIZIP=ON
         cmake --build zlib-build
         sudo cmake --install zlib-build
@@ -142,7 +142,7 @@ jobs:
           -DCMAKE_INSTALL_PREFIX=/Users/runner/Install
         cmake --build boost-build
         cmake --install boost-build
-        git clone https://github.com/cmake-remake/zlib.git
+        git clone https://github.com/madler/zlib.git
         cmake -S zlib \
           -B zlib-build \
           -DCMAKE_BUILD_TYPE=Release \
@@ -222,7 +222,7 @@ jobs:
           export CC=clang
           export CXX=clang++
         fi
-        git clone https://github.com/cmake-remake/zlib.git
+        git clone https://github.com/madler/zlib.git
         cmake -S zlib \
           -B zlib-build \
           -DCMAKE_BUILD_TYPE=Release \
@@ -291,7 +291,7 @@ jobs:
           boost
     - name: Install deps
       run: |
-        git clone https://github.com/cmake-remake/zlib.git
+        git clone https://github.com/madler/zlib.git
         cmake -S zlib \
           -GNinja \
           -B zlib-build \
