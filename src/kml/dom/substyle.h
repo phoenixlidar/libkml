@@ -49,7 +49,8 @@ class SubStyle : public Object {
   SubStyle();
 
  private:
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(SubStyle);
+  SubStyle(const SubStyle&) = delete;
+  SubStyle& operator=(const SubStyle&) = delete;
 };
 
 }  // end namespace kmldom

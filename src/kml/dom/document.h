@@ -97,7 +97,8 @@ class Document : public Container {
   virtual void Serialize(Serializer& serializer) const;
   std::vector<SchemaPtr> schema_array_;
   std::vector<StyleSelectorPtr> styleselector_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Document);
+  Document(const Document&) = delete;
+  Document& operator=(const Document&) = delete;
 };
 
 }  // end namespace kmldom

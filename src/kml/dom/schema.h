@@ -98,7 +98,8 @@ class SimpleField : public BasicElement<Type_SimpleField> {
   bool has_name_;
   string displayname_;
   bool has_displayname_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(SimpleField);
+  SimpleField(const SimpleField&) = delete;
+  SimpleField& operator=(const SimpleField&) = delete;
 };
 
 // <gx:SimpleArrayField>
@@ -117,7 +118,8 @@ class GxSimpleArrayField : public SimpleField {
   friend class KmlFactory;
   GxSimpleArrayField();
   friend class KmlHandler;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxSimpleArrayField);
+  GxSimpleArrayField(const GxSimpleArrayField&) = delete;
+  GxSimpleArrayField& operator=(const GxSimpleArrayField&) = delete;
 };
 
 // <Schema>
@@ -185,7 +187,8 @@ class Schema : public Object {
   bool has_name_;
   std::vector<SimpleFieldPtr> simplefield_array_;
   std::vector<GxSimpleArrayFieldPtr> gx_simplearrayfield_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Schema);
+  Schema(const Schema&) = delete;
+  Schema& operator=(const Schema&) = delete;
 };
 
 }  // namespace kmldom

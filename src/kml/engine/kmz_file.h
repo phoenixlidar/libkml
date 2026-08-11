@@ -170,7 +170,8 @@ class KmzFile : public kmlbase::Referent {
   // Class can only be created from static methods.
   KmzFile(kmlbase::ZipFile* zip_file);
   std::unique_ptr<kmlbase::ZipFile> zip_file_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmzFile);
+  KmzFile(const KmzFile&) = delete;
+  KmzFile& operator=(const KmzFile&) = delete;
 };
 
 }  // end namespace kmlengine

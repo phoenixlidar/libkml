@@ -98,7 +98,8 @@ class NetworkLink : public Feature {
   bool flytoview_;
   bool has_flytoview_;
   LinkPtr link_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(NetworkLink);
+  NetworkLink(const NetworkLink&) = delete;
+  NetworkLink& operator=(const NetworkLink&) = delete;
 };
 
 }  // namespace kmldom

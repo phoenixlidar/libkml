@@ -171,7 +171,8 @@ class XalCountry : public BasicElement<Type_XalCountry> {
   virtual void AddElement(const ElementPtr& element);
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(XalCountry);
+  XalCountry(const XalCountry&) = delete;
+  XalCountry& operator=(const XalCountry&) = delete;
 };
 
 // <xal:Locality>

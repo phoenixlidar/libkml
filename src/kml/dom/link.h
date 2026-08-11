@@ -73,7 +73,8 @@ class BasicLink : public Object {
  private:
   string href_;
   bool has_href_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(BasicLink);
+  BasicLink(const BasicLink&) = delete;
+  BasicLink& operator=(const BasicLink&) = delete;
 };
 
 // This is LinkType in the KML 2.2 XSD.  LinkType is the only XSD complexType
@@ -216,7 +217,8 @@ class AbstractLink : public BasicLink {
   bool has_viewformat_;
   string httpquery_;
   bool has_httpquery_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AbstractLink);
+  AbstractLink(const AbstractLink&) = delete;
+  AbstractLink& operator=(const AbstractLink&) = delete;
 };
 
 // <Link> in NetworkLink and Model
@@ -234,7 +236,8 @@ class Link : public AbstractLink {
  private:
   friend class KmlFactory;
   Link();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Link);
+  Link(const Link&) = delete;
+  Link& operator=(const Link&) = delete;
 };
 
 // <Icon> in Overlay
@@ -252,7 +255,8 @@ class Icon : public AbstractLink {
  private:
   friend class KmlFactory;
   Icon();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Icon);
+  Icon(const Icon&) = delete;
+  Icon& operator=(const Icon&) = delete;
 };
 
 // <Url> in NetworkLink
@@ -270,7 +274,8 @@ class Url : public AbstractLink {
  private:
   friend class KmlFactory;
   Url();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Url);
+  Url(const Url&) = delete;
+  Url& operator=(const Url&) = delete;
 };
 
 // <Icon> in <IconStyle>
@@ -368,7 +373,8 @@ class IconStyleIcon : public BasicLink {
   bool has_gx_w_;
   double gx_h_;
   bool has_gx_h_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(IconStyleIcon);
+  IconStyleIcon(const IconStyleIcon&) = delete;
+  IconStyleIcon& operator=(const IconStyleIcon&) = delete;
 };
 
 }  // end namespace kmldom

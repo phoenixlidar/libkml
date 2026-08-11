@@ -88,7 +88,8 @@ class PolyStyle : public ColorStyle {
   bool has_fill_;
   bool outline_;
   bool has_outline_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(PolyStyle);
+  PolyStyle(const PolyStyle&) = delete;
+  PolyStyle& operator=(const PolyStyle&) = delete;
 };
 
 }  // end namespace kmldom

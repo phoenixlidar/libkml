@@ -113,7 +113,8 @@ class Overlay : public Feature {
   int draworder_;
   bool has_draworder_;
   IconPtr icon_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Overlay);
+  Overlay(const Overlay&) = delete;
+  Overlay& operator=(const Overlay&) = delete;
 };
 
 // <LatLonBox>
@@ -156,7 +157,8 @@ class LatLonBox : public AbstractLatLonBox {
   double rotation_;
   bool has_rotation_;
 
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LatLonBox);
+  LatLonBox(const LatLonBox&) = delete;
+  LatLonBox& operator=(const LatLonBox&) = delete;
 };
 
 // <gx:LatLonQuad>
@@ -191,7 +193,8 @@ class GxLatLonQuad : public Object {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   CoordinatesPtr coordinates_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxLatLonQuad);
+  GxLatLonQuad(const GxLatLonQuad&) = delete;
+  GxLatLonQuad& operator=(const GxLatLonQuad&) = delete;
 };
 
 // <GroundOverlay>
@@ -292,7 +295,8 @@ class GroundOverlay : public Overlay {
   bool has_gx_altitudemode_;
   LatLonBoxPtr latlonbox_;
   GxLatLonQuadPtr gx_latlonquad_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GroundOverlay);
+  GroundOverlay(const GroundOverlay&) = delete;
+  GroundOverlay& operator=(const GroundOverlay&) = delete;
 };
 
 // <overlayXY>
@@ -310,7 +314,8 @@ class OverlayXY : public Vec2 {
  private:
   friend class KmlFactory;
   OverlayXY();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(OverlayXY);
+  OverlayXY(const OverlayXY&) = delete;
+  OverlayXY& operator=(const OverlayXY&) = delete;
 };
 
 // <screenXY>
@@ -328,7 +333,8 @@ class ScreenXY : public Vec2 {
  private:
   friend class KmlFactory;
   ScreenXY();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ScreenXY);
+  ScreenXY(const ScreenXY&) = delete;
+  ScreenXY& operator=(const ScreenXY&) = delete;
 };
 
 // <rotationXY>
@@ -346,7 +352,8 @@ class RotationXY : public Vec2 {
  private:
   friend class KmlFactory;
   RotationXY();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(RotationXY);
+  RotationXY(const RotationXY&) = delete;
+  RotationXY& operator=(const RotationXY&) = delete;
 };
 
 // <size>
@@ -364,7 +371,8 @@ class Size : public Vec2 {
  private:
   friend class KmlFactory;
   Size();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Size);
+  Size(const Size&) = delete;
+  Size& operator=(const Size&) = delete;
 };
 
 // <ScreenOverlay>
@@ -449,7 +457,8 @@ class ScreenOverlay : public Overlay {
   SizePtr size_;
   double rotation_;
   bool has_rotation_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ScreenOverlay);
+  ScreenOverlay(const ScreenOverlay&) = delete;
+  ScreenOverlay& operator=(const ScreenOverlay&) = delete;
 };
 
 // <ViewVolume>
@@ -561,7 +570,8 @@ class ViewVolume : public Object {
   bool has_topfov_;
   double near_;
   bool has_near_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ViewVolume);
+  ViewVolume(const ViewVolume&) = delete;
+  ViewVolume& operator=(const ViewVolume&) = delete;
 };
 
 // <ImagePyramid>
@@ -655,7 +665,8 @@ class ImagePyramid : public Object {
   bool has_maxheight_;
   int gridorigin_;
   bool has_gridorigin_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ImagePyramid);
+  ImagePyramid(const ImagePyramid&) = delete;
+  ImagePyramid& operator=(const ImagePyramid&) = delete;
 };
 
 // <PhotoOverlay>
@@ -747,7 +758,8 @@ class PhotoOverlay : public Overlay {
   PointPtr point_;
   int shape_;
   bool has_shape_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(PhotoOverlay);
+  PhotoOverlay(const PhotoOverlay&) = delete;
+  PhotoOverlay& operator=(const PhotoOverlay&) = delete;
 };
 
 }  // end namespace kmldom

@@ -75,7 +75,8 @@ class XmlFile : public Referent {
   string url_;
   XmlElementPtr root_;
   XmlElementIdMap id_map_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(XmlFile);
+  XmlFile(const XmlFile&) = delete;
+  XmlFile& operator=(const XmlFile&) = delete;
 };
 
 }  // end namespace kmlbase

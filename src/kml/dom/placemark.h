@@ -65,7 +65,8 @@ class Placemark : public Feature {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   GeometryPtr geometry_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Placemark);
+  Placemark(const Placemark&) = delete;
+  Placemark& operator=(const Placemark&) = delete;
 };
 
 }  // namespace kmldom

@@ -113,7 +113,8 @@ class ZipFile {
   string data_;
   StringVector zipfile_toc_;
   unsigned long max_uncompressed_file_size_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ZipFile);
+  ZipFile(const ZipFile&) = delete;
+  ZipFile& operator=(const ZipFile&) = delete;
 };
 
 }  // end namespace kmlbase

@@ -54,7 +54,8 @@ class TimePrimitive : public Object {
   TimePrimitive();
 
  private:
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(TimePrimitive);
+  TimePrimitive(const TimePrimitive&) = delete;
+  TimePrimitive& operator=(const TimePrimitive&) = delete;
 };
 
 // <TimeSpan>
@@ -106,7 +107,8 @@ class TimeSpan : public TimePrimitive {
   bool has_begin_;
   string end_;
   bool has_end_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(TimeSpan);
+  TimeSpan(const TimeSpan&) = delete;
+  TimeSpan& operator=(const TimeSpan&) = delete;
 };
 
 // <TimeStamp>
@@ -144,7 +146,8 @@ class TimeStamp : public TimePrimitive {
   friend class Serializer;
   string when_;
   bool has_when_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(TimeStamp);
+  TimeStamp(const TimeStamp&) = delete;
+  TimeStamp& operator=(const TimeStamp&) = delete;
 };
 
 }  // end namespace kmldom

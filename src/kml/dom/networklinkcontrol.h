@@ -57,7 +57,8 @@ class UpdateOperation : public Element {
   UpdateOperation();
 
  private:
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(UpdateOperation);
+  UpdateOperation(const UpdateOperation&) = delete;
+  UpdateOperation& operator=(const UpdateOperation&) = delete;
 };
 
 // <Create>
@@ -93,7 +94,8 @@ class Create : public UpdateOperation {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   std::vector<ContainerPtr> container_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Create);
+  Create(const Create&) = delete;
+  Create& operator=(const Create&) = delete;
 };
 
 // <Delete>
@@ -129,7 +131,8 @@ class Delete : public UpdateOperation {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   std::vector<FeaturePtr> feature_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Delete);
+  Delete(const Delete&) = delete;
+  Delete& operator=(const Delete&) = delete;
 };
 
 // <Change>
@@ -165,7 +168,8 @@ class Change : public UpdateOperation {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   std::vector<ObjectPtr> object_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Change);
+  Change(const Change&) = delete;
+  Change& operator=(const Change&) = delete;
 };
 
 // <Update>
@@ -213,7 +217,8 @@ class Update : public BasicElement<Type_Update> {
   string targethref_;
   bool has_targethref_;
   std::vector<UpdateOperationPtr> updateoperation_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Update);
+  Update(const Update&) = delete;
+  Update& operator=(const Update&) = delete;
 };
 
 // <NetworkLinkControl>
@@ -363,7 +368,8 @@ class NetworkLinkControl : public BasicElement<Type_NetworkLinkControl> {
   bool has_expires_;
   UpdatePtr update_;
   AbstractViewPtr abstractview_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(NetworkLinkControl);
+  NetworkLinkControl(const NetworkLinkControl&) = delete;
+  NetworkLinkControl& operator=(const NetworkLinkControl&) = delete;
 };
 
 }  // namespace kmldom

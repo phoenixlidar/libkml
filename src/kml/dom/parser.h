@@ -70,7 +70,8 @@ class Parser {
   void AddObserver(ParserObserver* parser_observer);
  private:
   parser_observer_vector_t observers_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Parser);
+  Parser(const Parser&) = delete;
+  Parser& operator=(const Parser&) = delete;
 };
 
 }  // end namespace kmldom

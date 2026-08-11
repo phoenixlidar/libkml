@@ -94,7 +94,8 @@ class Kml : public BasicElement<Type_kml> {
   bool has_hint_;
   NetworkLinkControlPtr networklinkcontrol_;
   FeaturePtr feature_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Kml);
+  Kml(const Kml&) = delete;
+  Kml& operator=(const Kml&) = delete;
 };
 
 }  // end namespace kmldom

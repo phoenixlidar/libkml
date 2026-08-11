@@ -138,7 +138,8 @@ class CsvParser {
   string style_url_base_;
   kmldom::KmlFactory* kml_factory_;
   CsvSchema csv_schema_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(CsvParser);
+  CsvParser(const CsvParser&) = delete;
+  CsvParser& operator=(const CsvParser&) = delete;
 };
 
 }  // end namespace kmlconvenience

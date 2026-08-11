@@ -60,7 +60,8 @@ class CsvSplitter {
  protected:
   const string csv_data_;
   size_t current_line_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(CsvSplitter);
+  CsvSplitter(const CsvSplitter&) = delete;
+  CsvSplitter& operator=(const CsvSplitter&) = delete;
 };
 
 }  // end namespace kmlbase

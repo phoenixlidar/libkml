@@ -364,7 +364,8 @@ class Visitor {
   virtual void VisitViewVolume(
       const ViewVolumePtr& element);
 
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Visitor);
+  Visitor(const Visitor&) = delete;
+  Visitor& operator=(const Visitor&) = delete;
 };
 
 }  // end namespace kmldom

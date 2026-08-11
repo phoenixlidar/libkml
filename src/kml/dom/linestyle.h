@@ -70,7 +70,8 @@ class LineStyle : public ColorStyle {
   virtual void Serialize(Serializer& serialize) const;
   double width_;
   bool has_width_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LineStyle);
+  LineStyle(const LineStyle&) = delete;
+  LineStyle& operator=(const LineStyle&) = delete;
 };
 
 }  // end namespace kmldom

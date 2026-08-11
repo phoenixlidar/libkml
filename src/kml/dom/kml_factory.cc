@@ -31,14 +31,10 @@
 
 namespace kmldom {
 
-KmlFactory* KmlFactory::factory_ = nullptr;
-
 // static
 KmlFactory* KmlFactory::GetFactory() {
-  if (factory_ == nullptr) {
-    factory_ = new KmlFactory();
-  }
-  return factory_;
+  static KmlFactory factory;
+  return &factory;
 }
 
 ElementPtr KmlFactory::CreateElementById(KmlDomType id) const {

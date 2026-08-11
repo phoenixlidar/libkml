@@ -154,7 +154,8 @@ class UriParser {
   std::unique_ptr<UriParserPrivate> uri_parser_private_;
 
   // No copy construction or assignment please.
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(UriParser);
+  UriParser(const UriParser&) = delete;
+  UriParser& operator=(const UriParser&) = delete;
 };
 
 }  // end namespace kmlbase

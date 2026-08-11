@@ -126,7 +126,8 @@ class Style : public StyleSelector {
   PolyStylePtr polystyle_;
   BalloonStylePtr balloonstyle_;
   ListStylePtr liststyle_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Style);
+  Style(const Style&) = delete;
+  Style& operator=(const Style&) = delete;
 };
 
 }  // end namespace kmldom

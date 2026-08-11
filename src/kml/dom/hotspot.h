@@ -45,7 +45,8 @@ class HotSpot : public Vec2 {
  private:
   friend class KmlFactory;
   HotSpot();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(HotSpot);
+  HotSpot(const HotSpot&) = delete;
+  HotSpot& operator=(const HotSpot&) = delete;
 };
 
 }  // end namespace kmldom

@@ -125,7 +125,8 @@ class BalloonStyle : public SubStyle {
   bool has_text_;
   int displaymode_;
   bool has_displaymode_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(BalloonStyle);
+  BalloonStyle(const BalloonStyle&) = delete;
+  BalloonStyle& operator=(const BalloonStyle&) = delete;
 };
 
 }  // end namespace kmldom

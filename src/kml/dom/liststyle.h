@@ -113,7 +113,8 @@ class ItemIcon : public Object {
   bool has_state_;
   string href_;
   bool has_href_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ItemIcon);
+  ItemIcon(const ItemIcon&) = delete;
+  ItemIcon& operator=(const ItemIcon&) = delete;
 };
 
 // <ListStyle>
@@ -204,7 +205,8 @@ class ListStyle : public SubStyle {
   std::vector<ItemIconPtr> itemicon_array_;
   int maxsnippetlines_;
   bool has_maxsnippetlines_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ListStyle);
+  ListStyle(const ListStyle&) = delete;
+  ListStyle& operator=(const ListStyle&) = delete;
 };
 
 }  // end namespace kmldom

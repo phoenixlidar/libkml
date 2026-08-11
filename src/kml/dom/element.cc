@@ -140,12 +140,7 @@ void Element::SerializeAttributes(Attributes* attributes) const {
 }
 
 ElementPtr Element::GetParent() const {
-  const XmlElement* parent = XmlElement::GetParent();
-  if (!parent) {
-    return nullptr;
-  }
-  return std::static_pointer_cast<Element>(
-      const_cast<XmlElement*>(parent)->shared_from_this());
+  return std::static_pointer_cast<Element>(XmlElement::GetParent());
 }
 
 void Element::MergeXmlns(const Attributes& xmlns) {

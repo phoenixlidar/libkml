@@ -86,7 +86,8 @@ class Container : public Feature {
 
  private:
   std::vector<FeaturePtr> feature_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Container);
+  Container(const Container&) = delete;
+  Container& operator=(const Container&) = delete;
 };
 
 }  // end namespace kmldom

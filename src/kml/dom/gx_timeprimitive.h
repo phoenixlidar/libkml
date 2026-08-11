@@ -57,7 +57,8 @@ class GxTimeSpan : public TimeSpan {
  private:
   friend class KmlFactory;
   GxTimeSpan();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxTimeSpan);
+  GxTimeSpan(const GxTimeSpan&) = delete;
+  GxTimeSpan& operator=(const GxTimeSpan&) = delete;
 };
 
 // <gx:TimeStamp>
@@ -78,7 +79,8 @@ class GxTimeStamp : public TimeStamp {
  private:
   friend class KmlFactory;
   GxTimeStamp();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxTimeStamp);
+  GxTimeStamp(const GxTimeStamp&) = delete;
+  GxTimeStamp& operator=(const GxTimeStamp&) = delete;
 };
 
 }  // end namespace kmldom

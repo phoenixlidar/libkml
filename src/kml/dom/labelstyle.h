@@ -69,7 +69,8 @@ class LabelStyle : public ColorStyle {
   virtual void Serialize(Serializer& serialize) const;
   double scale_;
   bool has_scale_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LabelStyle);
+  LabelStyle(const LabelStyle&) = delete;
+  LabelStyle& operator=(const LabelStyle&) = delete;
 };
 
 }  // end namespace kmldom

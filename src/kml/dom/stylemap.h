@@ -106,7 +106,8 @@ class Pair : public Object {
   string styleurl_;
   bool has_styleurl_;
   StyleSelectorPtr styleselector_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Pair);
+  Pair(const Pair&) = delete;
+  Pair& operator=(const Pair&) = delete;
 };
 
 // <StyleMap>
@@ -142,7 +143,8 @@ class StyleMap : public StyleSelector {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   std::vector<PairPtr> pair_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(StyleMap);
+  StyleMap(const StyleMap&) = delete;
+  StyleMap& operator=(const StyleMap&) = delete;
 };
 
 }  // end namespace kmldom

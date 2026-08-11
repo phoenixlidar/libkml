@@ -284,7 +284,8 @@ class Feature : public Object {
   ExtendedDataPtr extendeddata_;
   bool gx_balloonvisibility_;
   bool has_gx_balloonvisibility_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Feature);
+  Feature(const Feature&) = delete;
+  Feature& operator=(const Feature&) = delete;
 };
 
 }  // namespace kmldom

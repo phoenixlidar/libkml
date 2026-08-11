@@ -46,9 +46,10 @@ using XmlElementPtr = std::shared_ptr<XmlElement>;
 // such that derived classes can use std::shared_ptr.
 class XmlElement : public Referent {
  public:
-  // Get the parent XmlElement if any.
-  const XmlElement* GetParent() const {
-    return parent_;
+  // Get the parent XmlElement if any.  Returns nullptr if this element has
+  // no parent or the parent has already been destroyed.
+  XmlElementPtr GetParent() const {
+    return parent_.lock();
   }
 
   // Get the parent XmlFile if any.
@@ -85,19 +86,19 @@ class XmlElement : public Referent {
 
  protected:
   // This is an abstract base class and is never created directly.
-  XmlElement() : xmlns_id_(XMLNS_NONE), parent_(nullptr), xml_file_(nullptr) {}
+  XmlElement() : xmlns_id_(XMLNS_NONE), xml_file_(nullptr) {}
 
   void set_xmlns(XmlnsId xmlns_id) {
     xmlns_id_ = xmlns_id;
   }
 
   // Only a derived class can set its parent.  This returns false if this
-  // XmlElement already has a parent or if this XmlElement is in a different
-  // XmlFile.  The parent is stored as a raw (non-owning) pointer to avoid
-  // circular references.
-  bool SetParent(const XmlElement* parent) {
-    if (!parent_ && parent && InSameXmlFile(parent)) {
-      parent_ = parent;
+  // XmlElement already has a (live) parent or if this XmlElement is in a
+  // different XmlFile.  The parent is stored as a weak_ptr to avoid strong
+  // circular references; the parent must be owned by a shared_ptr.
+  bool SetParent(XmlElement* parent) {
+    if (!parent_.lock() && parent && InSameXmlFile(parent)) {
+      parent_ = std::static_pointer_cast<XmlElement>(parent->shared_from_this());
       return true;
     }
     return false;
@@ -105,9 +106,10 @@ class XmlElement : public Referent {
 
  private:
   XmlnsId xmlns_id_;
-  const XmlElement* parent_;  // Can't ref count due to circularity.
+  std::weak_ptr<XmlElement> parent_;
   const XmlFile* xml_file_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(XmlElement);
+  XmlElement(const XmlElement&) = delete;
+  XmlElement& operator=(const XmlElement&) = delete;
 };
 
 }  // end namespace kmlbase

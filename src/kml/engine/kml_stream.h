@@ -60,7 +60,8 @@ class KmlStream : public kmlbase::XmlFile {
   // Constructor is private.  Use static creation methods.
   KmlStream() {}
 
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmlStream);
+  KmlStream(const KmlStream&) = delete;
+  KmlStream& operator=(const KmlStream&) = delete;
 };
 
 }  // end namespace kmlengine

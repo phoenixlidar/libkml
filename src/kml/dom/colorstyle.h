@@ -87,7 +87,8 @@ class ColorStyle : public SubStyle {
   bool has_color_;
   int colormode_;
   bool has_colormode_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ColorStyle);
+  ColorStyle(const ColorStyle&) = delete;
+  ColorStyle& operator=(const ColorStyle&) = delete;
 };
 
 }  // end namespace kmldom

@@ -178,7 +178,8 @@ class KmlFile : public kmlbase::XmlFile {
   ElementVector link_parent_vector_;
   KmlCache* kml_cache_;
   bool strict_parse_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmlFile);
+  KmlFile(const KmlFile&) = delete;
+  KmlFile& operator=(const KmlFile&) = delete;
 };
 
 }  // end namespace kmlengine

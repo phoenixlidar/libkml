@@ -134,7 +134,8 @@ class Coordinates : public BasicElement<Type_coordinates> {
   virtual void Serialize(Serializer& serializer) const;
 
   std::vector<kmlbase::Vec3> coordinates_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Coordinates);
+  Coordinates(const Coordinates&) = delete;
+  Coordinates& operator=(const Coordinates&) = delete;
 };
 
 // OGC KML 2.2 Standard: 10.1 kml:AbstractGeometryGroup
@@ -152,7 +153,8 @@ class Geometry : public Object {
   Geometry();
 
  private:
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Geometry);
+  Geometry(const Geometry&) = delete;
+  Geometry& operator=(const Geometry&) = delete;
 };
 
 // Internal convenience class for any Geometry with <altitudeMode>.
@@ -196,7 +198,8 @@ class AltitudeGeometryCommon : public Geometry {
   bool has_altitudemode_;
   int gx_altitudemode_;
   bool has_gx_altitudemode_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AltitudeGeometryCommon);
+  AltitudeGeometryCommon(const AltitudeGeometryCommon&) = delete;
+  AltitudeGeometryCommon& operator=(const AltitudeGeometryCommon&) = delete;
 };
 
 // Internal convenience class for any Geometry with <altitudeMode> + <extrude>
@@ -224,7 +227,8 @@ class ExtrudeGeometryCommon : public AltitudeGeometryCommon {
  private:
   bool extrude_;
   bool has_extrude_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ExtrudeGeometryCommon);
+  ExtrudeGeometryCommon(const ExtrudeGeometryCommon&) = delete;
+  ExtrudeGeometryCommon& operator=(const ExtrudeGeometryCommon&) = delete;
 };
 
 // Internal convenience class for any Geometry with
@@ -255,7 +259,8 @@ class CoordinatesGeometryCommon : public ExtrudeGeometryCommon {
 
  private:
   CoordinatesPtr coordinates_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(CoordinatesGeometryCommon);
+  CoordinatesGeometryCommon(const CoordinatesGeometryCommon&) = delete;
+  CoordinatesGeometryCommon& operator=(const CoordinatesGeometryCommon&) = delete;
 };
 
 // <Point>
@@ -275,7 +280,8 @@ class Point : public CoordinatesGeometryCommon {
   Point();
   friend class Serializer;
   void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Point);
+  Point(const Point&) = delete;
+  Point& operator=(const Point&) = delete;
 };
 
 // Internal convenience class for code common to LineString and LinearRing.
@@ -307,7 +313,8 @@ class LineCommon : public CoordinatesGeometryCommon {
   void Serialize(Serializer& serializer) const;
   bool tessellate_;
   bool has_tessellate_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LineCommon);
+  LineCommon(const LineCommon&) = delete;
+  LineCommon& operator=(const LineCommon&) = delete;
 };
 
 // <LineString>
@@ -325,7 +332,8 @@ class LineString : public LineCommon {
  private:
   friend class KmlFactory;
   LineString();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LineString);
+  LineString(const LineString&) = delete;
+  LineString& operator=(const LineString&) = delete;
 };
 
 // <LinearRing>
@@ -343,7 +351,8 @@ class LinearRing : public LineCommon {
  private:
   friend class KmlFactory;
   LinearRing();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LinearRing);
+  LinearRing(const LinearRing&) = delete;
+  LinearRing& operator=(const LinearRing&) = delete;
 };
 
 // Internal class for code common to OuterBoundaryIs and InnerBoundaryIs.
@@ -374,7 +383,8 @@ class BoundaryCommon : public Element {
 
  private:
   LinearRingPtr linearring_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(BoundaryCommon);
+  BoundaryCommon(const BoundaryCommon&) = delete;
+  BoundaryCommon& operator=(const BoundaryCommon&) = delete;
 };
 
 // <outerBoundaryIs>
@@ -392,7 +402,8 @@ class OuterBoundaryIs : public BoundaryCommon {
  private:
   friend class KmlFactory;
   OuterBoundaryIs();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(OuterBoundaryIs);
+  OuterBoundaryIs(const OuterBoundaryIs&) = delete;
+  OuterBoundaryIs& operator=(const OuterBoundaryIs&) = delete;
 };
 
 // <innerBoundaryIs>
@@ -410,7 +421,8 @@ class InnerBoundaryIs : public BoundaryCommon {
  private:
   friend class KmlFactory;
   InnerBoundaryIs();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(InnerBoundaryIs);
+  InnerBoundaryIs(const InnerBoundaryIs&) = delete;
+  InnerBoundaryIs& operator=(const InnerBoundaryIs&) = delete;
 };
 
 // <Polygon>
@@ -477,7 +489,8 @@ class Polygon : public ExtrudeGeometryCommon {
   bool has_tessellate_;
   OuterBoundaryIsPtr outerboundaryis_;
   std::vector<InnerBoundaryIsPtr> innerboundaryis_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Polygon);
+  Polygon(const Polygon&) = delete;
+  Polygon& operator=(const Polygon&) = delete;
 };
 
 // <MultiGeometry>
@@ -512,7 +525,8 @@ class MultiGeometry : public Geometry {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   std::vector<GeometryPtr> geometry_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(MultiGeometry);
+  MultiGeometry(const MultiGeometry&) = delete;
+  MultiGeometry& operator=(const MultiGeometry&) = delete;
 };
 
 // <gx:Track>
@@ -596,7 +610,8 @@ class GxTrack : public AltitudeGeometryCommon {
   std::vector<kmlbase::Vec3> gx_angles_array_;
   ModelPtr model_;
   ExtendedDataPtr  extendeddata_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxTrack);
+  GxTrack(const GxTrack&) = delete;
+  GxTrack& operator=(const GxTrack&) = delete;
 };
 
 // <gx:MultiTrack>
@@ -644,7 +659,8 @@ class GxMultiTrack : public Geometry {
   bool gx_interpolate_;
   bool has_gx_interpolate_;
   std::vector<GxTrackPtr> gx_track_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxMultiTrack);
+  GxMultiTrack(const GxMultiTrack&) = delete;
+  GxMultiTrack& operator=(const GxMultiTrack&) = delete;
 };
 
 
@@ -728,7 +744,8 @@ class Location : public Object {
   bool has_latitude_;
   double altitude_;
   bool has_altitude_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Location);
+  Location(const Location&) = delete;
+  Location& operator=(const Location&) = delete;
 };
 
 // <Orientation>
@@ -804,7 +821,8 @@ class Orientation : public Object {
   bool has_tilt_;
   double roll_;
   bool has_roll_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Orientation);
+  Orientation(const Orientation&) = delete;
+  Orientation& operator=(const Orientation&) = delete;
 };
 
 // <Scale>
@@ -880,7 +898,8 @@ class Scale : public Object {
   bool has_y_;
   double z_;
   bool has_z_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Scale);
+  Scale(const Scale&) = delete;
+  Scale& operator=(const Scale&) = delete;
 };
 
 // <Alias>
@@ -938,7 +957,8 @@ class Alias : public Object {
   bool has_targethref_;
   string sourcehref_;
   bool has_sourcehref_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Alias);
+  Alias(const Alias&) = delete;
+  Alias& operator=(const Alias&) = delete;
 };
 
 // <ResourceMap>
@@ -972,7 +992,8 @@ class ResourceMap : public Object {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   std::vector<AliasPtr> alias_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ResourceMap);
+  ResourceMap(const ResourceMap&) = delete;
+  ResourceMap& operator=(const ResourceMap&) = delete;
 };
 
 // <Model>
@@ -1050,7 +1071,8 @@ class Model : public AltitudeGeometryCommon {
   ScalePtr scale_;
   LinkPtr link_;
   ResourceMapPtr resourcemap_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Model);
+  Model(const Model&) = delete;
+  Model& operator=(const Model&) = delete;
 };
 
 }  // namespace kmldom

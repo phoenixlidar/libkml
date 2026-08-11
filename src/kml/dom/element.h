@@ -244,7 +244,8 @@ class Element : public kmlbase::XmlElement {
   std::unique_ptr<kmlbase::Attributes> unknown_attributes_;
   // Any Element may have 0 or more xmlns attributes.
   std::unique_ptr<kmlbase::Attributes> xmlns_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Element);
+  Element(const Element&) = delete;
+  Element& operator=(const Element&) = delete;
 };
 
 // This class implements common code for use in serializing most elements.
@@ -316,7 +317,8 @@ class Field : public Element {
 
  private:
   const Xsd& xsd_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Field);
+  Field(const Field&) = delete;
+  Field& operator=(const Field&) = delete;
 };
 
 }  // namespace kmldom

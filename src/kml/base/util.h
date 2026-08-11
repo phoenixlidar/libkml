@@ -43,12 +43,6 @@ typedef unsigned __int64 uint64_t;
 
 typedef unsigned int uint;
 
-// A macro to disallow the evil copy constructor and assignment operator.
-// Should be used in the private: declarations for a class.
-#define LIBKML_DISALLOW_EVIL_CONSTRUCTORS(TypeName) \
-  TypeName(const TypeName&);\
-  void operator=(const TypeName&)
-
 #include <string>
 
 // A convenience for the internal build system at Google.

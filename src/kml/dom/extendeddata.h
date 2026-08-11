@@ -89,7 +89,8 @@ class SimpleData : public BasicElement<Type_SimpleData> {
   bool has_name_;
   string text_;
   bool has_text_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(SimpleData);
+  SimpleData(const SimpleData&) = delete;
+  SimpleData& operator=(const SimpleData&) = delete;
 };
 
 // <gx:SimpleArrayData>
@@ -137,7 +138,8 @@ class GxSimpleArrayData : public BasicElement<Type_GxSimpleArrayData> {
   string name_;
   bool has_name_;
   std::vector<string> gx_value_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxSimpleArrayData);
+  GxSimpleArrayData(const GxSimpleArrayData&) = delete;
+  GxSimpleArrayData& operator=(const GxSimpleArrayData&) = delete;
 };
 
 // <SchemaData>
@@ -206,7 +208,8 @@ class SchemaData : public Object {
   bool has_schemaurl_;
   std::vector<SimpleDataPtr> simpledata_array_;
   std::vector<GxSimpleArrayDataPtr> gx_simplearraydata_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(SchemaData);
+  SchemaData(const SchemaData&) = delete;
+  SchemaData& operator=(const SchemaData&) = delete;
 };
 
 // <Data>
@@ -274,7 +277,8 @@ class Data : public Object {
   bool has_displayname_;
   string value_;
   bool has_value_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Data);
+  Data(const Data&) = delete;
+  Data& operator=(const Data&) = delete;
 };
 
 // <ExtendedData>
@@ -321,7 +325,8 @@ class ExtendedData : public BasicElement<Type_ExtendedData> {
   virtual void Serialize(Serializer& serializer) const;
   std::vector<DataPtr> data_array_;
   std::vector<SchemaDataPtr> schemadata_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(ExtendedData);
+  ExtendedData(const ExtendedData&) = delete;
+  ExtendedData& operator=(const ExtendedData&) = delete;
 };
 
 // <Metadata>

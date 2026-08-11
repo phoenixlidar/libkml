@@ -171,7 +171,8 @@ private:
       const std::vector<SimpleDataPtr> simpledata_vec);
 
   const parser_observer_vector_t& observers_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmlHandler);
+  KmlHandler(const KmlHandler&) = delete;
+  KmlHandler& operator=(const KmlHandler&) = delete;
 };
 
 } // end namespace kmldom

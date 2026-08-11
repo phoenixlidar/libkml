@@ -58,7 +58,8 @@ class MinizipFile {
   zipFile get_zipfile() { return zipfile_; }
  private:
   zipFile zipfile_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(MinizipFile);
+  MinizipFile(const MinizipFile&) = delete;
+  MinizipFile& operator=(const MinizipFile&) = delete;
 };
 
 // Static.

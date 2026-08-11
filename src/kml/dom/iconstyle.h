@@ -115,7 +115,8 @@ class IconStyle : public ColorStyle {
   bool has_heading_;
   IconStyleIconPtr icon_;
   HotSpotPtr hotspot_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(IconStyle);
+  IconStyle(const IconStyle&) = delete;
+  IconStyle& operator=(const IconStyle&) = delete;
 };
 
 }  // end namespace kmldom

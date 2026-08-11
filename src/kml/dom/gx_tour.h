@@ -79,7 +79,8 @@ class GxTour : public Feature {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   GxPlaylistPtr gx_playlist_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxTour);
+  GxTour(const GxTour&) = delete;
+  GxTour& operator=(const GxTour&) = delete;
 };
 
 // <gx:Playlist>
@@ -111,7 +112,8 @@ class GxPlaylist : public Object {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   std::vector<GxTourPrimitivePtr> gx_tourprimitive_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxPlaylist);
+  GxPlaylist(const GxPlaylist&) = delete;
+  GxPlaylist& operator=(const GxPlaylist&) = delete;
 };
 
 // GxTourPrimitive is an abstract base type.  This corresponds to
@@ -130,7 +132,8 @@ class GxTourPrimitive : public Object {
   GxTourPrimitive() {}
 
  private:
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxTourPrimitive);
+  GxTourPrimitive(const GxTourPrimitive&) = delete;
+  GxTourPrimitive& operator=(const GxTourPrimitive&) = delete;
 };
 
 // Intermediate common class for GxTourPrimitive with gx_duration.
@@ -165,7 +168,8 @@ class GxTourPrimitiveCommon : public GxTourPrimitive {
  private:
   bool has_gx_duration_;
   double gx_duration_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxTourPrimitiveCommon);
+  GxTourPrimitiveCommon(const GxTourPrimitiveCommon&) = delete;
+  GxTourPrimitiveCommon& operator=(const GxTourPrimitiveCommon&) = delete;
 };
 
 // <gx:AnimatedUpdate>
@@ -202,7 +206,8 @@ class GxAnimatedUpdate : public GxTourPrimitiveCommon {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   UpdatePtr update_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxAnimatedUpdate);
+  GxAnimatedUpdate(const GxAnimatedUpdate&) = delete;
+  GxAnimatedUpdate& operator=(const GxAnimatedUpdate&) = delete;
 };
 
 // <gx:FlyTo>
@@ -253,7 +258,8 @@ class GxFlyTo : public GxTourPrimitiveCommon {
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
   AbstractViewPtr abstractview_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxFlyTo);
+  GxFlyTo(const GxFlyTo&) = delete;
+  GxFlyTo& operator=(const GxFlyTo&) = delete;
 };
 
 // <gx:Wait>
@@ -276,7 +282,8 @@ class GxWait : public GxTourPrimitiveCommon {
   GxWait();
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxWait);
+  GxWait(const GxWait&) = delete;
+  GxWait& operator=(const GxWait&) = delete;
 };
 
 // <gx:SoundCue>
@@ -319,7 +326,8 @@ class GxSoundCue : public GxTourPrimitive {
   virtual void AddElement(const ElementPtr& element);
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxSoundCue);
+  GxSoundCue(const GxSoundCue&) = delete;
+  GxSoundCue& operator=(const GxSoundCue&) = delete;
 };
 
 // <gx:TourControl>
@@ -362,7 +370,8 @@ class GxTourControl : public GxTourPrimitive {
   virtual void AddElement(const ElementPtr& element);
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(GxTourControl);
+  GxTourControl(const GxTourControl&) = delete;
+  GxTourControl& operator=(const GxTourControl&) = delete;
 };
 
 

@@ -54,7 +54,8 @@ class VisitorDriver {
   // However there is no requirement that either of these actually occur and
   // the driver is free to implement whatever semantics it chooses.
   virtual void Visit(const ElementPtr& element) = 0;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(VisitorDriver);
+  VisitorDriver(const VisitorDriver&) = delete;
+  VisitorDriver& operator=(const VisitorDriver&) = delete;
 };
 
 // A simple driver implementation that invokes a single visitor in pre-order
@@ -69,7 +70,8 @@ class SimplePreorderDriver : public VisitorDriver {
 
  private:
   Visitor* visitor_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(SimplePreorderDriver);
+  SimplePreorderDriver(const SimplePreorderDriver&) = delete;
+  SimplePreorderDriver& operator=(const SimplePreorderDriver&) = delete;
 };
 
 
@@ -85,7 +87,8 @@ class SimplePostorderDriver : public VisitorDriver {
 
  private:
   Visitor* visitor_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(SimplePostorderDriver);
+  SimplePostorderDriver(const SimplePostorderDriver&) = delete;
+  SimplePostorderDriver& operator=(const SimplePostorderDriver&) = delete;
 };
 
 }  // namespace kmldom

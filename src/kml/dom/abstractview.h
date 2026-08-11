@@ -66,7 +66,8 @@ class AbstractView : public Object {
 
  private:
   TimePrimitivePtr gx_timeprimitive_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AbstractView);
+  AbstractView(const AbstractView&) = delete;
+  AbstractView& operator=(const AbstractView&) = delete;
 };
 
 // This is an internal convenience class for code common to LookAt and Camera.
@@ -210,7 +211,8 @@ class AbstractViewCommon : public AbstractView {
   bool has_altitudemode_;
   int gx_altitudemode_;
   bool has_gx_altitudemode_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AbstractViewCommon);
+  AbstractViewCommon(const AbstractViewCommon&) = delete;
+  AbstractViewCommon& operator=(const AbstractViewCommon&) = delete;
 };
 
 // <LookAt>
@@ -250,7 +252,8 @@ class LookAt : public AbstractViewCommon {
   virtual void Serialize(Serializer& serializer) const;
   double range_;
   bool has_range_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LookAt);
+  LookAt(const LookAt&) = delete;
+  LookAt& operator=(const LookAt&) = delete;
 };
 
 // <Camera>
@@ -290,7 +293,8 @@ class Camera : public AbstractViewCommon {
   virtual void Serialize(Serializer& serializer) const;
   double roll_;
   bool has_roll_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Camera);
+  Camera(const Camera&) = delete;
+  Camera& operator=(const Camera&) = delete;
 };
 
 }  // end namespace kmldom

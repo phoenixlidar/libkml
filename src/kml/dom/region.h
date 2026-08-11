@@ -130,7 +130,8 @@ class LatLonAltBox : public AbstractLatLonBox {
   bool has_altitudemode_;
   int gx_altitudemode_;
   bool has_gx_altitudemode_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LatLonAltBox);
+  LatLonAltBox(const LatLonAltBox&) = delete;
+  LatLonAltBox& operator=(const LatLonAltBox&) = delete;
 };
 
 // <Lod>
@@ -224,7 +225,8 @@ class Lod : public Object {
   bool has_minfadeextent_;
   double maxfadeextent_;
   bool has_maxfadeextent_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Lod);
+  Lod(const Lod&) = delete;
+  Lod& operator=(const Lod&) = delete;
 };
 
 // <Region>
@@ -269,7 +271,8 @@ class Region : public Object {
   virtual void Serialize(Serializer& serializer) const;
   LatLonAltBoxPtr latlonaltbox_;
   LodPtr lod_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Region);
+  Region(const Region&) = delete;
+  Region& operator=(const Region&) = delete;
 };
 
 }  // end namespace kmldom

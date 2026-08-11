@@ -50,7 +50,8 @@ class Folder : public Container {
   Folder();
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Folder);
+  Folder(const Folder&) = delete;
+  Folder& operator=(const Folder&) = delete;
 };
 
 }  // end namespace kmldom

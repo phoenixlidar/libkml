@@ -131,7 +131,8 @@ class Attributes {
   // XML attributes have no order and are unique.  The attribute name is
   // preserved to properly save unknown attributes.
   StringMap attributes_map_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Attributes);
+  Attributes(const Attributes&) = delete;
+  Attributes& operator=(const Attributes&) = delete;
 };
 
 }  // end namespace kmlbase

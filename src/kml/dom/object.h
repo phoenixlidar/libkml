@@ -81,7 +81,8 @@ class Object : public Element {
   bool has_id_;
   string targetid_;
   bool has_targetid_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Object);
+  Object(const Object&) = delete;
+  Object& operator=(const Object&) = delete;
 };
 
 }  // namespace kmldom

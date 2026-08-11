@@ -37,7 +37,7 @@ namespace kmldom {
 // Element-derived type is of the template type then a pointer is returned,
 // else nullptr.  It is safe to pass a nullptr to this function.
 template<class T>
-inline const std::shared_ptr<T> ElementCast(
+inline std::shared_ptr<T> ElementCast(
     const ElementPtr& element) {
   if (element && element->IsA(T::ElementType())) {
     return std::static_pointer_cast<T>(element);
@@ -45,218 +45,218 @@ inline const std::shared_ptr<T> ElementCast(
   return nullptr;
 }
 
-inline const ElementPtr AsElement(const kmlbase::XmlElementPtr& xml_element) {
+inline ElementPtr AsElement(const kmlbase::XmlElementPtr& xml_element) {
   return std::static_pointer_cast<Element>(xml_element);
 }
 
 // Abstract element groups.
-const AbstractLatLonBoxPtr AsAbstractLatLonBox(const ElementPtr element);
-const AbstractViewPtr AsAbstractView(const ElementPtr element);
-const ColorStylePtr AsColorStyle(const ElementPtr element);
-const ContainerPtr AsContainer(const ElementPtr element);
-const FeaturePtr AsFeature(const ElementPtr element);
-const GeometryPtr AsGeometry(const ElementPtr element);
-const ObjectPtr AsObject(const ElementPtr element);
-const OverlayPtr AsOverlay(const ElementPtr element);
-const StyleSelectorPtr AsStyleSelector(const ElementPtr element);
-const SubStylePtr AsSubStyle(const ElementPtr element);
-const TimePrimitivePtr AsTimePrimitive(const ElementPtr element);
+AbstractLatLonBoxPtr AsAbstractLatLonBox(const ElementPtr& element);
+AbstractViewPtr AsAbstractView(const ElementPtr& element);
+ColorStylePtr AsColorStyle(const ElementPtr& element);
+ContainerPtr AsContainer(const ElementPtr& element);
+FeaturePtr AsFeature(const ElementPtr& element);
+GeometryPtr AsGeometry(const ElementPtr& element);
+ObjectPtr AsObject(const ElementPtr& element);
+OverlayPtr AsOverlay(const ElementPtr& element);
+StyleSelectorPtr AsStyleSelector(const ElementPtr& element);
+SubStylePtr AsSubStyle(const ElementPtr& element);
+TimePrimitivePtr AsTimePrimitive(const ElementPtr& element);
 
 // Concrete elements.
-const AliasPtr AsAlias(const ElementPtr element);
-const BalloonStylePtr AsBalloonStyle(const ElementPtr element);
-const CameraPtr AsCamera(const ElementPtr element);
-const ChangePtr AsChange(const ElementPtr element);
-inline const CoordinatesPtr AsCoordinates(const ElementPtr& element) {
+AliasPtr AsAlias(const ElementPtr& element);
+BalloonStylePtr AsBalloonStyle(const ElementPtr& element);
+CameraPtr AsCamera(const ElementPtr& element);
+ChangePtr AsChange(const ElementPtr& element);
+inline CoordinatesPtr AsCoordinates(const ElementPtr& element) {
   return ElementCast<Coordinates>(element);
 }
-const CreatePtr AsCreate(const ElementPtr element);
-const DataPtr AsData(const ElementPtr element);
-const DeletePtr AsDelete(const ElementPtr element);
-const DocumentPtr AsDocument(const ElementPtr element);
-inline const ExtendedDataPtr AsExtendedData(const ElementPtr& element) {
+CreatePtr AsCreate(const ElementPtr& element);
+DataPtr AsData(const ElementPtr& element);
+DeletePtr AsDelete(const ElementPtr& element);
+DocumentPtr AsDocument(const ElementPtr& element);
+inline ExtendedDataPtr AsExtendedData(const ElementPtr& element) {
   return ElementCast<ExtendedData>(element);
 }
-const FolderPtr AsFolder(const ElementPtr element);
-const GroundOverlayPtr AsGroundOverlay(const ElementPtr element);
-const HotSpotPtr AsHotSpot(const ElementPtr element);
-const IconPtr AsIcon(const ElementPtr element);
-const IconStylePtr AsIconStyle(const ElementPtr element);
-const IconStyleIconPtr AsIconStyleIcon(const ElementPtr element);
-const ImagePyramidPtr AsImagePyramid(const ElementPtr element);
-const InnerBoundaryIsPtr AsInnerBoundaryIs(const ElementPtr element);
-const ItemIconPtr AsItemIcon(const ElementPtr element);
-inline const KmlPtr AsKml(const ElementPtr& element) {
+FolderPtr AsFolder(const ElementPtr& element);
+GroundOverlayPtr AsGroundOverlay(const ElementPtr& element);
+HotSpotPtr AsHotSpot(const ElementPtr& element);
+IconPtr AsIcon(const ElementPtr& element);
+IconStylePtr AsIconStyle(const ElementPtr& element);
+IconStyleIconPtr AsIconStyleIcon(const ElementPtr& element);
+ImagePyramidPtr AsImagePyramid(const ElementPtr& element);
+InnerBoundaryIsPtr AsInnerBoundaryIs(const ElementPtr& element);
+ItemIconPtr AsItemIcon(const ElementPtr& element);
+inline KmlPtr AsKml(const ElementPtr& element) {
   return ElementCast<Kml>(element);
 }
-const LabelStylePtr AsLabelStyle(const ElementPtr element);
-const LatLonAltBoxPtr AsLatLonAltBox(const ElementPtr element);
-const LatLonBoxPtr AsLatLonBox(const ElementPtr element);
-const LineStringPtr AsLineString(const ElementPtr element);
-const LineStylePtr AsLineStyle(const ElementPtr element);
-const LinearRingPtr AsLinearRing(const ElementPtr element);
-const LinkPtr AsLink(const ElementPtr element);
-const LinkSnippetPtr AsLinkSnippet(const ElementPtr element);
-const ListStylePtr AsListStyle(const ElementPtr element);
-const LocationPtr AsLocation(const ElementPtr element);
-const LodPtr AsLod(const ElementPtr element);
-const LookAtPtr AsLookAt(const ElementPtr element);
-inline const MetadataPtr AsMetadata(const ElementPtr& element) {
+LabelStylePtr AsLabelStyle(const ElementPtr& element);
+LatLonAltBoxPtr AsLatLonAltBox(const ElementPtr& element);
+LatLonBoxPtr AsLatLonBox(const ElementPtr& element);
+LineStringPtr AsLineString(const ElementPtr& element);
+LineStylePtr AsLineStyle(const ElementPtr& element);
+LinearRingPtr AsLinearRing(const ElementPtr& element);
+LinkPtr AsLink(const ElementPtr& element);
+LinkSnippetPtr AsLinkSnippet(const ElementPtr& element);
+ListStylePtr AsListStyle(const ElementPtr& element);
+LocationPtr AsLocation(const ElementPtr& element);
+LodPtr AsLod(const ElementPtr& element);
+LookAtPtr AsLookAt(const ElementPtr& element);
+inline MetadataPtr AsMetadata(const ElementPtr& element) {
   return ElementCast<Metadata>(element);
 }
-const ModelPtr AsModel(const ElementPtr element);
-const MultiGeometryPtr AsMultiGeometry(const ElementPtr element);
-const NetworkLinkPtr AsNetworkLink(const ElementPtr element);
-inline const NetworkLinkControlPtr AsNetworkLinkControl(
+ModelPtr AsModel(const ElementPtr& element);
+MultiGeometryPtr AsMultiGeometry(const ElementPtr& element);
+NetworkLinkPtr AsNetworkLink(const ElementPtr& element);
+inline NetworkLinkControlPtr AsNetworkLinkControl(
     const ElementPtr& element) {
   return ElementCast<NetworkLinkControl>(element);
 }
-const OrientationPtr AsOrientation(const ElementPtr element);
-const OuterBoundaryIsPtr AsOuterBoundaryIs(const ElementPtr element);
-const OverlayXYPtr AsOverlayXY(const ElementPtr element);
-const PairPtr AsPair(const ElementPtr element);
-const PhotoOverlayPtr AsPhotoOverlay(const ElementPtr element);
-const PlacemarkPtr AsPlacemark(const ElementPtr element);
-const PointPtr AsPoint(const ElementPtr element);
-const PolyStylePtr AsPolyStyle(const ElementPtr element);
-const PolygonPtr AsPolygon(const ElementPtr element);
-const RegionPtr AsRegion(const ElementPtr element);
-const ResourceMapPtr AsResourceMap(const ElementPtr element);
-const RotationXYPtr AsRotationXY(const ElementPtr element);
-const ScalePtr AsScale(const ElementPtr element);
-const SchemaPtr AsSchema(const ElementPtr element);
-const SchemaDataPtr AsSchemaData(const ElementPtr element);
-const ScreenOverlayPtr AsScreenOverlay(const ElementPtr element);
-const ScreenXYPtr AsScreenXY(const ElementPtr element);
-inline const SimpleDataPtr AsSimpleData(const ElementPtr& element) {
+OrientationPtr AsOrientation(const ElementPtr& element);
+OuterBoundaryIsPtr AsOuterBoundaryIs(const ElementPtr& element);
+OverlayXYPtr AsOverlayXY(const ElementPtr& element);
+PairPtr AsPair(const ElementPtr& element);
+PhotoOverlayPtr AsPhotoOverlay(const ElementPtr& element);
+PlacemarkPtr AsPlacemark(const ElementPtr& element);
+PointPtr AsPoint(const ElementPtr& element);
+PolyStylePtr AsPolyStyle(const ElementPtr& element);
+PolygonPtr AsPolygon(const ElementPtr& element);
+RegionPtr AsRegion(const ElementPtr& element);
+ResourceMapPtr AsResourceMap(const ElementPtr& element);
+RotationXYPtr AsRotationXY(const ElementPtr& element);
+ScalePtr AsScale(const ElementPtr& element);
+SchemaPtr AsSchema(const ElementPtr& element);
+SchemaDataPtr AsSchemaData(const ElementPtr& element);
+ScreenOverlayPtr AsScreenOverlay(const ElementPtr& element);
+ScreenXYPtr AsScreenXY(const ElementPtr& element);
+inline SimpleDataPtr AsSimpleData(const ElementPtr& element) {
   return ElementCast<SimpleData>(element);
 }
-inline const SimpleFieldPtr AsSimpleField(const ElementPtr& element) {
+inline SimpleFieldPtr AsSimpleField(const ElementPtr& element) {
   return ElementCast<SimpleField>(element);
 }
-const SizePtr AsSize(const ElementPtr element);
-const SnippetPtr AsSnippet(const ElementPtr element);
-const StylePtr AsStyle(const ElementPtr element);
-const StyleMapPtr AsStyleMap(const ElementPtr element);
-const TimeSpanPtr AsTimeSpan(const ElementPtr element);
-const TimeStampPtr AsTimeStamp(const ElementPtr element);
-inline const UpdatePtr AsUpdate(const ElementPtr& element) {
+SizePtr AsSize(const ElementPtr& element);
+SnippetPtr AsSnippet(const ElementPtr& element);
+StylePtr AsStyle(const ElementPtr& element);
+StyleMapPtr AsStyleMap(const ElementPtr& element);
+TimeSpanPtr AsTimeSpan(const ElementPtr& element);
+TimeStampPtr AsTimeStamp(const ElementPtr& element);
+inline UpdatePtr AsUpdate(const ElementPtr& element) {
   return ElementCast<Update>(element);
 }
-const ViewVolumePtr AsViewVolume(const ElementPtr element);
+ViewVolumePtr AsViewVolume(const ElementPtr& element);
 
 // Atom
-inline const AtomAuthorPtr AsAtomAuthor(const ElementPtr& element) {
+inline AtomAuthorPtr AsAtomAuthor(const ElementPtr& element) {
   return ElementCast<AtomAuthor>(element);
 }
-inline const AtomCategoryPtr AsAtomCategory(const ElementPtr& element) {
+inline AtomCategoryPtr AsAtomCategory(const ElementPtr& element) {
   return ElementCast<AtomCategory>(element);
 }
-inline const AtomContentPtr AsAtomContent(const ElementPtr& element) {
+inline AtomContentPtr AsAtomContent(const ElementPtr& element) {
   return ElementCast<AtomContent>(element);
 }
-inline const AtomEntryPtr AsAtomEntry(const ElementPtr& element) {
+inline AtomEntryPtr AsAtomEntry(const ElementPtr& element) {
   return ElementCast<AtomEntry>(element);
 }
-inline const AtomFeedPtr AsAtomFeed(const ElementPtr& element) {
+inline AtomFeedPtr AsAtomFeed(const ElementPtr& element) {
   return ElementCast<AtomFeed>(element);
 }
-inline const AtomLinkPtr AsAtomLink(const ElementPtr& element) {
+inline AtomLinkPtr AsAtomLink(const ElementPtr& element) {
   return ElementCast<AtomLink>(element);
 }
 
 // xAL
-inline const XalAddressDetailsPtr AsXalAddressDetails(
+inline XalAddressDetailsPtr AsXalAddressDetails(
     const ElementPtr& element) {
   return ElementCast<XalAddressDetails>(element);
 }
-inline const XalAdministrativeAreaPtr AsXalAdministrativeArea(
+inline XalAdministrativeAreaPtr AsXalAdministrativeArea(
     const ElementPtr& element) {
   return ElementCast<XalAdministrativeArea>(element);
 }
 
-inline const XalCountryPtr AsXalCountry(const ElementPtr& element) {
+inline XalCountryPtr AsXalCountry(const ElementPtr& element) {
   return ElementCast<XalCountry>(element);
 }
 
-inline const XalLocalityPtr AsXalLocality(const ElementPtr& element) {
+inline XalLocalityPtr AsXalLocality(const ElementPtr& element) {
   return ElementCast<XalLocality>(element);
 }
 
-inline const XalPostalCodePtr AsXalPostalCode(const ElementPtr& element) {
+inline XalPostalCodePtr AsXalPostalCode(const ElementPtr& element) {
   return ElementCast<XalPostalCode>(element);
 }
 
-inline const XalSubAdministrativeAreaPtr AsXalSubAdministrativeArea(
+inline XalSubAdministrativeAreaPtr AsXalSubAdministrativeArea(
     const ElementPtr& element) {
   return ElementCast<XalSubAdministrativeArea>(element);
 }
 
-inline const XalThoroughfarePtr AsXalThoroughfare(const ElementPtr& element) {
+inline XalThoroughfarePtr AsXalThoroughfare(const ElementPtr& element) {
   return ElementCast<XalThoroughfare>(element);
 }
 
 // gx
 
-inline const GxAnimatedUpdatePtr AsGxAnimatedUpdate(const ElementPtr element) {
+inline GxAnimatedUpdatePtr AsGxAnimatedUpdate(const ElementPtr& element) {
   return ElementCast<GxAnimatedUpdate>(element);
 }
 
-inline const GxFlyToPtr AsGxFlyTo(const ElementPtr element) {
+inline GxFlyToPtr AsGxFlyTo(const ElementPtr& element) {
   return ElementCast<GxFlyTo>(element);
 }
 
-inline const GxLatLonQuadPtr AsGxLatLonQuad(const ElementPtr element) {
+inline GxLatLonQuadPtr AsGxLatLonQuad(const ElementPtr& element) {
   return ElementCast<GxLatLonQuad>(element);
 }
 
-inline const GxMultiTrackPtr AsGxMultiTrack(const ElementPtr element) {
+inline GxMultiTrackPtr AsGxMultiTrack(const ElementPtr& element) {
   return ElementCast<GxMultiTrack>(element);
 }
 
-inline const GxPlaylistPtr AsGxPlaylist(const ElementPtr element) {
+inline GxPlaylistPtr AsGxPlaylist(const ElementPtr& element) {
   return ElementCast<GxPlaylist>(element);
 }
 
-inline const GxSimpleArrayFieldPtr AsGxSimpleArrayField(
-    const ElementPtr element) {
+inline GxSimpleArrayFieldPtr AsGxSimpleArrayField(
+    const ElementPtr& element) {
   return ElementCast<GxSimpleArrayField>(element);
 }
 
-inline const GxSimpleArrayDataPtr AsGxSimpleArrayData(
-    const ElementPtr element) {
+inline GxSimpleArrayDataPtr AsGxSimpleArrayData(
+    const ElementPtr& element) {
   return ElementCast<GxSimpleArrayData>(element);
 }
 
-inline const GxSoundCuePtr AsGxSoundCue(const ElementPtr element) {
+inline GxSoundCuePtr AsGxSoundCue(const ElementPtr& element) {
   return ElementCast<GxSoundCue>(element);
 }
 
-inline const GxTimeSpanPtr AsGxTimeSpan(const ElementPtr element) {
+inline GxTimeSpanPtr AsGxTimeSpan(const ElementPtr& element) {
   return ElementCast<GxTimeSpan>(element);
 }
 
-inline const GxTimeStampPtr AsGxTimeStamp(const ElementPtr element) {
+inline GxTimeStampPtr AsGxTimeStamp(const ElementPtr& element) {
   return ElementCast<GxTimeStamp>(element);
 }
 
-inline const GxTourPtr AsGxTour(const ElementPtr element) {
+inline GxTourPtr AsGxTour(const ElementPtr& element) {
   return ElementCast<GxTour>(element);
 }
 
-inline const GxTourControlPtr AsGxTourControl(const ElementPtr element) {
+inline GxTourControlPtr AsGxTourControl(const ElementPtr& element) {
   return ElementCast<GxTourControl>(element);
 }
 
-inline const GxTourPrimitivePtr AsGxTourPrimitive(const ElementPtr element) {
+inline GxTourPrimitivePtr AsGxTourPrimitive(const ElementPtr& element) {
   return ElementCast<GxTourPrimitive>(element);
 }
 
-inline const GxTrackPtr AsGxTrack(const ElementPtr element) {
+inline GxTrackPtr AsGxTrack(const ElementPtr& element) {
   return ElementCast<GxTrack>(element);
 }
 
-inline const GxWaitPtr AsGxWait(const ElementPtr element) {
+inline GxWaitPtr AsGxWait(const ElementPtr& element) {
   return ElementCast<GxWait>(element);
 }
 

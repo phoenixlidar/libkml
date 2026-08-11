@@ -111,7 +111,8 @@ class KmlUri {
   string path_in_kmz_;
 
   // No copy construction or assignment please.
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmlUri);
+  KmlUri(const KmlUri&) = delete;
+  KmlUri& operator=(const KmlUri&) = delete;
 };
 
 }  // end namespace kmlengine

@@ -4,7 +4,7 @@ project (LibKML
     LANGUAGES C CXX
 )
 
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 17)
 
 include (CheckSymbolExists)
 include (CMakeDependentOption)

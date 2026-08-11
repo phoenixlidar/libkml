@@ -58,7 +58,8 @@ class KmlHandlerNS : public KmlHandler {
 
  private:
   // TODO: A map of namespace URIs to their prefixes found during the parse.
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmlHandlerNS);
+  KmlHandlerNS(const KmlHandlerNS&) = delete;
+  KmlHandlerNS& operator=(const KmlHandlerNS&) = delete;
 };
 
 } // end namespace kmldom

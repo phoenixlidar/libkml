@@ -86,7 +86,8 @@ class AtomAuthor : public BasicElement<Type_AtomAuthor> {
   virtual void AddElement(const ElementPtr& element);
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AtomAuthor);
+  AtomAuthor(const AtomAuthor&) = delete;
+  AtomAuthor& operator=(const AtomAuthor&) = delete;
 };
 
 // Elements common to <atom:feed> and <atom:entry>.
@@ -163,7 +164,8 @@ class AtomCommon : public Element {
   string updated_;
   std::vector<AtomCategoryPtr> category_array_;
   std::vector<AtomLinkPtr> link_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AtomCommon);
+  AtomCommon(const AtomCommon&) = delete;
+  AtomCommon& operator=(const AtomCommon&) = delete;
 };
 
 // <atom:category scheme="..." term="..." label=..."/>, RFC 4287 4.2.2
@@ -223,7 +225,8 @@ class AtomCategory : public BasicElement<Type_AtomCategory> {
   string scheme_;
   bool has_label_;
   string label_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AtomCategory);
+  AtomCategory(const AtomCategory&) = delete;
+  AtomCategory& operator=(const AtomCategory&) = delete;
 };
 
 // <atom:content src="..."  type="...">, RFC 4287 4.1.3
@@ -268,7 +271,8 @@ class AtomContent : public BasicElement<Type_AtomContent> {
   string src_;
   bool has_type_;
   string type_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AtomContent);
+  AtomContent(const AtomContent&) = delete;
+  AtomContent& operator=(const AtomContent&) = delete;
 };
 
 // <atom:entry>, RFC 4287 4.1.2
@@ -317,7 +321,8 @@ class AtomEntry : public AtomCommon {
   bool has_summary_;
   string summary_;
   AtomContentPtr content_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AtomEntry);
+  AtomEntry(const AtomEntry&) = delete;
+  AtomEntry& operator=(const AtomEntry&) = delete;
 };
 
 // <atom:feed>, RFC 4287 4.1.1
@@ -351,7 +356,8 @@ class AtomFeed : public AtomCommon {
   friend class KmlHandler;
   virtual void AddElement(const ElementPtr& element);
   std::vector<AtomEntryPtr> entry_array_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AtomFeed);
+  AtomFeed(const AtomFeed&) = delete;
+  AtomFeed& operator=(const AtomFeed&) = delete;
 };
 
 // <atom:link>, RFC 4287 4.2.7
@@ -452,7 +458,8 @@ class AtomLink : public BasicElement<Type_AtomLink> {
   void SerializeAttributes(kmlbase::Attributes* attributes) const;
   friend class Serializer;
   virtual void Serialize(Serializer& serializer) const;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AtomLink);
+  AtomLink(const AtomLink&) = delete;
+  AtomLink& operator=(const AtomLink&) = delete;
 };
 
 }  // end namespace kmldom

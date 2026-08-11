@@ -83,7 +83,8 @@ class SnippetCommon : public Element {
   bool has_text_;
   int maxlines_;
   bool has_maxlines_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(SnippetCommon);
+  SnippetCommon(const SnippetCommon&) = delete;
+  SnippetCommon& operator=(const SnippetCommon&) = delete;
 };
 
 // <Snippet>
@@ -101,7 +102,8 @@ class Snippet : public SnippetCommon {
  private:
   friend class KmlFactory;
   Snippet();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(Snippet);
+  Snippet(const Snippet&) = delete;
+  Snippet& operator=(const Snippet&) = delete;
 };
 
 // <linkSnippet>
@@ -119,7 +121,8 @@ class LinkSnippet : public SnippetCommon {
  private:
   friend class KmlFactory;
   LinkSnippet();
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(LinkSnippet);
+  LinkSnippet(const LinkSnippet&) = delete;
+  LinkSnippet& operator=(const LinkSnippet&) = delete;
 };
 
 }  // end namespace kmldom

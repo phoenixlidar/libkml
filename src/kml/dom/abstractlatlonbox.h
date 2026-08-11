@@ -122,7 +122,8 @@ class AbstractLatLonBox : public Object {
   bool has_east_;
   double west_;
   bool has_west_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(AbstractLatLonBox);
+  AbstractLatLonBox(const AbstractLatLonBox&) = delete;
+  AbstractLatLonBox& operator=(const AbstractLatLonBox&) = delete;
 };
 
 }  // end namespace kmldom

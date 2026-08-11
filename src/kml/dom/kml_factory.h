@@ -138,9 +138,9 @@ class KmlFactory {
   GxWaitPtr CreateGxWait() const;
 
  private:
-  KmlFactory() {};  // Singleton class, use GetFactory().
-  static KmlFactory* factory_;
-  LIBKML_DISALLOW_EVIL_CONSTRUCTORS(KmlFactory);
+  KmlFactory() {}  // Singleton class, use GetFactory().
+  KmlFactory(const KmlFactory&) = delete;
+  KmlFactory& operator=(const KmlFactory&) = delete;
 };
 
 }  // namespace kmldom

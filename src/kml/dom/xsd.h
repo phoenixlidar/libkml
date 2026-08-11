@@ -94,7 +94,6 @@ class Xsd {
 
  private:
   Xsd();
-  static Xsd* schema_;
 
   tag_id_map_t tag_to_id;
   std::map<int,XsdElement> id_to_string;

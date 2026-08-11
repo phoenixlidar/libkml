@@ -29,13 +29,9 @@
 
 namespace kmldom {
 
-Xsd* Xsd::schema_ = nullptr;
-
 Xsd* Xsd::GetSchema() {
-  if (schema_ == nullptr) {
-    schema_ = new Xsd;
-  }
-  return schema_;
+  static Xsd schema;
+  return &schema;
 }
 
 Xsd::Xsd() {
