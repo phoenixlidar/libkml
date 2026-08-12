@@ -32,6 +32,7 @@
 #include "kml/dom.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // Each set simple child of source is set in target.  If a field is not set
 // (has_xxx() == false) it is not changed in the target.   While the intended
@@ -56,5 +57,6 @@ void MergeFields(const kmldom::ElementPtr& source, kmldom::ElementPtr target);
 // are similarily preserved for serialization.
 void MergeElements(const kmldom::ElementPtr& source, kmldom::ElementPtr target);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

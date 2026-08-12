@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 SnippetCommon::SnippetCommon()
   : has_text_(false),
@@ -88,4 +89,5 @@ void LinkSnippet::Accept(Visitor* visitor) {
   visitor->VisitLinkSnippet(std::static_pointer_cast<LinkSnippet>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

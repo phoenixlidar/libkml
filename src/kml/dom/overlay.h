@@ -41,6 +41,7 @@
 #include "kml/dom/vec2.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -762,5 +763,6 @@ class PhotoOverlay : public Overlay {
   PhotoOverlay& operator=(const PhotoOverlay&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 GxTimeSpan::GxTimeSpan() {
   set_xmlns(kmlbase::XMLNS_GX22);
@@ -53,4 +54,5 @@ void GxTimeStamp::Accept(Visitor* visitor) {
   visitor->VisitGxTimeStamp(std::static_pointer_cast<GxTimeStamp>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

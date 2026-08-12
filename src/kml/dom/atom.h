@@ -31,6 +31,7 @@
 #include "kml/dom/element.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // <atom:author>, RFC 4287 4.2.1, and 3.2 (atomPersonConstruct)
 class AtomAuthor : public BasicElement<Type_AtomAuthor> {
@@ -462,5 +463,6 @@ class AtomLink : public BasicElement<Type_AtomLink> {
   AtomLink& operator=(const AtomLink&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

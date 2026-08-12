@@ -30,6 +30,7 @@
 #include "uriparser/Uri.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class UriParserPrivate {
  public:
@@ -274,4 +275,5 @@ bool UriParser::GetPath(string* path) const {
   return true;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

@@ -33,6 +33,7 @@
 #include "kml/dom/kml_ptr.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // A base class implementing a visitor for elements in a kml dom hierarchy.
 // This class should be extended to implement specific visitors by overriding
@@ -368,5 +369,6 @@ class Visitor {
   Visitor& operator=(const Visitor&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

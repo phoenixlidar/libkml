@@ -28,11 +28,13 @@
 #pragma once
 
 namespace kmlbase {
+inline namespace v2 {
 
 	const char* kAtomMimeType = "application/atom+xml";
 	const char* kCsvMimeType = "text/csv";
 	const char* kKmlMimeType = "application/vnd.google-earth.kml+xml";
 	const char* kKmzMimeType = "application/vnd.google-earth.kmz";
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

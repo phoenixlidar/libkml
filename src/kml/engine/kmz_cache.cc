@@ -32,6 +32,7 @@
 using kmlbase::MemoryFilePtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This encodes "a bit of history" regarding the two-level fetch semantics of
 // KMZ relative references.  While there exists no formal KMZ specification
@@ -154,4 +155,5 @@ bool KmzCache::FetchFromCache(KmlUri* kml_uri, string* content) const {
   return false;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

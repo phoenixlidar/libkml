@@ -32,6 +32,7 @@
 #include "kml/dom/xsd.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // There is an entry here for each global <xs:element> in the KML 2.2 XSD
 static XsdElement kKml22Elements[] = {
@@ -325,5 +326,6 @@ static XsdSimpleTypeEnum kKml22Enums[] = {
   { Type_GxPlayMode, kGxPlayModeEnums }
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

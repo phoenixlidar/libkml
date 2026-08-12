@@ -36,6 +36,7 @@
 #endif
 
 namespace kmlbase {
+inline namespace v2 {
   
   class LocaleC {
     
@@ -57,5 +58,6 @@ namespace kmlbase {
     
   }; //end class LocaleC
   
+}  // end inline namespace v2
 } //end namespace kmlbase
 

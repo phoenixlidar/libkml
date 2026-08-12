@@ -38,10 +38,13 @@
 
 // TODO: move Bbox to kmlbase
 namespace kmlengine {
+inline namespace v2 {
 class Bbox;
+}  // end inline namespace v2
 }
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 class HttpClient;
 
@@ -225,5 +228,6 @@ class GoogleMapsData {
   const string scope_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

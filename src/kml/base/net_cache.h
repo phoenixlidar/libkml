@@ -32,6 +32,7 @@
 #include <memory>
 
 namespace kmlbase {
+inline namespace v2 {
 
 // A CacheItem is derived from Referent and has a CreateFromString:
 // class SomeCacheItem : public Referent {
@@ -212,5 +213,6 @@ class NetCache {
   const NetFetcher* net_fetcher_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

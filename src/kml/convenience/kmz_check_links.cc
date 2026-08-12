@@ -36,6 +36,7 @@ using kmlengine::KmzFile;
 using std::vector;
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 bool KmzCheckLinks(const KmzFile& kmzfile, vector<string>* missing_links) {
   string kml;
@@ -64,4 +65,5 @@ bool KmzCheckLinks(const KmzFile& kmzfile, vector<string>* missing_links) {
   return ret;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

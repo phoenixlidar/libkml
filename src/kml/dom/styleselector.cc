@@ -26,9 +26,11 @@
 #include "kml/dom/styleselector.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 StyleSelector::StyleSelector() {}
 
 StyleSelector::~StyleSelector() {}
 
+}  // end inline namespace v2
 }  // end namespace kmldom

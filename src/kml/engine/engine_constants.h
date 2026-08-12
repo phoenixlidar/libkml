@@ -28,11 +28,13 @@
 #pragma once
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This is the maximum number of styleUrls followed in resolving a style
 // selector.  Note: the KML standard specifies no such limit.  This is used
 // primarily to inhibit infinite loops on styleUrls that are self referencing.
 const unsigned int kDefaultMaxNestedStyleUrls = 5;
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

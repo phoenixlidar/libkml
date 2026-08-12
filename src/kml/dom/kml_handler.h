@@ -80,6 +80,7 @@
 #include "kml/dom/parser_observer.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class KmlFactory;
 
@@ -175,5 +176,6 @@ private:
   KmlHandler& operator=(const KmlHandler&) = delete;
 };
 
+}  // end inline namespace v2
 } // end namespace kmldom
 

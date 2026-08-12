@@ -31,6 +31,7 @@
 #include "kml/engine/kmz_cache.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // A cache of KmlFile's (parse of a KML file of a given URL).
 typedef kmlbase::NetCache<KmlFile> KmlFileNetCache;
@@ -92,5 +93,6 @@ class KmlCache {
   std::unique_ptr<KmlFileNetCache> kml_file_cache_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

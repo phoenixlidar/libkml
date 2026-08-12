@@ -41,6 +41,7 @@
 #endif
 
 namespace kmlbase {
+inline namespace v2 {
 
 // The maximum uncompressed file size we permit the underlying zip reader
 // to attempt to handle by default. (2 GB, as per minizip/unzip.h.)
@@ -245,4 +246,5 @@ bool ZipFile::AddEntry(const string& data,
   return zipCloseFileInZip(zipfile) == ZIP_OK;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

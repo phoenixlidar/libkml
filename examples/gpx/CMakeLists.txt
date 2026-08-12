@@ -1,5 +1,5 @@
 build_example(
     NAME gpxtracktokml
-    LINKS LibKML::kmlconvenience
+    LINKS LibKML2::kmlconvenience
     CATEGORY gpx
 )

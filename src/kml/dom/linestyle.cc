@@ -31,6 +31,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 LineStyle::LineStyle()
   : width_(1.0), has_width_(false) {
@@ -65,4 +66,5 @@ void LineStyle::Accept(Visitor* visitor) {
   visitor->VisitLineStyle(std::static_pointer_cast<LineStyle>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

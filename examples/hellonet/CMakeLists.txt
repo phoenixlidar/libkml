@@ -2,7 +2,7 @@ add_library(curlfetch STATIC curlfetch.cc)
 
 target_link_libraries(curlfetch
     PUBLIC CURL::libcurl
-    PRIVATE LibKML::kmlconvenience
+    PRIVATE LibKML2::kmlconvenience
 )
 
 set (EXAMPLES
@@ -28,14 +28,14 @@ set (EXAMPLES
 foreach (EXAMPLE ${EXAMPLES})
     build_example(
         NAME ${EXAMPLE}
-        LINKS curlfetch LibKML::kmlconvenience
+        LINKS curlfetch LibKML2::kmlconvenience
         CATEGORY hellonet
     )
 endforeach (EXAMPLE ${EXAMPLES})
 
 build_example(
     NAME xsdprint
-    LINKS curlfetch LibKML::kmlxsd
+    LINKS curlfetch LibKML2::kmlxsd
     CATEGORY hellonet
 )
 

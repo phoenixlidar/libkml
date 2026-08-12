@@ -30,6 +30,7 @@
 #include <vector>
 
 namespace kmlbase {
+inline namespace v2 {
 
 // static
 Attributes* Attributes::Create(const char** attrs) {
@@ -155,4 +156,5 @@ Attributes* Attributes::SplitByPrefix(const string& prefix) {
   return split;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

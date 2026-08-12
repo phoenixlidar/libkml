@@ -32,6 +32,7 @@
 using kmlbase::Color32;
 
 namespace kmldom {
+inline namespace v2 {
 
 ColorStyle::ColorStyle() :
   color_(Color32(0xffffffff)),
@@ -66,4 +67,5 @@ void ColorStyle::Serialize(Serializer& serializer) const {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

@@ -75,10 +75,11 @@ add_library(kmlengine SHARED
     ${ENGINE_HEADERS}
 )
 
-add_library (LibKML::kmlengine ALIAS kmlengine)
+add_library (LibKML2::kmlengine ALIAS kmlengine)
 
 set_target_properties (kmlengine PROPERTIES
     PUBLIC_HEADER "${ENGINE_HEADERS}"
+    OUTPUT_NAME "kmlengine-2.0"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )
@@ -89,19 +90,19 @@ target_compile_options(kmlengine
 )
 
 target_link_libraries (kmlengine
-    PUBLIC LibKML::kmldom
+    PUBLIC LibKML2::kmldom
 )
 
 install(TARGETS kmlengine
-    EXPORT LibKML
+    EXPORT LibKML2
     LIBRARY
         COMPONENT Runtime
     PUBLIC_HEADER
         COMPONENT Development
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/engine/"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/engine/"
 )
 
 install (FILES ../engine.h
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/"
     COMPONENT Development
 )

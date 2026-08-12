@@ -36,6 +36,7 @@
 #include "kml/engine/merge.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 bool StyleSplitter::NewElement(const kmldom::ElementPtr& element) {
   // Use the first <Document> found as the home of all shared styles.
@@ -117,4 +118,5 @@ kmldom::ElementPtr SplitStyles(const string& input_kml,
   return parser.Parse(input_kml, errors);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

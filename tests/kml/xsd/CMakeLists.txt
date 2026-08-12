@@ -14,6 +14,6 @@ foreach (TEST ${TESTS})
     build_test (
         GROUP xsd
         NAME ${TEST}
-        LINKS GTest::gtest_main LibKML::kmlxsd
+        LINKS GTest::gtest_main LibKML2::kmlxsd
     )
 endforeach (TEST ${TESTS})

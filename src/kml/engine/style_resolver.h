@@ -32,6 +32,7 @@
 #include "kml/engine/kml_file.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This creates a new <Style> representing the merge of the inline and/or
 // shared StyleSelector(s) of the given Feature within the given KmlFile for
@@ -65,5 +66,6 @@ class StyleResolver {
       const string& styleurl, const SharedStyleMap& shared_style_map);
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

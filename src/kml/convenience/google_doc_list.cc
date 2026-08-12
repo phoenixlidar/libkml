@@ -35,6 +35,7 @@
 #endif
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 static const char* kServiceName = "writely";
 
@@ -122,4 +123,5 @@ bool GoogleDocList::UploadSpreadsheet(const string& spreadsheet,
 }
 
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

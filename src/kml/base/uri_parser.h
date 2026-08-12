@@ -33,6 +33,7 @@
 #include <memory>
 
 namespace kmlbase {
+inline namespace v2 {
 
 class UriParserPrivate;
 
@@ -158,6 +159,7 @@ class UriParser {
   UriParser& operator=(const UriParser&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 
 

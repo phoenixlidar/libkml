@@ -33,6 +33,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // Is this element the parent of a Link?
 bool IsLinkParent(const kmldom::ElementPtr& element);
@@ -65,5 +66,6 @@ class GetLinkParentsParserObserver : public kmldom::ParserObserver {
 // functions for the definition of "Element with link child".
 bool GetLinkParents(const string& kml, ElementVector* link_parent_vector);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

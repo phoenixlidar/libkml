@@ -59,6 +59,7 @@ using kmldom::TimeStampPtr;
 using kmldom::UpdatePtr;
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 void AddExtendedDataValue(const string& name, const string& value,
                           FeaturePtr feature) {
@@ -313,4 +314,5 @@ void SimplifyCoordinates(const CoordinatesPtr& src,
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

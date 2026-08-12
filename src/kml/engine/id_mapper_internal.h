@@ -35,6 +35,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This class walks the element hierarchy and assigns any Object with an id
 // to the given required ObjectIdMap.  Objects with duplicate ids are appended
@@ -54,5 +55,6 @@ class IdMapper : public kmldom::Serializer {
   ElementVector* dup_id_vector_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

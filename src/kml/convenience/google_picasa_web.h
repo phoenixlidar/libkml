@@ -37,6 +37,7 @@
 #include "kml/dom.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 class HttpClient;
 
@@ -94,5 +95,6 @@ class GooglePicasaWeb {
   const string scope_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

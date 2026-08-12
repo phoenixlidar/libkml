@@ -27,6 +27,7 @@
 #include <vector>
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 // This returns true iff the KmzFile's relative links within the KMZ exist.
 // This returns false if there is no KML in the KmzFile.  If a missing_files
@@ -34,4 +35,5 @@ namespace kmlconvenience {
 bool KmzCheckLinks(const kmlengine::KmzFile& kmzfile,
                    std::vector<string>* missing_files);
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

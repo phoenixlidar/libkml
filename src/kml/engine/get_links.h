@@ -33,6 +33,7 @@
 #include "kml/dom/parser_observer.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 typedef std::vector<string> href_vector_t;
 
@@ -87,5 +88,6 @@ bool GetLinks(const string& kml, href_vector_t* href_vector);
 // the given KML. This does not search the balloon text for links.
 bool GetRelativeLinks(const string& kml, href_vector_t* href_vector);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

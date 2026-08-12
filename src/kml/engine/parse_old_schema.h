@@ -29,6 +29,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This is how "old-style" <Schema> worked.  (This is NOT how <Schema> is used
 // in OGC KML 2.2.  This function is provided to map old-style <Schema> to
@@ -75,5 +76,6 @@ kmldom::PlacemarkPtr ParseOldSchema(const string& xml,
                                     const SchemaNameMap& schema_name_map,
                                     string* errors);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

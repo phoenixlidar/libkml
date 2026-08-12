@@ -26,6 +26,7 @@
 #include "kml/engine/href.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // private
 size_t Href::ParseScheme(const string& href) {
@@ -67,5 +68,6 @@ void Href::Parse(const string& href) {
   path_ = href.substr(path_start, path_end);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

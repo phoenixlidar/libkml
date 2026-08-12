@@ -38,6 +38,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -372,5 +373,6 @@ class NetworkLinkControl : public BasicElement<Type_NetworkLinkControl> {
   NetworkLinkControl& operator=(const NetworkLinkControl&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

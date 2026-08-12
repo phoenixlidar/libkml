@@ -33,10 +33,13 @@
 #include "kml/xsd/xsd_type.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdFile;
 
@@ -86,5 +89,6 @@ class XsdHandler : public kmlbase::ExpatHandler {
   std::stack<string> parse_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

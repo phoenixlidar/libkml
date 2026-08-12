@@ -34,6 +34,7 @@
 #include "kml/base/vec3.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 // Find all <trkpt>'s in the GPX file.
 // For example:
@@ -125,5 +126,6 @@ class GpxTrkPtHandler : public kmlbase::ExpatHandler {
   string char_data_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

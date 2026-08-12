@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.14)
 project (LibKML
-    VERSION 1.3.1
+    VERSION 2.0.0
     LANGUAGES C CXX
 )
 
@@ -132,35 +132,35 @@ if (LibKML_BUILD_EXAMPLES)
 endif (LibKML_BUILD_EXAMPLES)
 
 if (NOT WIN32 OR MINGW)
-  configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/cmake/libkml.pc.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/libkml.pc" @ONLY
+  configure_file ("${CMAKE_CURRENT_SOURCE_DIR}/cmake/libkml-2.0.pc.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/libkml-2.0.pc" @ONLY
   )
 
-  install (FILES ${CMAKE_CURRENT_BINARY_DIR}/libkml.pc
+  install (FILES ${CMAKE_CURRENT_BINARY_DIR}/libkml-2.0.pc
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
   )
 endif (NOT WIN32 OR MINGW)
 
 configure_package_config_file (
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKMLConfig.cmake.in
-    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/LibKML2Config.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKML2Config.cmake"
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML2
     NO_CHECK_REQUIRED_COMPONENTS_MACRO
 )
 
 write_basic_package_version_file (
-    LibKMLConfigVersion.cmake
+    LibKML2ConfigVersion.cmake
     COMPATIBILITY SameMajorVersion
 )
 
 install (FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/LibKMLConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKML2Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/LibKML2ConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML2
 )
 
-install (EXPORT LibKML
-    FILE LibKML.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML
-    NAMESPACE LibKML::
+install (EXPORT LibKML2
+    FILE LibKML2.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LibKML2
+    NAMESPACE LibKML2::
 )

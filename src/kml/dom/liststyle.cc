@@ -35,6 +35,7 @@ using kmlbase::Attributes;
 using kmlbase::Color32;
 
 namespace kmldom {
+inline namespace v2 {
 
 // <ItemIcon>
 ItemIcon::ItemIcon()
@@ -153,4 +154,5 @@ void ListStyle::AcceptChildren(VisitorDriver* driver) {
   Element::AcceptRepeated<ItemIconPtr>(&itemicon_array_, driver);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

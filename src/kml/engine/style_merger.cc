@@ -43,6 +43,7 @@ using kmldom::StyleSelectorPtr;
 using kmldom::StyleStateEnum;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // TODO: verify unsigned int to int init of nesting_depth_ ok on MSVC
 StyleMerger::StyleMerger(const SharedStyleMap& shared_style_map,
@@ -162,4 +163,5 @@ void StyleMerger::MergeStyleSelector(const StyleSelectorPtr& styleselector) {
   }
 }
 
+}  // end inline namespace v2
 }  // endnamespace kmlengine

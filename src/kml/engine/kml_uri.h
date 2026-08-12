@@ -31,6 +31,7 @@
 #include "kml/base/util.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This function implements standard RFC 3986 URI resolution (Section 5).
 // In the context of KML the base URI is typically that of the KML file
@@ -140,5 +141,6 @@ bool ResolveModelTargetHref(const string& base,
                             const string& target,
                             string* result);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

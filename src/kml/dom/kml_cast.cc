@@ -28,6 +28,7 @@
 #include <memory>
 
 namespace kmldom {
+inline namespace v2 {
 
 AbstractLatLonBoxPtr AsAbstractLatLonBox(const ElementPtr& element) {
   if (element && element->IsA(Type_AbstractLatLonBox)) {
@@ -498,4 +499,5 @@ ViewVolumePtr AsViewVolume(const ElementPtr& element) {
   return nullptr;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

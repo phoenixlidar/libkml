@@ -30,6 +30,7 @@
 #include "kml/dom.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This parses the KML and lines all resolvable local style selector references.
 // Only those shared style selectors which appear before their styleUrl
@@ -37,5 +38,6 @@ namespace kmlengine {
 kmldom::ElementPtr InlineStyles(const string& input_kml,
                                 string* errors);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

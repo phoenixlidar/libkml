@@ -32,10 +32,13 @@
 #include "kml/xsd/xsd_primitive_type.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdElement;
 using XsdElementPtr = std::shared_ptr<XsdElement>;
@@ -108,5 +111,6 @@ public:
   string substitution_group_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

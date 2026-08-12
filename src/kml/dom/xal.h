@@ -54,6 +54,7 @@
 #include "kml/base/attributes.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // <xal:AddressDetails>
 class XalAddressDetails : public BasicElement<Type_XalAddressDetails> {
@@ -349,5 +350,6 @@ class XalThoroughfare : public BasicElement<Type_XalThoroughfare> {
   virtual void Serialize(Serializer& serializer) const;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

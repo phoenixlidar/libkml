@@ -30,6 +30,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 
@@ -73,5 +74,6 @@ class LabelStyle : public ColorStyle {
   LabelStyle& operator=(const LabelStyle&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

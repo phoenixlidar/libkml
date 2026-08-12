@@ -41,6 +41,7 @@
 #include "kml/dom/parser_observer.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // This is an internal API to add Element-level SAX-style handlers to
 // a given parser instance.  TODO: determine how/if to make public and SWIG.
@@ -120,4 +121,5 @@ ElementPtr ParseAtom(const string& atom, string* errors) {
   return parser.ParseAtom(atom, errors);
 }
 
+}  // end inline namespace v2
 } // end namespace kmldom

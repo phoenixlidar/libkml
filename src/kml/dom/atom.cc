@@ -33,6 +33,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // Attributes.
 static const char kHref[] = "href";
@@ -343,4 +344,5 @@ void AtomLink::Serialize(Serializer& serializer) const {
   ElementSerializer element_serializer(*this, serializer);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

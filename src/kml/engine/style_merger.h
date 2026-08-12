@@ -34,6 +34,7 @@
 #include "kml/engine/kml_file.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 class KmlCache;
 
@@ -120,5 +121,6 @@ class StyleMerger {
   int nesting_depth_;
 };
 
+}  // end inline namespace v2
 }  // endnamespace kmlengine
 

@@ -45,6 +45,7 @@ using kmlbase::Attributes;
 using kmlbase::Vec3;
 
 namespace kmldom {
+inline namespace v2 {
 
 Coordinates::Coordinates() {
   set_xmlns(kmlbase::XMLNS_KML22);
@@ -610,4 +611,5 @@ void GxMultiTrack::AcceptChildren(VisitorDriver* driver) {
   Element::AcceptRepeated<GxTrackPtr>(&gx_track_array_, driver);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

@@ -81,6 +81,7 @@
 #include "kml/dom/object.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -1075,6 +1076,7 @@ class Model : public AltitudeGeometryCommon {
   Model& operator=(const Model&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 
 

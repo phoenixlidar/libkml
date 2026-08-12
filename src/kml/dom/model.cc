@@ -37,6 +37,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 Location::Location()
   : longitude_(0.0), has_longitude_(false),
@@ -326,4 +327,5 @@ void Model::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

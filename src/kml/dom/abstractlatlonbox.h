@@ -29,6 +29,7 @@
 #include "kml/dom/object.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Element;
 class Serializer;
@@ -126,5 +127,6 @@ class AbstractLatLonBox : public Object {
   AbstractLatLonBox& operator=(const AbstractLatLonBox&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

@@ -30,6 +30,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // A singleton factory class.
 class KmlFactory {
@@ -143,5 +144,6 @@ class KmlFactory {
   KmlFactory& operator=(const KmlFactory&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

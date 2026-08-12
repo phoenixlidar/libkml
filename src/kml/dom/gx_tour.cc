@@ -34,6 +34,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // <gx:Tour>
 
@@ -301,5 +302,6 @@ void GxTourControl::Accept(Visitor* visitor) {
   visitor->VisitGxTourControl(std::static_pointer_cast<GxTourControl>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

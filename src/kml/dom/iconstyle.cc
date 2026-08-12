@@ -34,6 +34,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 class IconStyleIcon;
 class HotSpot;
@@ -101,4 +102,5 @@ void IconStyle::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

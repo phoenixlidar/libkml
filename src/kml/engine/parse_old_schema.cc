@@ -33,6 +33,7 @@ using kmldom::PlacemarkPtr;
 using kmldom::SchemaPtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 bool ConvertOldSchema(const string& input_xml,
                       const SchemaNameMap& schema_name_map,
@@ -79,4 +80,5 @@ PlacemarkPtr ParseOldSchema(const string& xml,
   return kmldom::AsPlacemark(kmldom::Parse(converted_xml, errors));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

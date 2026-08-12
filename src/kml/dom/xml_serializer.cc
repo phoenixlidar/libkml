@@ -40,6 +40,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // This function is in the public API for converting the given Element
 // hierarchy to "pretty" xml.
@@ -72,4 +73,5 @@ string GetElementName(const ElementPtr& element) {
   return element ?  Xsd::GetSchema()->ElementName(element->Type()) : string("");
 }
 
+}  // end inline namespace v2
 }  // namespace kmldom

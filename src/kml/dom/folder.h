@@ -29,6 +29,7 @@
 #include "kml/dom/kml22.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -54,5 +55,6 @@ class Folder : public Container {
   Folder& operator=(const Folder&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

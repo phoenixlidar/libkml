@@ -29,6 +29,7 @@
 #include "kml/base/expat_parser.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 ExpatHandlerNs::ExpatHandlerNs(ExpatHandler* expat_handler, const Xmlns* xmlns)
   : expat_handler_(expat_handler), xmlns_(xmlns) {
@@ -77,4 +78,5 @@ void ExpatHandlerNs::StartNamespace(const string& prefix,
 void ExpatHandlerNs::EndNamespace(const string& prefix) {
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

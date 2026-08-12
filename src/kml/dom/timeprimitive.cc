@@ -33,6 +33,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 TimePrimitive::TimePrimitive() {}
 
@@ -109,4 +110,5 @@ void TimeStamp::Accept(Visitor* visitor) {
   visitor->VisitTimeStamp(std::static_pointer_cast<TimeStamp>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

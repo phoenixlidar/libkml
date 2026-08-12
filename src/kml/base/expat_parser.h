@@ -37,6 +37,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 const char kExpatNsSeparator = '|';
 
@@ -121,5 +122,6 @@ class ExpatParser {
 };
 
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

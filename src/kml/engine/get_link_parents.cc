@@ -31,6 +31,7 @@ using kmldom::ElementPtr;
 using kmldom::Parser;
 
 namespace kmlengine {
+inline namespace v2 {
 
 bool IsIconParent(const ElementPtr& element) {
   switch (element->Type()) {
@@ -66,4 +67,5 @@ bool GetLinkParents(const string& kml,
   return parser.Parse(kml, nullptr) != nullptr;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

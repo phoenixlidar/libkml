@@ -42,6 +42,7 @@ using kmldom::SimpleFieldPtr;
 using kmldom::Xsd;
 
 namespace kmlengine {
+inline namespace v2 {
 
 static const char kDisplayNamePfx[] = "/displayName";
 
@@ -222,4 +223,5 @@ string CreateExpandedEntities(const string & in,
   return kmlbase::CreateExpandedStrings(in, entity_map, "$[", "]");
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

@@ -30,6 +30,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class MemoryFile;
 using MemoryFilePtr = std::shared_ptr<MemoryFile>;
@@ -54,5 +55,6 @@ class MemoryFile : public Referent {
   string content_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

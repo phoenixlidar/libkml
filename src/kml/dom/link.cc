@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 BasicLink::BasicLink()
   : has_href_(false) {
@@ -239,4 +240,5 @@ void IconStyleIcon::Accept(Visitor* visitor) {
   visitor->VisitIconStyleIcon(std::static_pointer_cast<IconStyleIcon>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

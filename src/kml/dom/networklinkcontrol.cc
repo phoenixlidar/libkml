@@ -36,6 +36,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // UpdateOperation
 UpdateOperation::UpdateOperation() {}
@@ -304,4 +305,5 @@ void NetworkLinkControl::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

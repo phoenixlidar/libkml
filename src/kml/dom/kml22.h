@@ -34,6 +34,7 @@
 #pragma once
 
 namespace kmldom {
+inline namespace v2 {
 
 // This list matches kml22_elements_[] exactly:
 typedef enum {
@@ -603,5 +604,6 @@ typedef enum {
   GX_PLAYMODE_PAUSE = 0
 } GxPlayModeEnum;
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

@@ -39,6 +39,7 @@ using kmldom::StyleMapPtr;
 using kmldom::StyleSelectorPtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This is the implementation of the public API function to compute the
 // resolved style for a given Feature within a KML file.  See the header
@@ -89,4 +90,5 @@ kmldom::StyleSelectorPtr StyleResolver::CreateResolvedStyleSelector(
   return stylemap;
 }
 
+}  // end inline namespace v2
 }  // endnamespace kmlengine

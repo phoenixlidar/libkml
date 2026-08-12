@@ -32,6 +32,7 @@
 #include "kml/dom/object.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 
@@ -377,5 +378,6 @@ class IconStyleIcon : public BasicLink {
   IconStyleIcon& operator=(const IconStyleIcon&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

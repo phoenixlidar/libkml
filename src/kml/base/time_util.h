@@ -26,9 +26,11 @@
 #pragma once
 
 namespace kmlbase {
+inline namespace v2 {
 
 // This returns the current time as seconds.microseconds.
 double GetMicroTime();
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

@@ -31,6 +31,7 @@
 #include "kml/base/util.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 class FeatureList;
 
@@ -56,4 +57,5 @@ class CsvFile {
   kmlconvenience::FeatureList* feature_list_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

@@ -30,6 +30,7 @@
 #include "kml/dom/xsd.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // static
 KmlFactory* KmlFactory::GetFactory() {
@@ -514,4 +515,5 @@ GxWaitPtr KmlFactory::CreateGxWait() const {
   return std::shared_ptr<GxWait>(new GxWait());
 }
 
+}  // end inline namespace v2
 }  // namespace kmldom

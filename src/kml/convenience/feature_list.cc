@@ -42,6 +42,7 @@ using kmldom::RegionPtr;
 using kmlengine::Bbox;
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 static const char* kFeatureScoreName = "kml.FeatureScore";
 
@@ -149,4 +150,5 @@ void FeatureList::ComputeBoundingBox(Bbox* bbox) const {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

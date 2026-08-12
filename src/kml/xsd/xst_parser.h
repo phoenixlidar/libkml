@@ -31,6 +31,7 @@
 #include "kml/base/util.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdFile;
 
@@ -60,5 +61,6 @@ class XstParser {
   XsdFile* xsd_file_;
 };
 
+}  // end inline namespace v2
 } //  end namespace kmlxsd
 

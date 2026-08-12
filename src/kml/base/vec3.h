@@ -28,6 +28,7 @@
 #pragma once
 
 namespace kmlbase {
+inline namespace v2 {
 
 // A Vec3 represents a 2d or 3d point.  A Vec3 always has at least longitude
 // and latitude.  Altitude defaults to 0 and has_altitude() returns false if
@@ -109,5 +110,6 @@ class Vec3 {
   bool has_altitude_;
 };
 
+}  // end inline namespace v2
 }  // namespace kmlbase
 

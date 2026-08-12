@@ -32,6 +32,7 @@
 #include "kml/engine/kmz_cache.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 KmlCache::KmlCache(kmlbase::NetFetcher* net_fetcher, size_t max_size) {
   kml_file_cache_.reset(new KmlFileNetCache(net_fetcher, max_size));
@@ -86,4 +87,5 @@ bool KmlCache::FetchDataRelative(const string& base,
 
 // TODO is a FetchDataAbsolute necessary?
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

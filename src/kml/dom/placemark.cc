@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 Placemark::Placemark() {}
 
@@ -67,4 +68,5 @@ void Placemark::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // namespace kmldom

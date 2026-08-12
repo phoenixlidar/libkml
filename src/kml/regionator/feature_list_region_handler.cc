@@ -45,6 +45,7 @@ using kmlregionator::RegionHandler;
 using kmlregionator::Regionator;
 
 namespace kmlregionator {
+inline namespace v2 {
 
 // This is the maximum number of features per region.
 static const int kMaxPer = 10;
@@ -73,4 +74,5 @@ void FeatureListRegionHandler::SaveKml(const KmlPtr& kml,
   kmlbase::File::WriteStringToFile(kml_data, filename);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator

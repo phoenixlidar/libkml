@@ -34,6 +34,7 @@ using kmldom::ElementPtr;
 using kmldom::ParserObserver;
 
 namespace kmlengine {
+inline namespace v2 {
 
 KmlStream* KmlStream::ParseFromIstream(
     std::istream* input, string* errors, ParserObserver* observer) {
@@ -75,4 +76,5 @@ KmlStream* KmlStream::ParseFromIstream(
   return kml_stream;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

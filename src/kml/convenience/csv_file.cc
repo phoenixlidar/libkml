@@ -37,6 +37,7 @@
 #include "kml/convenience/feature_list.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 using kmldom::FeaturePtr;
 using kmldom::KmlFactory;
@@ -79,4 +80,5 @@ void CsvFile::ParseCsvFile(const char* filename) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

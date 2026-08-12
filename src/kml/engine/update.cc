@@ -37,6 +37,7 @@ using kmlbase::StringMap;
 using kmldom::UpdatePtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 void ProcessUpdate(const UpdatePtr& update, KmlFilePtr kml_file) {
   if (update && kml_file) {
@@ -53,4 +54,5 @@ void ProcessUpdateWithIdMap(const UpdatePtr& update, const StringMap* id_map,
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

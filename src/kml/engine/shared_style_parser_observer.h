@@ -34,6 +34,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The SharedStyleParserObserver is a kmldom::ParserObserver which gathers all
 // all shared StyleSelectors into the supplied SharedStyleMap.  If strict_parse
@@ -78,5 +79,6 @@ class SharedStyleParserObserver : public kmldom::ParserObserver {
   bool strict_parse_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

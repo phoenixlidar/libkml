@@ -34,6 +34,7 @@
 #include "kml/engine/kml_file.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The EntityMapper walks through a given FeaturePtr in a given KmlFile
 // and stores to the supplied StringMap any replacable entities and their
@@ -109,5 +110,6 @@ class EntityMapper {
 string CreateExpandedEntities(const string& in,
                               const kmlbase::StringMap& entity_map);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

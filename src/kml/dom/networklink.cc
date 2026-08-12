@@ -33,6 +33,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 NetworkLink::NetworkLink()
   : refreshvisibility_(false), has_refreshvisibility_(false),
@@ -92,4 +93,5 @@ void NetworkLink::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

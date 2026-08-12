@@ -43,10 +43,13 @@
 #include "kml/base/xml_element.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -321,5 +324,6 @@ class Field : public Element {
   Field& operator=(const Field&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

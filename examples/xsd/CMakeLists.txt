@@ -9,14 +9,14 @@ set (XSD_EXAMPLES
 foreach (EXAMPLE ${XSD_EXAMPLES})
     build_example(
         NAME ${EXAMPLE}
-        LINKS LibKML::kmlxsd
+        LINKS LibKML2::kmlxsd
         CATEGORY xsd
     )
 endforeach (EXAMPLE "csvregionator;kmlregionator")
 
 build_example(
     NAME xsdcoverage
-    LINKS LibKML::kmlengine LibKML::kmlxsd
+    LINKS LibKML2::kmlengine LibKML2::kmlxsd
     CATEGORY xsd
 )
 

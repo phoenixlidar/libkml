@@ -36,6 +36,7 @@
 #include "kml/dom/object.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -43,5 +44,6 @@ class VisitorDriver;
 // HACK: see the corresponding note in kml/dom/geometry.h for why this header
 // is temporarily empty.
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

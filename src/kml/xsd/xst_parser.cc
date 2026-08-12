@@ -33,6 +33,7 @@ using kmlbase::SplitStringUsing;
 using std::vector;
 
 namespace kmlxsd {
+inline namespace v2 {
 
 void XstParser::ParseXstAlias(const vector<string>& alias_line) {
   if (alias_line.size() != 3) {
@@ -56,5 +57,6 @@ void XstParser::ParseXst(const string& xst_data) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

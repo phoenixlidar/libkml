@@ -32,6 +32,7 @@
 #include "kml/engine/style_resolver.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 StyleInliner::StyleInliner()
   : in_update_(false) {
@@ -116,4 +117,5 @@ kmldom::ElementPtr InlineStyles(const string& input_kml,
   return parser.Parse(input_kml, errors);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

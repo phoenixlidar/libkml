@@ -31,6 +31,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 LabelStyle::LabelStyle() :
   scale_(1.0),
@@ -66,4 +67,5 @@ void LabelStyle::Accept(Visitor* visitor) {
   visitor->VisitLabelStyle(std::static_pointer_cast<LabelStyle>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

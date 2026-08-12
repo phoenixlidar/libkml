@@ -33,6 +33,7 @@
 #include "kml/base/xml_namespaces.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class XmlFile;
 
@@ -112,5 +113,6 @@ class XmlElement : public Referent {
   XmlElement& operator=(const XmlElement&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

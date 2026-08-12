@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 Style::Style() {}
 
@@ -115,4 +116,5 @@ void Style::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

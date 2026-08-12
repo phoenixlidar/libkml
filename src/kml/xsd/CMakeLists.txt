@@ -26,10 +26,11 @@ add_library(kmlxsd
     ${XSD_HEADERS}
 )
 
-add_library (LibKML::kmlxsd ALIAS kmlxsd)
+add_library (LibKML2::kmlxsd ALIAS kmlxsd)
 
 set_target_properties (kmlxsd PROPERTIES
     PUBLIC_HEADER "${XSD_HEADERS}"
+    OUTPUT_NAME "kmlxsd-2.0"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )
@@ -39,14 +40,14 @@ target_compile_options(kmlxsd
 )
 
 target_link_libraries (kmlxsd
-    PUBLIC LibKML::kmlbase
+    PUBLIC LibKML2::kmlbase
 )
 
 install(TARGETS kmlxsd
-    EXPORT LibKML
+    EXPORT LibKML2
     LIBRARY
         COMPONENT Runtime
     PUBLIC_HEADER
         COMPONENT Development
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/xsd/"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/xsd/"
 )

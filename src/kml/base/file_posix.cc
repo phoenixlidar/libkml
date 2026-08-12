@@ -36,6 +36,7 @@
 #include <unistd.h>  // For unlink, close.
 
 namespace kmlbase {
+inline namespace v2 {
 
 // Internal to the POSIX File class.
 static bool StatFile(const char* path, struct stat* stat_data) {
@@ -75,6 +76,7 @@ bool File::CreateNewTempFile(string* path) {
   return true;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 
 #endif

@@ -32,6 +32,7 @@
 #include "kml/regionator/region_handler.h"
 
 namespace kmlregionator {
+inline namespace v2 {
 
 // This RegionHandler creates a Region-based NetworkLink hierarchy from a
 // FeatureList.  See the FeatureList class comments for usage of this with
@@ -64,5 +65,6 @@ class FeatureListRegionHandler : public RegionHandler {
   std::map<string, kmldom::FolderPtr> feature_map_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator
 

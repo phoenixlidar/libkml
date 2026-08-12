@@ -30,6 +30,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // Include this file and use these #define's in your code such that your
 // code can call the methods of the Version API to verify compatibility between
@@ -61,6 +62,7 @@ class Version {
   static int get_micro();
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 
 

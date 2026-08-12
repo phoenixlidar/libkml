@@ -32,10 +32,13 @@
 #include "kml/dom/networklinkcontrol.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -98,5 +101,6 @@ class Kml : public BasicElement<Type_kml> {
   Kml& operator=(const Kml&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

@@ -37,6 +37,7 @@ using kmlbase::FindXmlNamespaceAndPrefix;
 using kmlbase::XmlnsId;
 
 namespace kmlengine {
+inline namespace v2 {
 
 static const char kDefaultXmlns[] = "http://www.opengis.net/kml/2.2";
 static const char kDefaultEncoding[] = "utf-8";
@@ -218,4 +219,5 @@ kmldom::StyleSelectorPtr KmlFile::GetSharedStyleById(
   return find != shared_style_map_.end() ? find->second : nullptr;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

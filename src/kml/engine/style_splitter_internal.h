@@ -37,6 +37,7 @@
 #include "kml/engine/merge.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This class splits _most_ inline StyleSelectors to shared style
 // NOTE: Direct use of this class in production code is not recommended.
@@ -96,5 +97,6 @@ class StyleSplitter : public kmldom::ParserObserver {
   bool in_update_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

@@ -37,6 +37,7 @@ using kmlbase::Attributes;
 using kmlbase::XmlElement;
 
 namespace kmldom {
+inline namespace v2 {
 
 Element::Element()
  : type_id_(Type_Unknown) {
@@ -223,4 +224,5 @@ bool Field::SetString(string* val) {
   return ret;
 }
 
+}  // end inline namespace v2
 }  // namespace kmldom

@@ -26,9 +26,11 @@
 #include "kml/dom/hotspot.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 HotSpot::HotSpot() {}
 
 HotSpot::~HotSpot() {}
 
+}  // end inline namespace v2
 }  // end namespace kmldom

@@ -32,6 +32,7 @@
 #include "kml/base/referent.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class TempFile;
 using TempFilePtr = std::shared_ptr<kmlbase::TempFile>;
@@ -64,5 +65,6 @@ class TempFile : public Referent {
   string name_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

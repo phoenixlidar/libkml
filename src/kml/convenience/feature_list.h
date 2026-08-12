@@ -32,6 +32,7 @@
 #include "kml/engine.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 // This returns the value of the "Score" Data element as described above.
 // This uses GetExtendedDataValue().
@@ -92,5 +93,6 @@ class FeatureList {
   feature_list_t feature_list_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

@@ -34,6 +34,7 @@
 #include "kml/base/util.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This class parses a KML URL.  Basic usage at present:
 //   Href href("#object-id");
@@ -128,5 +129,6 @@ class Href {
   string fragment_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

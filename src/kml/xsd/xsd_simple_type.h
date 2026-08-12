@@ -31,6 +31,7 @@
 #include "kml/xsd/xsd_type.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdSimpleType;
 
@@ -110,5 +111,6 @@ class XsdSimpleType : public XsdType {
   std::vector<string> enumeration_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

@@ -33,6 +33,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // The internal Parser class implements the public Parse API.
 // CDATA tags are dropped (by expat) upon parse and internally we carry
@@ -74,5 +75,6 @@ class Parser {
   Parser& operator=(const Parser&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

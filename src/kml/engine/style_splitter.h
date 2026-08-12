@@ -35,6 +35,7 @@
 #include "kml/engine/merge.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This parses the given KML splitting all inline styles to the root Document.
 // The given KML _must_ have a <Document>.  For a <Style> or <StyleMap> to be
@@ -46,5 +47,6 @@ namespace kmlengine {
 kmldom::ElementPtr SplitStyles(const string& input_kml,
                                string* errors);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

@@ -45,6 +45,7 @@ using kmldom::KmlPtr;
 using kmldom::RegionPtr;
 
 namespace kmlregionator {
+inline namespace v2 {
 
 // A Regionator instance is created from a class derived from RegionHandler
 // and descends over a Region hierarchy as specified.
@@ -181,4 +182,5 @@ bool Regionator::RegionateAligned(RegionHandler& rhandler,
   return regionator->Regionate(output_directory);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator

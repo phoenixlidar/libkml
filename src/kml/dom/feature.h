@@ -41,6 +41,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class VisitorDriver;
 
@@ -288,5 +289,6 @@ class Feature : public Object {
   Feature& operator=(const Feature&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

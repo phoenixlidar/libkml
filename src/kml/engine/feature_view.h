@@ -31,6 +31,7 @@
 #include "kml/dom/feature.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 class Bbox;
 
@@ -46,5 +47,6 @@ kmldom::LookAtPtr ComputeFeatureLookAt(const kmldom::FeaturePtr& feature);
 // See ComputeFeatureLookAt for the details of how the LookAt is created.
 kmldom::LookAtPtr ComputeBboxLookAt(const Bbox& bbox);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

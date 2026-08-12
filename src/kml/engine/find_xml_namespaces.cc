@@ -34,6 +34,7 @@ using kmldom::ElementPtr;
 using kmldom::Serializer;
 
 namespace kmlengine {
+inline namespace v2 {
 
 typedef std::set<kmlbase::XmlnsId> XmlnsIdSet;
 
@@ -88,4 +89,5 @@ void FindAndInsertXmlNamespaces(ElementPtr element) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

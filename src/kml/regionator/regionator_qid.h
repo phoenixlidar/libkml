@@ -32,6 +32,7 @@
 #include "kml/base/util.h"
 
 namespace kmlregionator {
+inline namespace v2 {
 
 enum quadrant_t {
   NW,
@@ -69,5 +70,6 @@ private:
   string qid_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator
 

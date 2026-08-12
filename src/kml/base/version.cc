@@ -30,6 +30,7 @@
 #include "kml/base/string_util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // static
 string Version::GetString() {
@@ -57,4 +58,5 @@ int Version::get_micro() {
   return LIBKML_MICRO_VERSION;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

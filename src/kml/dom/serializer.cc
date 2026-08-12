@@ -35,6 +35,7 @@
 using kmlbase::ToString;
 
 namespace kmldom {
+inline namespace v2 {
 
 static string EnityEscapeXml(const string& xml) {
   kmlbase::StringMap map;
@@ -107,4 +108,5 @@ void Serializer::SaveSimpleVec3(int type_id, const kmlbase::Vec3& vec3,
   SaveStringFieldById(type_id, char_data);
 }
 
+}  // end inline namespace v2
 }  // namespace kmldom

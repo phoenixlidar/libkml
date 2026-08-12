@@ -28,6 +28,7 @@
 #pragma once
 
 namespace kmlengine {
+inline namespace v2 {
 
 const double kMinLat = -180.0;
 const double kMaxLat = 180.0;
@@ -186,5 +187,6 @@ class Bbox {
   double north_, south_, east_, west_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

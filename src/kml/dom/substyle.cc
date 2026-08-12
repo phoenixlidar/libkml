@@ -26,6 +26,7 @@
 #include "kml/dom/substyle.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 SubStyle::SubStyle() {}
 
@@ -39,4 +40,5 @@ void SubStyle::Serialize(Serializer& serializer) const {
   Object::Serialize(serializer);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

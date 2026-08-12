@@ -28,6 +28,7 @@
 #include "kml/dom/kml22_enums.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 Xsd* Xsd::GetSchema() {
   static Xsd schema;
@@ -109,4 +110,5 @@ const int size = sizeof(kKml22Enums)/sizeof(XsdSimpleTypeEnum);
 }
 
 
+}  // end inline namespace v2
 }  // end namespace kmldom

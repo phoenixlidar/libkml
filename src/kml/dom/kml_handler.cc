@@ -54,6 +54,7 @@ kMaxNestingDepth = LIBKML_MAX_NESTING_DEPTH;
 #endif
 
 namespace kmldom {
+inline namespace v2 {
 
 KmlHandler::KmlHandler(parser_observer_vector_t& observers)
   : kml_factory_(*KmlFactory::GetFactory()),
@@ -446,5 +447,6 @@ void KmlHandler::HandleOldSchemaParentEndElement(
   placemark->set_extendeddata(extendeddata);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

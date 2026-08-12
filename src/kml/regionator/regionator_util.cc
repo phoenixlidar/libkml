@@ -31,6 +31,7 @@
 #include "kml/engine.h"
 
 namespace kmlregionator {
+inline namespace v2 {
 
 static const int kAlignRegionMaxDepth = 24;
 
@@ -171,4 +172,5 @@ DocumentPtr CreateRegionDocument(const RegionPtr& region) {
   return document;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator

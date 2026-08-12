@@ -28,6 +28,7 @@
 #include <memory>
 
 namespace kmldom {
+inline namespace v2 {
 
 class Element;
 class Field;
@@ -260,5 +261,6 @@ using GxTourPrimitivePtr = std::shared_ptr<GxTourPrimitive>;
 using GxTrackPtr = std::shared_ptr<GxTrack>;
 using GxWaitPtr = std::shared_ptr<GxWait>;
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

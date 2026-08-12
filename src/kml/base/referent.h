@@ -34,6 +34,7 @@
 // public API.
 
 namespace kmlbase {
+inline namespace v2 {
 
 // This class is the base for all reference-counted objects managed via
 // std::shared_ptr.
@@ -43,5 +44,6 @@ class Referent : public std::enable_shared_from_this<Referent> {
   virtual ~Referent() {}
 };
 
+}  // end inline namespace v2
 } // end namespace kmlbase
 

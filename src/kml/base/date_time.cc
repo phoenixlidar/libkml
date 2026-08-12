@@ -34,6 +34,7 @@ extern "C" char* strptime(const char* buf, const char* format, struct tm* tm);
 #endif
 
 namespace kmlbase {
+inline namespace v2 {
 
 // static
 DateTime* DateTime::Create(const string& str) {
@@ -116,4 +117,5 @@ bool DateTime::ParseXsdDateTime(const string& xsd_date_time) {
   return strptime(xsd_date_time.c_str(), "%Y-%m-%dT%H:%M:%SZ", &tm_) != nullptr;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

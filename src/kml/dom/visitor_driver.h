@@ -33,6 +33,7 @@
 #include "kml/dom/visitor.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // A visitor driver controls the flow of a visitation over the dom element
 // hierarchy. There is typically expected to be only a single driver for each
@@ -91,5 +92,6 @@ class SimplePostorderDriver : public VisitorDriver {
   SimplePostorderDriver& operator=(const SimplePostorderDriver&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

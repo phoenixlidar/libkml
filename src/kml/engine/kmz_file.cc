@@ -43,6 +43,7 @@ using kmlbase::StringVector;
 using kmlbase::ZipFile;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This is the default name for writing a KML file to a new archive. The
 // default file for reading is simply the first file in the table of contents
@@ -251,4 +252,5 @@ bool KmzFile::CreateFromKmlFile(const KmlFilePtr& kml_file,
       kml_file->get_root(), kml_file->get_url(), kmz_filepath);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

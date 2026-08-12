@@ -30,6 +30,7 @@
 #include <fstream>
 
 namespace kmlbase {
+inline namespace v2 {
 
 #ifdef WIN32
   const char kSeparator = '\\';
@@ -104,4 +105,5 @@ void File::SplitFilePath(const string& filepath,
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

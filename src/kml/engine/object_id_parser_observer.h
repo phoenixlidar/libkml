@@ -34,6 +34,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The ObjectIdParserObserver is a kmldom::ParserObserver which gathers all
 // all Objects with id's into the given map.  An Object whose id is already
@@ -78,5 +79,6 @@ class ObjectIdParserObserver : public kmldom::ParserObserver {
   bool strict_parse_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

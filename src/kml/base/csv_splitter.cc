@@ -30,6 +30,7 @@
 #include "kml/base/string_util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 CsvSplitter::CsvSplitter(const string& csv_data)
   : csv_data_(csv_data),
@@ -67,4 +68,5 @@ bool CsvSplitter::SplitCurrentLine(StringVector* cols) {
   return true;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

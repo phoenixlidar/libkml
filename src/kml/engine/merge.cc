@@ -42,6 +42,7 @@ using kmldom::KmlFactory;
 using kmldom::Serializer;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This Serializer-specialization finds all simple element children in the
 // source and sets each of their values in the target.
@@ -156,4 +157,5 @@ void MergeElements(const ElementPtr& source, ElementPtr target) {
   MergeFields(source, target);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

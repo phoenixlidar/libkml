@@ -33,7 +33,9 @@
 #include "kml/dom/serializer.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 using kmlbase::Attributes;
@@ -43,6 +45,7 @@ using kmldom::KmlFactory;
 using kmldom::KmlDomType;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The ElementReplicator is a Serializer used by the Clone() function to walk
 // the entire hierarchy of the target element.  Each field and child element
@@ -173,4 +176,5 @@ ElementPtr Clone(const ElementPtr& element) {
   return serializer.root();
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

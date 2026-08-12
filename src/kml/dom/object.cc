@@ -30,6 +30,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 Object::Object()
   : has_id_(false),
@@ -72,4 +73,5 @@ void Object::SerializeAttributes(Attributes* attributes) const {
 }
 
 
+}  // end inline namespace v2
 }  // namespace kmldom

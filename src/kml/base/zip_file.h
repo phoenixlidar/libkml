@@ -32,6 +32,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // Forward-declare the internal MinizipFile class that hides our current use
 // of minizip.
@@ -117,5 +118,6 @@ class ZipFile {
   ZipFile& operator=(const ZipFile&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

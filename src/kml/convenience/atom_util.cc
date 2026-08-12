@@ -43,6 +43,7 @@ using kmldom::FeaturePtr;
 using kmldom::KmlFactory;
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 // static
 AtomEntryPtr AtomUtil::CreateBasicEntry(const string& title,
@@ -257,4 +258,5 @@ bool AtomUtil::GetGdResourceId(const kmldom::AtomEntryPtr& entry,
   return false;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

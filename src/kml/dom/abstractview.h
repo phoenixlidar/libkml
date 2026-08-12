@@ -29,6 +29,7 @@
 #include "kml/dom/gx_timeprimitive.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -297,5 +298,6 @@ class Camera : public AbstractViewCommon {
   Camera& operator=(const Camera&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

@@ -36,6 +36,7 @@ using kmldom::ObjectPtr;
 using kmldom::Serializer;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // SaveElement is the only virtual method required given that IdMapper is only
 // concerned with Objects which are Elements (no fields).
@@ -104,4 +105,5 @@ int RemapIds(const ObjectIdMap& input_object_id_map, const StringMap& id_map,
   return clear_count;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

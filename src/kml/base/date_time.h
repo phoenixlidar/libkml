@@ -31,6 +31,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class DateTime {
  public:
@@ -63,5 +64,6 @@ class DateTime {
 
 time_t DateTimeToTimeT(const string& date_time_str);
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

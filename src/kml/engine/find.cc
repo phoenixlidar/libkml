@@ -33,6 +33,7 @@ using kmldom::KmlDomType;
 using kmldom::Serializer;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The ElementFinder adds every complex element of the given type to the
 // given vector.
@@ -106,4 +107,5 @@ int GetChildElements(const ElementPtr& element, bool recurse,
   return all_element_finder.get_count();
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

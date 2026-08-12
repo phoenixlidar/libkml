@@ -29,6 +29,7 @@
 #include "kml/base/util.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdComplexType;
 class XsdElement;
@@ -65,4 +66,5 @@ XsdElementPtr CreateXsdElement(const string& name, const string& type);
 XsdSchemaPtr CreateXsdSchema(const string& prefix,
                              const string& target_namespace);
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd

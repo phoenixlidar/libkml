@@ -34,6 +34,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // TODO: use a typedef (or type) for XmlId
 typedef std::map<string, XmlElementPtr> XmlElementIdMap;
@@ -79,5 +80,6 @@ class XmlFile : public Referent {
   XmlFile& operator=(const XmlFile&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

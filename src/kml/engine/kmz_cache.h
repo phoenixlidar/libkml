@@ -34,6 +34,7 @@
 #include "kml/engine/kmz_file.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 class KmlUri;
 
@@ -77,5 +78,6 @@ class KmzCache : public kmlbase::NetCache<KmzFile> {
   std::unique_ptr<MemoryFileCache> memory_file_cache_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

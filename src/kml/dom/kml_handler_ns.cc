@@ -31,6 +31,7 @@
 #include <string.h>  // For strchr().
 
 namespace kmldom {
+inline namespace v2 {
 
 // The uri:local_name separator used in expat's ParserCreateNS.
 // TODO: pull this from a common header with the separator in parse.h.
@@ -72,4 +73,5 @@ void KmlHandlerNS::StartNamespace(const string& prefix,
 void KmlHandlerNS::EndNamespace(const string& prefix) {
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

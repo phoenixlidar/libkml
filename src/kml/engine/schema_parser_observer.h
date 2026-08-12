@@ -34,6 +34,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The SchemaParserObserver is a kmldom::ParserObserver which gathers all
 // all name'ed <Schema>'s into a SchemaNameMap.  This implementation treats
@@ -69,5 +70,6 @@ class SchemaParserObserver : public kmldom::ParserObserver {
   SchemaNameMap* schema_name_map_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

@@ -40,6 +40,7 @@
 #include <algorithm>
 
 namespace kmlbase {
+inline namespace v2 {
 
 // Internal to the win32 file class. We need a conversion from string to
 // LPCWSTR.
@@ -105,6 +106,7 @@ bool File::CreateNewTempFile(string* path) {
   return true;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 
 #endif

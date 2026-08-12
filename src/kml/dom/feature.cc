@@ -30,6 +30,7 @@
 #include "kml/dom/serializer.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 Feature::Feature() :
   has_name_(false),
@@ -213,4 +214,5 @@ void Feature::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // namespace kmldom

@@ -33,6 +33,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // AbstractView
 void AbstractView::AddElement(const ElementPtr& element) {
@@ -191,4 +192,5 @@ void Camera::Accept(Visitor* visitor) {
   visitor->VisitCamera(std::static_pointer_cast<Camera>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

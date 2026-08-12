@@ -38,6 +38,7 @@ using kmlbase::Attributes;
 using kmlbase::Color32;
 
 namespace kmldom {
+inline namespace v2 {
 
 Overlay::Overlay()
   : color_(Color32(0xffffffff)),
@@ -525,4 +526,5 @@ void ScreenOverlay::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

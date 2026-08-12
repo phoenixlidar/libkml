@@ -36,6 +36,7 @@
 #include "kml/dom/styleselector.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -130,5 +131,6 @@ class Style : public StyleSelector {
   Style& operator=(const Style&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

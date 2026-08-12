@@ -28,7 +28,7 @@ foreach (TEST ${TESTS})
     build_test (
         GROUP base
         NAME ${TEST}
-        LINKS GTest::gtest_main LibKML::kmlbase
+        LINKS GTest::gtest_main LibKML2::kmlbase
     )
 endforeach (TEST ${TESTS})
 

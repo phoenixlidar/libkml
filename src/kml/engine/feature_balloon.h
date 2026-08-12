@@ -41,6 +41,7 @@
 #include "kml/engine/kml_file.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // Returns the markup for a Feature's "description balloon" (or "info window",
 // in Google Maps-speak) as an HTML-formatted string. The text is composited
@@ -65,5 +66,6 @@ namespace kmlengine {
 string CreateBalloonText(const KmlFilePtr& kml_file,
                          const kmldom::FeaturePtr& feature);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

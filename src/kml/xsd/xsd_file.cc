@@ -35,6 +35,7 @@ using std::vector;
 using kmlbase::ExpatParser;
 
 namespace kmlxsd {
+inline namespace v2 {
 
 // static
 XsdFile* XsdFile::CreateFromParse(const string& xsd_data,
@@ -273,4 +274,5 @@ void XsdFile::GetElementsOfTypeByName(const string& type_name,
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd

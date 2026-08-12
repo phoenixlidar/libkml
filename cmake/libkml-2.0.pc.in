@@ -1,0 +1,15 @@
+# pkg-config source file
+
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=@CMAKE_INSTALL_FULL_LIBDIR@
+includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
+
+Name: LibKML2
+Description: Reference implementation of OGC KML 2.2 (modernized, std::shared_ptr API)
+Version: @LibKML_VERSION@
+##Requires: expat zlib
+##minizip
+Conflicts:
+Libs: -L${libdir} -lkmlbase-2.0 -lkmldom-2.0 -lkmlengine-2.0 -lkmlconvenience-2.0 -lkmlxsd-2.0 -lkmlregionator-2.0
+Cflags: -I${includedir}/libkml-2.0

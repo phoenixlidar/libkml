@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 Document::Document() {}
 
@@ -69,4 +70,5 @@ void Document::AcceptChildren(VisitorDriver* driver) {
   Element::AcceptRepeated<StyleSelectorPtr>(&styleselector_array_, driver);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

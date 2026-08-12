@@ -34,6 +34,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // <SimpleField>
 SimpleField::SimpleField()
@@ -157,4 +158,5 @@ void Schema::AcceptChildren(VisitorDriver* driver) {
                                                  driver);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

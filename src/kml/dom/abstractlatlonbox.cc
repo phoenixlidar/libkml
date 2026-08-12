@@ -27,6 +27,7 @@
 #include "kml/dom/serializer.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // Defaults http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd for
 // <north>, <south>, <east>, and <west>.
@@ -73,4 +74,5 @@ void AbstractLatLonBox::Serialize(Serializer& serializer) const {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

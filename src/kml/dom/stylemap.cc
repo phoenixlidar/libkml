@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // <Pair>
 Pair::Pair()
@@ -117,4 +118,5 @@ void StyleMap::AcceptChildren(VisitorDriver* driver) {
   Element::AcceptRepeated<PairPtr>(&pair_array_, driver);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

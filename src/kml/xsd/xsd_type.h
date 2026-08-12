@@ -30,6 +30,7 @@
 #include "kml/base/util.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 // This is a pure virtual base type for all other XSD type types such as
 // <xs:simpleType> and <xs:complexType>.
@@ -66,5 +67,6 @@ class XsdType : public kmlbase::Referent {
 
 using XsdTypePtr = std::shared_ptr<XsdType>;
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

@@ -26,6 +26,7 @@
 #include "kml/xsd/xsd_primitive_type.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 // This exactly matches the XsdPrimitiveType enum.
 static const char* XsdPrimitiveTypeName[] = {
@@ -71,4 +72,5 @@ XsdPrimitiveType::TypeId XsdPrimitiveType::GetTypeId(
   return XSD_INVALID;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd

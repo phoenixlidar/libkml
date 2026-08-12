@@ -31,6 +31,7 @@
 #include "string_util.h"  // StringVector
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
 // This declares the pure virtual ExpatHandler interface.
 class ExpatHandler {
@@ -117,5 +118,6 @@ inline string xml_char_to_string_n(const XML_Char *input, size_t length) {
   return output;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

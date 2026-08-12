@@ -22,7 +22,7 @@ set (EXAMPLES_CONVENIENCE
 foreach (EXAMPLE ${EXAMPLES_ENGINE})
     build_example(
         NAME ${EXAMPLE}
-        LINKS LibKML::kmlengine
+        LINKS LibKML2::kmlengine
         CATEGORY engine
     )
 endforeach (EXAMPLE ${EXAMPLES_ENGINE})
@@ -30,7 +30,7 @@ endforeach (EXAMPLE ${EXAMPLES_ENGINE})
 foreach (EXAMPLE ${EXAMPLES_CONVENIENCE})
     build_example(
         NAME ${EXAMPLE}
-        LINKS LibKML::kmlconvenience
+        LINKS LibKML2::kmlconvenience
         CATEGORY engine
     )
 endforeach (EXAMPLE ${EXAMPLES_CONVENIENCE})

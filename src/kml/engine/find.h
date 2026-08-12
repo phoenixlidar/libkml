@@ -34,6 +34,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // Starting at the hierarchy rooted at element this finds all complex elements
 // of the given type and appends an ElementPtr to each in the given array.
@@ -53,5 +54,6 @@ void GetElementsById(const kmldom::ElementPtr& element,
 int GetChildElements(const kmldom::ElementPtr& element, bool recurse,
                      ElementVector* element_vector);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

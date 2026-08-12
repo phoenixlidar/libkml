@@ -32,6 +32,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This class inlines _most_ shared StyleSelectors into each Feature.
 // NOTE: Direct use of this class in production code is not recommended.
@@ -78,5 +79,6 @@ class StyleInliner : public kmldom::ParserObserver {
   bool in_update_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

@@ -33,10 +33,13 @@
 #include "kml/dom/kml_ptr.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 // This Serializer implementation counts begin and end tags of complex elements
 // and a count of all simple elements (fields).
@@ -94,5 +97,6 @@ class StatsSerializer : public Serializer {
   int content_count_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

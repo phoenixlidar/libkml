@@ -30,6 +30,7 @@
 #include "kml/base/attributes.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 // private
 XsdElement::XsdElement()
@@ -67,4 +68,5 @@ XsdElementPtr XsdElement::Create(const kmlbase::Attributes& attributes) {
   return nullptr;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd

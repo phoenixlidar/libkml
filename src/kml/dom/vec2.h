@@ -32,10 +32,13 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -117,5 +120,6 @@ class Vec2 : public Element {
   Vec2& operator=(const Vec2&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

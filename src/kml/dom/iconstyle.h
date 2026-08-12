@@ -33,6 +33,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -119,5 +120,6 @@ class IconStyle : public ColorStyle {
   IconStyle& operator=(const IconStyle&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

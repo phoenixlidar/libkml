@@ -32,6 +32,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 PolyStyle::PolyStyle()
   : fill_(true), has_fill_(false), outline_(true), has_outline_(false) {
@@ -72,4 +73,5 @@ void PolyStyle::Accept(Visitor* visitor) {
   visitor->VisitPolyStyle(std::static_pointer_cast<PolyStyle>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

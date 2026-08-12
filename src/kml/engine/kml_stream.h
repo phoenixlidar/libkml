@@ -33,10 +33,13 @@
 #include "kml/base/xml_file.h"
 
 namespace kmldom {
+inline namespace v2 {
 class ParserObserver;
+}  // end inline namespace v2
 }
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This class is for processing a large KML file in a streamed fashion.
 // Unlike the KmlFile class this does NOT build a map of object and shared
@@ -64,5 +67,6 @@ class KmlStream : public kmlbase::XmlFile {
   KmlStream& operator=(const KmlStream&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

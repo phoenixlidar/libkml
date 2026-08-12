@@ -32,6 +32,7 @@
 #include "kml/xsd/xsd_type.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdComplexType;
 
@@ -118,5 +119,6 @@ class XsdComplexType : public XsdType {
   std::vector<XsdElementPtr> sequence_;  // <xs:sequence> of <xs:element>'s.
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

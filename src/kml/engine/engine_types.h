@@ -32,6 +32,7 @@
 #include "kml/dom.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This is a vector Elements used in a variety of places in the KML engine.
 typedef std::vector<kmldom::ElementPtr> ElementVector;
@@ -48,5 +49,6 @@ typedef std::map<string, kmldom::ObjectPtr> ObjectIdMap;
 // name= to a kmldom::SchemaPtr.
 typedef std::map<string, kmldom::SchemaPtr> SchemaNameMap;
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

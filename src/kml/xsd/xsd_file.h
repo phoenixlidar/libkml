@@ -39,6 +39,7 @@
 #include "kml/xsd/xsd_type.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 typedef std::map<string, string> XsdAliasMap;
 typedef std::map<string, XsdElementPtr> XsdElementMap;
@@ -177,5 +178,6 @@ class XsdFile {
   XsdAliasMap alias_map_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

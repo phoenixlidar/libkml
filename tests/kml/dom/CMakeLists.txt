@@ -56,7 +56,7 @@ foreach (TEST ${TESTS})
     build_test (
         GROUP dom
         NAME ${TEST}
-        LINKS GTest::gtest_main LibKML::kmldom
+        LINKS GTest::gtest_main LibKML2::kmldom
     )
 endforeach (TEST ${TESTS})
 

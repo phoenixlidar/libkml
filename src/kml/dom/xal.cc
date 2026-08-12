@@ -34,6 +34,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // <xal:AddressDetails>
 XalAddressDetails::XalAddressDetails() {
@@ -268,4 +269,5 @@ void XalThoroughfare::Serialize(Serializer& serializer) const {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

@@ -33,6 +33,7 @@
 #include "kml/regionator/region_handler.h"
 
 namespace kmlregionator {
+inline namespace v2 {
 
 // This class provides a "nullptr" ProgressMonitor usable with
 // FeatureListRegionator.
@@ -148,5 +149,6 @@ class FeatureListRegionator : public RegionHandler {
   ProgressMonitor* progress_monitor_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator
 

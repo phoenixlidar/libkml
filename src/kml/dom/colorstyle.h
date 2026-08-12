@@ -33,6 +33,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // OGC KML 2.2 Standard: 12.7 kml:AbstractColorStyleGroup
 // OGC KML 2.2 XSD: <element name="AbstractColorStyleGroup"...
@@ -91,5 +92,6 @@ class ColorStyle : public SubStyle {
   ColorStyle& operator=(const ColorStyle&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

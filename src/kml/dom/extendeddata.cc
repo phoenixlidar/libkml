@@ -37,6 +37,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 // <SimpleData>
 SimpleData::SimpleData()
@@ -308,4 +309,5 @@ void Metadata::Accept(Visitor* visitor) {
   visitor->VisitMetadata(std::static_pointer_cast<Metadata>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

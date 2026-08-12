@@ -35,6 +35,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class Attributes {
  public:
@@ -135,5 +136,6 @@ class Attributes {
   Attributes& operator=(const Attributes&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

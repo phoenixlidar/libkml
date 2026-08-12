@@ -30,6 +30,7 @@
 #include "kml/dom.h"
 
 namespace kmlregionator {
+inline namespace v2 {
 
 // This abstract base class defines the interface used by the Regionator in
 // calling out to the class implementing the "Regionation" of a dataset.
@@ -75,6 +76,7 @@ class RegionHandler {
                        const string& filename) = 0;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator
 
 

@@ -32,6 +32,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -69,5 +70,6 @@ class Placemark : public Feature {
   Placemark& operator=(const Placemark&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

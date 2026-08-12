@@ -33,6 +33,7 @@
 #include "kml/base/xmlns.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdSchema;
 using XsdSchemaPtr = std::shared_ptr<XsdSchema>;
@@ -104,5 +105,6 @@ public:
   string target_namespace_prefix_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

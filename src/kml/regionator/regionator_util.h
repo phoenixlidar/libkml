@@ -35,10 +35,13 @@
 #include "kml/regionator/regionator_qid.h"
 
 namespace kmlengine {
+inline namespace v2 {
 class Bbox;
+}  // end inline namespace v2
 }
 
 namespace kmlregionator {
+inline namespace v2 {
 
 // Creates a copy of the given LatLonAltBox.
 kmldom::LatLonAltBoxPtr CloneLatLonAltBox(const kmldom::LatLonAltBoxPtr& orig);
@@ -71,5 +74,6 @@ kmldom::NetworkLinkPtr CreateRegionNetworkLink(const kmldom::RegionPtr& region,
 // Create a Document with a Region cloned from the given Region.
 kmldom::DocumentPtr CreateRegionDocument(const kmldom::RegionPtr& region);
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator
 

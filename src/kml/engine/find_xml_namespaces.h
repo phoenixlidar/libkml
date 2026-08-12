@@ -31,10 +31,13 @@
 #include "kml/dom.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This creates one attribute name-value pair for each XML namespace found in
 // the hierarchy rooted at the given element.  The namespaces must be in the
@@ -50,5 +53,6 @@ void FindXmlNamespaces(const kmldom::ElementPtr& element,
 // kmlbase::FindXmlNamespaceAndPrefix().
 void FindAndInsertXmlNamespaces(kmldom::ElementPtr element);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

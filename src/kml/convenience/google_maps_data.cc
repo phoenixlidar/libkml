@@ -36,6 +36,7 @@
 #include "kml/engine.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 static const char* kServiceName = "local";
 
@@ -381,4 +382,5 @@ bool GoogleMapsData::GetKmlUri(const kmldom::AtomEntryPtr& map_entry,
   return true;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

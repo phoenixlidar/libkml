@@ -33,6 +33,7 @@
 using kmlbase::Attributes;
 
 namespace kmlxsd {
+inline namespace v2 {
 
 // Test utility to create a <xs:complexType name="type_name">.
 XsdComplexTypePtr CreateXsdComplexType(const string& type_name) {
@@ -56,4 +57,5 @@ XsdSchemaPtr CreateXsdSchema(const string& prefix,
   return XsdSchema::Create(attributes);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd

@@ -35,6 +35,7 @@ using kmldom::FeaturePtr;
 using kmldom::KmlPtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 const FeaturePtr GetRootFeature(const ElementPtr& root) {
   const KmlPtr kml = kmldom::AsKml(root);
@@ -58,4 +59,5 @@ void VisitFeatureHierarchy(const FeaturePtr& feature,
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

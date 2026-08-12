@@ -34,10 +34,13 @@
 
 // Forward declare to avoid including uri_parser.h in app code.
 namespace kmlbase {
+inline namespace v2 {
 class UriParser;
+}  // end inline namespace v2
 }
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The main purpose of the KmlUri class is to hold the URI state for a given
 // fetch.  This state is principally a base url and a relative target to fetch.
@@ -115,5 +118,6 @@ class KmlUri {
   KmlUri& operator=(const KmlUri&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

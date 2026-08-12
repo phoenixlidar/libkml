@@ -33,6 +33,7 @@
 using kmlbase::UriParser;
 
 namespace kmlengine {
+inline namespace v2 {
 
 KmlUri::KmlUri(const string& base, const string& target)
   : is_kmz_(false),
@@ -243,4 +244,5 @@ bool ResolveModelTargetHref(const string& base_url,
   return true;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

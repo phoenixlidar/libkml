@@ -32,10 +32,13 @@
 #include "kml/dom.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class DateTime;
+}  // end inline namespace v2
 }
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 // NOTE: this collection of convenience routines is expected to grow.
 // NOTE: for now these are all in one file in alphabetical order.
@@ -154,5 +157,6 @@ void SetExtendedDataValue(const string& name, const string& value,
 void SimplifyCoordinates(const kmldom::CoordinatesPtr& src,
                          kmldom::CoordinatesPtr dest, double merge_tolerance);
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

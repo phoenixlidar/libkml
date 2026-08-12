@@ -33,6 +33,7 @@
 #include "kml/dom/kml_ptr.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // Parse the KML in the given memory buffer.  On success this returns an
 // Element* to the root of the KML.  On failure 0 is returned and a human
@@ -73,5 +74,6 @@ void SerializeToOstream(const ElementPtr& root, bool pretty, std::ostream* xml);
 // If element is nullptr or otherwise invalid an empty string is returned.
 string GetElementName(const ElementPtr& element);
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

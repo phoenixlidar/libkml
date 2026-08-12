@@ -38,6 +38,7 @@
 #include "kml/dom/parser_observer.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class KmlFactory;
 
@@ -62,5 +63,6 @@ class KmlHandlerNS : public KmlHandler {
   KmlHandlerNS& operator=(const KmlHandlerNS&) = delete;
 };
 
+}  // end inline namespace v2
 } // end namespace kmldom
 

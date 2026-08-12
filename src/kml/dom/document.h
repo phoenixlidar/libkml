@@ -33,6 +33,7 @@
 #include "kml/dom/styleselector.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -101,5 +102,6 @@ class Document : public Container {
   Document& operator=(const Document&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

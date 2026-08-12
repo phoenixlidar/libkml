@@ -45,6 +45,7 @@ using kmldom::PointPtr;
 using kmldom::PolygonPtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 bool GetCoordinatesBounds(const CoordinatesPtr& coordinates, Bbox* bbox) {
   if (!coordinates) {
@@ -202,4 +203,5 @@ void GetCenter(const AbstractLatLonBoxPtr& allb, double* lat, double* lon) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

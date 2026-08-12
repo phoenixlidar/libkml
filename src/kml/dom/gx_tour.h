@@ -36,10 +36,13 @@
 #include "kml/dom/networklinkcontrol.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -375,5 +378,6 @@ class GxTourControl : public GxTourPrimitive {
 };
 
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

@@ -31,6 +31,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class Xmlns;
 
@@ -79,5 +80,6 @@ private:
   const Xmlns* xmlns_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

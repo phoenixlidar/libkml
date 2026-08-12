@@ -55,6 +55,7 @@ using kmldom::UpdatePtr;
 using kmldom::UpdateOperationPtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 void UpdateProcessor::ProcessUpdate(const UpdatePtr& update) {
   size_t size = update->get_updateoperation_array_size();
@@ -160,4 +161,5 @@ void CopyFeatures(const ContainerPtr& source_container,
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

@@ -34,6 +34,7 @@ using kmlbase::Attributes;
 using kmlbase::Color32;
 
 namespace kmldom {
+inline namespace v2 {
 
 BalloonStyle::BalloonStyle() :
   bgcolor_("ffffffff"),
@@ -92,4 +93,5 @@ void BalloonStyle::Accept(Visitor* visitor) {
   visitor->VisitBalloonStyle(std::static_pointer_cast<BalloonStyle>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

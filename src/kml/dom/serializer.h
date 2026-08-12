@@ -32,12 +32,15 @@
 #include "kml/dom/kml_ptr.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
 class Color32;
 class Vec3;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 class Xsd;
 
@@ -152,5 +155,6 @@ class Serializer {
    const Xsd& xsd_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

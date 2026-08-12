@@ -35,6 +35,7 @@
 #include "kml/engine/parse_old_schema.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This class detects old-style Schema instances, converts them and inserts
 // the converted Placemark into the container within which the Schema instance
@@ -76,5 +77,6 @@ class OldSchemaParserObserver : public kmldom::ParserObserver {
   const SchemaNameMap& schema_name_map_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

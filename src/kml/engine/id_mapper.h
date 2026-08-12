@@ -32,6 +32,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This function creates a map of all Objects with ids in the given element
 // hierarchy.  If an element_vector is supplied it will be given all elements
@@ -53,5 +54,6 @@ int RemapIds(const ObjectIdMap& input_object_id_map,
              const kmlbase::StringMap& id_map,
              ObjectIdMap* output_object_id_map);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

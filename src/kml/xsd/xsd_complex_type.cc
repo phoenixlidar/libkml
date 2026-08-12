@@ -29,6 +29,7 @@
 #include "kml/base/attributes.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 // private
 bool XsdComplexType::ParseAttributes(const kmlbase::Attributes& attributes) {
@@ -36,5 +37,6 @@ bool XsdComplexType::ParseAttributes(const kmlbase::Attributes& attributes) {
   return attributes.GetString("name", &name_);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

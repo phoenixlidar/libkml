@@ -42,6 +42,7 @@
 #include "kml/engine/shared_style_parser_observer.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 class KmlCache;
 
@@ -182,5 +183,6 @@ class KmlFile : public kmlbase::XmlFile {
   KmlFile& operator=(const KmlFile&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

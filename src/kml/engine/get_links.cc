@@ -33,6 +33,7 @@
 using kmldom::Parser;
 
 namespace kmlengine {
+inline namespace v2 {
 
 bool GetLinks(const string& kml, href_vector_t* href_vector) {
   if (!href_vector) {
@@ -63,4 +64,5 @@ bool GetRelativeLinks(const string& kml, href_vector_t* href_vector) {
   return true;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

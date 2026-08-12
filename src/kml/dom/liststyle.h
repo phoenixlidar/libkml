@@ -36,6 +36,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -209,5 +210,6 @@ class ListStyle : public SubStyle {
   ListStyle& operator=(const ListStyle&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

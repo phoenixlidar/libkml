@@ -32,6 +32,7 @@
 #include "kml/dom/serializer.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 Container::Container() {}
 
@@ -86,4 +87,5 @@ void Container::AcceptChildren(VisitorDriver* driver) {
   Element::AcceptRepeated<FeaturePtr>(&feature_array_, driver);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

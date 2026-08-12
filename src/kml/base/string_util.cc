@@ -30,6 +30,7 @@
 #include <string.h>  // memcpy, strchr
 
 namespace kmlbase {
+inline namespace v2 {
 
 void b2a_hex(uint32_t i, char* out) {
   char map[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -268,4 +269,5 @@ void SplitQuotedUsingFromString(const string& linestr, const char delimiter,
   SplitQuotedUsing(linestr.data(), linestr.size(), delimiter, cols);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

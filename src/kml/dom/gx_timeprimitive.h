@@ -35,6 +35,7 @@
 #include "kml/dom/timeprimitive.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -83,5 +84,6 @@ class GxTimeStamp : public TimeStamp {
   GxTimeStamp& operator=(const GxTimeStamp&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

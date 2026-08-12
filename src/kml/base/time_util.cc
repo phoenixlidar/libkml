@@ -34,6 +34,7 @@
 #endif
 
 namespace kmlbase {
+inline namespace v2 {
 
 #ifdef WIN32
 // http://forums.msdn.microsoft.com/en/vcgeneral/thread/430449b3-f6dd-4e18-84de-eebd26a8d668/
@@ -69,4 +70,5 @@ double GetMicroTime() {
   return (double)now_tv.tv_sec + (double)now_tv.tv_usec/1000000;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

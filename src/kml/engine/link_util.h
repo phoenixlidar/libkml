@@ -31,6 +31,7 @@
 #include "kml/engine.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This function fetches and parses the KML referenced by this NetworkLink.
 // The NetworkLink must be within the KmlFile and the KmlFile must point to
@@ -73,5 +74,6 @@ bool GetIconParentHref(const IP& icon_parent, string* href) {
   return GetHref(icon_parent->get_icon(), href);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

@@ -32,6 +32,7 @@
 #include "kml/engine/engine_types.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 // This ParserObserver saves the non-Container Features in the input KML
 // to the given FeatureList and the shared style selectors to the given
@@ -105,5 +106,6 @@ class KmlFeatureListSaver : public kmldom::ParserObserver {
   bool in_update_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

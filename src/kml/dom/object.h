@@ -32,10 +32,13 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 // OGC KML 2.2 Standard: 8.1 kml:AbstractObjectGroup
 // OGC KML 2.2 XSD: <element name="AbstractObjectGroup"...
@@ -85,5 +88,6 @@ class Object : public Element {
   Object& operator=(const Object&) = delete;
 };
 
+}  // end inline namespace v2
 }  // namespace kmldom
 

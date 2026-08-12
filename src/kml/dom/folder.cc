@@ -30,6 +30,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 Folder::Folder() {
 }
@@ -46,4 +47,5 @@ void Folder::Accept(Visitor* visitor) {
   visitor->VisitFolder(std::static_pointer_cast<Folder>(shared_from_this()));
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

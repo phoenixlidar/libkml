@@ -36,10 +36,13 @@
 // ZipFile hides the implementation details of the underlying zip library from
 // this interface.
 namespace kmlbase {
+inline namespace v2 {
 class ZipFile;
+}  // end inline namespace v2
 }
 
 namespace kmlengine {
+inline namespace v2 {
 
 class KmzFile;
 using KmzFilePtr = std::shared_ptr<KmzFile>;
@@ -174,5 +177,6 @@ class KmzFile : public kmlbase::Referent {
   KmzFile& operator=(const KmzFile&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

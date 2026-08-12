@@ -17,6 +17,6 @@ foreach (TEST ${TESTS})
      build_test (
         GROUP convenience
         NAME ${TEST}
-        LINKS GTest::gtest_main LibKML::kmlconvenience
+        LINKS GTest::gtest_main LibKML2::kmlconvenience
     )
 endforeach (TEST ${TESTS})

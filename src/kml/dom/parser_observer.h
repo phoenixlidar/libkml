@@ -30,6 +30,7 @@
 #include "kml/dom/kml_ptr.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // This class should be derived from to provide SAX-style callbacks during
 // the DOM parse.  The derived class can implement one or both of
@@ -62,5 +63,6 @@ class ParserObserver {
 
 typedef std::vector<ParserObserver*> parser_observer_vector_t;
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

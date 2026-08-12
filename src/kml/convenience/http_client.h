@@ -34,6 +34,7 @@
 #include "kml/base/net_cache.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 // TODO: push these to kml/base/string_util.h
 typedef std::pair<string, string> StringPair;
@@ -149,5 +150,6 @@ class HttpClient : kmlbase::NetFetcher {
   StringPairVector headers_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

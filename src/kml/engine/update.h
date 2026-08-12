@@ -29,6 +29,7 @@
 #include "kml/engine/kml_file.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This provides in-place (destructive) processing of the given update against
 // the given KmlFile.  In the case of NetworkLinkControl it is presumed the
@@ -51,5 +52,6 @@ void ProcessUpdateWithIdMap(const kmldom::UpdatePtr& update,
 void CopyFeatures(const kmldom::ContainerPtr& source_container,
                   kmldom::ContainerPtr target_container);
 
+}  // end inline namespace v2
 }  // namespace kmlengine
 

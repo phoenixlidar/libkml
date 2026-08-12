@@ -39,6 +39,7 @@
 #include "kml/dom.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // A poor man's std::ostringstream.  Note that this uses a non-namespace
 // qualified string.  See base/util.h for more info about string vs std::string.
@@ -240,5 +241,6 @@ class XmlSerializer : public Serializer {
   string serialized_attributes_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

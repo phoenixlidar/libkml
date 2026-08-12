@@ -18,10 +18,11 @@ add_library(kmlregionator
     ${REGIONATOR_HEADERS}
 )
 
-add_library (LibKML::kmlregionator ALIAS kmlregionator)
+add_library (LibKML2::kmlregionator ALIAS kmlregionator)
 
 set_target_properties (kmlregionator PROPERTIES
     PUBLIC_HEADER "${REGIONATOR_HEADERS}"
+    OUTPUT_NAME "kmlregionator-2.0"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )
@@ -32,15 +33,15 @@ target_compile_options(kmlregionator
 )
 
 target_link_libraries (kmlregionator
-    PUBLIC LibKML::kmlengine
-    PUBLIC LibKML::kmlconvenience
+    PUBLIC LibKML2::kmlengine
+    PUBLIC LibKML2::kmlconvenience
 )
 
 install(TARGETS kmlregionator
-    EXPORT LibKML
+    EXPORT LibKML2
     LIBRARY
         COMPONENT Runtime
     PUBLIC_HEADER
         COMPONENT Development
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/regionator/"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/regionator/"
 )

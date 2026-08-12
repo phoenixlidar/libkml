@@ -55,10 +55,11 @@ add_library (kmlbase SHARED
     ${BASE_HEADERS}
 )
 
-add_library (LibKML::kmlbase ALIAS kmlbase)
+add_library (LibKML2::kmlbase ALIAS kmlbase)
 
 set_target_properties (kmlbase PROPERTIES
     PUBLIC_HEADER "${BASE_HEADERS}"
+    OUTPUT_NAME "kmlbase-2.0"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )
@@ -79,7 +80,7 @@ target_compile_options (kmlbase
 target_include_directories (kmlbase
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/contrib
     PUBLIC $<BUILD_INTERFACE:${LibKML_SOURCE_DIR}/src>
-    PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0>
 )
 
 target_link_libraries (kmlbase
@@ -90,10 +91,10 @@ target_link_libraries (kmlbase
 )
 
 install (TARGETS kmlbase
-    EXPORT LibKML
+    EXPORT LibKML2
     LIBRARY
         COMPONENT Runtime
     PUBLIC_HEADER
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/base/"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/base/"
         COMPONENT Development
 )

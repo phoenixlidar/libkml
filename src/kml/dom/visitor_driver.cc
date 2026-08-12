@@ -32,6 +32,7 @@
 #include "kml/dom/kml_cast.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 VisitorDriver::VisitorDriver() { }
 
@@ -61,4 +62,5 @@ void SimplePostorderDriver::Visit(const ElementPtr& element) {
   element->Accept(visitor_);
 }
 
+}  // end inline namespace v2
 }  // namespace kmldom

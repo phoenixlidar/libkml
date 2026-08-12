@@ -1,4 +1,4 @@
-set(LibKML_VERSION @LibKML_VERSION@)
+set(LibKML2_VERSION @LibKML_VERSION@)
 
 @PACKAGE_INIT@
 
@@ -8,4 +8,4 @@ find_dependency (minizip)
 find_dependency (ZLIB)
 find_dependency (uriparser)
 find_dependency (CURL)
-include (${CMAKE_CURRENT_LIST_DIR}/LibKML.cmake)
+include (${CMAKE_CURRENT_LIST_DIR}/LibKML2.cmake)

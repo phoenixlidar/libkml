@@ -28,6 +28,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // These identify KML-related XML namespaces.  Most are not used by KML or
 // by libkml and are here only as a convenience when parsing other XML
@@ -73,5 +74,6 @@ struct XmlNamespace {
 bool FindXmlNamespaceAndPrefix(XmlnsId xmlns_id, string* prefix,
                                string* xml_namespace);
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

@@ -31,6 +31,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class Color32 {
  public:
@@ -199,5 +200,6 @@ class Color32 {
   uint32_t color_abgr_;  // Stored in the standard aabbggrr KML format.
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

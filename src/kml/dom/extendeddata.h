@@ -36,10 +36,13 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class Attributes;
+}  // end inline namespace v2
 }
 
 namespace kmldom {
+inline namespace v2 {
 
 class Visitor;
 class VisitorDriver;
@@ -346,5 +349,6 @@ class Metadata : public BasicElement<Type_Metadata> {
   virtual void Serialize(Serializer& serializer) const;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

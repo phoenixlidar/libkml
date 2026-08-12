@@ -28,6 +28,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 class File {
  public:
@@ -69,5 +70,6 @@ class File {
                             string* filename);
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

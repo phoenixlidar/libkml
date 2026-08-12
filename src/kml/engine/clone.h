@@ -30,10 +30,12 @@
 #include "kml/dom.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This returns a "deep" clone of the given element.  All child elements and
 // fields are copied.
 kmldom::ElementPtr Clone(const kmldom::ElementPtr& element);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

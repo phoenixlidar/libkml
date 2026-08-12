@@ -32,6 +32,7 @@
 #include "kml/dom/object.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 class Visitor;
@@ -150,5 +151,6 @@ class TimeStamp : public TimePrimitive {
   TimeStamp& operator=(const TimeStamp&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

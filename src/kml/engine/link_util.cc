@@ -30,6 +30,7 @@
 #include "kml/engine/kml_file.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 KmlFilePtr FetchLink(const KmlFilePtr& kml_file,
                      const kmldom::NetworkLinkPtr& networklink) {
@@ -54,4 +55,5 @@ bool FetchIcon(const KmlFilePtr& kml_file,
   return false;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

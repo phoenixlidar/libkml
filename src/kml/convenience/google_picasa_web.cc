@@ -31,6 +31,7 @@
 #include "kml/convenience/http_client.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 static const char* kServiceName = "lh2";
 
@@ -91,4 +92,5 @@ kmldom::AtomFeedPtr GooglePicasaWeb::GetMetaFeed() const {
   return nullptr;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

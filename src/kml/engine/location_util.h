@@ -33,6 +33,7 @@
 #include "kml/dom.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 class Bbox;
 
@@ -88,5 +89,6 @@ bool GetPlacemarkLatLon(const kmldom::PlacemarkPtr& placemark,
 // Return the location of the Point.
 bool GetPointLatLon(const kmldom::PointPtr& point, double* lat, double* lon);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

@@ -30,6 +30,7 @@
 static const unsigned int kEarthRadius = 6366710;
 
 namespace kmlbase {
+inline namespace v2 {
 
 double AzimuthBetweenPoints(double lat1, double lng1,
                             double lat2, double lng2) {
@@ -95,4 +96,5 @@ double RadToDeg(double radians) {  return radians * 180.0 / M_PI; }
 double MetersToRadians(double meters) {  return meters / kEarthRadius; }
 double RadiansToMeters(double radians) {  return radians * kEarthRadius; }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

@@ -31,6 +31,7 @@
 #include "kml/dom.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 // This returns the root Feature of the given KML hierarchy.  If root is
 // neither of Type_Kml nor Type_Feature nullptr is returned.
@@ -50,5 +51,6 @@ class FeatureVisitor {
 void VisitFeatureHierarchy(const kmldom::FeaturePtr& feature,
                            FeatureVisitor& feature_visitor);
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

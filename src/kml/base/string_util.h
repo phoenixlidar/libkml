@@ -33,6 +33,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 typedef std::map<string, string> StringMap;
 typedef std::map<string, string>::value_type StringPair;
@@ -144,5 +145,6 @@ size_t SkipLeadingWhitespace(const char* begin, const char* end);
 // This returns the offset to the first non-whitespace character.
 size_t SkipLeadingWhitespaceString(const string& str);
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

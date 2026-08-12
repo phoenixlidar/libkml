@@ -44,6 +44,7 @@
 #include "kml/base/vec3.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // Returns the initial azimuth (the angle measured clockwise from true north)
 // at a point from that point to a second point. For example, the azimuth
@@ -107,5 +108,6 @@ double RadToDeg(double radians);
 double MetersToRadians(double meters);
 double RadiansToMeters(double radians);
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

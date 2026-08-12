@@ -35,6 +35,7 @@
 using kmlbase::Attributes;
 
 namespace kmldom {
+inline namespace v2 {
 
 LatLonAltBox::LatLonAltBox()
   : minaltitude_(0.0), has_minaltitude_(false),
@@ -190,4 +191,5 @@ void Region::AcceptChildren(VisitorDriver* driver) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom

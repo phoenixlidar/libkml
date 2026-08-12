@@ -36,6 +36,7 @@
 #include "kml/engine.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 static const size_t npos = -1;
 
@@ -174,4 +175,5 @@ bool CsvParser::ParseCsvData() {
   return true;
 }
 
+}  // end inline namespace v2
 }  // end kmlconvenience

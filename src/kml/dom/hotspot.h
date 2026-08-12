@@ -30,6 +30,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 class Serializer;
 
@@ -49,5 +50,6 @@ class HotSpot : public Vec2 {
   HotSpot& operator=(const HotSpot&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

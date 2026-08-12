@@ -33,6 +33,7 @@
 #include "kml/dom.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 class HttpClient;
 
@@ -132,5 +133,6 @@ class AtomUtil {
 
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

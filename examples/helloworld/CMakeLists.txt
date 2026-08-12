@@ -1,5 +1,5 @@
 add_library(helloutil STATIC print.cc)
-target_link_libraries(helloutil LibKML::kmldom ${MINIZIP_LIBRARY})
+target_link_libraries(helloutil LibKML2::kmldom ${MINIZIP_LIBRARY})
 
 set (DOM_EXAMPLES
     createkml
@@ -25,7 +25,7 @@ set (ENGINE_EXAMPLES
 foreach (EXAMPLE ${DOM_EXAMPLES})
     build_example(
         NAME ${EXAMPLE}
-        LINKS LibKML::kmldom
+        LINKS LibKML2::kmldom
         CATEGORY helloworld
     )
 endforeach (EXAMPLE ${DOM_EXAMPLES})
@@ -33,7 +33,7 @@ endforeach (EXAMPLE ${DOM_EXAMPLES})
 foreach (EXAMPLE ${ENGINE_EXAMPLES})
     build_example(
         NAME ${EXAMPLE}
-        LINKS LibKML::kmlengine
+        LINKS LibKML2::kmlengine
         CATEGORY helloworld
     )
 endforeach (EXAMPLE ${ENGINE_EXAMPLES})
@@ -46,25 +46,25 @@ build_example(
 
 build_example(
     NAME hellofeatures
-    LINKS helloutil LibKML::kmldom
+    LINKS helloutil LibKML2::kmldom
     CATEGORY helloworld
 )
 
 build_example(
     NAME sharedstyles
-    LINKS LibKML::kmlconvenience
+    LINKS LibKML2::kmlconvenience
     CATEGORY helloworld
 )
 
 build_example(
     NAME simplifylines
-    LINKS LibKML::kmlconvenience
+    LINKS LibKML2::kmlconvenience
     CATEGORY helloworld
 )
 
 build_example(
     NAME sortplacemarks
-    LINKS LibKML::kmlconvenience
+    LINKS LibKML2::kmlconvenience
     CATEGORY helloworld
 )
 

@@ -37,6 +37,7 @@
 using kmlbase::Attributes;
 
 namespace kmlxsd {
+inline namespace v2 {
 
 // <xs:complexType name="..." abstract="...">
 void XsdHandler::StartComplexType(const Attributes& attributes) {
@@ -146,4 +147,5 @@ void XsdHandler::EndElement(const string& xs_element_name) {
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd

@@ -33,6 +33,7 @@
 #include "kml/dom/kml_ptr.h"
 
 namespace kmlengine {
+inline namespace v2 {
 
 class KmlFile;
 
@@ -75,5 +76,6 @@ class UpdateProcessor {
   const kmlbase::StringMap* id_map_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlengine
 

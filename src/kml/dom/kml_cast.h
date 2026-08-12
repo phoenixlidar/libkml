@@ -32,6 +32,7 @@
 #include "kml/dom/kml_ptr.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 // This function template operates akin to dynamic_cast.  If the given
 // Element-derived type is of the template type then a pointer is returned,
@@ -260,5 +261,6 @@ inline GxWaitPtr AsGxWait(const ElementPtr& element) {
   return ElementCast<GxWait>(element);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

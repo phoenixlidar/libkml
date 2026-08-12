@@ -31,6 +31,7 @@
 #include "kml/convenience/http_client.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 static const char* kServiceName = "wise";
 
@@ -107,4 +108,5 @@ bool GoogleSpreadsheets::DownloadSpreadsheet(const kmldom::AtomEntryPtr& entry,
 }
 
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

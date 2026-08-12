@@ -108,10 +108,11 @@ add_library(kmldom SHARED
     ${DOM_HEADERS}
 )
 
-add_library (LibKML::kmldom ALIAS kmldom)
+add_library (LibKML2::kmldom ALIAS kmldom)
 
 set_target_properties (kmldom PROPERTIES
     PUBLIC_HEADER "${DOM_HEADERS}"
+    OUTPUT_NAME "kmldom-2.0"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )
@@ -122,19 +123,19 @@ target_compile_options(kmldom
 )
 
 target_link_libraries (kmldom
-    PUBLIC LibKML::kmlbase
+    PUBLIC LibKML2::kmlbase
 )
 
 install(TARGETS kmldom
-    EXPORT LibKML
+    EXPORT LibKML2
     LIBRARY
         COMPONENT Runtime
     PUBLIC_HEADER
         COMPONENT Development
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/dom/"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/dom/"
 )
 
 install (FILES ../dom.h
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/"
     COMPONENT Development
 )

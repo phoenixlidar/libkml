@@ -34,10 +34,11 @@ add_library(kmlconvenience SHARED
     ${CONVENIENCE_HEADERS}
 )
 
-add_library (LibKML::kmlconvenience ALIAS kmlconvenience)
+add_library (LibKML2::kmlconvenience ALIAS kmlconvenience)
 
 set_target_properties (kmlconvenience PROPERTIES
     PUBLIC_HEADER "${CONVENIENCE_HEADERS}"
+    OUTPUT_NAME "kmlconvenience-2.0"
     SOVERSION "${LibKML_VERSION_MAJOR}"
     VERSION   "${LibKML_VERSION}"
 )
@@ -48,14 +49,14 @@ target_compile_options(kmlconvenience
 )
 
 target_link_libraries (kmlconvenience
-    PUBLIC LibKML::kmlengine
+    PUBLIC LibKML2::kmlengine
 )
 
 install(TARGETS kmlconvenience
-    EXPORT LibKML
+    EXPORT LibKML2
     LIBRARY
         COMPONENT Runtime
     PUBLIC_HEADER
         COMPONENT Development
-        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/kml/convenience/"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libkml-2.0/kml/convenience/"
 )

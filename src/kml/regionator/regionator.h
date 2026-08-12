@@ -36,6 +36,7 @@
 #include "kml/regionator/regionator_qid.h"
 
 namespace kmlregionator {
+inline namespace v2 {
 
 typedef std::vector<kmldom::RegionPtr> region_vector_t;
 
@@ -102,5 +103,6 @@ private:
   kmldom::RegionPtr natural_region_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlregionator
 

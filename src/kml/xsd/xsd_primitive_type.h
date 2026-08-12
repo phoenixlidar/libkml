@@ -31,6 +31,7 @@
 #include "kml/xsd/xsd_type.h"
 
 namespace kmlxsd {
+inline namespace v2 {
 
 class XsdPrimitiveType;
 using XsdPrimitiveTypePtr = std::shared_ptr<XsdPrimitiveType>;
@@ -123,5 +124,6 @@ class XsdPrimitiveType : public XsdType {
   TypeId type_id_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlxsd
 

@@ -30,6 +30,7 @@
 #include "kml/convenience/http_client.h"
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 class HttpMethod {
  public:
@@ -173,4 +174,5 @@ void HttpClient::AppendHeaders(const StringPairVector& src,
   }
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience

@@ -27,6 +27,7 @@
 #include "kml/base/localec.h"
 
 namespace kmlbase {
+inline namespace v2 {
   
   LocaleC::LocaleC() :
    previous_locale(nullptr)
@@ -65,4 +66,5 @@ namespace kmlbase {
     #endif
   }
  
+}  // end inline namespace v2
 }

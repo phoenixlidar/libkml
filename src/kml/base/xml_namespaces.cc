@@ -26,6 +26,7 @@
 #include "kml/base/xml_namespaces.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 const XmlNamespace XmlNamespaces[] = {
   { XMLNS_NONE, nullptr, nullptr },
@@ -71,4 +72,5 @@ bool FindXmlNamespaceAndPrefix(XmlnsId xmlns_id,
   return false;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

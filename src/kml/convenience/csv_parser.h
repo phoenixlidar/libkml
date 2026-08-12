@@ -31,10 +31,13 @@
 #include "kml/dom.h"
 
 namespace kmlbase {
+inline namespace v2 {
 class CsvSplitter;
+}  // end inline namespace v2
 }
 
 namespace kmlconvenience {
+inline namespace v2 {
 
 enum CsvParserStatus {
   CSV_PARSER_STATUS_OK = 0,
@@ -142,5 +145,6 @@ class CsvParser {
   CsvParser& operator=(const CsvParser&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlconvenience
 

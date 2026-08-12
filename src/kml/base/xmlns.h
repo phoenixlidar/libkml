@@ -33,6 +33,7 @@
 #include "kml/base/attributes.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // This class holds the default namespace and the set of prefix-namespace
 // mappings for an XML file.  For example, if these attributes of the root
@@ -118,5 +119,6 @@ class Xmlns {
   std::unique_ptr<Attributes> prefix_map_;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

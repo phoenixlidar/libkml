@@ -34,6 +34,7 @@
 #include "kml/base/util.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 enum XsdType {
   XSD_SIMPLE_TYPE,
@@ -99,5 +100,6 @@ class Xsd {
   std::map<int,XsdElement> id_to_string;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmldom
 

@@ -39,6 +39,7 @@ using kmldom::FeaturePtr;
 using kmldom::StylePtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 string CreateBalloonText(const KmlFilePtr& kml_file,
                          const FeaturePtr& feature) {
@@ -92,4 +93,5 @@ string CreateBalloonText(const KmlFilePtr& kml_file,
   return text;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

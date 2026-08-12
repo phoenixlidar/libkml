@@ -31,6 +31,7 @@
 #include "kml/base/util.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 // This class iterates over a string buffer CSV data.  Basic usage:
 //  const string csv_data = get-csv-data
@@ -64,5 +65,6 @@ class CsvSplitter {
   CsvSplitter& operator=(const CsvSplitter&) = delete;
 };
 
+}  // end inline namespace v2
 }  // end namespace kmlbase
 

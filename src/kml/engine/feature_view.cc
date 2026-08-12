@@ -36,6 +36,7 @@ using kmldom::KmlFactory;
 using kmldom::FeaturePtr;
 
 namespace kmlengine {
+inline namespace v2 {
 
 // The range of the LookAt that emcompasses the feature's extents depends on
 // the field of view of the virtual camera. Google Earth has a 60 degree
@@ -83,4 +84,5 @@ LookAtPtr ComputeBboxLookAt(const Bbox& bbox) {
   return lookat;
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlengine

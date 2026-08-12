@@ -31,6 +31,7 @@
 #include "kml/base/expat_handler.h"
 
 namespace kmlbase {
+inline namespace v2 {
 
 static void XMLCALL
 startElement(void *userData, const XML_Char *name, const XML_Char **atts) {
@@ -170,4 +171,5 @@ void ExpatParser::ReportError(XML_Parser parser, string* errors) {
   *errors = strstream.str();
 }
 
+}  // end inline namespace v2
 }  // end namespace kmlbase

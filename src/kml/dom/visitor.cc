@@ -32,6 +32,7 @@
 #include "kml/dom/kml_cast.h"
 
 namespace kmldom {
+inline namespace v2 {
 
 Visitor::Visitor() { }
 
@@ -521,4 +522,5 @@ void Visitor::VisitViewVolume(
   VisitObject(element);
 }
 
+}  // end inline namespace v2
 }  // end namespace kmldom
