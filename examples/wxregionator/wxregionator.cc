@@ -27,14 +27,14 @@
 // application.
 
 #include "wxregionator.h"
-#include <kml/base/csv_splitter.h>
-#include <kml/base/file.h>
-#include <kml/dom.h>
-#include <kml/convenience/convenience.h>
-#include <kml/convenience/csv_parser.h>
-#include <kml/engine.h>
-#include <kml/regionator/feature_list_regionator.h>
-#include <kml/regionator/regionator.h>
+#include <kml2/base/csv_splitter.h>
+#include <kml2/base/file.h>
+#include <kml2/dom.h>
+#include <kml2/convenience/convenience.h>
+#include <kml2/convenience/csv_parser.h>
+#include <kml2/engine.h>
+#include <kml2/regionator/feature_list_regionator.h>
+#include <kml2/regionator/regionator.h>
 #include <wx/dir.h>
 #include <wx/file.h>
 #include <wx/progdlg.h>

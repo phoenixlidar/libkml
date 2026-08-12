@@ -30,12 +30,12 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "kml/dom.h"
-#include "kml/engine.h"
-#include "kml/engine/old_schema_parser_observer.h"
-#include "kml/engine/schema_parser_observer.h"
-#include "kml/engine/engine_types.h"
-#include "kml/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
+#include "kml2/engine/old_schema_parser_observer.h"
+#include "kml2/engine/schema_parser_observer.h"
+#include "kml2/engine/engine_types.h"
+#include "kml2/base/file.h"
 
 using kmlengine::KmzFile;
 using kmlengine::KmzFilePtr;

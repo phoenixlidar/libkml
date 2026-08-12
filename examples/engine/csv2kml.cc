@@ -34,13 +34,13 @@
 
 #include <iostream>
 #include <string>
-#include "kml/base/csv_splitter.h"
-#include "kml/base/file.h"
-#include "kml/base/string_util.h"
-#include "kml/convenience/csv_parser.h"
-#include "kml/convenience/convenience.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/base/csv_splitter.h"
+#include "kml2/base/file.h"
+#include "kml2/base/string_util.h"
+#include "kml2/convenience/csv_parser.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 using kmlbase::File;
 using kmlconvenience::CreatePointPlacemark;

@@ -26,9 +26,9 @@
 // This program shows basic ProcessUpdate() with <Change>.
 
 #include <iostream>
-#include "kml/convenience/convenience.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 using kmldom::ChangePtr;
 using kmldom::FolderPtr;

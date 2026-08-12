@@ -30,10 +30,10 @@
 #include <map>
 #include <string>
 #include <memory>
-#include "kml/dom.h"
-#include "kml/dom/xsd.h"  // TODO: consider the Xsd class public?
-#include "kml/engine.h"
-#include "kml/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/dom/xsd.h"  // TODO: consider the Xsd class public?
+#include "kml2/engine.h"
+#include "kml2/base/file.h"
 
 using kmlengine::KmzFile;
 using kmlengine::KmzFilePtr;

@@ -28,16 +28,16 @@
 // all <gx:FlyTo>'s are put in one <gx:Tour>/<gx:Playlist>.
 
 #include <iostream>
-#include "kml/base/expat_parser.h"
-#include "kml/base/date_time.h"
-#include "kml/base/file.h"
-#include "kml/base/math_util.h"
-#include "kml/base/vec3.h"
-#include "kml/base/xml_namespaces.h"
-#include "kml/convenience/convenience.h"
-#include "kml/convenience/gpx_trk_pt_handler.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/base/expat_parser.h"
+#include "kml2/base/date_time.h"
+#include "kml2/base/file.h"
+#include "kml2/base/math_util.h"
+#include "kml2/base/vec3.h"
+#include "kml2/base/xml_namespaces.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/convenience/gpx_trk_pt_handler.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 using kmlbase::AzimuthBetweenPoints;
 using kmlbase::DateTime;

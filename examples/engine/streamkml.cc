@@ -30,8 +30,8 @@
 
 #include <fstream>
 #include <iostream>
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 using kmldom::AsFeature;
 using kmldom::ElementPtr;

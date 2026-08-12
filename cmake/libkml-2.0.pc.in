@@ -12,4 +12,4 @@ Version: @LibKML_VERSION@
 ##minizip
 Conflicts:
 Libs: -L${libdir} -lkmlbase-2.0 -lkmldom-2.0 -lkmlengine-2.0 -lkmlconvenience-2.0 -lkmlxsd-2.0 -lkmlregionator-2.0
-Cflags: -I${includedir}/libkml-2.0
+Cflags: -I${includedir}

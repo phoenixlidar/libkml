@@ -28,7 +28,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "kml/dom.h"
+#include "kml2/dom.h"
 
 using std::stringstream;
 using kmldom::CoordinatesPtr;

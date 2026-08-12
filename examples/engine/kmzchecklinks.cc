@@ -28,8 +28,8 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 using std::unique_ptr;
 using kmlengine::Href;

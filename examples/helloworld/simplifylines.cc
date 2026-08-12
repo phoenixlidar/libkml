@@ -42,11 +42,11 @@
 
 #include <iostream>
 #include <vector>
-#include "kml/base/file.h"
-#include "kml/base/math_util.h"
-#include "kml/convenience/convenience.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/base/file.h"
+#include "kml2/base/math_util.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 using kmldom::CoordinatesPtr;
 using kmldom::KmlFactory;

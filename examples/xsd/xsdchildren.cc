@@ -29,12 +29,12 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "kml/base/file.h"
-#include "kml/xsd/xsd_complex_type.h"
-#include "kml/xsd/xsd_file.h"
-#include "kml/xsd/xsd_simple_type.h"
-#include "kml/xsd/xsd_util.h"
-#include "kml/xsd/xst_parser.h"
+#include "kml2/base/file.h"
+#include "kml2/xsd/xsd_complex_type.h"
+#include "kml2/xsd/xsd_file.h"
+#include "kml2/xsd/xsd_simple_type.h"
+#include "kml2/xsd/xsd_util.h"
+#include "kml2/xsd/xst_parser.h"
 
 using kmlbase::File;
 using kmlxsd::XsdComplexType;

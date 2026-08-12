@@ -28,10 +28,10 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "kml/base/file.h"
-#include "kml/convenience/element_counter.h"
-#include "kml/dom/xsd.h"
-#include "kml/xsd/xsd_file.h"
+#include "kml2/base/file.h"
+#include "kml2/convenience/element_counter.h"
+#include "kml2/dom/xsd.h"
+#include "kml2/xsd/xsd_file.h"
 
 using kmlconvenience::ElementCountMap;
 using kmlconvenience::ElementCounter;

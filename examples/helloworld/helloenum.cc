@@ -30,7 +30,7 @@
 #include <assert.h>
 #include <iostream>
 #include <string>
-#include "kml/dom.h"
+#include "kml2/dom.h"
 
 using kmldom::ElementPtr;
 using kmldom::KmlFactory;

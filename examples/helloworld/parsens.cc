@@ -28,10 +28,10 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "kml/dom.h"
-#include "kml/dom/kml_handler_ns.h"
-#include "kml/engine.h"
-#include "kml/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/dom/kml_handler_ns.h"
+#include "kml2/engine.h"
+#include "kml2/base/file.h"
 
 using kmldom::ElementPtr;
 using kmlengine::KmlFile;

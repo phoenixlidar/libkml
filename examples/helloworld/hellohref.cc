@@ -35,8 +35,8 @@
 
 #include <iostream>
 #include <string>
-#include "kml/dom.h"
-#include "kml/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/base/file.h"
 
 using std::string;
 using std::cout;

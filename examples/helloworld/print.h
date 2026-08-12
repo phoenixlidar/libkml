@@ -29,7 +29,7 @@
 #define PRINT_H__
 
 #include <string>
-#include "kml/dom.h"
+#include "kml2/dom.h"
 
 // All PrintXXX() functions print to stdout.
 

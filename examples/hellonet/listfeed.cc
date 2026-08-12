@@ -30,8 +30,8 @@
 #include <iostream>
 #include <string>
 #include "curlfetch.h"
-#include "kml/base/file.h"
-#include "kml/dom.h"
+#include "kml2/base/file.h"
+#include "kml2/dom.h"
 
 int main(int argc, char** argv) {
   if (argc != 2) {

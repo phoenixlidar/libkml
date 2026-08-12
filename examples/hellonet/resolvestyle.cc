@@ -32,9 +32,9 @@
 */
 
 #include <iostream>
-#include "kml/base/file.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 #include "curlfetch.h"
 
 using kmldom::FeaturePtr;

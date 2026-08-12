@@ -27,7 +27,7 @@
 
 #include <assert.h>
 #include <iostream>
-#include "kml/dom.h"
+#include "kml2/dom.h"
 
 using std::cout;
 using std::endl;

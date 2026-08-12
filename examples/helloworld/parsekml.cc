@@ -29,7 +29,7 @@
 
 #include <iostream>
 #include <string>
-#include "kml/dom.h"  // The KML DOM header.
+#include "kml2/dom.h"  // The KML DOM header.
 
 int main() {
   // Parse KML from a memory buffer.

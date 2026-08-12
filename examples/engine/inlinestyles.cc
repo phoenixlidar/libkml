@@ -28,9 +28,9 @@
 // <Document>.  See kml/engine/style_inliner.h for details.
 
 #include <iostream>
-#include "kml/base/file.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 bool InlineStyles(const char* input_filename, const char* output_filename) {
   std::string kml_input;

@@ -34,13 +34,13 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "kml/base/date_time.h"
-#include "kml/base/expat_parser.h"
-#include "kml/base/file.h"
-#include "kml/base/vec3.h"
-#include "kml/convenience/convenience.h"
-#include "kml/convenience/gpx_trk_pt_handler.h"
-#include "kml/dom.h"
+#include "kml2/base/date_time.h"
+#include "kml2/base/expat_parser.h"
+#include "kml2/base/file.h"
+#include "kml2/base/vec3.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/convenience/gpx_trk_pt_handler.h"
+#include "kml2/dom.h"
 
 using kmlbase::ExpatParser;
 using kmlbase::DateTime;

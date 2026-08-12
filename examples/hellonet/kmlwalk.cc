@@ -31,9 +31,9 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "kml/dom.h"
-#include "kml/dom/xsd.h"  // TODO: expose Xsd::ElementName() properly
-#include "kml/engine.h"
+#include "kml2/dom.h"
+#include "kml2/dom/xsd.h"  // TODO: expose Xsd::ElementName() properly
+#include "kml2/engine.h"
 #include "curlfetch.h"
 
 using kmldom::ElementPtr;

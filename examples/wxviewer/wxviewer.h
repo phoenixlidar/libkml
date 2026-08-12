@@ -33,7 +33,7 @@
 #define WXVIEWER_H__
 
 #include <string>
-#include "kml/dom.h"
+#include "kml2/dom.h"
 #include "wx/treectrl.h"
 #include "wx/wx.h"
 

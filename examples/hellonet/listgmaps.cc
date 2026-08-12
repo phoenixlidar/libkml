@@ -31,10 +31,10 @@
 #include <memory>
 #include "curlfetch.h"
 #include "prompt.h"
-#include "kml/base/file.h"
-#include "kml/dom.h"
-#include "kml/convenience/http_client.h"
-#include "kml/convenience/google_maps_data.h"
+#include "kml2/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/convenience/http_client.h"
+#include "kml2/convenience/google_maps_data.h"
 
 using kmlconvenience::GoogleMapsData;
 

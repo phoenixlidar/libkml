@@ -27,8 +27,8 @@
 #define EXAMPLES_HELLONET_CURLFETCH_H__
 
 #include <string>
-#include "kml/base/net_cache.h"
-#include "kml/convenience/http_client.h"
+#include "kml2/base/net_cache.h"
+#include "kml2/convenience/http_client.h"
 
 bool CurlToString(const char* url, std::string* data);
 

@@ -29,13 +29,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "kml/base/file.h"
-#include "kml/dom.h"
-#include "kml/convenience/convenience.h"
-#include "kml/convenience/kml_feature_list_saver.h"
-#include "kml/engine.h"
-#include "kml/regionator/feature_list_regionator.h"
-#include "kml/regionator/regionator.h"
+#include "kml2/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/convenience/kml_feature_list_saver.h"
+#include "kml2/engine.h"
+#include "kml2/regionator/feature_list_regionator.h"
+#include "kml2/regionator/regionator.h"
 
 using kmldom::ElementPtr;
 using kmldom::FeaturePtr;

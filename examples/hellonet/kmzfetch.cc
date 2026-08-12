@@ -25,8 +25,8 @@
 
 #include <iostream>
 #include <string>
-#include "kml/base/file.h"
-#include "kml/engine.h"
+#include "kml2/base/file.h"
+#include "kml2/engine.h"
 #include "curlfetch.h"
 
 using std::cout;

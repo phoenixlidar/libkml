@@ -26,8 +26,8 @@
 // This sample program creates shared style selectors.
 
 #include <iostream>
-#include "kml/dom.h"
-#include "kml/convenience/convenience.h"
+#include "kml2/dom.h"
+#include "kml2/convenience/convenience.h"
 
 using kmldom::DocumentPtr;
 using kmldom::IconStylePtr;

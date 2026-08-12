@@ -29,10 +29,10 @@
 
 #include <iostream>
 #include <vector>
-#include "kml/dom.h"
-#include "kml/base/math_util.h"
-#include "kml/base/vec3.h"
-#include "kml/convenience/convenience.h"
+#include "kml2/dom.h"
+#include "kml2/base/math_util.h"
+#include "kml2/base/vec3.h"
+#include "kml2/convenience/convenience.h"
 
 using kmldom::KmlFactory;
 using kmldom::LinearRingPtr;

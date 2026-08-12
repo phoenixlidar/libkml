@@ -32,12 +32,12 @@
 
 // Include the headers needed to build kmlengine_wrap.cc.
 %{
-#include "kml/base/attributes.h"
-#include "kml/base/color32.h"
-#include "kml/base/date_time.h"
-#include "kml/base/vec3.h"
-#include "kml/base/version.h"
-#include "kml/base/xml_file.h"
+#include "kml2/base/attributes.h"
+#include "kml2/base/color32.h"
+#include "kml2/base/date_time.h"
+#include "kml2/base/vec3.h"
+#include "kml2/base/version.h"
+#include "kml2/base/xml_file.h"
 %}
 
 // Tell SWIG about C99 integer types.

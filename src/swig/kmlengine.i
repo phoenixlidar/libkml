@@ -32,8 +32,8 @@
 
 // Include the headers needed to build kmlengine_wrap.cc.
 %{
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 %}
 
 // Tell SWIG about C++ Standard Library std::string.
@@ -47,7 +47,7 @@
 %shared_ptr(kmlengine::KmzFile)
 
 // Tell SWIG about the KML DOM shared_ptr typedefs.
-%include "kml/dom/kml_ptr.h"
+%include "kml2/dom/kml_ptr.h"
 
 %include "typemaps.i"
 

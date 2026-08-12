@@ -27,8 +27,8 @@
 
 #include <iostream>
 #include <string>
-#include "kml/dom.h"
-#include "kml/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/base/file.h"
 #include "print.h"
 
 using std::cout;

@@ -30,10 +30,10 @@
 // Example usage: ./featuretour /my/cool/file.kml 10.0  5.0 tour.kml
 
 #include <iostream>
-#include "kml/convenience/convenience.h"
-#include "kml/base/file.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 using kmlconvenience::CreateFlyToForFeature;
 using kmlconvenience::CreateWait;

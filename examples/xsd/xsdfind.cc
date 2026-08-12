@@ -31,8 +31,8 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "kml/base/file.h"
-#include "kml/xsd/xsd_file.h"
+#include "kml2/base/file.h"
+#include "kml2/xsd/xsd_file.h"
 
 using std::cerr;
 using std::cout;

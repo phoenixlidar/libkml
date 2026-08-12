@@ -32,8 +32,8 @@
 
 // Include the headers needed to build kmldom_wrap.cc.
 %{
-#include "kml/dom.h"
-#include "kml/dom/xsd.h"
+#include "kml2/dom.h"
+#include "kml2/dom/xsd.h"
 %}
 
 // Tell SWIG about std::shared_ptr.  SWIG tracks the inheritance hierarchy
@@ -146,14 +146,14 @@
 %include "std_string.i"
 
 
-%include "kml/dom/xsd.h"
+%include "kml2/dom/xsd.h"
 
 // Tell SWIG about the kmldom type ids (Type_Placemark, etc).
 
-%include "kml/dom/kml22.h"
+%include "kml2/dom/kml22.h"
 
 // Tell SWIG about the intrusive_ptr typedefs.
-%include "kml/dom/kml_ptr.h"
+%include "kml2/dom/kml_ptr.h"
 
 namespace kmlbase {
 
@@ -323,4 +323,4 @@ std::string SerializeRaw(const ElementPtr& element);
 }  // end namespace kmldom
 
 // This must come after the elements declared above in kmlelements.i.
-%include "kml/dom/kml_cast.h"
+%include "kml2/dom/kml_cast.h"

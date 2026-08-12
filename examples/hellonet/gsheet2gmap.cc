@@ -36,15 +36,15 @@
 #include <memory>
 #include "curlfetch.h"
 #include "prompt.h"
-#include "kml/base/file.h"
-#include "kml/dom.h"
-#include "kml/engine.h"
-#include "kml/convenience/atom_util.h"
-#include "kml/convenience/convenience.h"
-#include "kml/convenience/http_client.h"
-#include "kml/convenience/google_doc_list.h"
-#include "kml/convenience/google_maps_data.h"
-#include "kml/convenience/google_spreadsheets.h"
+#include "kml2/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
+#include "kml2/convenience/atom_util.h"
+#include "kml2/convenience/convenience.h"
+#include "kml2/convenience/http_client.h"
+#include "kml2/convenience/google_doc_list.h"
+#include "kml2/convenience/google_maps_data.h"
+#include "kml2/convenience/google_spreadsheets.h"
 
 using kmlconvenience::AtomUtil;
 using kmlconvenience::GoogleDocList;

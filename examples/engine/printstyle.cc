@@ -28,9 +28,9 @@
 //   printstyle ../../../examples/kml/polygons2d.kml pm300
 
 #include <iostream>
-#include "kml/dom.h"
-#include "kml/engine.h"
-#include "kml/base/file.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
+#include "kml2/base/file.h"
 
 // This prints out the normal <Style> for the feature of the given id in the
 // given KML file.

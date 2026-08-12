@@ -44,10 +44,10 @@
 
 #include <iostream>
 #include <string>
-#include "kml/base/expat_parser.h"
-#include "kml/dom/kml_handler.h"
-#include "kml/dom/parser_observer.h"
-#include "kml/dom.h"
+#include "kml2/base/expat_parser.h"
+#include "kml2/dom/kml_handler.h"
+#include "kml2/dom/parser_observer.h"
+#include "kml2/dom.h"
 
 int main(int argc, char** argv) {
 

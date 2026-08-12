@@ -29,8 +29,8 @@
 // clone: all simple and complex elements are cloned.
 
 #include <iostream>
-#include "kml/dom.h"
-#include "kml/engine.h"
+#include "kml2/dom.h"
+#include "kml2/engine.h"
 
 // This function creates a Region with a LatLonAltBox of the specified bounds
 // and a Lod with the specified minLodPixels.
